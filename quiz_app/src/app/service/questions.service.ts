@@ -11,9 +11,11 @@ const api_path = 'http://localhost:5000/api/mcqs';
 export class QuestionsService {
 
   constructor(private http: HttpClient) { }
-  addMcqs(mcqsForm: any, topicId: string, typeId: string): Observable<any> {
+  addMcqs(mcqsForm: any, topicId: string): Observable<any> {
     let id = localStorage.getItem('id')
-    return this.http.post(`${api_path}/create/${id}/${topicId}/${typeId}`, mcqsForm)
+    // return this.http.post(`${api_path}/create/${id}/${topicId}/${typeId}`, mcqsForm)
+    return this.http.post(`${api_path}/create/${id}/${topicId}`, mcqsForm)
+
   }
 
   getMcqs() {
@@ -27,10 +29,13 @@ export class QuestionsService {
   getImageMcqs(imageName: string) {
     return this.http.get(`${api_path}/files/${imageName}`, { responseType: 'blob'})
   }
-  getMcqsByTopic(topic: any, type: string) {
+  
+  getMcqsByTopic(topic: any) {
     // debugger
     let id = localStorage.getItem('id')
-    return this.http.get(`${api_path}/getMcqs/${id}/${topic}/${type}`)
+    // return this.http.get(`${api_path}/getMcqs/${id}/${topic}/${type}`)
+    return this.http.get(`${api_path}/getMcqs/${id}/${topic}`)
+
   }
 
   deleteMcqs(id: any) {

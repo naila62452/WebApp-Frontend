@@ -45,6 +45,7 @@ export class AddTopicComponent implements OnInit {
       Validators.required
     ])
   });
+  // routes = ['/material/mcqs/', this.topics._id]
 
   constructor(private topicService: TopicsService,
     private snackbar: MatSnackBar, private route: ActivatedRoute,

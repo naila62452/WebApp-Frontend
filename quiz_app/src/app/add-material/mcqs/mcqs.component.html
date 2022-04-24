@@ -49,7 +49,8 @@
                 <div class="question">
                     <h2>{{ question.mcqs }}</h2>
                 </div>
-                <img src="{{imageBlobUrl}}">
+                <img style="width: 50px; height: 50px;" [src]="imageBlobUrl[i]">
+                <span>{{i}}</span>
                 <!-- <img src="getImage()"> -->
 
                 <!-- <button (click)="getImage()">image</button> -->

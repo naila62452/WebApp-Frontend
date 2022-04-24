@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuestionsService } from 'src/app/service/questions.service';
 
@@ -38,31 +39,36 @@ export class MCQSComponent implements OnInit {
   constructor(private questionService:
     QuestionsService, private router: Router,
     private route: ActivatedRoute,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar, private sanitizer: DomSanitizer) { }
   mcqs: Array<any> = []
   topicId: any
   topic: any
   typeId: any
   mcqImages: Array<any> = []
-  imageBlobUrl: any;
-
+  imageBlobUrl: Array <any> = [];
+// imageBlobUrl : any
   // mcqImages: any
 
   ngOnInit(): void {
-    this.typeId = this.route.snapshot.paramMap.get('id')
-    localStorage.setItem('typeId', this.typeId)
+    this.topic = this.route.snapshot.paramMap.get('id')
+    // localStorage.setItem('typeId', this.typeId)
 
-    this.topic = localStorage.getItem('topicId')
-    // debugger
-    this.questionService.getMcqsByTopic(this.topic, this.typeId).subscribe(
+    this.questionService.getMcqsByTopic(this.topic).subscribe(
       res => {
         console.log(res)
+        this.imageBlobUrl = []
         this.mcqs = <any>res;
+        this.mcqs.forEach(item => {
+          this.getImage(item.id)
+        })
       },
       err => {
         console.log(err)
       })
   }
+  public getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustHtml(url);
+}
   // onSubmit() {
   //   this.typeId = this.route.snapshot.paramMap.get('id')
   //   this.topic = localStorage.getItem('topicId')
@@ -85,58 +91,63 @@ export class MCQSComponent implements OnInit {
   //       });
   // }
   onSubmit() {
-    this.typeId = this.route.snapshot.paramMap.get('id')
-    this.topic = localStorage.getItem('topicId')
-
-
+    // debugger
+    this.topic = this.route.snapshot.paramMap.get('id')
+    // this.topic = localStorage.getItem('topicId')
     this.mcqsForm.get('file')
 
-
-    // this.questionService.addMcqs(this.mcqsForm.value, this.topic, this.typeId)  
     const formData = new FormData();
     formData.append('file', this.mcqsForm.get('file').value);
-    // console.log(this.mcqsForm.get('file').value);
+    console.log(this.mcqsForm.get('file').value);
     formData.append("mcqs", this.mcqsForm.get('mcqs').value)
     formData.append("option1", this.mcqsForm.get('option1').value)
     formData.append("option2", this.mcqsForm.get('option2').value)
     formData.append("option3", this.mcqsForm.get('option3').value)
     formData.append("option4", this.mcqsForm.get('option4').value)
     formData.append("answer", this.mcqsForm.get('answer').value)
-
-    this.questionService.addMcqs(formData, this.topic, this.typeId)
+    // debugger
+    this.questionService.addMcqs(formData, this.topic)
       .subscribe(
         res => {
-          this.mcqs.push(res);
-          this.getImage()
+          // debugger
+          // this.getImage(res._id)
+          // this.mcqs.push(res);
+
           this._snackBar.open(" Your Question has been Posted", "Ok", {
             duration: 5000,
             panelClass: ['blue-snackbar']
           });
+          window.location.reload();
+
           this.mcqsForm.reset();
         },
         err => {
           console.log(err)
         });
   }
-  getImage() {
+  getImage(id: string) {
     console.log(this.mcqsForm.get('file').value.name)
-    this.questionService.getImageMcqs(this.mcqsForm.get('file').value.name)
-      .subscribe(res => {
-        // this.mcqImages = <any>res
-        // console.log(this.mcqImages)
-        this.createImageFromBlob(res)
-      })
-  }
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.imageBlobUrl = reader.result;
-    }, false);
+    this.questionService.getImageMcqs(id)
+    .subscribe((blob : any) => {
+      // debugger
 
-    if (image) {
-      reader.readAsDataURL(image);
-    }
+      let objectURL = URL.createObjectURL(blob);       
+      this.imageBlobUrl.push(this.sanitizer.bypassSecurityTrustUrl(objectURL));
+      console.log(this.imageBlobUrl)
+    })
   }
+  // createImageFromBlob(image: Blob) {
+  //   let reader = new FileReader();
+  //   reader.addEventListener("load", () => {
+  //     this.imageBlobUrl = reader.result;
+  //     this.imageBlobUrl = this.getSantizeUrl(this.imageBlobUrl)
+  //     console.log(this.imageBlobUrl)
+  //   }, false);
+
+  //   if (image) {
+  //     reader.readAsDataURL(image);
+  //   }
+  // }
   onDelete(id: any) {
     this.questionService.deleteMcqs(id).subscribe(
       res => {
