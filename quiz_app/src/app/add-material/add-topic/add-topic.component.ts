@@ -138,4 +138,16 @@ export class AddTopicComponent implements OnInit {
       return (x.topic.toLowerCase()).includes(text.toLowerCase());
     })
   }
+
+  onDelete(id: any) {
+    this.topicService.deleteTopic(id).subscribe(
+      res => {
+        this.ngOnInit();
+        this.snackbar.open(" Your Topic has been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+      }
+    )
+  }
 }

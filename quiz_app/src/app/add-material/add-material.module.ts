@@ -8,12 +8,14 @@ import { MaterialModule } from '../angular_material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddTopicComponent } from './add-topic/add-topic.component';
 import { TrueFalseComponent } from './true-false/true-false.component';
+import { OpenEndedComponent } from './open-ended/open-ended.component';
 @NgModule({
   declarations: [
     ScienceComponent,
     MCQSComponent,
     AddTopicComponent,
-    TrueFalseComponent
+    TrueFalseComponent,
+    OpenEndedComponent
   ],
   imports: [
     CommonModule,

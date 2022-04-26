@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SubjectService } from 'src/app/service/subject.service';
 import { Router, ActivatedRoute } from '@angular/router'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
@@ -23,8 +22,7 @@ export class AddMaterialComponent implements OnInit {
 
   });
 
-  constructor(private subjectService: SubjectService,
-    private route: ActivatedRoute, private typeService: ActivityFormService) { }
+  constructor(private route: ActivatedRoute, private typeService: ActivityFormService) { }
 
   subject: any = []
   subId: any
@@ -34,7 +32,7 @@ export class AddMaterialComponent implements OnInit {
   isLangSelected = false
 
   ngOnInit(): void {
-    this.subjectService.getSubject()
+    this.typeService.getSubject()
       .subscribe(res => {
         this.subject = res
         console.log(res)

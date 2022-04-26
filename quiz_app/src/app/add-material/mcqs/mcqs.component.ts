@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuestionsService } from 'src/app/service/questions.service';
+import { TopicsService } from 'src/app/service/topics.service';
 
 @Component({
   selector: 'app-mcqs',
@@ -33,26 +34,40 @@ export class MCQSComponent implements OnInit {
       Validators.required
     ]),
     file: new FormControl("", [
-    ])
+    ]),
+    posFeedback: new FormControl("", [
+      Validators.required
+    ]),
+    negFeedback: new FormControl("", [
+      Validators.required
+    ]),
   })
 
   constructor(private questionService:
     QuestionsService, private router: Router,
     private route: ActivatedRoute,
-    private _snackBar: MatSnackBar, private sanitizer: DomSanitizer) { }
+    private _snackBar: MatSnackBar,
+    private sanitizer: DomSanitizer, private topicService: TopicsService) { }
   mcqs: Array<any> = []
   topicId: any
   topic: any
+  topicGetById: any
   typeId: any
   mcqImages: Array<any> = []
-  imageBlobUrl: Array <any> = [];
-// imageBlobUrl : any
+  imageBlobUrl: Array<any> = [];
+  // imageBlobUrl : any
   // mcqImages: any
 
   ngOnInit(): void {
     this.topic = this.route.snapshot.paramMap.get('id')
+    this.topicService.getTopicById(this.topic)
+      .subscribe(res => {
+        this.topicGetById = res
+        console.log('response', res)
+      }, err => {
+        console.log(err)
+      })
     // localStorage.setItem('typeId', this.typeId)
-
     this.questionService.getMcqsByTopic(this.topic).subscribe(
       res => {
         console.log(res)
@@ -66,9 +81,9 @@ export class MCQSComponent implements OnInit {
         console.log(err)
       })
   }
-  public getSantizeUrl(url : string) {
+  public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustHtml(url);
-}
+  }
   // onSubmit() {
   //   this.typeId = this.route.snapshot.paramMap.get('id')
   //   this.topic = localStorage.getItem('topicId')
@@ -92,6 +107,13 @@ export class MCQSComponent implements OnInit {
   // }
   onSubmit() {
     // debugger
+    if (this.mcqs.length >= this.topicGetById.noOfQuestions) {
+      this._snackBar.open(" Your Limit has been execced", "Ok", {
+        duration: 5000,
+        panelClass: ['blue-snackbar']
+      });
+      return
+    }
     this.topic = this.route.snapshot.paramMap.get('id')
     // this.topic = localStorage.getItem('topicId')
     this.mcqsForm.get('file')
@@ -105,6 +127,9 @@ export class MCQSComponent implements OnInit {
     formData.append("option3", this.mcqsForm.get('option3').value)
     formData.append("option4", this.mcqsForm.get('option4').value)
     formData.append("answer", this.mcqsForm.get('answer').value)
+    formData.append("posFeedback", this.mcqsForm.get('posFeedback').value)
+    formData.append("negFeedback", this.mcqsForm.get('negFeedback').value)
+
     // debugger
     this.questionService.addMcqs(formData, this.topic)
       .subscribe(
@@ -128,13 +153,11 @@ export class MCQSComponent implements OnInit {
   getImage(id: string) {
     console.log(this.mcqsForm.get('file').value.name)
     this.questionService.getImageMcqs(id)
-    .subscribe((blob : any) => {
-      // debugger
-
-      let objectURL = URL.createObjectURL(blob);       
-      this.imageBlobUrl.push(this.sanitizer.bypassSecurityTrustUrl(objectURL));
-      console.log(this.imageBlobUrl)
-    })
+      .subscribe((blob: any) => {
+        let objectURL = URL.createObjectURL(blob);
+        this.imageBlobUrl.push(this.sanitizer.bypassSecurityTrustUrl(objectURL));
+        console.log(this.imageBlobUrl)
+      })
   }
   // createImageFromBlob(image: Blob) {
   //   let reader = new FileReader();

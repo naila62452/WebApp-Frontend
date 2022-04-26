@@ -9,8 +9,8 @@
                     <br>
                     <br>
                     <div class="topicTitle">
-                        <p>Please add your topic for material creation or select from the list of topics you have
-                            already added.</p>
+                        <p>Please add your topic for material creation.</p>
+                        <hr>
                     </div>
                     <div class="card-body">
                         <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
@@ -94,7 +94,8 @@
                             <mat-form-field appearance="fill">
                                 <mat-label> Choose tpye</mat-label>
                                 <mat-select formControlName="type">
-                                    <mat-option [value]="item.questionType" *ngFor="let item of type">{{item.questionType}}
+                                    <mat-option [value]="item.questionType" *ngFor="let item of type">
+                                        {{item.questionType}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -110,8 +111,6 @@
                             <mat-form-field appearance="fill">
                                 <mat-label> Choose No</mat-label>
                                 <mat-select formControlName="noOfQuestions">
-                                    <!-- <mat-option [value]="lang.language" *ngFor="let lang of language">{{lang.language}}
-                                    </mat-option> -->
                                     <mat-option value="1">1</mat-option>
                                     <mat-option value="2">2</mat-option>
                                     <mat-option value="2">3</mat-option>
@@ -182,17 +181,40 @@
                 </div>
             </div>
         </div>
-        <h1 style="color: black;">Topic added list:</h1>
-        <div class="topic-list">
-            <div class="topics" *ngFor="let topics of topic; let i = index">
-                <div class="topics__contents">
-                    <div class="topics__content">
-                        <span [routerLink]="['/material/mcqs/', topics._id]">{{topics.topic}}</span>
-                    </div>
-                </div>
-            </div>
-            <br>
+        <h2 style="color: black;">Topic added list:</h2>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Topic Name</th>
+                        <th>Type</th>
+                        <th>Grade</th>
+                        <th>Create</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let topics of topic; let i = index">
+                        <td>{{ topics.topic }}</td>
+                        <td>{{ topics.type }}</td>
+                        <td>{{ topics.grade }}</td>
+                        <td><button mat-stroked-button class="button" class="pointer" *ngIf="topics.type === 'MCQS'"
+                                [routerLink]="['/material/mcqs/', topics._id]">Create Activity</button>
+                            <button mat-stroked-button class="button" class="pointer"
+                                *ngIf="topics.type === 'True False'"
+                                [routerLink]="['/material/true/', topics._id]">Create Activity</button>
+                            <button mat-stroked-button class="button" class="pointer"
+                                *ngIf="topics.type === 'Open Ended Question'"
+                                [routerLink]="['/material/openEnded/', topics._id]">Create Activity</button>
+                        </td>
+                        <td><button mat-stroked-button class="button" class="pointer"
+                                (click)="onDelete(topics._id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
     </div>
 </div>
 <br>
