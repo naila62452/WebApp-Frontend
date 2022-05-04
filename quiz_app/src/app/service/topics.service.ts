@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import {environment} from '../../environments/environment'
 
-const api_path = 'http://localhost:5000/api/topic';
+const api_path = `${environment.web_URL}/api/topic`;
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class TopicsService {
     return this.http.get(`${api_path}/get/${id}/${subject}`)
   }
 
-  getTopicById(topic: string): Observable<any> {
+  getTopicByTopicId(topic: string): Observable<any> {
     let id = localStorage.getItem('id');
     return this.http.get(`${api_path}/getTopic/${id}/${topic}`)
   }

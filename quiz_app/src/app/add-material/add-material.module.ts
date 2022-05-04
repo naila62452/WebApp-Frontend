@@ -9,13 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddTopicComponent } from './add-topic/add-topic.component';
 import { TrueFalseComponent } from './true-false/true-false.component';
 import { OpenEndedComponent } from './open-ended/open-ended.component';
+import { ViewActivityComponent } from './view-activity/view-activity.component';
 @NgModule({
   declarations: [
     ScienceComponent,
     MCQSComponent,
     AddTopicComponent,
     TrueFalseComponent,
-    OpenEndedComponent
+    OpenEndedComponent,
+    ViewActivityComponent
   ],
   imports: [
     CommonModule,

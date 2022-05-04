@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionsService } from 'src/app/service/questions.service';
 import { TopicsService } from 'src/app/service/topics.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-true-false',
@@ -11,13 +12,24 @@ import { TopicsService } from 'src/app/service/topics.service';
   styleUrls: ['./true-false.component.scss']
 })
 export class TrueFalseComponent implements OnInit {
+  @Output() submitEvent = new EventEmitter<boolean>();
+
+  SetAsSubmitted(value: boolean) {
+    this.submitEvent.emit(value);
+  }
   public trueFalseForm: FormGroup = new FormGroup({
     question: new FormControl("", [
       Validators.required
     ]),
     answer: new FormControl("", [
       Validators.required
-    ])
+    ]),
+    posFeedback: new FormControl("", [
+      Validators.required
+    ]),
+    negFeedback: new FormControl("", [
+      Validators.required
+    ]),
   })
 
   constructor(private questionService: QuestionsService,
@@ -29,7 +41,7 @@ export class TrueFalseComponent implements OnInit {
   topicGetById: any
   ngOnInit(): void {
     this.topicId = this.route.snapshot.paramMap.get('id')
-    this.topicService.getTopicById(this.topicId)
+    this.topicService.getTopicByTopicId(this.topicId)
       .subscribe(res => {
         this.topicGetById = res
         console.log('response', res)
@@ -61,7 +73,8 @@ export class TrueFalseComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
-        window.location.reload();
+        // window.location.reload();
+        this.SetAsSubmitted(true);
 
         this.trueFalseForm.reset();
       },

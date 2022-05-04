@@ -26,9 +26,9 @@ export class AddTopicComponent implements OnInit {
     grade: new FormControl("", [
       Validators.required
     ]),
-    type: new FormControl("", [
-      Validators.required
-    ]),
+    // type: new FormControl("", [
+    //   Validators.required
+    // ]),
     // access: new FormControl("", [
     //   Validators.required
     // ]),
@@ -49,7 +49,8 @@ export class AddTopicComponent implements OnInit {
 
   constructor(private topicService: TopicsService,
     private snackbar: MatSnackBar, private route: ActivatedRoute,
-    private activityService: ActivityFormService) { }
+    private activityService: ActivityFormService,
+    private router: Router) { }
   topic: Array<any> = []
   searchText = ''
   subject: any
@@ -108,18 +109,16 @@ export class AddTopicComponent implements OnInit {
 
   onSubmit() {
     console.log(this.topicForm.value)
-    // debugger
     this.subId = this.route.snapshot.paramMap.get('id');
-    // debugger
     this.topicService.addTopic(this.topicForm.value, this.subId, this.topicForm.value.ageGroup)
       .subscribe(res => {
-        window.location.reload();
         this.snackbar.open('Your topic has been posted', 'Ok', {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
         this.getTopicByAgeId(this.topicForm.value.ageGroup);
         this.topicForm.reset();
+        this.router.navigate([`/material/type/${res._id}`])
       })
   }
   getTopicByAgeId(ageId: string) {

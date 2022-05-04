@@ -90,7 +90,7 @@
                             </small>
                             <br>
 
-                            <mat-label for="type"><b>Please select type of activity.</b></mat-label>
+                            <!-- <mat-label for="type"><b>Please select type of activity.</b></mat-label>
                             <mat-form-field appearance="fill">
                                 <mat-label> Choose tpye</mat-label>
                                 <mat-select formControlName="type">
@@ -105,7 +105,7 @@
                                     Please select Type.
                                 </div>
                             </small>
-                            <br>
+                            <br> -->
 
                             <mat-label for="noOfQuestions"><b>Please select no of activities.</b></mat-label>
                             <mat-form-field appearance="fill">
@@ -113,10 +113,10 @@
                                 <mat-select formControlName="noOfQuestions">
                                     <mat-option value="1">1</mat-option>
                                     <mat-option value="2">2</mat-option>
-                                    <mat-option value="2">3</mat-option>
-                                    <mat-option value="2">4</mat-option>
-                                    <mat-option value="2">5</mat-option>
-                                    <mat-option value="2">6</mat-option>
+                                    <mat-option value="3">3</mat-option>
+                                    <mat-option value="4">4</mat-option>
+                                    <mat-option value="5">5</mat-option>
+                                    <mat-option value="6">6</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('noOfQuestions')?.errors) && 
@@ -187,25 +187,30 @@
                 <thead>
                     <tr>
                         <th>Topic Name</th>
-                        <th>Type</th>
+                        <th>Country</th>
+                        <th>Language</th>
                         <th>Grade</th>
-                        <th>Create</th>
+                        <th>View</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let topics of topic; let i = index">
                         <td>{{ topics.topic }}</td>
-                        <td>{{ topics.type }}</td>
+                        <td>{{ topics.country }}</td>
+                        <td>{{ topics.language }}</td>
                         <td>{{ topics.grade }}</td>
-                        <td><button mat-stroked-button class="button" class="pointer" *ngIf="topics.type === 'MCQS'"
+                        <td>
+                            <!-- <button mat-stroked-button class="button" class="pointer" *ngIf="topics.type === 'MCQS'"
                                 [routerLink]="['/material/mcqs/', topics._id]">Create Activity</button>
                             <button mat-stroked-button class="button" class="pointer"
                                 *ngIf="topics.type === 'True False'"
                                 [routerLink]="['/material/true/', topics._id]">Create Activity</button>
                             <button mat-stroked-button class="button" class="pointer"
                                 *ngIf="topics.type === 'Open Ended Question'"
-                                [routerLink]="['/material/openEnded/', topics._id]">Create Activity</button>
+                                [routerLink]="['/material/openEnded/', topics._id]">Create Activity</button> -->
+                            <button mat-stroked-button class="button" class="pointer"
+                            [routerLink]="['/material/view/', topics._id]">View</button>
                         </td>
                         <td><button mat-stroked-button class="button" class="pointer"
                                 (click)="onDelete(topics._id)">Delete</button>
@@ -214,7 +219,6 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
 <br>

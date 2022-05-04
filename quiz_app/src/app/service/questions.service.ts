@@ -16,7 +16,7 @@ export class QuestionsService {
   addMcqs(mcqsForm: any, topicId: string): Observable<any> {
     let id = localStorage.getItem('id')
     // return this.http.post(`${api_path}/create/${id}/${topicId}/${typeId}`, mcqsForm)
-    return this.http.post(`${api_path_mcqs}/create/${id}/${topicId}`, mcqsForm)
+    return this.http.post(`${api_path_mcqs}/createQuestion/${id}/${topicId}`, mcqsForm)
   }
 
   getMcqs() {

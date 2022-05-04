@@ -5,13 +5,15 @@ import { MCQSComponent } from './mcqs/mcqs.component';
 import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ScienceComponent } from './science/science.component';
 import { TrueFalseComponent } from './true-false/true-false.component';
+import { ViewActivityComponent } from './view-activity/view-activity.component';
 
 const routes: Routes = [
-  { path: 'subject/:id', component: ScienceComponent},
+  { path: 'type/:id', component: ScienceComponent},
   { path: 'mcqs/:id', component: MCQSComponent },
   { path: 'true/:id', component: TrueFalseComponent },
   { path: 'topic/:id', component: AddTopicComponent },
-  { path: 'openEnded/:id', component: OpenEndedComponent}
+  { path: 'openEnded/:id', component: OpenEndedComponent},
+  { path: 'view/:id', component: ViewActivityComponent}
 ];
 
 @NgModule({
