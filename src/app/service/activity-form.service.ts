@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const api_path_age = 'http://localhost:5000/api/age';
-const api_path_language = 'http://localhost:5000/api/language';
-const api_path_country = 'http://localhost:5000/api/country';
-const api_path_grade = 'http://localhost:5000/api/grade';
-const api_path_type = 'http://localhost:5000/api/type';
-const api_path_subject = 'http://localhost:5000/api/subject';
+const api_path_age = `${environment.web_URL}/api/age`;
+const api_path_language = `${environment.web_URL}/api/language`;
+const api_path_country = `${environment.web_URL}/api/country`;
+const api_path_grade = `${environment.web_URL}/api/grade`;
+const api_path_type = `${environment.web_URL}/api/type`;
+const api_path_subject = `${environment.web_URL}/api/subject`;
 
 @Injectable({
   providedIn: 'root'

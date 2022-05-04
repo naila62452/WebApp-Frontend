@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
-const api_path = 'http://localhost:5000/api/users';
-const api_file = 'http://localhost:5000/api/image';
+const api_path = `${environment.web_URL}/api/users`;
+const api_file = `${environment.web_URL}/api/image`;
 
 @Injectable({
   providedIn: 'root'

@@ -20,7 +20,4 @@ export class HeaderComponent implements OnInit {
     var loginStatus = localStorage.getItem("isLoggedIn")
     return loginStatus == "true";
   }
-  useLanguage(language: string): void {
-    this.translate.use(language);
-}
 }

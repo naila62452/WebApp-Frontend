@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const api_path_mcqs = 'http://localhost:5000/api/mcqs';
-const api_path_trueFalse = 'http://localhost:5000/api/true_false';
+const api_path_mcqs = `${environment.web_URL}/api/mcqs`;
+const api_path_trueFalse = `${environment.web_URL}/api/true_false`;
 
 
 @Injectable({
