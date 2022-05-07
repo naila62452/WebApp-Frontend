@@ -108,7 +108,7 @@
 <br>
 <br>
 
-<div *ngIf="currentFile" class="progress">
+<!-- <div *ngIf="currentFile" class="progress">
     <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
         attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progress + '%' }">
         {{ progress }}%
@@ -126,11 +126,11 @@
     <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
         <li class="list-group-item">
             <a href="{{ file.url }}">{{ file.name }}</a>
-            <!-- <img src="{{file.url}}"> -->
+            <img src="{{file.url}}">
         </li>
     </ul>
 
-</div>
+</div> -->
 
 <!-- <div class="container">
     <table class="table table-hover">
