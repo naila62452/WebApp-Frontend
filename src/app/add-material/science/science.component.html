@@ -33,7 +33,7 @@
     <div *ngIf="!ifSubmitted[i]">
         <mat-label><b>Please select type of activity.</b></mat-label>
         <mat-form-field appearance="fill">
-            <mat-label> Choose tpye</mat-label>
+            <mat-label> Choose type</mat-label>
             <mat-select [(ngModel)]="selectedValue[i]">
                 <mat-option [value]="item.questionType" *ngFor="let item of type">
                     {{item.questionType}}
