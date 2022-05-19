@@ -12,7 +12,7 @@ import { TopicsService } from 'src/app/service/topics.service';
 export class ScienceComponent implements OnInit {
   selectedValue: string[] = [];
   ifSubmitted: boolean[] = [];
-
+  totalNumberOfQuestions = 0
   topicGetById: any = {};
   arr: any[] = []
   constructor(private category: ActivityFormService,
@@ -27,9 +27,10 @@ export class ScienceComponent implements OnInit {
         this.topicGetById = res
         console.log(res.noOfQuestions)
         console.log('response', res)
-        this.arr = Array(Number(this.topicGetById.noOfQuestions)).fill(0)
-        this.selectedValue = Array(Number(this.topicGetById.noOfQuestions)).fill('')
-        this.ifSubmitted = Array(Number(this.topicGetById.noOfQuestions)).fill(false)
+        this.totalNumberOfQuestions = res.noOfQuestions - parseInt(localStorage.getItem('remainingQuestions'))
+        this.arr = Array(Number(this.totalNumberOfQuestions)).fill(0)
+        this.selectedValue = Array(Number(this.totalNumberOfQuestions)).fill('')
+        this.ifSubmitted = Array(Number(this.totalNumberOfQuestions)).fill(false)
         console.log(this.arr)
       }, err => {
         console.log(err)

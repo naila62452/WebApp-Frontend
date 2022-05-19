@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuestionsService } from 'src/app/service/questions.service';
+import { TopicsService } from 'src/app/service/topics.service';
 
 @Component({
   selector: 'app-open-ended',
@@ -12,9 +17,41 @@ export class OpenEndedComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  constructor() { }
+  public openEndedForm: FormGroup = new FormGroup({
+    question: new FormControl("", [
+      Validators.required
+    ]),
+    sequence: new FormControl("", [
+      Validators.required
+    ])
+  })
+  question: Array<any> = []
+  topic: string
+  constructor(private questionService: QuestionsService,
+    private router: Router, private _snackBar: MatSnackBar,
+    private route: ActivatedRoute, private topicService: TopicsService) { }
 
   ngOnInit(): void {
   }
+  onSubmit() {
+    this.topic = localStorage.getItem('topicId')
+    console.log(this.openEndedForm.value)
 
+
+    this.questionService.createOpenEnded(this.openEndedForm.value, this.topic)
+      .subscribe(
+        res => {
+          this.question.push(res);
+          this._snackBar.open(" Your Question has been Posted", "Ok", {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          });
+          this.SetAsSubmitted(true);
+          localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
+          this.openEndedForm.reset();
+        },
+        err => {
+          console.log(err)
+        });
+  }
 }

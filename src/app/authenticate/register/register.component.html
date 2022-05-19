@@ -1,7 +1,8 @@
-<!-- <div class="spinnerDiv" *ngIf="loading">
-    <mat-spinner class="spinner"></mat-spinner>
-</div> -->
-<div class="main-content">
+<div class="spinnerDiv" *ngIf="loading">
+    <mat-spinner aria-label="Please wait"></mat-spinner>
+    <div style="position:relative; top: -60px; left: 30px;">Please wait, your registration is in progress.</div>
+</div>
+<div class="main-content" *ngIf="!loading">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -73,7 +74,7 @@
                                 <input formControlName="remember" type="checkbox" name="remember" id="remember"
                                     required>
                                 By creating an account you agree to our<br style="line-height:0;"><a href
-                                    routerLink="/contact/terms">Terms & Privacy</a>.
+                                    routerLink="/policy/privacy">Terms & Privacy</a>.
                                 <small class="text-danger" *ngIf="!registerForm.valid && registerForm.get('remember')?.errors && 
                                 (registerForm.get('remember')?.dirty || registerForm.get('remember')?.touched)">
                                     <p>Please accept terms and conditions for privacy policy.</p>
@@ -106,7 +107,7 @@
 <br>
 
 
-<div class="container" style="max-width: 550px">
+<!-- <div class="container" style="max-width: 550px">
     <h2 class="text-center mb-5">Angular Login with Google</h2>
     <div *ngIf="isLoggedin === false">
         <div class="google">
@@ -116,7 +117,8 @@
             </button>
 
         </div>
-    </div>
+    </div> -->
+
     <!-- <div *ngIf="isLoggedin === true">
         <div class="form-group">
             <label>First Name</label>

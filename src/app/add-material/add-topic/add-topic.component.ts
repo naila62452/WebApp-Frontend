@@ -118,6 +118,7 @@ export class AddTopicComponent implements OnInit {
         });
         this.getTopicByAgeId(this.topicForm.value.ageGroup);
         this.topicForm.reset();
+        localStorage.setItem('remainingQuestions', '0')
         this.router.navigate([`/material/type/${res._id}`])
       })
   }

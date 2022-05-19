@@ -93,11 +93,24 @@
                     <br>
                     <div class="card-body">
                         <form [formGroup]="mcqsForm">
+                            <mat-label for="sequence"><b>Activity Sequence Number *</b></mat-label>
+                            <mat-form-field class="input_text">
+                                <input class="input_form" matInput type="text" name="sequence" id="sequence"
+                                    formControlName="sequence" required>
+                            </mat-form-field>
+                            <small class="text-danger" role="alert" *ngIf="(!mcqsForm.valid && mcqsForm.get('topic')?.errors) && 
+                                (mcqsForm.get('topic')?.dirty || mcqsForm.get('topic')?.touched)">
+                                <div>
+                                    Please enter a Sequence of activity.
+                                </div>
+                            </small>
+                            <br>
+
                             <div class="textarea">
                                 <mat-label>Please enter the Question Statement.</mat-label>
                                 <ul>
                                     <textarea type="text" name="mcqs" id="mcqs" formControlName="mcqs" required rows="4"
-                                        cols="50"> </textarea>
+                                        cols="40"> </textarea>
                                 </ul>
                                 <!-- <input id="file" type='file' (change)="processFile($event)"> -->
                             </div>
@@ -106,24 +119,44 @@
                                     Please enter the options.
                                 </mat-label>
                                 <ul>
-                                    <span>Option 1:</span><input type="text" name="option1" id="option1"
+                                    <span>Option A:</span><input type="text" name="option1" id="option1"
                                         formControlName="option1" required>
-                                    <span>Option 2:</span><input type="text" name="option2" id="option2"
+                                    <span>Option B:</span><input type="text" name="option2" id="option2"
                                         formControlName="option2" required>
-                                    <span>Option 3:</span><input type="text" name="option3" id="option3"
+                                    <span>Option C:</span><input type="text" name="option3" id="option3"
                                         formControlName="option3" required>
-                                    <span>Option 4:</span><input type="text" name="option4" id="option4"
+                                    <span>Option D:</span><input type="text" name="option4" id="option4"
                                         formControlName="option4" required>
                                 </ul>
                             </div>
                             <div>
-                                <mat-label>
+                                <!-- <mat-label>
                                     Please enter the correct answer.
                                     <ul class="answers">
                                         <span>Please re-type correct answer:</span><input type="text" name="answer" id="answer"
                                             formControlName="answer" required>
                                     </ul>
-                                </mat-label>
+                                </mat-label> -->
+
+                                <mat-label for="answer"><b>Please select correct Answer.</b></mat-label>
+                                <mat-form-field appearance="fill">
+                                    <mat-label> Choose answer</mat-label>
+                                    <mat-select formControlName="answer">
+                                        <mat-option value="option1">Option A</mat-option>
+                                        <mat-option value="option2">Option B</mat-option>
+                                        <mat-option value="option3">Option C</mat-option>
+                                        <mat-option value="option4">Option D</mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                                <small class="text-danger" role="alert" *ngIf="(!mcqsForm.valid && mcqsForm.get('answer')?.errors) && 
+                                (mcqsForm.get('answer')?.dirty || mcqsForm.get('answer')?.touched)">
+                                    <div>
+                                        Please select Answer.
+                                    </div>
+                                </small>
+                                <br>
+
                                 <div class="feedback">
                                     <div class="feedback__step">
                                         <mat-label>Feedback, if the answer is correct:</mat-label>

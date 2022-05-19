@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-body">
                         <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
-                            <mat-label for="topic"><b>Topic Name</b></mat-label>
+                            <mat-label for="topic"><b>Topic Name *</b></mat-label>
                             <mat-form-field class="input_text">
                                 <input class="input_form" matInput type="text" name="topic" id="topic"
                                     formControlName="topic" required>
@@ -90,23 +90,6 @@
                             </small>
                             <br>
 
-                            <!-- <mat-label for="type"><b>Please select type of activity.</b></mat-label>
-                            <mat-form-field appearance="fill">
-                                <mat-label> Choose tpye</mat-label>
-                                <mat-select formControlName="type">
-                                    <mat-option [value]="item.questionType" *ngFor="let item of type">
-                                        {{item.questionType}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('type')?.errors) && 
-                            (topicForm.get('type')?.dirty || topicForm.get('type')?.touched)">
-                                <div>
-                                    Please select Type.
-                                </div>
-                            </small>
-                            <br> -->
-
                             <mat-label for="noOfQuestions"><b>Please select no of activities.</b></mat-label>
                             <mat-form-field appearance="fill">
                                 <mat-label> Choose No</mat-label>
@@ -127,7 +110,7 @@
                             </small>
                             <br>
 
-                            <mat-label for="time"><b>Time to complete in minutes.</b></mat-label>
+                            <mat-label for="time"><b>Time to complete in minutes.*</b></mat-label>
                             <mat-form-field class="input_text">
                                 <input class="input_form" matInput type="number" name="time" id="time"
                                     formControlName="time" required>
@@ -179,9 +162,39 @@
                         </div>
                     </div>
                 </div>
+                <h2 style="color: black;">Topic added list:</h2>
+                <div class="container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Topic Name</th>
+                                <th>Country</th>
+                                <th>Language</th>
+                                <th>Grade</th>
+                                <th>View</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let topics of topic; let i = index">
+                                <td>{{ topics.topic }}</td>
+                                <td>{{ topics.country }}</td>
+                                <td>{{ topics.language }}</td>
+                                <td>{{ topics.grade }}</td>
+                                <td>
+                                    <button mat-stroked-button class="button" class="pointer"
+                                        [routerLink]="['/material/view/', topics._id]">View</button>
+                                </td>
+                                <td><button mat-stroked-button class="button" class="pointer"
+                                        (click)="onDelete(topics._id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <h2 style="color: black;">Topic added list:</h2>
+        <!-- <h2 style="color: black;">Topic added list:</h2>
         <div class="container">
             <table class="table table-hover">
                 <thead>
@@ -201,16 +214,8 @@
                         <td>{{ topics.language }}</td>
                         <td>{{ topics.grade }}</td>
                         <td>
-                            <!-- <button mat-stroked-button class="button" class="pointer" *ngIf="topics.type === 'MCQS'"
-                                [routerLink]="['/material/mcqs/', topics._id]">Create Activity</button>
                             <button mat-stroked-button class="button" class="pointer"
-                                *ngIf="topics.type === 'True False'"
-                                [routerLink]="['/material/true/', topics._id]">Create Activity</button>
-                            <button mat-stroked-button class="button" class="pointer"
-                                *ngIf="topics.type === 'Open Ended Question'"
-                                [routerLink]="['/material/openEnded/', topics._id]">Create Activity</button> -->
-                            <button mat-stroked-button class="button" class="pointer"
-                            [routerLink]="['/material/view/', topics._id]">View</button>
+                                [routerLink]="['/material/view/', topics._id]">View</button>
                         </td>
                         <td><button mat-stroked-button class="button" class="pointer"
                                 (click)="onDelete(topics._id)">Delete</button>
@@ -218,8 +223,17 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
     </div>
 </div>
 <br>
 <br>
+
+<!-- <button mat-stroked-button class="button" class="pointer" *ngIf="topics.type === 'MCQS'"
+                                [routerLink]="['/material/mcqs/', topics._id]">Create Activity</button>
+                            <button mat-stroked-button class="button" class="pointer"
+                                *ngIf="topics.type === 'True False'"
+                                [routerLink]="['/material/true/', topics._id]">Create Activity</button>
+                            <button mat-stroked-button class="button" class="pointer"
+                                *ngIf="topics.type === 'Open Ended Question'"
+                                [routerLink]="['/material/openEnded/', topics._id]">Create Activity</button> -->

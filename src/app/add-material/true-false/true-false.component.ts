@@ -30,6 +30,9 @@ export class TrueFalseComponent implements OnInit {
     negFeedback: new FormControl("", [
       Validators.required
     ]),
+    sequence: new FormControl("", [
+      Validators.required
+    ])
   })
 
   constructor(private questionService: QuestionsService,
@@ -75,7 +78,7 @@ export class TrueFalseComponent implements OnInit {
         });
         // window.location.reload();
         this.SetAsSubmitted(true);
-
+        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
         this.trueFalseForm.reset();
       },
         err => {

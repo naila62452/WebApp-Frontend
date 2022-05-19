@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 const api_path_mcqs = `${environment.web_URL}/api/mcqs`;
 const api_path_trueFalse = `${environment.web_URL}/api/true_false`;
+const api_path_openEnded = `${environment.web_URL}/api/openEnded`;
 
 
 @Injectable({
@@ -14,9 +15,10 @@ const api_path_trueFalse = `${environment.web_URL}/api/true_false`;
 export class QuestionsService {
 
   constructor(private http: HttpClient) { }
+
+  // MCQS APIs
   addMcqs(mcqsForm: any, topicId: string): Observable<any> {
     let id = localStorage.getItem('id')
-    // return this.http.post(`${api_path}/create/${id}/${topicId}/${typeId}`, mcqsForm)
     return this.http.post(`${api_path_mcqs}/createQuestion/${id}/${topicId}`, mcqsForm)
   }
 
@@ -29,12 +31,11 @@ export class QuestionsService {
   // }
 
   getImageMcqs(imageName: string) {
-    return this.http.get(`${api_path_mcqs}/files/${imageName}`, { responseType: 'blob'})
+    return this.http.get(`${api_path_mcqs}/files/${imageName}`, { responseType: 'blob' })
   }
-  
+
   getMcqsByTopic(topic: any) {
     let id = localStorage.getItem('id')
-    // return this.http.get(`${api_path}/getMcqs/${id}/${topic}/${type}`)
     return this.http.get(`${api_path_mcqs}/getMcqs/${id}/${topic}`)
   }
 
@@ -42,6 +43,7 @@ export class QuestionsService {
     return this.http.delete(`${api_path_mcqs}/delete/${id}`)
   }
 
+  // True false APIs
   addTrueFalse(trueFlaseForm: any, topicId: string): Observable<any> {
     let id = localStorage.getItem('id')
     return this.http.post(`${api_path_trueFalse}/create/${id}/${topicId}`, trueFlaseForm)
@@ -55,4 +57,11 @@ export class QuestionsService {
   deleteTrueFalse(id: any) {
     return this.http.delete(`${api_path_trueFalse}/delete/${id}`)
   }
+
+  // Open ended question APIs
+  createOpenEnded(openEndedForm: any, topicId: string): Observable<any> {
+    let id = localStorage.getItem('id')
+    return this.http.post(`${api_path_openEnded}/create/${id}/${topicId}`, openEndedForm)
+  }
+
 }

@@ -48,6 +48,9 @@ export class MCQSComponent implements OnInit {
     negFeedback: new FormControl("", [
       Validators.required
     ]),
+    sequence: new FormControl("", [
+      Validators.required
+    ])
   })
 
   constructor(private questionService:
@@ -71,15 +74,14 @@ export class MCQSComponent implements OnInit {
       }, err => {
         console.log(err)
       })
-    // localStorage.setItem('typeId', this.typeId)
     this.questionService.getMcqsByTopic(this.topic).subscribe(
       res => {
         console.log(res)
         this.imageBlobUrl = []
         this.mcqs = <any>res;
-        this.mcqs.forEach(item => {
-          this.getImage(item.id)
-        })
+        // this.mcqs.forEach(item => {
+        //   this.getImage(item.id)
+        // })
       },
       err => {
         console.log(err)
@@ -103,6 +105,7 @@ export class MCQSComponent implements OnInit {
             panelClass: ['blue-snackbar']
           });
           this.SetAsSubmitted(true);
+          localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
           this.mcqsForm.reset();
         },
         err => {

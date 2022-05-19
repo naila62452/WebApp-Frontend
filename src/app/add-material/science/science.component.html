@@ -28,29 +28,35 @@
 </div>
 <br>
 <br> -->
-<div *ngFor="let items of this.arr; let i=index">
-    <div *ngIf="ifSubmitted[i]"> Question has been Submitted</div>
-    <div *ngIf="!ifSubmitted[i]">
-        <mat-label><b>Please select type of activity.</b></mat-label>
-        <mat-form-field appearance="fill">
-            <mat-label> Choose type</mat-label>
-            <mat-select [(ngModel)]="selectedValue[i]">
-                <mat-option [value]="item.questionType" *ngFor="let item of type">
-                    {{item.questionType}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div *ngIf="selectedValue[i] === 'MCQS'">
-            <app-mcqs (submitEvent)="setSubmit($event, i)"></app-mcqs>
+
+<div class="main-content">
+    <div *ngIf="totalNumberOfQuestions === 0">All Questions has been submitted</div>
+    <div class="container" *ngFor="let items of this.arr; let i=index">
+        <div *ngIf="ifSubmitted[i]"> Question has been Submitted</div>
+        <div *ngIf="!ifSubmitted[i]">
+            <mat-label><b>Please select type of activity.</b></mat-label>
+            <br>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label> Choose type</mat-label>
+                <mat-select [(ngModel)]="selectedValue[i]">
+                    <mat-option [value]="item.questionType" *ngFor="let item of type">
+                        {{item.questionType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="selectedValue[i] === 'MCQS'">
+                <app-mcqs (submitEvent)="setSubmit($event, i)"></app-mcqs>
+            </div>
+        
+            <div *ngIf="selectedValue[i] === 'True False'">
+                <app-true-false (submitEvent)="setSubmit($event, i)"></app-true-false>
+            </div>
+        
+            <div *ngIf="selectedValue[i] === 'Open Ended Question'">
+                <app-open-ended (submitEvent)="setSubmit($event, i)"></app-open-ended>
+            </div>
         </div>
-    
-        <div *ngIf="selectedValue[i] === 'True False'">
-            <app-true-false (submitEvent)="setSubmit($event, i)"></app-true-false>
-        </div>
-    
-        <div *ngIf="selectedValue[i] === 'Open Ended Question'">
-            Hello I am question.
-        </div>
+        <br>
     </div>
-    <br>
 </div>

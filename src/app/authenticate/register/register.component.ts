@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MustMatch } from 'src/_validator/password_validator';
 import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
-import {
-  SocialAuthService,
-  GoogleLoginProvider,
-  SocialUser,
-} from 'angularx-social-login';
+// import {
+//   SocialAuthService,
+//   GoogleLoginProvider,
+//   SocialUser,
+// } from 'angularx-social-login';
 
 @Component({
   selector: 'app-register',
@@ -18,13 +18,13 @@ import {
 export class RegisterComponent implements OnInit {
 
   loginForm!: FormGroup;
-  public socialUser: SocialUser = new SocialUser
+  // public socialUser: SocialUser = new SocialUser
   isLoggedin?: boolean;
-  loading: boolean = true
+  loading: boolean
   registerForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private socialAuthService: SocialAuthService,
+    // private socialAuthService: SocialAuthService,
 
     private fb: FormBuilder,
     private router: Router,
@@ -41,14 +41,14 @@ export class RegisterComponent implements OnInit {
   hide = true;
   get passwordInput() { return this.registerForm.get('password'); }
   public onSubmit() {
+    this.loading = true
     this.teacherService.registerUser(this.registerForm.value)
       .subscribe(data => {
-        this.loading=false;
-
-        this._snackBar.open("Registered successfully, please verify your email.", "Ok", {
+        this._snackBar.open("Registered successfully, Please login.", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading=false;
         this.registerForm.reset();
         this.router.navigate(['/authenticate/login'], { relativeTo: this.route });
 
@@ -68,24 +68,24 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-    this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLoggedin = user != null;
-      console.log(this.socialUser);
-    });
+    // this.socialAuthService.authState.subscribe((user) => {
+    //   this.socialUser = user;
+    //   this.isLoggedin = user != null;
+    //   console.log(this.socialUser);
+    // });
   }
-  loginWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
-    .then(res => {
-      console.log(res.idToken)
-      this.teacherService.signInWithGoogle(res.idToken)
-      .subscribe(data => {
-        console.log(data)
-      })
-    })
+  // loginWithGoogle(): void {
+  //   this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+  //   .then(res => {
+  //     console.log(res.idToken)
+  //     this.teacherService.signInWithGoogle(res.idToken)
+  //     .subscribe(data => {
+  //       console.log(data)
+  //     })
+  //   })
 
-  }
-  logOut(): void {
-    this.socialAuthService.signOut();
-  }
+  // }
+  // logOut(): void {
+  //   this.socialAuthService.signOut();
+  // }
 }
