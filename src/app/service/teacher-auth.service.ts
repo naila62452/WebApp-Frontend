@@ -27,6 +27,11 @@ export class TeacherAuthService {
     return this.http.get(`${api_path}/`);
   }
 
+  uniqueEmailCheck(email: any): Observable<any> {
+    console.log(`${api_path}/userEmail/${email}`)
+    return this.http.get(`${api_path}/userEmail/${email}`);
+  }
+
   getUserById(): Observable<any> {
     let id = localStorage.getItem('id');
     return this.http.get(`${api_path}/${id}`)

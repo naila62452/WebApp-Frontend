@@ -1,4 +1,10 @@
-import { FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  ValidatorFn,
+  FormControl,
+  FormGroup
+} from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
 
 // custom validator to check that two fields match
 export function MustMatch(controlName: string, matchingControlName: string) {
@@ -16,4 +22,16 @@ export function MustMatch(controlName: string, matchingControlName: string) {
       matchingControl.setErrors(null);
     }
   }
+}
+
+
+export class CustomValidators {
+  constructor() { }
+  static checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
+    let pass = group.get('password')?.value;
+    let confirmPass = group.get('psw_repeat')?.value
+    return pass === confirmPass ? null : { notSame: true }
+  }
+
+  // static oldPasswordValidator(control: AbstractControl)
 }

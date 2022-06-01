@@ -11,6 +11,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { VerifyComponent } from './verify/verify.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { PasswordStrengthBarComponent } from './password-strength-bar/password-strength-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ForgotPasswordComponent,
     ResetPasswordComponent,
     VerifyComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PasswordStrengthBarComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    TranslateModule
   ]
 })
 export class AuthenticateModule { }

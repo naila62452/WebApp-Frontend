@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MustMatch } from 'src/_validator/password_validator';
+import { CustomValidators } from 'src/_validator/password_validator';
 import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
+import { PasswordStrengthValidator } from '../../../_validator/password-strength'
+import { catchError, map, Observable } from 'rxjs';
 // import {
 //   SocialAuthService,
 //   GoogleLoginProvider,
@@ -18,28 +20,52 @@ import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
 export class RegisterComponent implements OnInit {
 
   loginForm!: FormGroup;
+  passwordIsValid = false;
   // public socialUser: SocialUser = new SocialUser
   isLoggedin?: boolean;
   loading: boolean
-  registerForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     // private socialAuthService: SocialAuthService,
-
-    private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute, private _snackBar: MatSnackBar,
-    private teacherService: TeacherAuthService) {
-    this.registerForm = this.fb.group({
-      email: ["", [Validators.required, Validators.email]],
-      name: ["", [Validators.required]],
-      password: new FormControl("", [Validators.required, Validators.minLength(8)]),
-      psw_repeat: ["", [Validators.required]],
-      remember: ["", Validators.requiredTrue]
-    }, { validator: MustMatch('password', 'psw_repeat') });
+    private teacherService: TeacherAuthService) { }
+
+  registerForm = new FormGroup({
+    // email: new FormControl("", [Validators.required, Validators.email]),
+    email: new FormControl('', {
+      validators: [Validators.required, Validators.email],
+      asyncValidators: this.uniqueEmailValidator(),
+      updateOn: 'blur',
+    }),
+    name: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required, Validators.minLength(8), PasswordStrengthValidator]),
+    psw_repeat: new FormControl("", [Validators.required]),
+    remember: new FormControl("", Validators.requiredTrue)
+  }, CustomValidators.checkPasswords
+  )
+
+  uniqueEmailValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      // console.log(control.value + ' naila')
+      return this.teacherService.uniqueEmailCheck(control.value).pipe(
+        map((res) => {
+          let resEmail: string = res.email;
+          let inputEmail: string = control.value;
+
+          return (resEmail?.toLowerCase() === inputEmail?.toLowerCase() ? { emailExists: true } : null)
+        }),
+        catchError((err) => { console.log(err + 'i am error'); return null })
+      )
+    }
   }
+
   hide = true;
-  get passwordInput() { return this.registerForm.get('password'); }
+  get password() { return this.registerForm.get('password'); }
+  get email() { return this.registerForm.get('email'); }
+  get psw_repeat() { return this.registerForm.get('psw_repeat'); }
+
   public onSubmit() {
     this.loading = true
     this.teacherService.registerUser(this.registerForm.value)
@@ -48,7 +74,7 @@ export class RegisterComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
-        this.loading=false;
+        this.loading = false;
         this.registerForm.reset();
         this.router.navigate(['/authenticate/login'], { relativeTo: this.route });
 
@@ -62,6 +88,9 @@ export class RegisterComponent implements OnInit {
 
           this.registerForm.reset();
         });
+  }
+  passwordValid(event: any) {
+    this.passwordIsValid = event;
   }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

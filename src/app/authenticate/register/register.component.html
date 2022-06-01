@@ -19,14 +19,21 @@
                                 <input class="input_form" matInput formControlName="email" type="email" name="email"
                                     id="email" required>
                             </mat-form-field>
-                            <small class="text-danger" *ngIf="(!registerForm.valid && registerForm.get('email')?.errors) && 
-                            (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
-                                <div>
-                                    Please enter a valid Email address.
-                                </div>
-
-                            </small>
-                            <br>
+                            <div *ngIf="email.pending">Checking Email...</div>
+                            <div *ngIf="email.touched && email.invalid">
+                                <small class="text-danger" *ngIf="email.errors?.['required']">
+                                    <div>
+                                        Please enter a Email address.
+                                    </div>
+                                </small>
+                                <small class="text-danger" *ngIf="email.errors?.['email']">
+                                    <div>
+                                        Please enter a valid Email address.
+                                    </div>
+                                </small>
+                                <small class="text-danger" *ngIf="email.errors?.['emailExists']">
+                                    This Email already exists.</small>
+                            </div>
 
                             <label for="name"><b>Full Name</b></label>
                             <mat-form-field class="input_text">
@@ -42,33 +49,53 @@
                             <br>
 
                             <label for="password"><b>Password</b></label>
-                            <mat-form-field class="password_form view-pass">
-                                <input class="input_form" matInput formControlName="password"
-                                    [type]="hide ? 'password' : 'text'" name="password" id="password" required>
-                                <mat-icon matSuffix class="pointer" (click)="hide = !hide">{{hide ? 'visibility_off' :
-                                    'visibility'}}
-                                </mat-icon>
-                            </mat-form-field>
-                            <small class="text-danger" *ngIf="(!registerForm.valid && registerForm.get('password')?.errors) && 
-                            (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
-                                <div>
+                            <div>
+                                <mat-form-field class="password_form view-pass">
+                                    <input class="input_form" matInput formControlName="password"
+                                        [type]="hide ? 'password' : 'text'" name="password" id="password" required>
+                                    <mat-icon matSuffix class="pointer" (click)="hide = !hide">{{hide ? 'visibility_off'
+                                        :
+                                        'visibility'}}
+                                    </mat-icon>
+                                </mat-form-field>
+                                <app-password-strength-bar [passwordToVerify]="registerForm.value.password"
+                                    (passwordStrength)="passwordValid($event)"></app-password-strength-bar>
+                            </div>
+                            <div *ngIf="password.touched && password.invalid">
+                                <small class="text-danger" *ngIf="password.errors?.['required']">
+                                    Please enter a password.
+                                </small>
+                                <small class="text-danger" *ngIf="password.errors?.['minlength']">
                                     Your password must be at least 8 characters long.
+                                </small>
+                                <div>
+                                    <small class="text-danger"
+                                        *ngIf="registerForm.get('password').hasError('passwordStrength')">
+                                        {{registerForm.get('password').errors['passwordStrength']}}
+                                    </small>
                                 </div>
-                            </small>
-                            <br>
+                            </div>
 
                             <label for="psw_repeat"><b>Confirm Password</b></label> <br>
                             <mat-form-field class="password_form">
                                 <input class="input_password" matInput formControlName="psw_repeat" type="password"
                                     name="psw_repeat" id="psw_repeat" required>
                             </mat-form-field>
-                            <small class="text-danger" *ngIf="!registerForm.valid && registerForm.get('psw_repeat')?.errors && 
-                            (registerForm.get('psw_repeat')?.dirty || registerForm.get('psw_repeat')?.touched)">
-                                <div>
-                                    Your password and confirm password must be matched.
-                                </div>
-                            </small>
-                            <br>
+
+                            <div *ngIf="psw_repeat.touched && psw_repeat.invalid">
+                                <small class="text-danger" *ngIf="psw_repeat.errors?.['required']">
+                                    Please enter a Confirm Password.
+                                </small>
+                            </div>
+                            <div>
+                                <small class="text-danger"
+                                    *ngIf="psw_repeat.valid && registerForm.invalid && registerForm.hasError('notSame')">
+                                    <div>
+                                        Your Password and Confirm Password must be matched.
+                                    </div>
+                                </small>
+                            </div>
+
 
                             <label>
                                 <input formControlName="remember" type="checkbox" name="remember" id="remember"
@@ -94,10 +121,10 @@
                 </div>
             </div>
             <div class="col-md-4" style="width: 70%;">
-              <h1 style="font-weight: bold;">SEEDS content creation tool</h1>
-              <h2>Create new content and manage your account, to spread the seed of your knowledge.</h2>
-              <div class="card card-profile">
-                  <img src="/assets/welcome_img.png">
+                <h1 style="font-weight: bold;">SEEDS content creation tool</h1>
+                <h2>Create new content and manage your account, to spread the seed of your knowledge.</h2>
+                <div class="card card-profile">
+                    <img src="/assets/welcome_img.png">
                 </div>
             </div>
         </div>
@@ -105,6 +132,9 @@
 </div>
 <br>
 <br>
+
+
+
 
 
 <!-- <div class="container" style="max-width: 550px">
@@ -119,7 +149,7 @@
         </div>
     </div> -->
 
-    <!-- <div *ngIf="isLoggedin === true">
+<!-- <div *ngIf="isLoggedin === true">
         <div class="form-group">
             <label>First Name</label>
             <input type="text" class="form-control" [value]="socialUser.firstName" id="firstname" readonly>

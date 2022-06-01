@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
       }
   })
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [
     {
       provide: "SocialAuthServiceConfig",

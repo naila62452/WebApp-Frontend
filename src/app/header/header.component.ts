@@ -12,12 +12,18 @@ import {TranslateService} from "@ngx-translate/core";
 export class HeaderComponent implements OnInit {
 
   constructor(public global: GlobalService, private router: Router,
-    private translate: TranslateService) { }
+    public translate: TranslateService) {
+      translate.addLangs(['English', 'Español']);
+      translate.setDefaultLang('English');
+     }
 
   ngOnInit(): void {
   }
   isLoggedIn() {
     var loginStatus = localStorage.getItem("isLoggedIn")
     return loginStatus == "true";
+  }
+  switchLanguage(lang: string) {
+    this.translate.use(lang)
   }
 }

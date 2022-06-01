@@ -19,12 +19,20 @@
                                 <input class="input_form" matInput type="text" name="topic" id="topic"
                                     formControlName="topic" required>
                             </mat-form-field>
+                            <div *ngIf="topicForm.get('topic').pending">Checking Topic...</div>
                             <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('topic')?.errors) && 
-                                (topicForm.get('topic')?.dirty || topicForm.get('topic')?.touched)">
+                            (topicForm.get('topic')?.dirty || topicForm.get('topic')?.touched)">
                                 <div>
                                     Please enter a Topic.
                                 </div>
                             </small>
+
+                            <!-- <small class="text-danger" *ngIf="topicForm.get('topic').hasError('minlength')">
+                                The minimum length for this field is 5 characters.
+                            </small> -->
+
+                            <small class="text-danger" *ngIf="topicForm.get('topic').errors?.['topicExists']">
+                                This topic already exists.</small>
                             <br>
 
                             <mat-label for="ageGroup"><b>Please select age group.</b></mat-label>

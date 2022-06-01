@@ -1,19 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { TopicsService } from 'src/app/service/topics.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
+import { catchError, map, Observable, throwError } from 'rxjs';
+import { CustomValidators } from 'src/_validator/password_validator';
 @Component({
   selector: 'app-add-topic',
   templateUrl: './add-topic.component.html',
   styleUrls: ['./add-topic.component.scss']
 })
 export class AddTopicComponent implements OnInit {
+  constructor(private topicService: TopicsService,
+    private snackbar: MatSnackBar, private route: ActivatedRoute,
+    private activityService: ActivityFormService,
+    private router: Router) { }
+
   public topicForm: FormGroup = new FormGroup({
-    topic: new FormControl("", [
-      Validators.required, Validators.maxLength(50)
-    ]),
+    topic: new FormControl('', {
+      validators: [Validators.required, Validators.maxLength(50)],
+      asyncValidators: this.uniqueEmailValidator(),
+      updateOn: 'blur',
+    }),
     ageGroup: new FormControl("", [
       Validators.required
     ]),
@@ -26,12 +35,6 @@ export class AddTopicComponent implements OnInit {
     grade: new FormControl("", [
       Validators.required
     ]),
-    // type: new FormControl("", [
-    //   Validators.required
-    // ]),
-    // access: new FormControl("", [
-    //   Validators.required
-    // ]),
     noOfQuestions: new FormControl("", [
       Validators.required
     ]),
@@ -40,23 +43,19 @@ export class AddTopicComponent implements OnInit {
     ])
   });
 
-  public searchForm: FormGroup = new FormGroup({
-    search: new FormControl("", [
-      Validators.required
-    ])
-  });
-  // routes = ['/material/mcqs/', this.topics._id]
-
-  constructor(private topicService: TopicsService,
-    private snackbar: MatSnackBar, private route: ActivatedRoute,
-    private activityService: ActivityFormService,
-    private router: Router) { }
+  // public searchForm: FormGroup = new FormGroup({
+  //   search: new FormControl("", [
+  //     Validators.required
+  //   ])
+  // });
+  
   topic: Array<any> = []
   searchText = ''
   subject: any
   subId: any
   ageId: any
   selectedAge: string = '';
+  topicName: any
 
   age: any = []
   language: any = []
@@ -66,8 +65,6 @@ export class AddTopicComponent implements OnInit {
 
   ngOnInit(): void {
     this.subject = this.route.snapshot.paramMap.get('id');
-    // this.subId = this.route.snapshot.paramMap.get('id')
-    // localStorage.setItem('subId', this.subId)
     this.topicService.getTopicBySubject(this.subject)
       .subscribe(res => {
         this.topic = res
@@ -122,6 +119,31 @@ export class AddTopicComponent implements OnInit {
         this.router.navigate([`/material/type/${res._id}`])
       })
   }
+  
+  // uniqueEmailValidator(): AsyncValidatorFn {
+  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+  //     return this.topicService.topicNameCheck(control.value).pipe(
+  //       map((res) => (((res.topic)) === ((control.value)) ? { topicExists: true } : null)),
+  //       catchError((err) =>{ console.log(err + 'i am error'); return null })
+  //     );
+  //   };
+  // }
+
+  uniqueEmailValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      // console.log(control.value + ' naila')
+      return this.topicService.topicNameCheck(control.value).pipe(
+        map((res) => {
+          let resTopic: string = res.topic;
+          let inputTopic: string = control.value;
+
+          return (resTopic?.toLowerCase() === inputTopic?.toLowerCase() ? { topicExists: true } : null)
+        }),
+        catchError((err) => { console.log(err + 'i am error'); return null })
+      )
+    }
+  }
+
   getTopicByAgeId(ageId: string) {
     this.subId = this.route.snapshot.paramMap.get('id');
 

@@ -13,11 +13,18 @@
         <div>
           <li class="icon">
             <div class="login-icon">
-              <!-- <li class="material-icons" style="color: red;">login</li> -->
-              <!-- <li><a href routerLink="/authenticate/login">Login</a></li> -->
-              <!-- <a routerLink="/profile" (click)="global.setActiveLink(''); global.setSelectedSubMenu('')"
-                  *ngIf="isLoggedIn()">Hello {{global.getItem('name')}}</a> -->
           <li><a routerLink="/authenticate/login" *ngIf="!isLoggedIn()">Login</a></li>
+          <!-- <li class="main_page">Language
+            <span class="form-inline">
+              <select class="material-icons" arrow_drop_down class="form-control" #selectedLang
+                (change)="switchLanguage(selectedLang.value)">
+                <option *ngFor="let language of translate.getLangs()" [value]="language"
+                  [selected]="language === translate.currentLang">
+                  {{ language }}
+                </option>
+              </select>
+            </span>
+          </li> -->
           <a routerLink="/user/profile" *ngIf="isLoggedIn()">Hello {{global.getItem('name')}}</a>
         </div>
         </li>

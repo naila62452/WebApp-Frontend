@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { catchError, delay, map } from 'rxjs/operators';
 const api_path = `${environment.web_URL}/api/topic`;
 
 @Injectable({
@@ -14,12 +15,17 @@ export class TopicsService {
   constructor(private http: HttpClient) { }
 
 
-  addTopic(topicForm: any, subId:string, ageId:string): Observable<any> {
+  addTopic(topicForm: any, subId: string, ageId: string): Observable<any> {
     let id = localStorage.getItem('id');
     return this.http.post(`${api_path}/create/${id}/${subId}/${ageId}`, topicForm)
   }
 
-  getTopicByAgeId(subject: string, ageId:string): Observable<any> {
+  topicNameCheck(topic: any): Observable<any> {
+    console.log(`${api_path}/topicName/${topic}`)
+    return this.http.get(`${api_path}/topicName/${topic}`);
+  }
+
+  getTopicByAgeId(subject: string, ageId: string): Observable<any> {
     let id = localStorage.getItem('id');
     return this.http.get(`${api_path}/get/${id}/${subject}/${ageId}`)
   }

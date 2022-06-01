@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from 'src/_validator/password_validator';
+// import { MustMatch } from 'src/_validator/password_validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomValidators } from 'src/_validator/password_validator';
 
 @Component({
   selector: 'app-reset-password',
@@ -12,18 +13,23 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  resetForm: FormGroup;
+  // resetForm: FormGroup;
   constructor(private route: ActivatedRoute,
     private teacherService: TeacherAuthService,
     private _snackBar: MatSnackBar,
     private fb: FormBuilder,
     private router: Router
   ) {
-    this.resetForm = this.fb.group({
-      password: new FormControl("", [Validators.required, Validators.minLength(8)]),
-      conpass: ["", [Validators.required]],
-    }, { validator: MustMatch('password', 'conpass') });
+    // this.resetForm = this.fb.group({
+    //   password: new FormControl("", [Validators.required, Validators.minLength(8)]),
+    //   conpass: ["", [Validators.required]],
+    // }, { validator: MustMatch('password', 'conpass') });
   }
+  resetForm = new FormGroup({
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    psw_repeat: new FormControl('', [Validators.required])
+  }, CustomValidators.checkPasswords
+  )
   hide = true;
   get passwordInput() {
     return this.resetForm.get('password');

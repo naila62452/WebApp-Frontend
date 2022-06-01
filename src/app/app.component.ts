@@ -8,10 +8,13 @@ import {TranslateService} from "@ngx-translate/core";
 })
 
 export class AppComponent {
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang('en');
-    translate.use('en');
-  }
   title = 'Seeds';
 
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['English', 'Español', 'Deutsch', 'Ελληνική']);
+    translate.setDefaultLang('English');
+  }
+  switchLanguage(lang: string) {
+    this.translate.use(lang)
+  }
 }

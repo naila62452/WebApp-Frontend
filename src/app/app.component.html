@@ -1,9 +1,38 @@
 <app-header></app-header>
 
-<!-- <div class="container-fluid">
-  <app-landing-page></app-landing-page>
+
+<div class="main_page">
+  <span>Change Language</span>
+  <span class="form-inline">
+    <select   
+  class="form-control"   
+  #selectedLang    
+  (change)="switchLanguage(selectedLang.value)">  
+        <option *ngFor="let language of translate.getLangs()"    
+  [value]="language"    
+  [selected]="language === translate.currentLang">    
+  {{ language }}    
+  </option>  
+    </select>  
+  </span>  
+</div>
+
+<!-- <div class="main_page">
+  <span>Change Language</span>
+  <span class="form-inline">
+    <mat-select class="material-icons"arrow_drop_down
+  class="form-control"   
+  #selectedLang    
+  (change)="switchLanguage(selectedLang.value)">  
+        <mat-option *ngFor="let language of translate.getLangs()"    
+  [value]="language"    
+  [selected]="language === translate.currentLang">    
+  {{ language }}    
+  </mat-option>  
+    </mat-select>  
+  </span>  
 </div> -->
-<!-- <app-home></app-home> -->
+
 <router-outlet></router-outlet>
 
 <app-footer></app-footer>
