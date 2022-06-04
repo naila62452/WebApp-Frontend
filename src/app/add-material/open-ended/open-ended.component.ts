@@ -3,7 +3,7 @@ import { Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuestionsService } from 'src/app/service/questions.service';
+import { OpenEndedService } from 'src/app/service/open-ended-service';
 import { TopicsService } from 'src/app/service/topics.service';
 
 @Component({
@@ -27,7 +27,8 @@ export class OpenEndedComponent implements OnInit {
   })
   question: Array<any> = []
   topic: string
-  constructor(private questionService: QuestionsService,
+  constructor(
+    private openEnded: OpenEndedService,
     private router: Router, private _snackBar: MatSnackBar,
     private route: ActivatedRoute, private topicService: TopicsService) { }
 
@@ -38,7 +39,7 @@ export class OpenEndedComponent implements OnInit {
     console.log(this.openEndedForm.value)
 
 
-    this.questionService.createOpenEnded(this.openEndedForm.value, this.topic)
+    this.openEnded.addAll(this.openEndedForm.value, this.topic)
       .subscribe(
         res => {
           this.question.push(res);

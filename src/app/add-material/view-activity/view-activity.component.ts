@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { QuestionsService } from 'src/app/service/questions.service';
+import { McqsService } from 'src/app/service/mcqs.service';
+import { OpenEndedService } from 'src/app/service/open-ended-service';
 import { TopicsService } from 'src/app/service/topics.service';
+import { TrueFalseService } from 'src/app/service/true-false-service';
 
 @Component({
   selector: 'app-view-activity',
@@ -12,10 +14,13 @@ import { TopicsService } from 'src/app/service/topics.service';
 export class ViewActivityComponent implements OnInit {
   topic: any;
   topicGetById: any;
-  mcqs: Array<any> = []
+  mcqsArray: Array<any> = []
   trueFalse: Array<any> = []
+  openEnded: Array<any> = []
 
-  constructor(private questionService: QuestionsService,
+  constructor(private mcqsService: McqsService,
+    private openEndedService: OpenEndedService,
+    private trueFalseService: TrueFalseService,
     private route: ActivatedRoute, private topicService: TopicsService,
     private _snackBar: MatSnackBar) { }
 
@@ -28,11 +33,11 @@ export class ViewActivityComponent implements OnInit {
       }, err => {
         console.log(err)
       })
-    this.questionService.getMcqsByTopic(this.topic).subscribe(
+    this.mcqsService.getQuestionByTopic(this.topic).subscribe(
       res => {
-        console.log(res)
+        console.log('mcqs', res)
         // this.imageBlobUrl = []
-        this.mcqs = <any>res;
+        this.mcqsArray = <any>res;
         // this.mcqs.forEach(item => {
         //   this.getImage(item.id)
         // })
@@ -40,16 +45,23 @@ export class ViewActivityComponent implements OnInit {
       err => {
         console.log(err)
       })
-      this.questionService.getTrueFalseByTopic(this.topic)
+      this.trueFalseService.getQuestionByTopic(this.topic)
       .subscribe(res => {
         this.trueFalse = <any>res
-        console.log('response', res)
+        console.log('true false', res)
+      }, err => {
+        console.log(err)
+      })
+      this.openEndedService.getQuestionByTopic(this.topic)
+      .subscribe(res => {
+        this.openEnded = <any>res
+        console.log('openended', res)
       }, err => {
         console.log(err)
       })
   }
   onDelete(id: any) {
-    this.questionService.deleteMcqs(id).subscribe(
+    this.trueFalseService.delete(id).subscribe(
       res => {
         this.ngOnInit();
         this._snackBar.open(" Your Question has been Deleted", "Ok", {
@@ -59,4 +71,26 @@ export class ViewActivityComponent implements OnInit {
       }
     )
   }
+  // onDelete(id: any) {
+  //   this.trueFalseService.delete(id).subscribe(
+  //     res => {
+  //       this.ngOnInit();
+  //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
+  //         duration: 5000,
+  //         panelClass: ['blue-snackbar']
+  //       });
+  //     }
+  //   )
+  // }
+  // onDelete(id: any) {
+  //   this.trueFalseService.delete(id).subscribe(
+  //     res => {
+  //       this.ngOnInit();
+  //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
+  //         duration: 5000,
+  //         panelClass: ['blue-snackbar']
+  //       });
+  //     }
+  //   )
+  // }
 }

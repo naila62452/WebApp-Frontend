@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ErrorHandler, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { AuthinterceptorService } from './service/authinterceptor.service';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,8 +56,10 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthinterceptorService,
       multi: true
-    }
+    },
+    {provide: ErrorHandler, useClass: GlobalErrorHandler}
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

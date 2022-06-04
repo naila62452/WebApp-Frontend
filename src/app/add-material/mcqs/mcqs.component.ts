@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
-import { QuestionsService } from 'src/app/service/questions.service';
+import { McqsService } from 'src/app/service/mcqs.service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { Output, EventEmitter } from '@angular/core';
 
@@ -53,8 +53,8 @@ export class MCQSComponent implements OnInit {
     ])
   })
 
-  constructor(private questionService:
-    QuestionsService, private router: Router,
+  constructor(private mcqsService:
+    McqsService, private router: Router,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
     private sanitizer: DomSanitizer, private topicService: TopicsService) { }
@@ -74,18 +74,18 @@ export class MCQSComponent implements OnInit {
       }, err => {
         console.log(err)
       })
-    this.questionService.getMcqsByTopic(this.topic).subscribe(
-      res => {
-        console.log(res)
-        this.imageBlobUrl = []
-        this.mcqs = <any>res;
-        // this.mcqs.forEach(item => {
-        //   this.getImage(item.id)
-        // })
-      },
-      err => {
-        console.log(err)
-      })
+    // this.mcqsService.getQuestionByTopic(this.topic).subscribe(
+    //   res => {
+    //     console.log(res)
+    //     this.imageBlobUrl = []
+    //     this.mcqs = <any>res;
+    //     // this.mcqs.forEach(item => {
+    //     //   this.getImage(item.id)
+    //     // })
+    //   },
+    //   err => {
+    //     console.log(err)
+    //   })
   }
   public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustHtml(url);
@@ -94,9 +94,7 @@ export class MCQSComponent implements OnInit {
     this.typeId = this.route.snapshot.paramMap.get('id')
     this.topic = localStorage.getItem('topicId')
     console.log(this.mcqsForm.value)
-
-   
-    this.questionService.addMcqs(this.mcqsForm.value, this.topic)
+    this.mcqsService.addAll(this.mcqsForm.value, this.topic)
       .subscribe(
         res => {
           this.mcqs.push(res);
@@ -149,15 +147,17 @@ export class MCQSComponent implements OnInit {
   //         console.log(err)
   //       });
   // }
-  getImage(id: string) {
-    console.log(this.mcqsForm.get('file').value.name)
-    this.questionService.getImageMcqs(id)
-      .subscribe((blob: any) => {
-        let objectURL = URL.createObjectURL(blob);
-        this.imageBlobUrl.push(this.sanitizer.bypassSecurityTrustUrl(objectURL));
-        console.log(this.imageBlobUrl)
-      })
-  }
+  // Get image api
+  // getImage(id: string) {
+  //   console.log(this.mcqsForm.get('file').value.name)
+  //   this.questionService.getImageMcqs(id)
+  //     .subscribe((blob: any) => {
+  //       let objectURL = URL.createObjectURL(blob);
+  //       this.imageBlobUrl.push(this.sanitizer.bypassSecurityTrustUrl(objectURL));
+  //       console.log(this.imageBlobUrl)
+  //     })
+  // }
+
   // createImageFromBlob(image: Blob) {
   //   let reader = new FileReader();
   //   reader.addEventListener("load", () => {

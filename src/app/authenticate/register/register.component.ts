@@ -6,6 +6,8 @@ import { CustomValidators } from 'src/_validator/password_validator';
 import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
 import { PasswordStrengthValidator } from '../../../_validator/password-strength'
 import { catchError, map, Observable } from 'rxjs';
+import { APPErrors } from 'src/_Error-handler/appError';
+import { UnauthorizedErrors } from 'src/_Error-handler/unauthorizedErrors';
 // import {
 //   SocialAuthService,
 //   GoogleLoginProvider,
@@ -69,25 +71,30 @@ export class RegisterComponent implements OnInit {
   public onSubmit() {
     this.loading = true
     this.teacherService.registerUser(this.registerForm.value)
-      .subscribe(data => {
-        this._snackBar.open("Registered successfully, Please login.", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-        this.loading = false;
-        this.registerForm.reset();
-        this.router.navigate(['/authenticate/login'], { relativeTo: this.route });
-
-      },
-        err => {
-          this._snackBar.open("There is already an account with this email, Please login.", "Ok", {
+      .subscribe(
+        data => {
+          this._snackBar.open("Registered successfully, Please verify your Email and Login.", "Ok", {
             duration: 5000,
             panelClass: ['blue-snackbar']
           });
-          console.log(err)
-
+          this.loading = false;
           this.registerForm.reset();
-        });
+          this.router.navigate(['/authenticate/login'], { relativeTo: this.route });
+
+        },
+        (err) => {
+          if (err instanceof UnauthorizedErrors) {
+            this._snackBar.open("There is already an account with this email, Please login.", "Ok", {
+              duration: 5000,
+              panelClass: ['blue-snackbar']
+            });
+            console.log(err)
+
+            this.registerForm.reset();
+          }
+          else throw err;
+        })
+
   }
   passwordValid(event: any) {
     this.passwordIsValid = event;

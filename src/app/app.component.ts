@@ -15,6 +15,10 @@ export class AppComponent {
     translate.setDefaultLang('English');
   }
   switchLanguage(lang: string) {
-    this.translate.use(lang)
+    let language = (this.translate.use(lang))
+    localStorage.setItem('language', JSON.stringify(language))
+  }
+  currentLang() {
+    localStorage.getItem('language')
   }
 }

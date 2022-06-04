@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { QuestionsService } from 'src/app/service/questions.service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { Output, EventEmitter } from '@angular/core';
+import { TrueFalseService } from 'src/app/service/true-false-service';
 
 @Component({
   selector: 'app-true-false',
@@ -35,7 +35,8 @@ export class TrueFalseComponent implements OnInit {
     ])
   })
 
-  constructor(private questionService: QuestionsService,
+  constructor(
+    private trueFalseService: TrueFalseService,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
     private topicService: TopicsService ) { }
@@ -51,14 +52,6 @@ export class TrueFalseComponent implements OnInit {
       }, err => {
         console.log(err)
       })
-    this.topicId = this.route.snapshot.paramMap.get('id')
-    this.questionService.getTrueFalseByTopic(this.topicId)
-      .subscribe(res => {
-        this.trueFalse = <any>res
-        console.log('response', res)
-      }, err => {
-        console.log(err)
-      })
   }
   onSubmit() {
     if (this.trueFalse.length >= this.topicGetById.noOfQuestions) {
@@ -69,7 +62,7 @@ export class TrueFalseComponent implements OnInit {
       return
     }
     this.topicId = this.route.snapshot.paramMap.get('id')
-    this.questionService.addTrueFalse(this.trueFalseForm.value, this.topicId)
+    this.trueFalseService.addAll(this.trueFalseForm.value, this.topicId)
       .subscribe(res => {
         console.log(res)
         this._snackBar.open(" Your Question has been created", "Ok", {
@@ -84,16 +77,5 @@ export class TrueFalseComponent implements OnInit {
         err => {
           console.log(err)
         });
-  }
-  onDelete(id: any) {
-    this.questionService.deleteTrueFalse(id).subscribe(
-      res => {
-        this.ngOnInit();
-        this._snackBar.open(" Your Question has been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-      }
-    )
   }
 }

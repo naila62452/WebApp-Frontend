@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherAuthService } from '../service/teacher-auth.service';
-import { GlobalService } from '../service/global.service';
 import { Router } from '@angular/router';
 import {TranslateService} from "@ngx-translate/core";
 
@@ -10,8 +9,8 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(public global: GlobalService, private router: Router,
+username = localStorage.getItem('name')
+  constructor( private router: Router,
     public translate: TranslateService) {
       translate.addLangs(['English', 'Español']);
       translate.setDefaultLang('English');

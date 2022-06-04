@@ -13,6 +13,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 	styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+	username = localStorage.getItem('name')
 	selectedFiles: FileList | any = null;
 	name: string | null;
 	currentFile: File | any = null;
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
 	fileInfos: any
 	user: any;
 	updatedUser: any;
+	isDisabled = true;
 
 	// image = 'http://localhost:5000/api/image/files/' + localStorage.getItem('id')
 
@@ -28,7 +30,7 @@ export class ProfileComponent implements OnInit {
 		name: new FormControl('', [
 			Validators.required,
 		]),
-		email: new FormControl('', [
+		email: new FormControl({value: '', disabled: this.isDisabled}, [
 			Validators.required,
 		]),
 	});
@@ -106,7 +108,7 @@ export class ProfileComponent implements OnInit {
 				localStorage.setItem('name', this.updatedUser.data.name);
 				this.updateForm.patchValue({
 					name: this.updatedUser.data.name,
-					email: this.user.data.email,
+					// email: this.updatedUser.data.email,
 				})
 				this.user = this.updateForm.value;
 				console.log(this.user);
@@ -114,6 +116,7 @@ export class ProfileComponent implements OnInit {
 					duration: 5000,
 					panelClass: ['blue-snackbar']
 				});
+				window.location.reload();
 			},
 			(err: any) => {
 				this._snackBar.open("Failed to update account", "Ok", {
@@ -156,7 +159,7 @@ export class ProfileComponent implements OnInit {
 					this.fileInfos = this.teacherService.getAllFiles();
 				}
 			},
-			err => {
+			(err: Response) => {
 				this.progress = 0;
 				this.message = 'Could not upload the file!';
 				this.currentFile = undefined;

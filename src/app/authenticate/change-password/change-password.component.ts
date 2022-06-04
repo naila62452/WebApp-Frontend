@@ -39,20 +39,20 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
 
-  // getuser() {
-  //   console.log( 'i am res')
-  //   this.teacherService.getUserById().subscribe(data => {
-  //     console.log(data)
-  //   })
-  // }
   getuser() {
-    console.log('i am res')
-    this.teacherService.getUserById().pipe(
-      map((res => {
-        console.log(res)
-      }))
-    )
+    console.log( 'i am res')
+    this.teacherService.getUserById().subscribe(data => {
+      console.log(data)
+    })
   }
+  // getuser() {
+  //   console.log('i am res')
+  //   this.teacherService.getUserById().pipe(
+  //     map((res => {
+  //       console.log(res)
+  //     }))
+  //   )
+  // }
 
   public changeForm: FormGroup = new FormGroup({
     oldPassword: new FormControl("", [

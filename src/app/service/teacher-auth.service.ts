@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError, map } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { APPErrors } from 'src/_Error-handler/appError';
+import { NotFoundError } from 'src/_Error-handler/notFoundError';
+import { UnauthorizedErrors } from 'src/_Error-handler/unauthorizedErrors';
 
 const api_path = `${environment.web_URL}/api/users`;
 const api_file = `${environment.web_URL}/api/image`;
@@ -16,11 +19,17 @@ export class TeacherAuthService {
   constructor(private http: HttpClient, private _sanitize: DomSanitizer) { }
 
   registerUser(registerForm: any): Observable<any> {
-    return this.http.post(`${api_path}/create`, registerForm);
+    return this.http.post(`${api_path}/create`, registerForm)
+    .pipe(catchError((err) => {
+      return throwError(this.errorHandler(err))
+    }));;
   }
 
   loginUser(loginForm: any, isVerified: any): Observable<any> {
-    return this.http.post(`${api_path}/login`, loginForm, isVerified);
+    return this.http.post(`${api_path}/login`, loginForm, isVerified)
+      .pipe(catchError((err) => {
+        return throwError(this.errorHandler(err))
+      }));
   }
 
   getUser(): Observable<any> {
@@ -41,7 +50,7 @@ export class TeacherAuthService {
     // console.log(body)
     const bodyz = {
       name: body.name,
-      // lastname: body.lastname,
+      // email: body.email,
       // username: body.username,
       // phone: body.phone,
       // country: body.country
@@ -49,7 +58,7 @@ export class TeacherAuthService {
     let id = localStorage.getItem('id');
     const path = `${api_path}/update/${id}`;
     // console.log(bodyz)
-    return this.http.put(path, bodyz)
+    return this.http.patch(path, bodyz)
   }
 
   deleteUser(): Observable<any> {
@@ -101,5 +110,11 @@ export class TeacherAuthService {
   signInWithGoogle(id_token: string): Observable<any> {
     return this.http.post(`${api_path}/google`, id_token)
   }
-
+  private errorHandler(error: Response) {
+    if (error.status === 404)
+      throw new NotFoundError()
+    if (error.status === 401)
+      throw new UnauthorizedErrors()
+    throw new APPErrors(error);
+  }
 }

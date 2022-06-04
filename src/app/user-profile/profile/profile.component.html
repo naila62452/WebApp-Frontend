@@ -9,6 +9,21 @@
                             (click)="onLogout()" routerLink="/authenticate/login">Logout</button>
                     </div>
                     <div class="card-body">
+                        <!-- <div class="row">
+                            <div class="col-md-5">
+                                <span>Company Seeds</span>
+
+                            </div>
+                            <div class="col-md-3">
+                                <span>{{user}}</span>
+
+                            </div>
+                            <div class="col-md-4">
+                                <span>{{user.data.email}}</span>
+
+                            </div>
+                        </div> -->
+
                         <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
                             <div class="row">
                                 <div class="col-md-5">
@@ -26,25 +41,6 @@
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="email" placeholder="Email address"
                                             type="email">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Fist Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Last Name" type="text">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Adress" type="text">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -89,7 +85,7 @@
                     </div>
                     <div class="card-body">
                         <h6 class="card-category text-gray">Welcome to Seeds</h6>
-                        <h4>Hello {{global.getItem('name')}}</h4>
+                        <h4>Hello {{username}}</h4>
                         <p class="card-description">
                             Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and don’t hesitate to contact us for more help.
                         </p>
