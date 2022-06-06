@@ -13,19 +13,10 @@
         <div>
           <li class="icon">
             <div class="login-icon">
-          <li><a routerLink="/authenticate/login" *ngIf="!isLoggedIn()">Login</a></li>
-          <!-- <li class="main_page">Language
-            <span class="form-inline">
-              <select class="material-icons" arrow_drop_down class="form-control" #selectedLang
-                (change)="switchLanguage(selectedLang.value)">
-                <option *ngFor="let language of translate.getLangs()" [value]="language"
-                  [selected]="language === translate.currentLang">
-                  {{ language }}
-                </option>
-              </select>
-            </span>
-          </li> -->
-          <a routerLink="/user/profile" *ngIf="isLoggedIn()">Hello {{username}}</a>
+          <li><a routerLink="/authenticate/login" *ngIf="!teacherAuth.isLoggedIn()">Login</a></li>
+          <li><a routerLink="/user/profile" *ngIf="teacherAuth.isLoggedIn()">Hello {{username}}</a></li>
+          <li><a routerLink="/adminUser/admin" *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Admin
+            Dashboard</a></li>
         </div>
         </li>
   </div>

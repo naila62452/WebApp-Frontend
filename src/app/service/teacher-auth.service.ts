@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 import { APPErrors } from 'src/_Error-handler/appError';
 import { NotFoundError } from 'src/_Error-handler/notFoundError';
 import { UnauthorizedErrors } from 'src/_Error-handler/unauthorizedErrors';
+import { Subject } from "rxjs";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { Router } from '@angular/router';
 
 const api_path = `${environment.web_URL}/api/users`;
 const api_file = `${environment.web_URL}/api/image`;
@@ -15,14 +18,18 @@ const api_file = `${environment.web_URL}/api/image`;
 })
 
 export class TeacherAuthService {
+  isLogin: boolean = false
+  roleAs: string;
+  token: string;
 
-  constructor(private http: HttpClient, private _sanitize: DomSanitizer) { }
+  constructor(private http: HttpClient, private _sanitize: DomSanitizer,
+    private router: Router) { }
 
   registerUser(registerForm: any): Observable<any> {
     return this.http.post(`${api_path}/create`, registerForm)
-    .pipe(catchError((err) => {
-      return throwError(this.errorHandler(err))
-    }));;
+      .pipe(catchError((err) => {
+        return throwError(this.errorHandler(err))
+      }));;
   }
 
   loginUser(loginForm: any, isVerified: any): Observable<any> {
@@ -30,6 +37,48 @@ export class TeacherAuthService {
       .pipe(catchError((err) => {
         return throwError(this.errorHandler(err))
       }));
+  }
+
+  isLoggedIn() {
+    var loginStatus = localStorage.getItem("isLoggedIn")
+    if (loginStatus === 'true')
+      this.isLogin = true;
+    else
+      this.isLogin = false;
+    return this.isLogin;
+    // return loginStatus == "true";
+  }
+
+  onLogout() {
+    this.clearAuthData();
+    this.router.navigate(["/authenticate/login"]);
+  }
+
+  private clearAuthData() {
+    localStorage.removeItem('id');
+    localStorage.removeItem('name');
+    localStorage.removeItem("token");
+    localStorage.removeItem('role');
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem("expiration");
+  }
+
+  getRoleAdmin() {
+    const role = localStorage.getItem('role');
+    if(role === 'Admin' || 'SuperAdmin')
+    return role
+    return ''
+  }
+
+  get currentUser(): any {
+    let token = localStorage.getItem('token');
+    if (!token)
+      return null;
+
+    let jwtHelper = new JwtHelperService()
+    // console.log(jwtHelper)
+    // console.log(jwtHelper.decodeToken(token))
+    return jwtHelper.decodeToken(token)
   }
 
   getUser(): Observable<any> {

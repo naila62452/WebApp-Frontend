@@ -30,7 +30,12 @@
 <br> -->
 
 <div class="main-content">
-    <div *ngIf="totalNumberOfQuestions === 0">All Questions has been submitted</div>
+    <div *ngIf="totalNumberOfQuestions === 0">
+         <!-- <a href routerLink="/user/profile"></a> -->
+         <a [routerLink]="'/user/profile'"></a>
+
+        All Questions has been submitted
+    </div>
     <div class="container" *ngFor="let items of this.arr; let i=index">
         <div *ngIf="ifSubmitted[i]"> Question has been Submitted</div>
         <div *ngIf="!ifSubmitted[i]">
@@ -59,4 +64,5 @@
         </div>
         <br>
     </div>
+    <!-- <div></div> -->
 </div>

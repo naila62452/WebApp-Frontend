@@ -42,7 +42,7 @@
                             </small>
                             <br>
                             <label>
-                                <input type="checkbox" name="remember"> {{'login_page.remember' | translate}}
+                                <input (click)="rememberMe()" type="checkbox" name="remember"> {{'login_page.remember' | translate}}
                                 <div class="password">
                                     <span [innerHTML]="'login_page.forgot' | translate"></span>
 

@@ -6,13 +6,16 @@ import { GlobalService } from 'src/app/service/global.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+// import { AutoLogoutService } from 'src/app/service/auto-logout-service';
 
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
 	styleUrls: ['./profile.component.scss']
+	// providers: [AutoLogoutService]
 })
 export class ProfileComponent implements OnInit {
+
 	username = localStorage.getItem('name')
 	selectedFiles: FileList | any = null;
 	name: string | null;
@@ -30,7 +33,7 @@ export class ProfileComponent implements OnInit {
 		name: new FormControl('', [
 			Validators.required,
 		]),
-		email: new FormControl({value: '', disabled: this.isDisabled}, [
+		email: new FormControl({ value: '', disabled: this.isDisabled }, [
 			Validators.required,
 		]),
 	});
@@ -39,6 +42,9 @@ export class ProfileComponent implements OnInit {
 		private teacherService: TeacherAuthService,
 		public global: GlobalService,
 		private _snackBar: MatSnackBar) {
+		// private autoLogoutService: AutoLogoutService) {
+
+		// localStorage.setItem('lastAction', Date.now().toString());
 
 		this.teacherService.getUserById().subscribe(
 			res => {
@@ -50,6 +56,7 @@ export class ProfileComponent implements OnInit {
 			});
 	}
 	ngOnInit(): void {
+		localStorage.setItem('lastAction', Date.now().toString());
 		// this.getImage()
 		this.fileInfos = this.teacherService.getAllFiles();
 	}
@@ -63,11 +70,8 @@ export class ProfileComponent implements OnInit {
 			})
 	}
 	onLogout() {
-		localStorage.removeItem('id');
-		localStorage.removeItem('name');
-		localStorage.removeItem('token');
-		localStorage.setItem('isLoggedIn', 'false');
-		this.router.navigate(["/authenticate/login"]);
+		this.teacherService.onLogout()
+		// this.router.navigate(["/authenticate/login"]);
 	}
 
 	openMenu() {

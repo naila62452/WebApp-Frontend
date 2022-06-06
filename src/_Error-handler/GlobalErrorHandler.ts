@@ -7,8 +7,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class GlobalErrorHandler implements ErrorHandler {
     constructor(private _snackBar: MatSnackBar) { }
-    handleError(error: any): void {
-        this._snackBar.open("Server is down", "Ok", {
+    handleError(error: Response): void {
+        // if(error.status === 500)
+        this._snackBar.open("An Unexpected Error Occured.", "Ok", {
             duration: 5000,
             panelClass: ['blue-snackbar']
         });

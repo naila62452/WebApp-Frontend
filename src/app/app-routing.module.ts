@@ -8,12 +8,13 @@ const routes: Routes = [
   { path: 'user', loadChildren: ()=> import('./user-profile/user-profile.module').then(m => m.UserProfileModule)},
   { path: 'material', loadChildren: ()=> import('./add-material/add-material.module').then(m => m.AddMaterialModule)},
   { path: 'policy', loadChildren: ()=> import('./privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule)},
-
-
+  { path: 'adminUser', loadChildren: ()=> import('./admin-module/admin-module.module').then(m => m.AdminModuleModule)},
+  
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+
 })
 export class AppRoutingModule { }
