@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -54,7 +54,14 @@ export class LoginComponent implements OnInit {
           });
           this.loading = false;
           this.loginForm.reset();
-          this.router.navigate(['/user/profile']);
+          if(res.user.role === 'Admin') {
+            let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')
+            return this.router.navigate([ returnUrl || '/adminUser/profile']);
+          }
+         else {
+           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')
+           return this.router.navigate([ returnUrl || `/user/profile`])
+          };
         },
         (err: APPErrors) => {
           if (err instanceof NotFoundError) {
@@ -109,7 +116,6 @@ export class LoginComponent implements OnInit {
 
   onLogout() {
     this.teacherService.onLogout()
-    // this.router.navigate(["/authenticate/login"]);
     clearTimeout(this.tokenTimer);
   }
 

@@ -12,20 +12,32 @@
 @import "./scss//material_theme.scss";
 @import "./scss//add-material.scss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 p {
     font-size: 18px;
     color: black;
 }
+
 mat-label {
     color: black;
     font-weight: normal;
 }
+
 .blue-snackbar {
     background: #004e92;
     color: white;
+
     .mat-simple-snackbar-action {
         color: white !important;
     }
-  }
+}

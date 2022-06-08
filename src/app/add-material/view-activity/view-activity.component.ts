@@ -5,6 +5,7 @@ import { McqsService } from 'src/app/service/mcqs.service';
 import { OpenEndedService } from 'src/app/service/open-ended-service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { TrueFalseService } from 'src/app/service/true-false-service';
+import { catchError, map, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-view-activity',
@@ -13,7 +14,7 @@ import { TrueFalseService } from 'src/app/service/true-false-service';
 })
 export class ViewActivityComponent implements OnInit {
   topic: any;
-  topicGetById: any;
+  topicGetById: Array<any> = []
   mcqsArray: Array<any> = []
   trueFalse: Array<any> = []
   openEnded: Array<any> = []
@@ -26,13 +27,22 @@ export class ViewActivityComponent implements OnInit {
 
   ngOnInit(): void {
     this.topic = this.route.snapshot.paramMap.get('id')
-    this.topicService.getTopicByTopicId(this.topic)
-      .subscribe(res => {
-        this.topicGetById = res
-        console.log('response', res)
+    this.topicService.getAllTopicData(this.topic)
+      .subscribe(response => {
+        this.topicGetById = <any>response
+        console.log('response', this.topicGetById)
       }, err => {
         console.log(err)
       })
+
+    // this.topic = this.route.snapshot.paramMap.get('id')
+    
+    // this.topicService.getAllTopicData(this.topic).subscribe(res => {
+    //   // let result = res.map()
+    //   console.log(Array.isArray(res))
+    // })
+
+
     this.mcqsService.getQuestionByTopic(this.topic).subscribe(
       res => {
         console.log('mcqs', res)
@@ -72,7 +82,7 @@ export class ViewActivityComponent implements OnInit {
     )
   }
   // onDelete(id: any) {
-  //   this.trueFalseService.delete(id).subscribe(
+  //   this.openEndedService.delete(id).subscribe(
   //     res => {
   //       this.ngOnInit();
   //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
@@ -83,7 +93,7 @@ export class ViewActivityComponent implements OnInit {
   //   )
   // }
   // onDelete(id: any) {
-  //   this.trueFalseService.delete(id).subscribe(
+  //   this.mcqsService.delete(id).subscribe(
   //     res => {
   //       this.ngOnInit();
   //       this._snackBar.open(" Your Question has been Deleted", "Ok", {

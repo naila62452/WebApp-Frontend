@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
                 duration: 5000,
                 panelClass: ['blue-snackbar']
             });
-            this.router.navigate(['/authenticate/login']);
+            this.router.navigate(['/authenticate/login'], {queryParams: {returnUrl: state.url}});
         }
         return isAuth;
     }

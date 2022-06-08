@@ -30,14 +30,15 @@
 <br> -->
 
 <div class="main-content">
-    <div *ngIf="totalNumberOfQuestions === 0">
-         <!-- <a href routerLink="/user/profile"></a> -->
-         <a [routerLink]="'/user/profile'"></a>
-
+    <!-- <div *ngIf="totalNumberOfQuestions === 0">
+        <a routerLink="/user/profile"></a>
         All Questions has been submitted
-    </div>
+    </div> -->
     <div class="container" *ngFor="let items of this.arr; let i=index">
-        <div *ngIf="ifSubmitted[i]"> Question has been Submitted</div>
+        <div *ngIf="ifSubmitted[i]"> Question has been Submitted
+            <meta http-equiv="refresh" content="0.01">
+
+        </div>
         <div *ngIf="!ifSubmitted[i]">
             <mat-label><b>Please select type of activity.</b></mat-label>
             <br>
@@ -53,11 +54,11 @@
             <div *ngIf="selectedValue[i] === 'MCQS'">
                 <app-mcqs (submitEvent)="setSubmit($event, i)"></app-mcqs>
             </div>
-        
+
             <div *ngIf="selectedValue[i] === 'True False'">
                 <app-true-false (submitEvent)="setSubmit($event, i)"></app-true-false>
             </div>
-        
+
             <div *ngIf="selectedValue[i] === 'Open Ended Question'">
                 <app-open-ended (submitEvent)="setSubmit($event, i)"></app-open-ended>
             </div>

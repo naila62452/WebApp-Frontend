@@ -21,7 +21,7 @@ export class DataService {
     delete(id: any) {
         return this.http.delete(`${this.url}/delete/${id}`)
     }
-    
+  
     // getImageMcqs(imageName: string) {
     //   return this.http.get(`${api_path}/image?image=${imageName}`, { responseType: 'blob'})
     // }

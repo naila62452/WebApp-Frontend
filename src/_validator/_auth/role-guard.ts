@@ -14,6 +14,16 @@ export class RoleGuard implements CanActivate {
         boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         let url: string = state.url;
         return this.checkUserLogin(route, url)
+        // if(this.teacherAuth.currentUser.role === 'Admin')
+        // return true;
+        // else
+        // this._snackbar.open("Access denied, You do not have that role to access.", "Ok", {
+        //     duration: 5000,
+        //     panelClass: ['blue-snackbar']
+        // });
+        // this.router.navigate(['/home']);
+        // return false;
+
     }
 
     checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {

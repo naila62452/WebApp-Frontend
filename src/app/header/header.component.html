@@ -2,21 +2,56 @@
   <div class="main-nav">
     <nav>
       <ul class="topheader">
-        <a routerLink="">
-          <img src="assets/logo.png" class="logo" alt="Let's Learn" width="60">
-        </a>
+        <div>
+          <a routerLink="">
+            <img src="assets/logo.png" class="logo" alt="Let's Learn" width="60">
+          </a>
+          <li class="main_page">
+            <span>Language</span>
+
+            <span class="form-inline">
+              <select class="form-control" #selectedLang (change)="switchLanguage(selectedLang.value)">
+                <option *ngFor="let language of translate.getLangs()" [value]="language"
+                  [selected]="language === translate.currentLang">
+                  {{ language }}
+                </option>
+              </select>
+            </span>
+          </li>
+        </div>
+
         <div class="header1">
-          <li><a routerLink="">Home</a></li>
-          <li class="pointer" routerLink="/home/about"><a>About</a></li>
-          <li class="pointer"><a>Blog</a></li>
+          <li routerLinkActive="active current" class="pointer"><a routerLink="">Home</a></li>
+          <li routerLinkActive="active current" class="pointer"><a routerLink="/home/about">About</a></li>
+          <li routerLinkActive="active current" class="pointer"><a>Blog</a></li>
         </div>
         <div>
           <li class="icon">
             <div class="login-icon">
           <li><a routerLink="/authenticate/login" *ngIf="!teacherAuth.isLoggedIn()">Login</a></li>
-          <li><a routerLink="/user/profile" *ngIf="teacherAuth.isLoggedIn()">Hello {{username}}</a></li>
-          <li><a routerLink="/adminUser/admin" *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Admin
-            Dashboard</a></li>
+          <li><a routerLink="/user/profile"
+              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">Hello
+              {{teacherAuth.currentUser.name}}</a></li>
+          <li><a routerLink="/adminUser/profile"
+              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Hello
+              {{teacherAuth.currentUser.name}}</a></li>
+          <li><a routerLink="/adminUser/admin"
+              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Admin
+              Dashboard</a></li>
+          <!-- <li class="main_page">  
+            <span class="form-inline">
+              <select   
+            class="form-control"   
+            #selectedLang    
+            (change)="switchLanguage(selectedLang.value)">  
+                  <option *ngFor="let language of translate.getLangs()"    
+            [value]="language"    
+            [selected]="language === translate.currentLang">    
+            {{ language }}    
+            </option>  
+              </select>  
+            </span><span >Language</span>  </li> -->
+
         </div>
         </li>
   </div>

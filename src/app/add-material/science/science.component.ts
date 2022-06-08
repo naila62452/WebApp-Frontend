@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
 import { TopicsService } from 'src/app/service/topics.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-science',
@@ -16,7 +17,8 @@ export class ScienceComponent implements OnInit {
   topicGetById: any = {};
   arr: any[] = []
   constructor(private category: ActivityFormService,
-    private route: ActivatedRoute, private topicService: TopicsService) { }
+    private route: ActivatedRoute, private topicService: TopicsService,
+    private _snackBar: MatSnackBar, private router: Router) { }
   type: any = []
   topicId: any
   ngOnInit(): void {
@@ -32,6 +34,18 @@ export class ScienceComponent implements OnInit {
         this.selectedValue = Array(Number(this.totalNumberOfQuestions)).fill('')
         this.ifSubmitted = Array(Number(this.totalNumberOfQuestions)).fill(false)
         console.log(this.arr)
+        if (this.totalNumberOfQuestions === 0) {
+          // window.location.reload();
+
+          this._snackBar.open("All Questions has been submitted", "Ok", {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          })
+          //  window.location.reload();
+
+          this.router.navigate([`/material/view/${res._id}`]);
+        }
+
       }, err => {
         console.log(err)
       })

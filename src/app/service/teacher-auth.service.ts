@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 import { APPErrors } from 'src/_Error-handler/appError';
 import { NotFoundError } from 'src/_Error-handler/notFoundError';
 import { UnauthorizedErrors } from 'src/_Error-handler/unauthorizedErrors';
-import { Subject } from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
 
