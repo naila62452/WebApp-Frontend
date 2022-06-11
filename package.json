@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "ng build --prod"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "~13.2.0",
+    "@angular/compiler-cli": "~13.2.0",
     "@angular/animations": "~13.2.0",
     "@angular/cdk": "^13.2.2",
     "@angular/common": "~13.2.0",
@@ -37,6 +40,7 @@
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",
     "rxjs": "~7.5.0",
+    "typescript": "~4.5.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -47,8 +51,6 @@
     "@angular-eslint/eslint-plugin-template": "13.2.1",
     "@angular-eslint/schematics": "13.2.1",
     "@angular-eslint/template-parser": "13.2.1",
-    "@angular/cli": "~13.2.0",
-    "@angular/compiler-cli": "~13.2.0",
     "@angular/localize": "^13.2.2",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
@@ -61,7 +63,6 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "node-sass": "^7.0.1",
-    "typescript": "~4.5.2"
-  }
+    "node-sass": "^7.0.1"
+    }
 }
