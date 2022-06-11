@@ -37,8 +37,8 @@
     <div class="container" *ngFor="let items of this.arr; let i=index">
         <div *ngIf="ifSubmitted[i]"> Question has been Submitted
             <meta http-equiv="refresh" content="0.01">
-
         </div>
+
         <div *ngIf="!ifSubmitted[i]">
             <mat-label><b>Please select type of activity.</b></mat-label>
             <br>
@@ -51,6 +51,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            
             <div *ngIf="selectedValue[i] === 'MCQS'">
                 <app-mcqs (submitEvent)="setSubmit($event, i)"></app-mcqs>
             </div>
@@ -62,6 +63,11 @@
             <div *ngIf="selectedValue[i] === 'Open Ended Question'">
                 <app-open-ended (submitEvent)="setSubmit($event, i)"></app-open-ended>
             </div>
+
+            <div *ngIf="selectedValue[i] === 'Introduction'">
+                <app-introduction (submitEvent)="setSubmit($event, i)"></app-introduction>
+            </div>
+
         </div>
         <br>
     </div>

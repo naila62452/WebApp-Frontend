@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { CustomValidators } from 'src/_validator/password_validator';
+
 @Component({
   selector: 'app-add-topic',
   templateUrl: './add-topic.component.html',
@@ -48,7 +48,7 @@ export class AddTopicComponent implements OnInit {
   //     Validators.required
   //   ])
   // });
-  
+
   topic: Array<any> = []
   searchText = ''
   subject: any
@@ -108,18 +108,27 @@ export class AddTopicComponent implements OnInit {
     console.log(this.topicForm.value)
     this.subId = this.route.snapshot.paramMap.get('id');
     this.topicService.addTopic(this.topicForm.value, this.subId, this.topicForm.value.ageGroup)
-      .subscribe(res => {
-        this.snackbar.open('Your topic has been posted', 'Ok', {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-        this.getTopicByAgeId(this.topicForm.value.ageGroup);
-        this.topicForm.reset();
-        localStorage.setItem('remainingQuestions', '0')
-        this.router.navigate([`/material/type/${res._id}`])
-      })
+      .subscribe(
+        res => {
+          localStorage.setItem('topicId', res._id)
+          this.snackbar.open('Your topic has been posted', 'Ok', {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          });
+          this.getTopicByAgeId(this.topicForm.value.ageGroup);
+          this.topicForm.reset();
+          localStorage.setItem('remainingQuestions', '0')
+          this.router.navigate([`/material/type/${res._id}`])
+        },
+        err => {
+          console.log(err);
+          this.snackbar.open("Failed to post the Topic", "Ok", {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          });
+        })
   }
-  
+
   // uniqueEmailValidator(): AsyncValidatorFn {
   //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
   //     return this.topicService.topicNameCheck(control.value).pipe(
@@ -166,6 +175,12 @@ export class AddTopicComponent implements OnInit {
       res => {
         this.ngOnInit();
         this.snackbar.open(" Your Topic has been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+      }, err => {
+        console.log(err + 'I am error');
+        this.snackbar.open("Failed to delete Topic", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });

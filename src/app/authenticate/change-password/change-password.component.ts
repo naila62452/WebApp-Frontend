@@ -40,7 +40,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   getuser() {
-    console.log( 'i am res')
+    console.log('i am res')
     this.teacherService.getUserById().subscribe(data => {
       console.log(data)
     })
@@ -68,7 +68,7 @@ export class ChangePasswordComponent implements OnInit {
 
     psw_repeat: new FormControl("",
       [Validators.required])
-  }, {validators: CustomValidators.checkPasswords}
+  }, { validators: CustomValidators.checkPasswords }
   );
 
   get oldPassword() { return this.changeForm.get('oldPassword'); }
@@ -77,21 +77,23 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     this.teacherService.changePassword(this.changeForm.value)
-      .subscribe(data => {
-        this.snackbar.open('Your password has been changed', 'Ok', {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
+      .subscribe(
+        data => {
+          this.snackbar.open('Your password has been changed', 'Ok', {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          })
+          this.router.navigate(['/user/profile'])
+          this.changeForm.reset();
+          console.log(data)
+        },
+        err => {
+          this.snackbar.open('Your old password is incorrect', 'Ok', {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          })
+          console.log(err)
         })
-        this.router.navigate(['/user/profile'])
-        this.changeForm.reset();
-        console.log(data)
-      }, err => {
-        this.snackbar.open('Your old password is incorrect', 'Ok', {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        })
-        console.log(err)
-      })
   }
   hide = true;
 

@@ -95,11 +95,11 @@
                         <form [formGroup]="mcqsForm">
                             <mat-label for="sequence"><b>Activity Sequence Number *</b></mat-label>
                             <mat-form-field class="input_text">
-                                <input class="input_form" matInput type="text" name="sequence" id="sequence"
+                                <input class="input_form" matInput type="number" name="sequence" id="sequence"
                                     formControlName="sequence" required>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!mcqsForm.valid && mcqsForm.get('topic')?.errors) && 
-                                (mcqsForm.get('topic')?.dirty || mcqsForm.get('topic')?.touched)">
+                            <small class="text-danger" role="alert" *ngIf="(!mcqsForm.valid && mcqsForm.get('sequence')?.errors) && 
+                                (mcqsForm.get('sequence')?.dirty || mcqsForm.get('sequence')?.touched)">
                                 <div>
                                     Please enter a Sequence of activity.
                                 </div>

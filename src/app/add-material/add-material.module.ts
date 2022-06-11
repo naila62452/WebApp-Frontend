@@ -10,6 +10,7 @@ import { AddTopicComponent } from './add-topic/add-topic.component';
 import { TrueFalseComponent } from './true-false/true-false.component';
 import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ViewActivityComponent } from './view-activity/view-activity.component';
+import { IntroductionComponent } from './introduction/introduction.component';
 @NgModule({
   declarations: [
     ScienceComponent,
@@ -17,7 +18,8 @@ import { ViewActivityComponent } from './view-activity/view-activity.component';
     AddTopicComponent,
     TrueFalseComponent,
     OpenEndedComponent,
-    ViewActivityComponent
+    ViewActivityComponent,
+    IntroductionComponent
   ],
   imports: [
     CommonModule,
