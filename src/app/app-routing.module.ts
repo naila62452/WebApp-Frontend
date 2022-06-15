@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'material', loadChildren: ()=> import('./add-material/add-material.module').then(m => m.AddMaterialModule)},
   { path: 'policy', loadChildren: ()=> import('./privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule)},
   { path: 'adminUser', loadChildren: ()=> import('./admin-module/admin-module.module').then(m => m.AdminModuleModule)},
-  
+  { path: 'superUser', loadChildren: ()=> import('./super-admin/super-admin.module').then(m => m.SuperAdminModule)},
+
 ];
 
 @NgModule({

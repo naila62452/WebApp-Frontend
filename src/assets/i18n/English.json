@@ -12,6 +12,30 @@
         "password": "Password",
         "remember": "Remember me",
         "forgot": "Forgot <a href =\"/authenticate/forgotPassword\">Password?</a>",
-        "account": "Do not have an account ? Sign up."
+        "account": "Do not have an account ? <a href =\"/authenticate/register\">Sing up.</a>",
+        "Seeds": "SEEDS content creation tool",
+        "Seeds_text": "Create new content and manage your account, to spread the seed of your knowledge.",
+        "email_error": "Please Enter your email.",
+        "pass_error": "Please enter your password."
+    },
+    "register_page": {
+        "register": "Register",
+        "text": "Please Fill all fields.",
+        "email": "Email",
+        "full name": "Full Name",
+        "password": "Password",
+        "confirm": "Confirm Password",
+        "terms": "By creating an account you agree to our <a href =\"/policy/privacy\">Terms & Privacy.</a>",
+        "already_acc": "Already have an account? <a href =\"/authenticate/login\">Login</a>",
+        "sign_up": "Sign up",
+        "email_error": "Please enter a Email address.",
+        "valid_email": "Please enter a valid Email address.",
+        "already_exist_email":"This Email already exists.",
+        "name_error": "Please enter your name.",
+        "pass_error": "Please enter a password.",
+        "pass_long": "Your password must be at least 8 characters long.",
+        "pass_match": "Your Password and Confirm Password must be matched.",
+        "confirm_pass": "Please enter a Confirm Password."
     }
+
 }

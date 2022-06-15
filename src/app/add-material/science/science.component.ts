@@ -3,11 +3,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { slidingEntrance } from 'src/app/angular-animations/animations-fade';
 
 @Component({
   selector: 'app-science',
   templateUrl: './science.component.html',
-  styleUrls: ['./science.component.scss']
+  styleUrls: ['./science.component.scss'],
+  animations: [
+    slidingEntrance
+  ]
 })
 
 export class ScienceComponent implements OnInit {

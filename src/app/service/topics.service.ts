@@ -43,8 +43,9 @@ export class TopicsService {
     return this.http.get(`${api_path}/getByTopic/${id}`)
   }
   deleteTopic(id: string): Observable<any> {
-    return this.http.delete(`${api_path}/delete/${id}`)
+    return this.http.delete(`${api_path}/delete/${id}`, { responseType: 'text' })
   }
+  
   // searchTopic(data: any): Observable<any> {
   //   return this.http.get(`${api_path}/search?topic=${data}`)
   // }

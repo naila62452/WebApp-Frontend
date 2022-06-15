@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { APPErrors } from 'src/_Error-handler/appError';
 import { NotFoundError } from 'src/_Error-handler/notFoundError';
 import { UnauthorizedErrors } from 'src/_Error-handler/unauthorizedErrors';
+const STORE_KEY = 'lastAction';
 
 @Component({
   selector: 'app-login',
@@ -21,32 +22,36 @@ export class LoginComponent implements OnInit {
       [Validators.required])
   });
 
-  token: any;
   hide = true;
   loading: boolean
-  private tokenTimer: any;
+
+  public getLastAction() {
+    return parseInt(localStorage.getItem(STORE_KEY));
+  }
+  public setLastAction(lastAction: number) {
+    localStorage.setItem(STORE_KEY, lastAction.toString());
+  }
 
   constructor(private teacherService: TeacherAuthService,
     private _snackBar: MatSnackBar, private router: Router,
-    private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
+    private route: ActivatedRoute) {
+    this.check();
+    this.initListener();
+    this.initInterval();
+    localStorage.setItem(STORE_KEY, Date.now().toString());
   }
+  ngOnInit(): void { }
 
   onSubmit() {
     this.loading = true
     this.teacherService.loginUser(this.loginForm.value, true)
       .subscribe(
         res => {
-          const token = res.token;
-          this.token = token
-          if (token) {
-            const expiresInDuration = res.expiresIn;
-            this.setAuthTimer(expiresInDuration);
-            const now = new Date();
-            const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-            this.saveAuthData(token, expirationDate, res.user.name, res.user._id, res.user.role);
-          }
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('role', res.user.role);
+          localStorage.setItem('name', res.user.name);
+          localStorage.setItem('id', res.user._id);
+          localStorage.setItem("isLoggedIn", "true");
           console.log(res)
           this._snackBar.open("You have logged in successfully", "Ok", {
             duration: 5000,
@@ -54,13 +59,13 @@ export class LoginComponent implements OnInit {
           });
           this.loading = false;
           this.loginForm.reset();
-          if(res.user.role === 'Admin') {
+          if (res.user.role === 'Admin') {
             let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')
-            return this.router.navigate([ returnUrl || '/adminUser/profile']);
+            return this.router.navigate([returnUrl || '/adminUser/profile']);
           }
-         else {
-           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')
-           return this.router.navigate([ returnUrl || `/user/profile`])
+          else {
+            let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')
+            return this.router.navigate([returnUrl || `/user/profile`])
           };
         },
         (err: APPErrors) => {
@@ -79,97 +84,44 @@ export class LoginComponent implements OnInit {
           else throw err;
         })
   }
-  // onSubmit() {
-  //   this.loading = true
-  //   this.teacherService.loginUser(this.loginForm.value, true)
-  //     .subscribe(
-  //       res => {
-  //         localStorage.setItem('token', res.token);
-  //         localStorage.setItem('name', res.user.name);
-  //         localStorage.setItem('id', res.user._id);
-  //         localStorage.setItem('isLoggedIn', 'true');
-  //         console.log(res)
-  //         this._snackBar.open("You have logged in successfully", "Ok", {
-  //           duration: 5000,
-  //           panelClass: ['blue-snackbar']
-  //         });
-  //         this.loading = false;
-  //         this.loginForm.reset();
-  //         this.router.navigate(['/user/profile']);
-  //       },
-  //       (err: APPErrors) => {
-  //         if (err instanceof NotFoundError) {
-  //           this._snackBar.open("No user associated with this email", "Ok", {
-  //             duration: 5000,
-  //             panelClass: ['blue-snackbar']
-  //           });
-  //         }
-  //         else if (err instanceof UnauthorizedErrors) {
-  //           this._snackBar.open("Incorrect Email or Password", "Ok", {
-  //             duration: 5000,
-  //             panelClass: ['blue-snackbar']
-  //           });
-  //         }
-  //         else throw err;
-  //       })
-  // }
 
-  onLogout() {
-    this.teacherService.onLogout()
-    clearTimeout(this.tokenTimer);
+  initListener() {
+    document.body.addEventListener('click', () => this.reset());
+    document.body.addEventListener('mouseover', () => this.reset());
+    document.body.addEventListener('mouseout', () => this.reset());
+    document.body.addEventListener('keydown', () => this.reset());
+    document.body.addEventListener('keyup', () => this.reset());
+    document.body.addEventListener('keypress', () => this.reset());
   }
 
-  private saveAuthData(token: string, expirationDate: Date, name: string, _id: string, role: string) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('role', role);
-    localStorage.setItem('expiration', expirationDate.toISOString());
-    localStorage.setItem('name', name);
-    localStorage.setItem('id', _id);
-    localStorage.setItem("isLoggedIn", "true");
+  reset() {
+    this.setLastAction(Date.now());
   }
 
-  // private clearAuthData() {
-  //   localStorage.removeItem('id');
-  //   localStorage.removeItem('name');
-  //   localStorage.removeItem("token");
-  //   localStorage.removeItem('role');
-  //   localStorage.setItem('isLoggedIn', 'false');
-  //   localStorage.removeItem("expiration");
-  // }
+  initInterval() {
+    setInterval(() => {
+      this.check();
+    }, 1000);
+  }
 
-  autoAuthUser() {
-    const authInformation = this.getAuthData();
-    const now = new Date();
-    const expiresInDuration = authInformation.expirationDate.getTime() - now.getTime();
+  check() {
+    const now = Date.now();
+    const timeleft = this.getLastAction() + 1440 * 60 * 1000;
+    const diff = timeleft - now;
+    const isTimeout = diff < 0;
 
-    if (expiresInDuration > 0) {
-      this.token = authInformation.token;
-      this.setAuthTimer(expiresInDuration / 1000);
+    if (isTimeout) {
+      localStorage.removeItem('id');
+      localStorage.removeItem('lastAction');
+      localStorage.removeItem('name');
+      localStorage.removeItem('token');
+      localStorage.setItem('isLoggedIn', 'false');
+      this._snackBar.open("Your Session Expired due to longer Inactivity, Login again To Continue", "Ok", {
+        duration: 5000,
+        panelClass: ['blue-snackbar']
+      })
+      this.router.navigate(['/authenticate/login']);
     }
-  }
-
-  private getAuthData() {
-    const token = localStorage.getItem("token");
-    const expirationDate = localStorage.getItem("expiration");
-    if (!token || !expirationDate) {
-      return null;
-    }
-    else return {
-      token: token,
-      expirationDate: new Date(expirationDate)
-    }
-  }
-
-  private setAuthTimer(duration: number) {
-    this.tokenTimer = setTimeout(() => {
-      this.onLogout();
-    }, duration * 1000);
-  }
-
-  rememberMe() {
-    // localStorage.getItem('token');
-    // localStorage.getItem('name');
-
   }
 }
 

@@ -58,8 +58,8 @@
                                         'visibility'}}
                                     </mat-icon>
                                 </mat-form-field>
-                                <app-password-strength-bar [passwordToVerify]="registerForm.value.password"
-                                    (passwordStrength)="passwordValid($event)"></app-password-strength-bar>
+                                <!-- <app-password-strength-bar [passwordToVerify]="registerForm.value.password"
+                                    (passwordStrength)="passwordValid($event)"></app-password-strength-bar> -->
                             </div>
                             <div *ngIf="password.touched && password.invalid">
                                 <small class="text-danger" *ngIf="password.errors?.['required']">

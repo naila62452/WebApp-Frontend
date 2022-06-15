@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { McqsService } from 'src/app/service/mcqs.service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { Output, EventEmitter } from '@angular/core';
+import { mimetype } from "../../../_validator/mime-type-validator";  
 
 @Component({
   selector: 'app-mcqs',
@@ -20,7 +21,7 @@ export class MCQSComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  image: any
+  // image: any
   public mcqsForm: FormGroup = new FormGroup({
     mcqs: new FormControl("", [
       Validators.required
@@ -40,8 +41,12 @@ export class MCQSComponent implements OnInit {
     answer: new FormControl("", [
       Validators.required
     ]),
-    // file: new FormControl("", [
-    // ]),
+    // file: new FormControl('', {
+    //   validators: [Validators.required],
+    //   asyncValidators: [mimetype]
+    // }),
+    file: new FormControl("", [
+    ]),
     posFeedback: new FormControl("", [
       Validators.required
     ]),
@@ -65,6 +70,8 @@ export class MCQSComponent implements OnInit {
   typeId: any
   mcqImages: Array<any> = []
   imageBlobUrl: Array<any> = [];
+  Pickedimage: string;
+
   ngOnInit(): void {
     this.topic = this.route.snapshot.paramMap.get('id')
     this.topicService.getTopicByTopicId(this.topic)
@@ -87,17 +94,43 @@ export class MCQSComponent implements OnInit {
     //     console.log(err)
     //   })
   }
+  get file() { return this.mcqsForm.get('file'); }
+
   public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustHtml(url);
   }
+  PickedImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.mcqsForm.patchValue({ file: file })
+    this.mcqsForm.get('file').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.Pickedimage = reader.result as string;
+      console.log(this.Pickedimage)
+    };
+    reader.readAsDataURL(file);
+
+  }
+
   onSubmit() {
-    this.typeId = this.route.snapshot.paramMap.get('id')
-    this.topic = localStorage.getItem('topicId')
-    console.log(this.mcqsForm.value)
-    this.mcqsService.addAll(this.mcqsForm.value, this.topic)
+    this.topic = this.route.snapshot.paramMap.get('id')
+    const formData = new FormData();
+    formData.append('file', this.mcqsForm.get('file').value);
+    console.log(this.mcqsForm.get('file').value);
+    formData.append("mcqs", this.mcqsForm.get('mcqs').value)
+    formData.append("option1", this.mcqsForm.get('option1').value)
+    formData.append("option2", this.mcqsForm.get('option2').value)
+    formData.append("option3", this.mcqsForm.get('option3').value)
+    formData.append("option4", this.mcqsForm.get('option4').value)
+    formData.append("answer", this.mcqsForm.get('answer').value)
+    formData.append("sequence", this.mcqsForm.get('sequence').value)
+    formData.append("posFeedback", this.mcqsForm.get('posFeedback').value)
+    formData.append("negFeedback", this.mcqsForm.get('negFeedback').value)
+
+    this.mcqsService.addAll(formData, this.topic)
       .subscribe(
         res => {
-          this.mcqs.push(res);
+          console.log(res + 'I am mcqs')
           this._snackBar.open(" Your Question has been Posted", "Ok", {
             duration: 5000,
             panelClass: ['blue-snackbar']
@@ -107,46 +140,14 @@ export class MCQSComponent implements OnInit {
           this.mcqsForm.reset();
         },
         err => {
-          console.log(err)
+          console.log('I am error' + err)
+          this._snackBar.open('You question has not posted', 'Ok', {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          })
         });
   }
-  // onSubmit() {
-  //   if (this.mcqs.length >= this.topicGetById.noOfQuestions) {
-  //     this._snackBar.open(" Your Limit has been execced", "Ok", {
-  //       duration: 5000,
-  //       panelClass: ['blue-snackbar']
-  //     });
-  //     return
-  //   }
-  //   this.topic = this.route.snapshot.paramMap.get('id')
-  //   const formData = new FormData();
-  //   formData.append('file', this.mcqsForm.get('file').value);
-  //   console.log(this.mcqsForm.get('file').value);
-  //   formData.append("mcqs", this.mcqsForm.get('mcqs').value)
-  //   formData.append("option1", this.mcqsForm.get('option1').value)
-  //   formData.append("option2", this.mcqsForm.get('option2').value)
-  //   formData.append("option3", this.mcqsForm.get('option3').value)
-  //   formData.append("option4", this.mcqsForm.get('option4').value)
-  //   formData.append("answer", this.mcqsForm.get('answer').value)
-  //   formData.append("posFeedback", this.mcqsForm.get('posFeedback').value)
-  //   formData.append("negFeedback", this.mcqsForm.get('negFeedback').value)
 
-  //   this.questionService.addMcqs(formData, this.topic)
-  //     .subscribe(
-  //       res => {
-  //         this._snackBar.open(" Your Question has been Posted", "Ok", {
-  //           duration: 5000,
-  //           panelClass: ['blue-snackbar']
-  //         });
-  //         this.SetAsSubmitted(true);
-  //         localStorage.setItem('Submitted', JSON.stringify(this.SetAsSubmitted(true)))
-  //         let result = JSON.parse(localStorage.getItem('Submitted'))
-  //         this.mcqsForm.reset();
-  //       },
-  //       err => {
-  //         console.log(err)
-  //       });
-  // }
   // Get image api
   // getImage(id: string) {
   //   console.log(this.mcqsForm.get('file').value.name)
@@ -171,9 +172,33 @@ export class MCQSComponent implements OnInit {
   //   }
   // }
   processFile(event: any) {
+
     if (event.target.files.length > 0) {
       const file = event.target.files[0] as File;
       this.mcqsForm.get('file').setValue(file);
     }
   }
 }
+
+
+
+ // onSubmit() {
+  //   this.typeId = this.route.snapshot.paramMap.get('id')
+  //   this.topic = localStorage.getItem('topicId')
+  //   console.log(this.mcqsForm.value)
+  //   this.mcqsService.addAll(this.mcqsForm.value, this.topic)
+  //     .subscribe(
+  //       res => {
+  //         this.mcqs.push(res);
+  //         this._snackBar.open(" Your Question has been Posted", "Ok", {
+  //           duration: 5000,
+  //           panelClass: ['blue-snackbar']
+  //         });
+  //         this.SetAsSubmitted(true);
+  //         localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
+  //         this.mcqsForm.reset();
+  //       },
+  //       err => {
+  //         console.log(err)
+  //       });
+  // }

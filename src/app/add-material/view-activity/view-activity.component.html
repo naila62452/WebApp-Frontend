@@ -1,19 +1,19 @@
-<div *ngFor="let topics of topicGetById">
-    <h2>Activity Name: {{topics.topic}}</h2>
-    <p>Hello: {{topics.language}}</p>
-    <p>Hello: {{topics._id}}</p>
+<div class="container" *ngFor="let topics of topicGetById">
+    <h2>Topic Name: {{topics.topic}}</h2>
+    <hr>
+    <br>
+    <p>Topic Language: {{topics.language}}</p>
+    <p>Topic Grade: {{topics.grade}}</p>
+    <p>Topic Country: {{topics.country}}</p>
+    <p>Total number of Questions: {{topics.noOfQuestions}}</p>
+    <p>Time to complete: {{topics.time}} minutes</p>
+    <br>
 
-</div>
-
-<!-- <p>Topic: {{topicGetById.topic}}</p> -->
-
-<div class="container" *ngFor="let mcqs of mcqsArray; let i = index">
-    <div class="question">
-        <!-- <span>{{i}}</span> -->
-        <h2>{{ mcqs.mcqs }}</h2>
-    </div>
-    <!-- <img style="width: 70px; height: 70px;" [src]="imageBlobUrl[i]"> -->
-    <mat-radio-group>
+    <div class="mcqs" *ngFor="let mcqs of topics.topics_mcqs_info">
+        <span>Question number: {{mcqs.sequence}}</span>
+        <hr>
+        <h3>Question Statement: {{mcqs.mcqs}}</h3>
+        <img [src]="mcqs.file">
         <ul>
             <h4>
                 <mat-radio-button value="1">{{ mcqs.option1 }}</mat-radio-button>
@@ -29,22 +29,29 @@
             </h4>
             <h4>Correct answer: {{mcqs.answer}}</h4>
         </ul>
-    </mat-radio-group>
-    <button (click)="onDelete(mcqs._id)">Delete</button>
-</div>
-<div class="container">
-    <div *ngFor="let question of trueFalse; let i = index">
-        <h2>{{ question.question }}</h2>
-        <ul>Correct answer: {{ question.answer }}</ul>
-        <button mat-stroked-button class="button" class="pointer" (click)="onDelete(question._id)">Delete</button>
+        <button mat-stroked-button class="button" class="pointer" (click)="onDeleteMcqs(mcqs._id)">Delete</button>
+
     </div>
-</div>
-<div class="container">
-    <div *ngFor="let ques of openEnded; let i = index">
-        <h2>{{ ques.question }}</h2>
-        <button mat-stroked-button class="button" class="pointer" (click)="onDelete(ques._id)">Delete</button>
+    <br>
+    <div class="mcqs" *ngFor="let trueFalse of topics.topics_trueFalse_info">
+        <span>Question number: {{trueFalse.sequence}}</span>
+        <hr>
+        <h3>Question Statement: {{ trueFalse.question }}</h3>
+        <ul>Correct answer: {{ trueFalse.answer }}</ul>
+        <button mat-stroked-button class="button" class="pointer"
+            (click)="onDeleteTrueFalse(trueFalse._id)">Delete</button>
     </div>
+    <br>
+    <div class="mcqs" *ngFor="let openEnded of topics.topics_openEnded_info">
+        <span>Question number: {{openEnded.sequence}}</span>
+        <hr>
+        <h3>Question Statement: {{ openEnded.question }}</h3>
+        <button mat-stroked-button class="button" class="pointer" (click)="onDeleteOpenEnded(openEnded._id)"
+            @fade>Delete</button>
+    </div>
+    <br>
 </div>
+
 <div class="container">
     <button mat-stroked-button routerLink="/user/add" class="button"
         style="width: auto; text-align: center; font-size: px;">

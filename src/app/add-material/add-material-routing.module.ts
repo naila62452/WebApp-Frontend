@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'true/:id', component: TrueFalseComponent , canActivate: [AuthGuard]},
   { path: 'topic/:id', component: AddTopicComponent , canActivate: [AuthGuard]},
   { path: 'openEnded/:id', component: OpenEndedComponent, canActivate: [AuthGuard]},
-  { path: 'view/:id', component: ViewActivityComponent, canActivate: [AuthGuard]}
+  { path: 'view/:id', component: ViewActivityComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

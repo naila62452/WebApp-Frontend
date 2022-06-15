@@ -5,11 +5,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
 import { catchError, map, Observable, throwError } from 'rxjs';
-
+import { slideEffectWithBounce } from 'src/app/angular-animations/animations-fade';
 @Component({
   selector: 'app-add-topic',
   templateUrl: './add-topic.component.html',
-  styleUrls: ['./add-topic.component.scss']
+  styleUrls: ['./add-topic.component.scss'],
+  animations: [
+    slideEffectWithBounce
+  ]
 })
 export class AddTopicComponent implements OnInit {
   constructor(private topicService: TopicsService,

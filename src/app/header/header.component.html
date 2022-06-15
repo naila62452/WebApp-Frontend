@@ -29,13 +29,20 @@
           <li class="icon">
             <div class="login-icon">
           <li><a routerLink="/authenticate/login" *ngIf="!teacherAuth.isLoggedIn()">Login</a></li>
+          
           <li><a routerLink="/user/profile"
               *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">Hello
               {{teacherAuth.currentUser.name}}</a></li>
+
           <li><a routerLink="/adminUser/profile"
               *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Hello
               {{teacherAuth.currentUser.name}}</a></li>
-          <li><a routerLink="/adminUser/admin"
+
+          <li><a routerLink="/superUser/profile"
+              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'SuperAdmin'">Hello
+              {{teacherAuth.currentUser.name}}</a></li>
+
+          <li><a routerLink=" /adminUser/admin"
               *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Admin
               Dashboard</a></li>
           <!-- <li class="main_page">  

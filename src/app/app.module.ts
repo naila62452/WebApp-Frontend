@@ -13,6 +13,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
+
 @NgModule({
   declarations: [
     AppComponent,

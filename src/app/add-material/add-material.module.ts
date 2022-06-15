@@ -11,6 +11,7 @@ import { TrueFalseComponent } from './true-false/true-false.component';
 import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ViewActivityComponent } from './view-activity/view-activity.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+
 @NgModule({
   declarations: [
     ScienceComponent,
@@ -20,7 +21,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
     OpenEndedComponent,
     ViewActivityComponent,
     IntroductionComponent
-  ],
+    ],
   imports: [
     CommonModule,
     AddMaterialRoutingModule,

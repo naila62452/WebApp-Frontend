@@ -48,6 +48,12 @@ html{
     max-width: 117rem;
     position: relative;
     margin: 0 auto;
+    > hr {
+      overflow: visible; /* For IE */
+      height: 6px;
+      border-radius: 20px;
+      color: #004e92;
+    }
     }
   .w-auto{width: auto !important;}
   .d-none{display: none !important;}

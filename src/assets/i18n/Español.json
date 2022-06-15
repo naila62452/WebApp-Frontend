@@ -12,7 +12,10 @@
         "password": "Contraseña",
         "remember": "Recuérdame",
         "forgot": "Olvidé <a href =\"/authenticate/forgotPassword\">Contraseña?</a>!",
-        "ALREADY_SIGNED_UP": "Already signed up? <a routerLink=\"/login\">Log in</a>!",
-        "account": "Do not have an account ? Sign up."
+        "account": "No tiene una cuenta ? <a href =\"/authenticate/register\">Inscríbete</a>",
+        "Seeds": "Herramienta de creación de contenidos SEEDS",
+        "Seeds_text": "Crea nuevos contenidos y gestiona tu cuenta, para difundir la semilla de tus conocimientos.",
+        "email_error": "Por favor, introduzca su correo electrónico.",
+        "pass_error": "Por favor, introduzca su contraseña."
     }
 }

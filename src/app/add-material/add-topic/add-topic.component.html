@@ -184,7 +184,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let topics of topic; let i = index">
+                            <tr *ngFor="let topics of topic; let i = index" @slideEffectWithBounce>
                                 <td>{{ topics.topic }}</td>
                                 <td>{{ topics.country }}</td>
                                 <td>{{ topics.language }}</td>

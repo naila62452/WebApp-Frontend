@@ -42,7 +42,8 @@ export class RegisterComponent implements OnInit {
       updateOn: 'blur',
     }),
     name: new FormControl("", [Validators.required]),
-    password: new FormControl("", [Validators.required, Validators.minLength(8), PasswordStrengthValidator]),
+    password: new FormControl("", [Validators.required, Validators.minLength(8)]),
+    // password: new FormControl("", [Validators.required, Validators.minLength(8), PasswordStrengthValidator]),
     psw_repeat: new FormControl("", [Validators.required]),
     remember: new FormControl("", Validators.requiredTrue)
   }, CustomValidators.checkPasswords

@@ -40,12 +40,12 @@ export class TeacherAuthService {
 
   isLoggedIn() {
     var loginStatus = localStorage.getItem("isLoggedIn")
-    if (loginStatus === 'true')
-      this.isLogin = true;
-    else
-      this.isLogin = false;
-    return this.isLogin;
-    // return loginStatus == "true";
+    // if (loginStatus === 'true')
+    //   this.isLogin = true;
+    // else
+    //   this.isLogin = false;
+    // return this.isLogin;
+    return loginStatus == "true";
   }
 
   onLogout() {

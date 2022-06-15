@@ -113,6 +113,15 @@
                                         cols="40"> </textarea>
                                 </ul>
                                 <!-- <input id="file" type='file' (change)="processFile($event)"> -->
+
+                                <div>
+                                    <input type="file" (change)="PickedImage($event)">
+                                    <span>* Only png, jpeg, jpg</span>
+                                    <div class="image-preview" *ngIf="Pickedimage">
+                                        <img [src]="Pickedimage" alt="No Profile picture">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="options">
                                 <mat-label>

@@ -22,7 +22,7 @@
                             <small class="text-danger" role="alert"
                                 *ngIf="(!loginForm.valid && loginForm.get('email')?.errors) && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
                                 <div>
-                                    Please enter your Email.
+                                    {{'login_page.email_error' | translate}}
                                 </div>
                             </small>
                             <br>
@@ -37,12 +37,12 @@
                             <small class="text-danger"
                                 *ngIf="!loginForm.valid && loginForm.get('password')?.errors && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
                                 <div>
-                                    Please enter your password.
+                                    {{'login_page.pass_error' | translate}}
                                 </div>
                             </small>
                             <br>
                             <label>
-                                <input (click)="rememberMe()" type="checkbox" name="remember"> {{'login_page.remember' | translate}}
+                                <input type="checkbox" name="remember"> {{'login_page.remember' | translate}}
                                 <div class="password">
                                     <span [innerHTML]="'login_page.forgot' | translate"></span>
 
@@ -51,7 +51,8 @@
                                 </div>
                             </label>
                             <button mat-stroked-button type="submit" class="button" class="pointer"
-                                [disabled]="loginForm.invalid" style="background-color: #ccdceb;">Login<span
+                                [disabled]="loginForm.invalid"
+                                style="background-color: #ccdceb;">{{'login_page.login' | translate}}<span
                                     class="material-icons">
                                     chevron_right
                                 </span></button>
@@ -59,15 +60,16 @@
                         </form>
                         <br>
                         <div class=" signin">
-                            <span>Do not have an account ? <a href routerLink="/authenticate/register">Sign
-                                    up</a>.</span>
+                            <span [innerHTML]="'login_page.account' | translate"></span>
+                            <!-- <span>Do not have an account ? <a href routerLink="/authenticate/register">Sign
+                                    up</a>.</span> -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <h1 style="font-weight: bold;">SEEDS content creation tool</h1>
-                <h2>Create new content and manage your account, to spread the seed of your knowledge.</h2>
+                <h1 style="font-weight: bold;">{{'login_page.Seeds' | translate}}</h1>
+                <h2>{{'login_page.Seeds_text' | translate}}</h2>
                 <div class="card card-profile">
                     <img src="/assets/welcome_img.png">
                 </div>

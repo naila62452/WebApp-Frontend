@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
 	user: any;
 	updatedUser: any;
 	isDisabled = true;
+	Pickedimage: string;  
 
 	// image = 'http://localhost:5000/api/image/files/' + localStorage.getItem('id')
 
@@ -60,6 +61,17 @@ export class ProfileComponent implements OnInit {
 		// this.getImage()
 		this.fileInfos = this.teacherService.getAllFiles();
 	}
+
+	PickedImage(event: Event){  
+		const file = (event.target as HTMLInputElement).files[0];  
+		const reader = new FileReader();  
+		reader.onload = ()=>{  
+			this.Pickedimage = reader.result as string;  
+		  };  
+		  reader.readAsDataURL(file);  
+
+    }  
+
 	getImage() {
 		this.teacherService.getFilesByName()
 			.subscribe(res => {
