@@ -81,10 +81,10 @@ export class ProfileComponent implements OnInit {
 				// debugger
 			})
 	}
-	onLogout() {
-		this.teacherService.onLogout()
-		// this.router.navigate(["/authenticate/login"]);
-	}
+	// onLogout() {
+	// 	this.teacherService.onLogout()
+	// 	// this.router.navigate(["/authenticate/login"]);
+	// }
 
 	openMenu() {
 		var element = document.getElementById("menu3");

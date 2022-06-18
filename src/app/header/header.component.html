@@ -1,90 +1,135 @@
-<header style="background-color: #ccdceb; border-radius: 1.5rem;">
-  <div class="main-nav">
-    <nav>
-      <ul class="topheader">
-        <div>
-          <a routerLink="">
-            <img src="assets/logo.png" class="logo" alt="Let's Learn" width="60">
-          </a>
-          <li class="main_page">
-            <span>Language</span>
+<!-- <header style="background-color: #ccdceb; border-radius: 1.5rem;">
+    <div class="main-nav">
+        <nav>
+            <ul class="topheader">
+                <div>
+                    <a routerLink="">
+                        <img src="assets/logo.png" class="logo" alt="Let's Learn" width="60">
+                    </a>
+                    <li class="main_page">
+                        <span>Language</span>
 
-            <span class="form-inline">
-              <select class="form-control" #selectedLang (change)="switchLanguage(selectedLang.value)">
-                <option *ngFor="let language of translate.getLangs()" [value]="language"
-                  [selected]="language === translate.currentLang">
-                  {{ language }}
-                </option>
-              </select>
-            </span>
-          </li>
+                        <span class="form-inline">
+                            <select class="form-control" #selectedLang (change)="switchLanguage(selectedLang.value)">
+                                <option *ngFor="let language of translate.getLangs()" [value]="language"
+                                    [selected]="language === translate.currentLang">
+                                    {{ language }}
+                                </option>
+                            </select>
+                        </span>
+                    </li>
+                </div>
+
+                <div class="header1">
+                    <li routerLinkActive="active current" class="pointer"><a routerLink="">Home</a></li>
+                    <li routerLinkActive="active current" class="pointer"><a routerLink="/home/about">About</a></li>
+                    <li routerLinkActive="active current" class="pointer"><a>Blog</a></li>
+                </div>
+                <div>
+                    <li class="icon">
+                        <div class="login-icon">
+                    <li><a routerLink="/authenticate/login" *ngIf="!teacherAuth.isLoggedIn()">Login</a></li>
+
+                    <li><a routerLink="/user/profile"
+                            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">Hello
+                            {{teacherAuth.currentUser.name}}</a></li>
+
+                    <li><a routerLink="/adminUser/profile"
+                            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Hello
+                            {{teacherAuth.currentUser.name}}</a></li>
+
+                    <li><a routerLink="/superUser/profile"
+                            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'SuperAdmin'">Hello
+                            {{teacherAuth.currentUser.name}}</a></li>
+
+                    <li><a routerLink=" /adminUser/admin"
+                            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Admin
+                            Dashboard</a></li>
+
+                </div>
+                </li>
+    </div>
+    </ul>
+    </nav>
+    </div>
+</header> -->
+
+
+<mat-toolbar>
+    <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
+        <mat-icon [ngClass]="{ 'hidden': opened ? false : true }">menu</mat-icon>
+        <span style="font-size: 25px;">Seeds</span>
+    </button>
+    <span class="head-menu">
+    </span>
+    <span class="lang">
+        <select class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
+            <option *ngFor="let language of translate.getLangs()" [value]="language"
+                [selected]="language === translate.currentLang">
+                {{ language }}
+            </option>
+        </select>
+        <span class="material-icons">arrow_drop_down</span>
+    </span>
+    <div class="menu-button">
+        <button mat-stroked-button class="button" type="button" *ngIf="teacherAuth.isLoggedIn()" (click)="onLogout()"
+            routerLink="/authenticate/login">Logout</button>
+        <button mat-stroked-button class="button" type="button" *ngIf="!teacherAuth.isLoggedIn()" (click)="onLogout()"
+            routerLink="/authenticate/login">Login</button>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav class="mat-elevation-z8" #sidenav [mode]="opened === false ? 'over' : 'side'"
+        [opened]="opened === true">
+        <img class="avatar mat-elevation-z8" src="assets/logo.png" />
+
+        <h3 class="name">Learn Together!</h3>
+        <p class="designation">Dark Mode</p>
+        <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">Hello {{teacherAuth.currentUser.name}}</p>
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/home">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/user/profile"
+            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="/adminUser/profile"
+            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
+            <mat-icon>person</mat-icon>
+            <span>Admin Profile</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="/adminUser/admin"
+            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
+            <mat-icon> manage_accounts </mat-icon>
+            <span>Admin Dashboard</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="/adminUser/admin"
+            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'SuperAdmin'">
+            <mat-icon> manage_accounts </mat-icon>
+            <span>Admin Dashboard</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="/home/about">
+            <mat-icon>info</mat-icon>
+            <span>About</span>
+        </button>
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/policy/faq">
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet></router-outlet>
         </div>
-
-        <div class="header1">
-          <li routerLinkActive="active current" class="pointer"><a routerLink="">Home</a></li>
-          <li routerLinkActive="active current" class="pointer"><a routerLink="/home/about">About</a></li>
-          <li routerLinkActive="active current" class="pointer"><a>Blog</a></li>
-        </div>
-        <div>
-          <li class="icon">
-            <div class="login-icon">
-          <li><a routerLink="/authenticate/login" *ngIf="!teacherAuth.isLoggedIn()">Login</a></li>
-          
-          <li><a routerLink="/user/profile"
-              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">Hello
-              {{teacherAuth.currentUser.name}}</a></li>
-
-          <li><a routerLink="/adminUser/profile"
-              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Hello
-              {{teacherAuth.currentUser.name}}</a></li>
-
-          <li><a routerLink="/superUser/profile"
-              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'SuperAdmin'">Hello
-              {{teacherAuth.currentUser.name}}</a></li>
-
-          <li><a routerLink=" /adminUser/admin"
-              *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">Admin
-              Dashboard</a></li>
-          <!-- <li class="main_page">  
-            <span class="form-inline">
-              <select   
-            class="form-control"   
-            #selectedLang    
-            (change)="switchLanguage(selectedLang.value)">  
-                  <option *ngFor="let language of translate.getLangs()"    
-            [value]="language"    
-            [selected]="language === translate.currentLang">    
-            {{ language }}    
-            </option>  
-              </select>  
-            </span><span >Language</span>  </li> -->
-
-        </div>
-        </li>
-  </div>
-  </ul>
-  <!-- <div class="menu1">
-          <div class="mobile-menu d-none" (click)="openMenu()">
-            Menu
-            <span class="material-icons">menu</span>
-          </div>
-          <nav mat-tab-nav-bar id="menu1">
-
-            <a mat-tab-link *ngFor="let link of global.links; let index = index;"
-              (click)="global.setActiveLink(link); global.setSubActiveLink(''); global.setSelectedSubMenu(link);"
-              [active]="global.getActiveLink() == link" [routerLink]="global.subRoutes[index]">{{link}}</a>
-          </nav>
-        </div> -->
-  <!-- <div *ngIf="global.getSelectedSubMenu()!=''" class="menu1 menu1--menu2" id="menu2">
-          <div class="mobile-menu--sub d-none">
-            Sub-Menu
-          </div>
-          <nav mat-tab-nav-bar>
-            <a mat-tab-link *ngFor="let subLink of global.refreshLink(); let index = index;"
-              (click)="global.setSubActiveLink(subLink);"
-              [active]="global.getSubActiveLink() == subLink" [routerLink]="global.refreshRoutes(index)">{{subLink}}</a>
-          </nav>
-        </div> -->
-  </nav>
-  </div>
-</header>
+    </mat-sidenav-content>
+</mat-sidenav-container>
