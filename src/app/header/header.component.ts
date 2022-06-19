@@ -1,12 +1,10 @@
-import { AfterViewInit, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { TeacherAuthService } from '../service/teacher-auth.service';
 import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
-import { JwtHelperService } from "@auth0/angular-jwt";
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { filter, map, Subscription } from 'rxjs';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +14,9 @@ import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 export class HeaderComponent implements OnInit {
   public opened = true;
   private mediaWatcher: Subscription;
-  @ViewChild('sidenav')
-  sidenav!: MatSidenav
+  isDarkTheme: boolean = false;
 
-  constructor(private router: Router, private renderer: Renderer2,
+  constructor(private router: Router,
     public translate: TranslateService,
     public teacherAuth: TeacherAuthService, private media: MediaObserver,
     private teacherService: TeacherAuthService) {
@@ -53,6 +50,10 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('language', lang)
   }
   ngOnInit(): void {
+    this.isDarkTheme = localStorage.getItem('theme') === "Dark" ? true : false;
+  }
+  storeThemeSelection() {
+    localStorage.setItem('theme', this.isDarkTheme ? "Dark" : "Light");
   }
 	onLogout() {
 		this.teacherService.onLogout()

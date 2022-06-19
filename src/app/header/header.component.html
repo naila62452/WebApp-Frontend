@@ -54,82 +54,90 @@
     </div>
 </header> -->
 
-
-<mat-toolbar>
-    <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
-        <mat-icon [ngClass]="{ 'hidden': opened ? false : true }">menu</mat-icon>
-        <span style="font-size: 25px;">Seeds</span>
-    </button>
-    <span class="head-menu">
-    </span>
-    <span class="lang">
-        <select class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
-            <option *ngFor="let language of translate.getLangs()" [value]="language"
-                [selected]="language === translate.currentLang">
-                {{ language }}
-            </option>
-        </select>
-        <span class="material-icons">arrow_drop_down</span>
-    </span>
-    <div class="menu-button">
-        <button mat-stroked-button class="button" type="button" *ngIf="teacherAuth.isLoggedIn()" (click)="onLogout()"
-            routerLink="/authenticate/login">Logout</button>
-        <button mat-stroked-button class="button" type="button" *ngIf="!teacherAuth.isLoggedIn()" (click)="onLogout()"
-            routerLink="/authenticate/login">Login</button>
-    </div>
-</mat-toolbar>
-<mat-sidenav-container>
-    <mat-sidenav class="mat-elevation-z8" #sidenav [mode]="opened === false ? 'over' : 'side'"
-        [opened]="opened === true">
-        <img class="avatar mat-elevation-z8" src="assets/logo.png" />
-
-        <h3 class="name">Learn Together!</h3>
-        <p class="designation">Dark Mode</p>
-        <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">Hello {{teacherAuth.currentUser.name}}</p>
-        <mat-divider></mat-divider>
-
-        <button mat-button class="menu-button" routerLink="/home">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
+<div [ngClass]="{'dark-theme-mode':isDarkTheme}">
+    <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
+            <mat-icon [ngClass]="{ 'hidden': opened ? false : true }">menu</mat-icon>
+            <span style="font-size: 25px;">Seeds</span>
         </button>
-        <button mat-button class="menu-button" routerLink="/user/profile"
-            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">
-            <mat-icon>person</mat-icon>
-            <span>Profile</span>
-        </button>
-
-        <button mat-button class="menu-button" routerLink="/adminUser/profile"
-            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
-            <mat-icon>person</mat-icon>
-            <span>Admin Profile</span>
-        </button>
-
-        <button mat-button class="menu-button" routerLink="/adminUser/admin"
-            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
-            <mat-icon> manage_accounts </mat-icon>
-            <span>Admin Dashboard</span>
-        </button>
-
-        <button mat-button class="menu-button" routerLink="/adminUser/admin"
-            *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'SuperAdmin'">
-            <mat-icon> manage_accounts </mat-icon>
-            <span>Admin Dashboard</span>
-        </button>
-
-        <button mat-button class="menu-button" routerLink="/home/about">
-            <mat-icon>info</mat-icon>
-            <span>About</span>
-        </button>
-        <mat-divider></mat-divider>
-
-        <button mat-button class="menu-button" routerLink="/policy/faq">
-            <mat-icon>help</mat-icon>
-            <span>Help</span>
-        </button>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="content">
-            <router-outlet></router-outlet>
+        <span class="head-menu">
+        </span>
+        <span class="lang">
+            <select class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
+                <option *ngFor="let language of translate.getLangs()" [value]="language"
+                    [selected]="language === translate.currentLang">
+                    {{ language }}
+                </option>
+            </select>
+            <span class="material-icons">arrow_drop_down</span>
+        </span>
+        <div class="menu-button">
+            <button mat-stroked-button class="button" type="button" *ngIf="teacherAuth.isLoggedIn()"
+                (click)="onLogout()" routerLink="/authenticate/login">Logout</button>
+            <button mat-stroked-button class="button" type="button" *ngIf="!teacherAuth.isLoggedIn()"
+                (click)="onLogout()" routerLink="/authenticate/login">Login</button>
         </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+
+        <div class="flex-stretch"></div>
+        <mat-icon class="mr-8">brightness_5</mat-icon>
+        <mat-slide-toggle [(ngModel)]="isDarkTheme" labelPosition="before" (change)="storeThemeSelection()" class="mr-8">
+        </mat-slide-toggle>
+        <mat-icon>bedtime</mat-icon>
+
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav class="mat-elevation-z8" #sidenav [mode]="opened === false ? 'over' : 'side'"
+            [opened]="opened === true">
+            <img class="avatar mat-elevation-z8" src="assets/logo.png" />
+
+            <h3 class="name">Learn Together!</h3>
+            <!-- <p class="designation">Dark Mode</p> -->
+            <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">Hello {{teacherAuth.currentUser.name}}</p>
+            <mat-divider></mat-divider>
+
+            <button mat-button class="menu-button" routerLink="/home">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </button>
+            <button mat-button class="menu-button" routerLink="/user/profile"
+                *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">
+                <mat-icon>person</mat-icon>
+                <span>Profile</span>
+            </button>
+
+            <button mat-button class="menu-button" routerLink="/adminUser/profile"
+                *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
+                <mat-icon>person</mat-icon>
+                <span>Admin Profile</span>
+            </button>
+
+            <button mat-button class="menu-button" routerLink="/adminUser/admin"
+                *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
+                <mat-icon> manage_accounts </mat-icon>
+                <span>Admin Dashboard</span>
+            </button>
+
+            <button mat-button class="menu-button" routerLink="/adminUser/admin"
+                *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'SuperAdmin'">
+                <mat-icon> manage_accounts </mat-icon>
+                <span>Admin Dashboard</span>
+            </button>
+
+            <button mat-button class="menu-button" routerLink="/home/about">
+                <mat-icon>info</mat-icon>
+                <span>About</span>
+            </button>
+            <mat-divider></mat-divider>
+
+            <button mat-button class="menu-button" routerLink="/policy/faq">
+                <mat-icon>help</mat-icon>
+                <span>Help</span>
+            </button>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
