@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { McqsService } from 'src/app/service/mcqs.service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { Output, EventEmitter } from '@angular/core';
-import { mimetype } from "../../../_validator/mime-type-validator";  
+import { mimetype } from "../../../_validator/mime-type-validator";
 
 @Component({
   selector: 'app-mcqs',
@@ -62,7 +61,7 @@ export class MCQSComponent implements OnInit {
     McqsService, private router: Router,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
-    private sanitizer: DomSanitizer, private topicService: TopicsService) { }
+    private topicService: TopicsService) { }
   mcqs: Array<any> = []
   topicId: any
   topic: any
@@ -81,24 +80,9 @@ export class MCQSComponent implements OnInit {
       }, err => {
         console.log(err)
       })
-    // this.mcqsService.getQuestionByTopic(this.topic).subscribe(
-    //   res => {
-    //     console.log(res)
-    //     this.imageBlobUrl = []
-    //     this.mcqs = <any>res;
-    //     // this.mcqs.forEach(item => {
-    //     //   this.getImage(item.id)
-    //     // })
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   })
   }
   get file() { return this.mcqsForm.get('file'); }
 
-  public getSantizeUrl(url: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(url);
-  }
   PickedImage(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.mcqsForm.patchValue({ file: file })
@@ -147,30 +131,6 @@ export class MCQSComponent implements OnInit {
           })
         });
   }
-
-  // Get image api
-  // getImage(id: string) {
-  //   console.log(this.mcqsForm.get('file').value.name)
-  //   this.questionService.getImageMcqs(id)
-  //     .subscribe((blob: any) => {
-  //       let objectURL = URL.createObjectURL(blob);
-  //       this.imageBlobUrl.push(this.sanitizer.bypassSecurityTrustUrl(objectURL));
-  //       console.log(this.imageBlobUrl)
-  //     })
-  // }
-
-  // createImageFromBlob(image: Blob) {
-  //   let reader = new FileReader();
-  //   reader.addEventListener("load", () => {
-  //     this.imageBlobUrl = reader.result;
-  //     this.imageBlobUrl = this.getSantizeUrl(this.imageBlobUrl)
-  //     console.log(this.imageBlobUrl)
-  //   }, false);
-
-  //   if (image) {
-  //     reader.readAsDataURL(image);
-  //   }
-  // }
   processFile(event: any) {
 
     if (event.target.files.length > 0) {
@@ -179,8 +139,6 @@ export class MCQSComponent implements OnInit {
     }
   }
 }
-
-
 
  // onSubmit() {
   //   this.typeId = this.route.snapshot.paramMap.get('id')

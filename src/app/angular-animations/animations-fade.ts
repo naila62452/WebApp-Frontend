@@ -1,8 +1,8 @@
-import { animate, animation, keyframes, state, style, transition, trigger, useAnimation } from "@angular/animations";
+import { animate, animation, keyframes, query, stagger, state, style, transition, trigger, useAnimation } from "@angular/animations";
 
 // bounce effect animation reuseable function 
 export let bounceOutLeftAnimation = animation(
-    animate('0.5s ease-in', keyframes([
+    animate('{{ duration }} {{ easing }}', keyframes([
         style({
             offset: .2,
             opacity: 1,
@@ -13,31 +13,76 @@ export let bounceOutLeftAnimation = animation(
             opacity: 0,
             transform: 'translateX(-100%)'
         })
-    ]))
+    ])), {
+    params: {
+        duration: '2s',
+        easing: 'ease-out'
+    }
+}
 )
 
 // Side effect animation reuseable function 
 export let slideEffect = animation(
-    animate('0.7s ease-out', keyframes([
-        style({ transform: 'translateX(-10px)', backgroundColor: '#ccdceb' }),
-    ]))
+    animate('{{ duration }} {{ easing }}', keyframes([
+        style({ transform: 'translateX(-10px)' }),
+    ])), {
+    params: {
+        duration: '500ms',
+        easing: 'ease-out'
+    }
+}
 )
 
-// Fade in and fade out effect
+// Fade in animation
+export let fadeInAnimationStagger =  trigger('fadeIn', [
+    transition(':enter', [
+      query(':enter', [
+        style({ opacity: 0 }),
+        stagger('150ms', [
+          animate('500ms', style({ opacity: 1, transform: "translateX(10px)" }))
+        ])
+      ])
+    ])
+  ])
+
+export let fadeInAnimation = animation([
+    animate('{{ duration }} {{ easing }}'),
+    style({ backgroundColor: '#ccdceb', opacity: 0 })
+], {
+    params: {
+        duration: '2s',
+        easing: 'ease-out'
+    }
+})
+
+//Fade out animation
+export let fadeOutAnimation = animation([
+    animate('{{ duration }} {{ easing }}'),
+    style({ backgroundColor: '#ccdceb', opacity: 0 })
+], {
+    params: {
+        duration: '2s',
+        easing: 'ease-out'
+    }
+})
+
+// Fade animation
 export let fade = trigger('fade', [
-    state('void', style({
-        backgroundColor: '#ccdceb', opacity: 0
-    })),
-    transition('void <=> *', [
-        animate(2000)
+    transition(':enter', [
+        query('fade', [
+            stagger(200, useAnimation(fadeInAnimation))
+
+        ])
+    ]),
+    transition(':leave', [
+        useAnimation(fadeOutAnimation)
     ])
 ])
 
 // Slide effect with bounce on delete
 export let slideEffectWithBounce = trigger('slideEffectWithBounce', [
     transition(':enter', [
-        style({ transform: 'translateX(-10px)', backgroundColor: '#ccdceb' }),
-        animate('0.7s ease-out')
+        useAnimation(slideEffect)
     ]),
     transition(':leave',
         useAnimation(bounceOutLeftAnimation))
@@ -75,7 +120,6 @@ export let zoomEffect = trigger('zoomEffect', [
 ])
 
 //slidingEntrance animation
-
 export let slidingEntrance = trigger('slidingEntrance', [
     transition(':enter', [
         animate(2000, keyframes([

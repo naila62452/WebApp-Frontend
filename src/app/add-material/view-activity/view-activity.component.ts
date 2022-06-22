@@ -48,6 +48,7 @@ export class ViewActivityComponent implements OnInit {
           this.topicGetById = <any>response
           this.topicGetById[0]["combineQuestion"] = this.topicGetById[0].topics_mcqs_info.
             concat(this.topicGetById[0].topics_trueFalse_info).concat(this.topicGetById[0].topics_openEnded_info)
+            .concat(this.topicGetById[0].topics_intro_info)
             .sort((low: { sequence: number; }, high: { sequence: number; }) => {
               return low.sequence - high.sequence;
             })
@@ -120,6 +121,23 @@ export class ViewActivityComponent implements OnInit {
   }
 
   onDeleteOpenEnded(id: any) {
+    this.openEndedService.delete(id).subscribe(
+      res => {
+        this.ngOnInit();
+        this._snackBar.open(" Your Question has been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+      }, err => {
+        console.log(err)
+        this._snackBar.open(" Your Question has not been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+      }
+    )
+  }
+  onDeleteIntro(id: any) {
     this.openEndedService.delete(id).subscribe(
       res => {
         this.ngOnInit();

@@ -1,0 +1,32 @@
+<div @viewAnimation>
+    <h2 style="color: black;">Topics list:</h2>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Topic Name</th>
+                    <th>Country</th>
+                    <th>Language</th>
+                    <th>Grade</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody [@fadeIn] *ngIf="topic.length > 0">
+                <tr *ngFor="let topics of topic; let i = index">
+                    <td>{{ topics.topic }}</td>
+                    <td>{{ topics.country }}</td>
+                    <td>{{ topics.language }}</td>
+                    <td>{{ topics.grade }}</td>
+                    <td>
+                        <button mat-stroked-button class="button" class="pointer"
+                            [routerLink]="['/material/view/', topics._id]">View</button>
+                    </td>
+                    <td><button mat-stroked-button class="button" class="pointer"
+                            (click)="onDelete(topics._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

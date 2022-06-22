@@ -9,6 +9,21 @@
     <p>Time to complete: {{topics.time}} minutes</p>
     <br>
 
+    <!-- <div *ngFor="let comb of topics.combineQuestion">
+        <p>Question number: {{comb.sequence}}</p>
+        <p>Question statement: {{comb.question}}</p>
+        <p>Answer: {{comb.answer}}</p>
+    </div> -->
+
+    <div class="mcqs" *ngFor="let intro of topics.topics_intro_info">
+        <span>Question number: {{intro.sequence}}</span>
+        <hr>
+        <h3>Question Statement: {{ intro.introduction }}</h3>
+        <!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteIntro(intro._id)"
+            @fade>Delete</button> -->
+        <br>
+    </div>
+
     <div class="mcqs" *ngFor="let mcqs of topics.topics_mcqs_info">
         <span>Question number: {{mcqs.sequence}}</span>
         <hr>
@@ -29,25 +44,74 @@
             </h4>
             <h4>Correct answer: {{mcqs.answer}}</h4>
         </ul>
-        <button mat-stroked-button class="button" class="pointer" (click)="onDeleteMcqs(mcqs._id)">Delete</button>
-
+        <!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteMcqs(mcqs._id)">Delete</button> -->
     </div>
     <br>
+
     <div class="mcqs" *ngFor="let trueFalse of topics.topics_trueFalse_info">
         <span>Question number: {{trueFalse.sequence}}</span>
         <hr>
         <h3>Question Statement: {{ trueFalse.question }}</h3>
         <ul>Correct answer: {{ trueFalse.answer }}</ul>
-        <button mat-stroked-button class="button" class="pointer"
-            (click)="onDeleteTrueFalse(trueFalse._id)">Delete</button>
+        <!-- <button mat-stroked-button class="button" class="pointer"
+            (click)="onDeleteTrueFalse(trueFalse._id)">Delete</button> -->
     </div>
     <br>
+
     <div class="mcqs" *ngFor="let openEnded of topics.topics_openEnded_info">
         <span>Question number: {{openEnded.sequence}}</span>
         <hr>
         <h3>Question Statement: {{ openEnded.question }}</h3>
-        <button mat-stroked-button class="button" class="pointer" (click)="onDeleteOpenEnded(openEnded._id)"
-            @fade>Delete</button>
+        <img [src]="openEnded.file">
+        <!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteOpenEnded(openEnded._id)"
+            @fade>Delete</button> -->
+    </div>
+    <br>
+
+    <div class="mcqs" *ngFor="let match of topics.topics_match_info">
+        <span>Question number: {{match.sequence}}</span>
+        <hr>
+        <h3>Question Statement: {{ match.question }}</h3>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Serial number</th>
+                        <th>Statements</th>
+                        <th>Answers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>{{match.statement1}}</td>
+                        <td>{{ match.answer1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>{{match.statement2}}</td>
+                        <td>{{ match.answer2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>{{match.statement3}}</td>
+                        <td>{{ match.answer3 }}</td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>{{match.statement4}}</td>
+                        <td>{{ match.answer4 }}</td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td>{{match.statement5}}</td>
+                        <td>{{ match.answer5 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteOpenEnded(match._id)"
+            @fade>Delete</button> -->
     </div>
     <br>
 </div>

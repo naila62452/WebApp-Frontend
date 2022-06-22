@@ -28,6 +28,13 @@
                                     <textarea type="text" name="question" id="question" formControlName="question"
                                         required rows="4" cols="40"> </textarea>
                                 </ul>
+                                <div>
+                                    <input type="file" (change)="PickedImage($event)">
+                                    <span>* Only png, jpeg, jpg</span>
+                                    <div class="image-preview" *ngIf="Pickedimage">
+                                        <img [src]="Pickedimage" alt="No Profile picture">
+                                    </div>
+                                </div>
                             </div>
                             <button mat-stroked-button [disabled]="openEndedForm.invalid" type="submit"
                                 (click)="onSubmit()"

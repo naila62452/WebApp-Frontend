@@ -23,10 +23,14 @@ export class OpenEndedComponent implements OnInit {
     ]),
     sequence: new FormControl("", [
       Validators.required
-    ])
+    ]),
+    file: new FormControl("", [
+    ]),
   })
   question: Array<any> = []
   topic: string
+  Pickedimage: string;
+
   constructor(
     private openEnded: OpenEndedService,
     private router: Router, private _snackBar: MatSnackBar,
@@ -36,10 +40,12 @@ export class OpenEndedComponent implements OnInit {
   }
   onSubmit() {
     this.topic = localStorage.getItem('topicId')
+    const formData = new FormData();
+    formData.append('file', this.openEndedForm.get('file').value);
+    formData.append("question", this.openEndedForm.get('question').value)
+    formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(this.openEndedForm.value)
-
-
-    this.openEnded.addAll(this.openEndedForm.value, this.topic)
+    this.openEnded.addAll(formData, this.topic)
       .subscribe(
         res => {
           this.question.push(res);
@@ -54,5 +60,18 @@ export class OpenEndedComponent implements OnInit {
         err => {
           console.log(err)
         });
+  }
+
+  PickedImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.openEndedForm.patchValue({ file: file })
+    this.openEndedForm.get('file').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.Pickedimage = reader.result as string;
+      console.log(this.Pickedimage)
+    };
+    reader.readAsDataURL(file);
+
   }
 }

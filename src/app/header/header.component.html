@@ -91,7 +91,7 @@
             <img class="avatar mat-elevation-z8" src="assets/logo.png" />
 
             <h3 class="name">Learn Together!</h3>
-            <!-- <p class="designation">Dark Mode</p> -->
+            <!-- <p class="">View all Topics</p> -->
             <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">Hello {{teacherAuth.currentUser.name}}</p>
             <mat-divider></mat-divider>
 
@@ -99,6 +99,12 @@
                 <mat-icon>home</mat-icon>
                 <span>Home</span>
             </button>
+
+            <button mat-button class="menu-button" routerLink="/user/viewAll">
+                <mat-icon>pageview</mat-icon>
+                <span>View all Topics</span>
+            </button>
+
             <button mat-button class="menu-button" routerLink="/user/profile"
                 *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">
                 <mat-icon>person</mat-icon>

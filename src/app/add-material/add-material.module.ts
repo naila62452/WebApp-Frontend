@@ -11,6 +11,7 @@ import { TrueFalseComponent } from './true-false/true-false.component';
 import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ViewActivityComponent } from './view-activity/view-activity.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+import { MatchPairsComponent } from './match-pairs/match-pairs.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { IntroductionComponent } from './introduction/introduction.component';
     TrueFalseComponent,
     OpenEndedComponent,
     ViewActivityComponent,
-    IntroductionComponent
+    IntroductionComponent,
+    MatchPairsComponent
     ],
   imports: [
     CommonModule,

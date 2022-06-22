@@ -6,12 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
+import { ViewTopicsComponent } from './view-topics/view-topics.component';
+import { ViewAllTopicsComponent } from './view-all-topics/view-all-topics.component';
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    AddMaterialComponent
+    AddMaterialComponent,
+    ViewTopicsComponent,
+    ViewAllTopicsComponent
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/_validator/_auth/auth-guard';
 import { AddTopicComponent } from './add-topic/add-topic.component';
+import { MatchPairsComponent } from './match-pairs/match-pairs.component';
 import { MCQSComponent } from './mcqs/mcqs.component';
 import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ScienceComponent } from './science/science.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'topic/:id', component: AddTopicComponent , canActivate: [AuthGuard]},
   { path: 'openEnded/:id', component: OpenEndedComponent, canActivate: [AuthGuard]},
   { path: 'view/:id', component: ViewActivityComponent, canActivate: [AuthGuard]},
+  { path: 'match/:id', component: MatchPairsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

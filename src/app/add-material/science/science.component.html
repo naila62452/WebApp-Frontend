@@ -39,7 +39,7 @@
             <meta http-equiv="refresh" content="0.01">
         </div>
 
-        <div *ngIf="!ifSubmitted[i]" @slidingEntrance>
+        <div *ngIf="!ifSubmitted[i]">
             <mat-label><b>Please select type of activity.</b></mat-label>
             <br>
             <br>
@@ -68,6 +68,9 @@
                 <app-introduction (submitEvent)="setSubmit($event, i)"></app-introduction>
             </div>
 
+            <div *ngIf="selectedValue[i] === 'Match pairs'">
+                <app-match-pairs (submitEvent)="setSubmit($event, i)"></app-match-pairs>
+            </div>
         </div>
         <br>
     </div>

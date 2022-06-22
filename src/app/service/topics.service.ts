@@ -35,13 +35,24 @@ export class TopicsService {
     return this.http.get(`${api_path}/get/${id}/${subject}`)
   }
 
+  getTopicByUserId(): Observable<any> {
+    let id = localStorage.getItem('id');
+    return this.http.get(`${api_path}/get/${id}`)
+  }
+
   getTopicByTopicId(topic: string): Observable<any> {
     let id = localStorage.getItem('id');
     return this.http.get(`${api_path}/getTopic/${id}/${topic}`)
   }
+
   getAllTopicData(id: string) {
     return this.http.get(`${api_path}/getByTopic/${id}`)
   }
+
+  getAllTopic() {
+    return this.http.get(`${api_path}/`)
+  }
+
   deleteTopic(id: string): Observable<any> {
     return this.http.delete(`${api_path}/delete/${id}`, { responseType: 'text' })
   }
