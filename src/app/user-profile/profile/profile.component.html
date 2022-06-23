@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Edit Profile</h4>
+                        <h4 class="card-title">{{'user_profile.edit' | translate}}</h4>
                         <!-- <button mat-stroked-button class="button" type="button"
                              routerLink="/authenticate/login">Logout</button> -->
                     </div>
@@ -44,16 +44,17 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <button mat-stroked-button type="submit" class="button">Update Profile</button>
+                            <button mat-stroked-button type="submit" class="button">{{'user_profile.update' |
+                                translate}}</button>
                             <hr>
                             <div class="clearfix"></div>
                         </form>
                         <div class="buttonDiv">
-                            <button mat-stroked-button type="submit" class="button" (click)="deleteUser()">Delete
-                                account</button>
                             <button mat-stroked-button type="submit" class="button"
-                                routerLink="/authenticate/changePassword">Change
-                                Password</button>
+                                (click)="deleteUser()">{{'user_profile.delete' | translate}}</button>
+                            <button mat-stroked-button type="submit" class="button"
+                                routerLink="/authenticate/changePassword">{{'user_profile.change_pass' |
+                                translate}}</button>
                         </div>
                     </div>
                 </div>
@@ -91,18 +92,21 @@
                         </a> -->
                     </div>
                     <div class="card-body">
-                        <h6 class="card-category text-gray">Welcome to Seeds</h6>
-                        <h4>Hello {{username}}</h4>
+                        <h6 class="card-category text-gray">{{'user_profile.welcome' | translate}}</h6>
+                        <h4>{{'header.hello' | translate}} {{username}}</h4>
                         <p class="card-description">
-                            Here, you can edit your profile, update your information, and create new learning content
+                            {{'user_profile.profile_text' | translate}}
+                            <!-- Here, you can edit your profile, update your information, and create new learning content
                             for students here. Please click the button below to start the content creation process. Use
                             the fields on the left, to edit your information. If you have any questions please check the
-                            FAQ section, and don’t hesitate to contact us for more help.
+                            FAQ section, and do not hesitate to contact us for more help. -->
                         </p>
                         <div class="main-button">
-                            <button mat-stroked-button type="button" class="button" routerLink="/user/add">Add new
-                                Topic</button>
-                                <button mat-stroked-button type="button" class="button" routerLink="/user/view">View Topics</button>
+                            <button mat-stroked-button type="button" class="button" routerLink="/user/add">
+                                {{'user_profile.add' | translate}}</button>
+                            <button mat-stroked-button type="button" class="button" routerLink="/user/view">
+                                {{'user_profile.view' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>

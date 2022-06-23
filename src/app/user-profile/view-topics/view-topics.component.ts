@@ -58,4 +58,11 @@ export class ViewTopicsComponent implements OnInit {
       }
     )
   }
+  topics: any = []
+  searchData(event: Event) {
+    var text = (event.target as HTMLInputElement).value;
+    this.topics = this.topic.filter(x => {
+      return (x.topic.toLowerCase()).includes(text.toLowerCase());
+    })
+  }
 }

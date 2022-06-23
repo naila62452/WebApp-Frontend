@@ -43,6 +43,13 @@ export class ViewAllTopicsComponent implements OnInit {
       console.log(res)
     })
   }
+  topics: any = []
+  searchData(event: Event) {
+    var text = (event.target as HTMLInputElement).value;
+    this.topics = this.topic.filter(x => {
+      return (x.topic.toLowerCase()).includes(text.toLowerCase());
+    })
+  }
 }
 
  // trigger('viewAnimation', [

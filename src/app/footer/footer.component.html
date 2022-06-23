@@ -5,8 +5,8 @@
                 <img src="assets/logo.png" alt="Let's Learn" width="60px">
             </a>
             <div class="copy-right">
-                <span class="pointer" routerLink="">&copy; Seeds</span>
-                <a herf routerLink="/policy/privacy" style="text-decoration: underline;">Privacy & Cookies</a>
+                <span class="pointer" routerLink="/home">&copy; Seeds</span>
+                <a [innerHTML]="'footer.privacy' | translate" style="text-decoration: underline;"></a>
             </div>
         </div>
         <div class="footerContent">
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="footerContentRight">
-            <a herf routerLink="/policy/contact">Contact</a>
+            <a herf routerLink="/policy/contact">{{'footer.contact' | translate}}</a>
             <a herf routerLink="/policy/faq">FAQ</a>
         </div>
     </div>

@@ -1,4 +1,13 @@
 <div @viewAnimation>
+    <div class="content" role="main" >
+        <div class="card">
+            <input (keyup)="searchData($event)" type="text" class="form-control" placeholder="Search"
+                aria-label="Searchbox" aria-describedby="basic-addon1">
+            <div *ngFor="let topic of topics">
+                <span [routerLink]="['/material/view/', topic._id]" class="pointer">{{topic.topic}}</span>
+            </div>
+        </div>
+    </div>
     <h2 style="color: black;">Topics list:</h2>
     <div class="container">
         <table class="table table-hover">

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home-module/home/home.component';
+import { NotFoundComponent } from './home-module/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -10,7 +12,7 @@ const routes: Routes = [
   { path: 'policy', loadChildren: () => import('./privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule) },
   { path: 'adminUser', loadChildren: () => import('./admin-module/admin-module.module').then(m => m.AdminModuleModule) },
   { path: 'superUser', loadChildren: () => import('./super-admin/super-admin.module').then(m => m.SuperAdminModule) },
-
+  { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

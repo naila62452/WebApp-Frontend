@@ -12,6 +12,7 @@ import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ViewActivityComponent } from './view-activity/view-activity.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchPairsComponent } from './match-pairs/match-pairs.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -22,14 +23,16 @@ import { MatchPairsComponent } from './match-pairs/match-pairs.component';
     OpenEndedComponent,
     ViewActivityComponent,
     IntroductionComponent,
-    MatchPairsComponent
+    MatchPairsComponent,
+    
     ],
   imports: [
     CommonModule,
     AddMaterialRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class AddMaterialModule { }

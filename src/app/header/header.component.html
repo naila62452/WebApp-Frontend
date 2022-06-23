@@ -73,9 +73,9 @@
         </span>
         <div class="menu-button">
             <button mat-stroked-button class="button" type="button" *ngIf="teacherAuth.isLoggedIn()"
-                (click)="onLogout()" routerLink="/authenticate/login">Logout</button>
+                (click)="onLogout()" routerLink="/authenticate/login">{{'header.logout' | translate}}</button>
             <button mat-stroked-button class="button" type="button" *ngIf="!teacherAuth.isLoggedIn()"
-                (click)="onLogout()" routerLink="/authenticate/login">Login</button>
+                (click)="onLogout()" routerLink="/authenticate/login">{{'header.login' | translate}}</button>
         </div>
 
         <div class="flex-stretch"></div>
@@ -88,27 +88,27 @@
     <mat-sidenav-container>
         <mat-sidenav class="mat-elevation-z8" #sidenav [mode]="opened === false ? 'over' : 'side'"
             [opened]="opened === true">
-            <img class="avatar mat-elevation-z8" src="assets/logo.png" />
+            <img class="avatar mat-elevation-z8" routerLink="/home" cursor="pointer" src="assets/logo.png" />
 
-            <h3 class="name">Learn Together!</h3>
+            <h3 class="name">{{'header.learn' | translate}}</h3>
             <!-- <p class="">View all Topics</p> -->
-            <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">Hello {{teacherAuth.currentUser.name}}</p>
+            <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">{{'header.hello' | translate}} {{teacherAuth.currentUser.name}}</p>
             <mat-divider></mat-divider>
 
             <button mat-button class="menu-button" routerLink="/home">
                 <mat-icon>home</mat-icon>
-                <span>Home</span>
+                <span>{{'header.home' | translate}}</span>
             </button>
 
             <button mat-button class="menu-button" routerLink="/user/viewAll">
                 <mat-icon>pageview</mat-icon>
-                <span>View all Topics</span>
+                <span>{{'header.view' | translate}}</span>
             </button>
 
             <button mat-button class="menu-button" routerLink="/user/profile"
                 *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'User'">
                 <mat-icon>person</mat-icon>
-                <span>Profile</span>
+                <span>{{'header.profile' | translate}}</span>
             </button>
 
             <button mat-button class="menu-button" routerLink="/adminUser/profile"
@@ -131,13 +131,13 @@
 
             <button mat-button class="menu-button" routerLink="/home/about">
                 <mat-icon>info</mat-icon>
-                <span>About</span>
+                <span>{{'header.about' | translate}}</span>
             </button>
             <mat-divider></mat-divider>
 
             <button mat-button class="menu-button" routerLink="/policy/faq">
                 <mat-icon>help</mat-icon>
-                <span>Help</span>
+                <span>{{'header.help' | translate}}</span>
             </button>
         </mat-sidenav>
         <mat-sidenav-content>

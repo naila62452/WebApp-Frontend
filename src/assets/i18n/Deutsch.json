@@ -1,6 +1,7 @@
 {
     "Home_page": {
-        "Home Text": "Willkommen bei SEEDS! Die Corona-Pandemie hat eine Reihe von systemischen Ungleichheiten in Bezug auf Bildung und Zugang zu Lernmöglichkeiten aufgedeckt. Die Notwendigkeit, beim Lernen auf die digitale Sphäre zurückzugreifen, hat gezeigt, dass es nicht für alle Mitglieder einer Gesellschaft gleichermaßen möglich ist, diesem Beispiel zu folgen, und zwar in allen Ländern und Bereichen der EU. Besonders betroffen sind schutzbedürftige Gruppen, darunter Menschen mit Migrationshintergrund, Menschen mit Flüchtlingshintergrund oder Nicht-Muttersprachler, die schon vorher schwierige Erfahrungen gemacht haben. Diese Gruppen sind nun in Sachen Bildung noch stärker ins Hintertreffen geraten.",
+        "welcome": "Willkommen bei SEEDS",
+        "Home Text": "Die Corona-Pandemie hat eine Reihe von systemischen Ungleichheiten in Bezug auf Bildung und Zugang zu Lernmöglichkeiten aufgedeckt. Die Notwendigkeit, beim Lernen auf die digitale Sphäre zurückzugreifen, hat gezeigt, dass es nicht für alle Mitglieder einer Gesellschaft gleichermaßen möglich ist, diesem Beispiel zu folgen, und zwar in allen Ländern und Bereichen der EU. Besonders betroffen sind schutzbedürftige Gruppen, darunter Menschen mit Migrationshintergrund, Menschen mit Flüchtlingshintergrund oder Nicht-Muttersprachler, die schon vorher schwierige Erfahrungen gemacht haben. Diese Gruppen sind nun in Sachen Bildung noch stärker ins Hintertreffen geraten.",
         "teach": "Wir unterrichten gemeinsam",
         "paragraph": "In Zusammenarbeit mit Sozialarbeitern und dem neu entstandenen Berufsstand der Kulturmediatoren, die als Brücke zu Gemeinden und lokalen Bildungseinrichtungen wie Schulen fungieren, und ihre persönliche Reichweite mit Hilfe von Chatbots auf die digitale Sphäre ausdehnen, schlägt das SEEDS-Projekt eine Kombination aus sozialer und digitaler Reichweite vor, um diesen Effekt abzumildern. Benötigte Lerninhalte werden mit Hilfe von Chatbots auf eine neue Art und Weise vermittelt, bei der Gemeinden und Bildungseinrichtungen Lernmaterialien in einem vordefinierten Prozess erstellen können und Kulturvermittler, Sozialarbeiter oder einzelne Lernende selbst auf das von den Lehrern erstellte Lernmaterial zugreifen können, um die Lernerfahrung der Lernenden zu verbessern.",
         "who we are": "Über uns"
@@ -25,6 +26,7 @@
         "full name": "Vor- und Nachname",
         "password": "Passwort",
         "confirm": "Passwort bestätigen",
+        "accept": "Bitte akzeptieren Sie die Datenschutzbestimmungen.",
         "terms": "Durch das Erstellen eines Accounts bei stimmen Sie unseren <a href =\"/policy/privacy\">Allgemeine Geschäftsbedingungen</a> zu.",
         "already_acc": "Haben Sie bereits einen Account? <a href =\"/authenticate/login\">Anmelden</a>.",
         "sign_up": "Anmelden",
@@ -36,6 +38,54 @@
         "pass_long": "Ihr Passwort muss mindestens 8 Zeichen lang sein.",
         "pass_match": "Ihr Passwort und Ihre Passwortbestätigung müssen übereinstimmen.",
         "confirm_pass": "Bitte tragen Sie das Passwort zur Bestätigung erneut ein."
+    },
+    "header": {
+        "login": "Anmeldung",
+        "logout": "Ausloggen",
+        "home": "Startseite",
+        "about":"über Seite",
+        "profile": "Profil",
+        "help": "Hilfe",
+        "view": "alle Themen anzeigen",
+        "learn": "Zusammen Lernen!",
+        "hello": "Hallo"
+    },
+    "footer": {
+        "contact": "Kontakt",
+        "privacy": "<a href =\"/policy/privacy\">Datenschutz & Cookies</a>"
+    },
+    "user_profile": {
+        "edit": "Edit Profile",
+        "name": "Name",
+        "email": "Email Address",
+        "update": "Update Profile",
+        "delete": "Delete Account",
+        "change_pass": "Change Password",
+        "add": "Add new Topic",
+        "view": "View Topics",
+        "profile_text": "Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and do not hesitate to contact us for more help.",
+        "welcome": "Welcome to SEEDS!"
+    },
+    "add_topics": {
+        "add": "Thema Hinzufügen",
+        "text": "Please add your topic for material creation.",
+        "name": "Topic Name*",
+        "name_error": "Please enter a Topic.",
+        "name_already_exist": "This topic already exists.",
+        "age": "Please select age group.",
+        "age_label": "Choose age group",
+        "lang": "Please select language.",
+        "lang_label": "Choose Language",
+        "country": "Please select country.",
+        "country_label": "Choose Country",
+        "grade": "Please select Grade.",
+        "grade_label": "Choose Grade",
+        "activities": "Please select no of activities.",
+        "act_label": "Choose Number",
+        "time": "Time to complete in minutes.*",
+        "time_error": "Please enter Time",
+        "create": "Create"
     }
+
 
 }

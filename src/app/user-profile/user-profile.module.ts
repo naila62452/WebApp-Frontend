@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
 import { ViewTopicsComponent } from './view-topics/view-topics.component';
 import { ViewAllTopicsComponent } from './view-all-topics/view-all-topics.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ViewAllTopicsComponent } from './view-all-topics/view-all-topics.compon
     UserProfileRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class UserProfileModule { }

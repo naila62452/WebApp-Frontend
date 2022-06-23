@@ -20,6 +20,7 @@ export class ScienceComponent implements OnInit {
   totalNumberOfQuestions = 0
   topicGetById: any = {};
   arr: any[] = []
+  count = 1;
   constructor(private category: ActivityFormService,
     private route: ActivatedRoute, private topicService: TopicsService,
     private _snackBar: MatSnackBar, private router: Router) { }
