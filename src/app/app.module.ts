@@ -13,11 +13,8 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +27,10 @@ import { MatDividerModule } from '@angular/material/divider';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatIconModule,
     SocialLoginModule,
     TranslateModule.forRoot({
       loader: {

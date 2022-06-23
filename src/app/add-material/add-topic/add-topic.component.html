@@ -14,26 +14,27 @@
                     </div>
                     <div class="card-body">
                         <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
-                            <mat-label for="topic"><b>{{'add_topics.name' | translate}}</b></mat-label>
+                            <!-- <mat-label for="topic"><b>{{'add_topics.name' | translate}}</b></mat-label> -->
                             <mat-form-field class="input_text">
+                                <mat-label>{{'add_topics.name' | translate}}</mat-label>
                                 <input class="input_form" matInput type="text" name="topic" id="topic"
                                     formControlName="topic" required>
                             </mat-form-field>
                             <div *ngIf="topicForm.get('topic').pending">Checking Topic...</div>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('topic')?.errors) && 
+                            <mat-error *ngIf="(!topicForm.valid && topicForm.get('topic')?.errors) && 
                             (topicForm.get('topic')?.dirty || topicForm.get('topic')?.touched)">
                                 <div>
                                     {{'add_topics.name_error' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
 
-                            <!-- <small class="text-danger" *ngIf="topicForm.get('topic').hasError('minlength')">
+                            <!-- <mat-error class="text-danger" *ngIf="topicForm.get('topic').hasError('minlength')">
                                 The minimum length for this field is 5 characters.
-                            </small> -->
+                            </mat-error> -->
 
-                            <small class="text-danger" *ngIf="topicForm.get('topic').errors?.['topicExists']">
+                            <mat-error *ngIf="topicForm.get('topic').errors?.['topicExists']">
                                 {{'add_topics.name_already_exist' | translate}}
-                            </small>
+                            </mat-error>
                             <br>
 
                             <mat-label for="ageGroup"><b>{{'add_topics.age' | translate}}</b></mat-label>
@@ -43,12 +44,12 @@
                                     <mat-option *ngFor="let item of age" [value]="item._id">{{item.age}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('ageGroup')?.errors) && 
+                            <mat-error *ngIf="(!topicForm.valid && topicForm.get('ageGroup')?.errors) && 
                                 (topicForm.get('ageGroup')?.dirty || topicForm.get('ageGroup')?.touched)">
                                 <div>
                                     {{'add_topics.age' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
 
                             <mat-label for="language"><b>{{'add_topics.lang' | translate}}</b></mat-label>
@@ -59,12 +60,12 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('language')?.errors) && 
+                            <mat-error *ngIf="(!topicForm.valid && topicForm.get('language')?.errors) && 
                             (topicForm.get('language')?.dirty || topicForm.get('language')?.touched)">
                                 <div>
                                     {{'add_topics.lang' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
 
                             <mat-label for="country"><b>{{'add_topics.country' | translate}}</b></mat-label>
@@ -75,11 +76,11 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('country')?.errors) && 
+                            <mat-error *ngIf="(!topicForm.valid && topicForm.get('country')?.errors) && 
                             (topicForm.get('country')?.dirty || topicForm.get('country')?.touched)">
                                 <div>
                                     {{'add_topics.country' | translate}} </div>
-                            </small>
+                            </mat-error>
                             <br>
 
                             <mat-label for="grade"><b>{{'add_topics.grade' | translate}}</b></mat-label>
@@ -91,12 +92,12 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('grade')?.errors) && 
+                            <mat-error *ngIf="(!topicForm.valid && topicForm.get('grade')?.errors) && 
                             (topicForm.get('grade')?.dirty || topicForm.get('grade')?.touched)">
                                 <div>
                                     {{'add_topics.grade' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
 
                             <mat-label for="noOfQuestions"><b> {{'add_topics.activities' | translate}}</b></mat-label>
@@ -111,25 +112,26 @@
                                     <mat-option value="6">6</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('noOfQuestions')?.errors) && 
+                            <mat-error *ngIf="(!topicForm.valid && topicForm.get('noOfQuestions')?.errors) && 
                             (topicForm.get('noOfQuestions')?.dirty || topicForm.get('noOfQuestions')?.touched)">
                                 <div>
                                     {{'add_topics.activities' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
 
-                            <mat-label for="time"><b>{{'add_topics.time' | translate}}</b></mat-label>
+                            <!-- <mat-label for="time"><b>{{'add_topics.time' | translate}}</b></mat-label> -->
                             <mat-form-field class="input_text">
+                                <mat-label>{{'add_topics.time' | translate}}</mat-label>
                                 <input class="input_form" matInput type="number" name="time" id="time"
                                     formControlName="time" required>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('time')?.errors) && 
+                            <mat-error *ngIf="(!topicForm.valid && topicForm.get('time')?.errors) && 
                                 (topicForm.get('time')?.dirty || topicForm.get('time')?.touched)">
                                 <div>
                                     {{'add_topics.time_error' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
 
                             <!-- <mat-label for="access"><b>Please select material privacy.</b></mat-label>
@@ -140,17 +142,17 @@
                                     <mat-option value="public">Public</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('access')?.errors) && 
+                            <mat-error class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('access')?.errors) && 
                             (topicForm.get('access')?.dirty || topicForm.get('access')?.touched)">
                                 <div>
                                     Please select Privacy.
                                 </div>
-                            </small>
+                            </mat-error>
                             <br> -->
 
                             <button mat-stroked-button type="submit" class="button" class="pointer"
-                                [disabled]="topicForm.invalid" style="background-color: #ccdceb;">{{'add_topics.create' | translate}}<span
-                                    class="material-icons">
+                                [disabled]="topicForm.invalid" style="background-color: #ccdceb;">{{'add_topics.create'
+                                | translate}}<span class="material-icons">
                                     chevron_right
                                 </span></button>
                             <hr>

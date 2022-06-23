@@ -55,7 +55,7 @@
 </header> -->
 
 <div [ngClass]="{'dark-theme-mode':isDarkTheme}">
-    <mat-toolbar>
+    <mat-toolbar color="">
         <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
             <mat-icon [ngClass]="{ 'hidden': opened ? false : true }">menu</mat-icon>
             <span style="font-size: 25px;">Seeds</span>
@@ -63,13 +63,24 @@
         <span class="head-menu">
         </span>
         <span class="lang">
+            <!-- <mat-form-field>
+                <mat-label>Choose language</mat-label>
+                <mat-select class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
+                    <mat-option *ngFor="let language of translate.getLangs()" [value]="language"
+                        [selected]="language === translate.currentLang">
+                        {{ language }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+            
+            <label style="color: white;">Language</label>
             <select class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
                 <option *ngFor="let language of translate.getLangs()" [value]="language"
                     [selected]="language === translate.currentLang">
                     {{ language }}
                 </option>
             </select>
-            <span class="material-icons">arrow_drop_down</span>
+            <!-- <span class="material-icons">arrow_drop_down</span> -->
         </span>
         <div class="menu-button">
             <button mat-stroked-button class="button" type="button" *ngIf="teacherAuth.isLoggedIn()"
@@ -80,7 +91,8 @@
 
         <div class="flex-stretch"></div>
         <mat-icon class="mr-8">brightness_5</mat-icon>
-        <mat-slide-toggle [(ngModel)]="isDarkTheme" labelPosition="before" (change)="storeThemeSelection()" class="mr-8">
+        <mat-slide-toggle [(ngModel)]="isDarkTheme" labelPosition="before" (change)="storeThemeSelection()"
+            class="mr-8">
         </mat-slide-toggle>
         <mat-icon>bedtime</mat-icon>
 
@@ -92,7 +104,8 @@
 
             <h3 class="name">{{'header.learn' | translate}}</h3>
             <!-- <p class="">View all Topics</p> -->
-            <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">{{'header.hello' | translate}} {{teacherAuth.currentUser.name}}</p>
+            <p style="color: white;" *ngIf="teacherAuth.isLoggedIn()">{{'header.hello' | translate}}
+                {{teacherAuth.currentUser.name}}</p>
             <mat-divider></mat-divider>
 
             <button mat-button class="menu-button" routerLink="/home">

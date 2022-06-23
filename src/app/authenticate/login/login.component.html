@@ -14,32 +14,34 @@
                     <br>
                     <div class="card-body">
                         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                            <mat-label for="email"><b>{{'login_page.email' | translate}}</b></mat-label>
+                            <!-- <mat-label for="email"><b>{{'login_page.email' | translate}}</b></mat-label> -->
                             <mat-form-field class="input_text">
+                                <mat-label>{{'login_page.email' | translate}}</mat-label>
                                 <input class="input_form" matInput type="email" name="email" id="email"
-                                    formControlName="email" required>
+                                    formControlName="email" placeholder="Ex. john@example.com" required>
                             </mat-form-field>
-                            <small class="text-danger" role="alert"
+                            <mat-error
                                 *ngIf="(!loginForm.valid && loginForm.get('email')?.errors) && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
                                 <div>
                                     {{'login_page.email_error' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
-                            <label for="password"><b>{{'login_page.password' | translate}}</b></label> <br>
+                            <!-- <label for="password"><b>{{'login_page.password' | translate}}</b></label> <br> -->
                             <mat-form-field class="password_form view-pass">
+                                <mat-label>{{'login_page.password' | translate}}</mat-label>
                                 <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
                                     name="password" id="password" required>
                                 <mat-icon class="pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
                                     'visibility'}}
                                 </mat-icon>
                             </mat-form-field>
-                            <small class="text-danger"
+                            <mat-error
                                 *ngIf="!loginForm.valid && loginForm.get('password')?.errors && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
                                 <div>
                                     {{'login_page.pass_error' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
                             <label>
                                 <input type="checkbox" name="remember"> {{'login_page.remember' | translate}}
@@ -51,9 +53,8 @@
                                 </div>
                             </label>
                             <button mat-stroked-button type="submit" class="button" class="pointer"
-                                [disabled]="loginForm.invalid"
-                                style="background-color: #ccdceb;">{{'login_page.login' | translate}}<span
-                                    class="material-icons">
+                                [disabled]="loginForm.invalid" style="background-color: #ccdceb;">{{'login_page.login' |
+                                translate}}<span class="material-icons">
                                     chevron_right
                                 </span></button>
                             <hr>

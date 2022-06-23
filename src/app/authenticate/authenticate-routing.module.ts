@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
-  { path: 'forgotPassword', component: ForgotPasswordComponent, canActivate: [AuthGuard] },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetPassword/:userId/:token', component: ResetPasswordComponent, canActivate: [AuthGuard] },
   { path: 'verify/:token', component: VerifyComponent },
   { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] }

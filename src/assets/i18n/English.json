@@ -69,11 +69,11 @@
     "add_topics": {
         "add": "Add Topic",
         "text": "Please add your topic for material creation.",
-        "name": "Topic Name*",
+        "name": "Topic Name",
         "name_error": "Please enter a Topic.",
         "name_already_exist": "This topic already exists.",
         "age": "Please select age group.",
-        "age_labe": "Choose age group",
+        "age_label": "Choose age group",
         "lang": "Please select language.",
         "lang_label": "Choose Language",
         "country": "Please select country.",
@@ -82,7 +82,7 @@
         "grade_label": "Choose Grade",
         "activities": "Please select no of activities.",
         "act_label": "Choose Number",
-        "time": "Time to complete in minutes.*",
+        "time": "Time to complete in minutes.",
         "time_error": "Please enter Time",
         "create": "Create"
     }

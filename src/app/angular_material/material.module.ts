@@ -24,7 +24,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { MatDividerModule } from '@angular/material/divider';
 const MaterialComponents: any[] = [
     MatInputModule,
     MatRadioModule,
@@ -50,7 +50,8 @@ const MaterialComponents: any[] = [
     MatCardModule,
     MatProgressBarModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDividerModule
 ];
 @NgModule({
     imports: [MaterialComponents],

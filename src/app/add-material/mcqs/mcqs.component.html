@@ -93,17 +93,18 @@
                     <br>
                     <div class="card-body">
                         <form [formGroup]="mcqsForm">
-                            <mat-label for="sequence"><b>Activity Sequence Number *</b></mat-label>
+                            <!-- <mat-label for="sequence"><b>Activity Sequence Number *</b></mat-label> -->
                             <mat-form-field class="input_text">
+                                <mat-label>Activity Sequence Number</mat-label>
                                 <input class="input_form" matInput type="number" name="sequence" id="sequence"
                                     formControlName="sequence" required>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!mcqsForm.valid && mcqsForm.get('sequence')?.errors) && 
+                            <mat-error *ngIf="(!mcqsForm.valid && mcqsForm.get('sequence')?.errors) && 
                                 (mcqsForm.get('sequence')?.dirty || mcqsForm.get('sequence')?.touched)">
                                 <div>
                                     Please enter a Sequence of activity.
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
 
                             <div class="textarea">
@@ -116,12 +117,12 @@
 
                                 <div>
                                     <input type="file" (change)="PickedImage($event)">
-                                    <span>* Only png, jpeg, jpg</span>
+                                    <span>*Only png, jpeg, jpg</span>
                                     <div class="image-preview" *ngIf="Pickedimage">
                                         <img [src]="Pickedimage" alt="No Profile picture">
                                     </div>
                                 </div>
-
+                                <br>
                             </div>
                             <div class="options">
                                 <mat-label>
@@ -158,12 +159,12 @@
 
                                     </mat-select>
                                 </mat-form-field>
-                                <small class="text-danger" role="alert" *ngIf="(!mcqsForm.valid && mcqsForm.get('answer')?.errors) && 
+                                <mat-error *ngIf="(!mcqsForm.valid && mcqsForm.get('answer')?.errors) && 
                                 (mcqsForm.get('answer')?.dirty || mcqsForm.get('answer')?.touched)">
                                     <div>
                                         Please select Answer.
                                     </div>
-                                </small>
+                                </mat-error>
                                 <br>
 
                                 <div class="feedback">
