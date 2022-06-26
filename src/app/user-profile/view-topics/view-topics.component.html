@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody [@fadeIn] *ngIf="topic.length > 0">
-                <tr *ngFor="let topics of topic; let i = index">
+                <tr *ngFor="let topics of ( topic| slice: lowValue : highValue); let i = index">
                     <td>{{ topics.topic }}</td>
                     <td>{{ topics.country }}</td>
                     <td>{{ topics.language }}</td>
@@ -38,4 +38,7 @@
             </tbody>
         </table>
     </div>
+    <mat-paginator [length]="topic.length" [pageSize]="10"  (page)="getPaginatorData($event)" [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page">
+</mat-paginator>
 </div>

@@ -1,5 +1,5 @@
 <div @viewAnimation>
-    <div class="content" role="main" >
+    <div class="content" role="main">
         <div class="card">
             <input (keyup)="searchData($event)" type="text" class="form-control" placeholder="Search"
                 aria-label="Searchbox" aria-describedby="basic-addon1">
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody [@fadeIn] *ngIf="topic.length > 0">
-                <tr *ngFor="let topics of topic; let i = index">
+                <tr *ngFor="let topics of  ( topic| slice: lowValue : highValue)">
                     <td>{{ topics.topic }}</td>
                     <td>{{ topics.country }}</td>
                     <td>{{ topics.language }}</td>
@@ -34,4 +34,7 @@
             </tbody>
         </table>
     </div>
+    <mat-paginator [length]="topic.length" [pageSize]="10"  (page)="getPaginatorData($event)" [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+    </mat-paginator>
 </div>

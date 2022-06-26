@@ -10,6 +10,7 @@ import { ViewTopicsComponent } from './view-topics/view-topics.component';
 import { ViewAllTopicsComponent } from './view-all-topics/view-all-topics.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    NgxPaginationModule
   ]
 })
 export class UserProfileModule { }

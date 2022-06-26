@@ -1,6 +1,6 @@
 import { animate, query, stagger, style, transition, trigger, group, animateChild } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { PageEvent } from '@angular/material/paginator';
 import { TopicsService } from 'src/app/service/topics.service';
 
 @Component({
@@ -33,9 +33,17 @@ import { TopicsService } from 'src/app/service/topics.service';
 
 export class ViewAllTopicsComponent implements OnInit {
   topic: Array<any> = []
+  p: number = 1;
+  lowValue: number = 0;
+  highValue: number = 20;
 
-  constructor(private topicService: TopicsService,
-    private snackbar: MatSnackBar) { }
+  // used to build a slice of papers relevant at any given time
+  public getPaginatorData(event: PageEvent): PageEvent {
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
+  constructor(private topicService: TopicsService) { }
 
   ngOnInit(): void {
     this.topicService.getAllTopic().subscribe(res => {
