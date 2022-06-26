@@ -75,12 +75,13 @@
             
             <label style="color: white;">Language</label>
             <select class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
+
                 <option *ngFor="let language of translate.getLangs()" [value]="language"
                     [selected]="language === translate.currentLang">
                     {{ language }}
                 </option>
             </select>
-            <!-- <span class="material-icons">arrow_drop_down</span> -->
+            <!-- <span matPrefix class="material-icons">arrow_drop_down</span> -->
         </span>
         <div class="menu-button">
             <button mat-stroked-button class="button" type="button" *ngIf="teacherAuth.isLoggedIn()"

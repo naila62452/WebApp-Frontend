@@ -28,9 +28,19 @@ $quiz_app-theme-dark: mat-dark-theme($quiz_app-primary-dark, $quiz_app-accent-da
 .dark-theme-mode {
     @include angular-material-theme($quiz_app-theme-dark);
 }
-
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~font-awesome/css/font-awesome.css';
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
+// $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+// @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+// @import "~@fortawesome/fontawesome-free/scss/brands";
+// @import "~@fortawesome/fontawesome-free/scss/regular";
+// @import "~@fortawesome/fontawesome-free/scss/solid";
+// @import "~@fortawesome/fontawesome-free/scss/v4-shims";
+
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "./scss/home.scss";
 @import "./scss/header.scss";

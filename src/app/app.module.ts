@@ -15,6 +15,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MaterialModule,
     MatFormFieldModule,
     MatInputModule,
+    FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,

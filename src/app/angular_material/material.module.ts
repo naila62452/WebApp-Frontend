@@ -25,6 +25,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+
 const MaterialComponents: any[] = [
     MatInputModule,
     MatRadioModule,
@@ -51,7 +54,9 @@ const MaterialComponents: any[] = [
     MatProgressBarModule,
     MatGridListModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 ];
 @NgModule({
     imports: [MaterialComponents],
