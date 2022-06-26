@@ -5,39 +5,38 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">{{'user_profile.edit' | translate}}</h4>
-                        <!-- <button mat-stroked-button class="button" type="button"
-                             routerLink="/authenticate/login">Logout</button> -->
+                        <button mat-stroked-button class="button" type="button"
+                             (click)="openDialogue()">Edit Profile</button>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="row">
-                            <div class="col-md-5">
+                        <div class="row">
+                            <div class="row-cols-1">
                                 <span>Company Seeds</span>
-
                             </div>
-                            <div class="col-md-3">
-                                <span>{{user}}</span>
-
+                            <hr>
+                            <div class="row-cols-1">
+                                <span class="user-profile">Your Name:</span>
+                                <span>{{user?.data?.name}}</span>
                             </div>
-                            <div class="col-md-4">
-                                <span>{{user.data.email}}</span>
-
+                            <div class="row-cols-1">
+                                <span class="user-profile">Your Email Address:</span>
+                                <span>{{user?.data?.email}}</span>
                             </div>
-                        </div> -->
-
-                        <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+                        </div>
+                        <!-- <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="row-cols-1">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Seeds" disabled>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="row-cols-1">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="name" placeholder="Name" type="text"
                                             name="name" id="name">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="row-cols-1">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="email" placeholder="Email address"
                                             type="email">
@@ -48,7 +47,7 @@
                                 translate}}</button>
                             <hr>
                             <div class="clearfix"></div>
-                        </form>
+                        </form> -->
                         <div class="buttonDiv">
                             <button mat-stroked-button type="submit" class="button"
                                 (click)="deleteUser()">{{'user_profile.delete' | translate}}</button>

@@ -27,6 +27,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const MaterialComponents: any[] = [
     MatInputModule,
@@ -56,7 +58,9 @@ const MaterialComponents: any[] = [
     MatDialogModule,
     MatDividerModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTooltipModule,
+    MatPaginatorModule
 ];
 @NgModule({
     imports: [MaterialComponents],

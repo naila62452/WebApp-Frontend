@@ -1249,6 +1249,10 @@ pre code {
 .row-cols-1 > * {
   flex: 0 0 100%;
   max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+  padding-top: 2rem;
 }
 .row-cols-2 > * {
   flex: 0 0 50%;

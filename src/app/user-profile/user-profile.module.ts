@@ -9,6 +9,7 @@ import { AddMaterialComponent } from './add-material/add-material.component';
 import { ViewTopicsComponent } from './view-topics/view-topics.component';
 import { ViewAllTopicsComponent } from './view-all-topics/view-all-topics.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ProfileComponent,
     AddMaterialComponent,
     ViewTopicsComponent,
-    ViewAllTopicsComponent
+    ViewAllTopicsComponent,
+    EditProfileComponent
   ],
   imports: [
     CommonModule,

@@ -90,6 +90,7 @@
                   border-radius: .8rem;
                   font-size: 1.6rem;
                   background: #66f;
+                  color: black;
                 }
                 &.deactivate-btn{
                   text-align: start;
@@ -222,4 +223,8 @@
 .buttonDiv {
   display: flex;
   justify-content: space-between;
+}
+.user-profile {
+  font-size: 17px;
+  font-weight: 600;
 }

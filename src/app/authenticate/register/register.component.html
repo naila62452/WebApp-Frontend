@@ -98,28 +98,30 @@
                                     </div>
                                 </mat-error>
                             </div>
-                            
+
                             <!-- <mat-form-field appearance="fill">
                                 <mat-label>Choose a date</mat-label>
-                                <input matInput [matDatepicker]="picker">
+                                <input (focus)="picker.open()" matInput [matDatepicker]="picker">
                                 <mat-hint>MM/DD/YYYY</mat-hint>
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-datepicker #picker touchUi="true"></mat-datepicker>
                             </mat-form-field> -->
 
-                            <label>
-                                <input formControlName="remember" type="checkbox" name="remember" id="remember"
-                                    required>
-                                <!-- By creating an account you agree to our<br style="line-height:0;"><a href
-                                    routerLink="/policy/privacy">Terms & Privacy</a>. -->
-                                <span [innerHTML]="'register_page.terms' | translate"></span>
-                                <mat-error *ngIf="!registerForm.valid && registerForm.get('remember')?.errors && 
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin" formControlName="remember" name="remember"
+                                    id="remember">
+                                    <!-- By creating an account you agree to our<br style="line-height:0;"><a href
+                                        routerLink="/policy/privacy">Terms & Privacy</a>. -->
+                                    <span [innerHTML]="'register_page.terms' | translate"></span>
+
+                                </mat-checkbox>
+                            </section>
+                            <mat-error *ngIf="!registerForm.valid && registerForm.get('remember')?.errors && 
                                 (registerForm.get('remember')?.dirty || registerForm.get('remember')?.touched)">
-                                    <div>
-                                        {{'register_page.accept' | translate}}
-                                    </div>
-                                </mat-error>
-                            </label>
+                                <div>
+                                    {{'register_page.accept' | translate}}
+                                </div>
+                            </mat-error>
                             <br>
                             <br>
                             <button mat-stroked-button type="submit" class="button" class="pointer"

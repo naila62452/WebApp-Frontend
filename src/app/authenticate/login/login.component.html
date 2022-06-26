@@ -43,15 +43,19 @@
                                 </div>
                             </mat-error>
                             <br>
+
                             <label>
-                                <input type="checkbox" name="remember"> {{'login_page.remember' | translate}}
+                                <section class="example-section">
+                                    <mat-checkbox class="example-margin" name="remember"
+                                        id="remember">
+                                        <span>{{'login_page.remember' | translate}}</span>
+                                    </mat-checkbox>
+                                </section>
                                 <div class="password">
                                     <span [innerHTML]="'login_page.forgot' | translate"></span>
-
-                                    <!-- <span>Forgot <a href routerLink="/authenticate/forgotPassword">password?</a>
-                                    </span> -->
                                 </div>
                             </label>
+
                             <button mat-stroked-button type="submit" class="button" class="pointer"
                                 [disabled]="loginForm.invalid" style="background-color: #ccdceb;">{{'login_page.login' |
                                 translate}}<span class="material-icons">

@@ -27,7 +27,7 @@
         "password": "Passwort",
         "confirm": "Passwort bestätigen",
         "accept": "Bitte akzeptieren Sie die Datenschutzbestimmungen.",
-        "terms": "Durch das Erstellen eines Accounts bei stimmen Sie unseren <a href =\"/policy/privacy\">Allgemeine Geschäftsbedingungen</a> zu.",
+        "terms": "Durch das Erstellen eines Accounts bei<br> stimmen Sie unseren<br><a href =\"/policy/privacy\">Allgemeine Geschäftsbedingungen</a> zu.",
         "already_acc": "Haben Sie bereits einen Account? <a href =\"/authenticate/login\">Anmelden</a>.",
         "sign_up": "Anmelden",
         "email_error": "Bitte tragen Sie Ihre E-Mail ein.",
@@ -55,7 +55,7 @@
         "privacy": "<a href =\"/policy/privacy\">Datenschutz & Cookies</a>"
     },
     "user_profile": {
-        "edit": "Edit Profile",
+        "edit": "Profile",
         "name": "Name",
         "email": "Email Address",
         "update": "Update Profile",

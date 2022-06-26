@@ -26,7 +26,7 @@
         "full name": "Full name",
         "password": "Password",
         "confirm": "Confirm your password",
-        "terms": "By creating an account you agree to our <a href =\"/policy/privacy\">Terms & Privacy.</a>",
+        "terms": "By creating an account you agree to our<br><a href =\"/policy/privacy\">Terms & Privacy.</a>",
         "accept": "Please accept terms and conditions for privacy policy.",
         "already_acc": "Already have an account? Please <a href =\"/authenticate/login\">Login</a>",
         "sign_up": "Sign up",
@@ -55,7 +55,7 @@
         "privacy": "<a href =\"/policy/privacy\">Privacy & Cookies</a>"
     },
     "user_profile": {
-        "edit": "Edit Profile",
+        "edit": "Profile",
         "name": "Name",
         "email": "Email Address",
         "update": "Update Profile",
