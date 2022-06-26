@@ -16,6 +16,7 @@ import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatFormFieldModule,
     MatInputModule,
     FontAwesomeModule,
+    // FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,

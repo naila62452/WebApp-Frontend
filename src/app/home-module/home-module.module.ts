@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MaterialModule } from '../angular_material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     CommonModule,
     HomeModuleRoutingModule,
-    TranslateModule
+    TranslateModule,
+    MaterialModule,
+    FlexLayoutModule
   ]
 })
 export class HomeModuleModule { }
