@@ -33,7 +33,6 @@ import { TopicsService } from 'src/app/service/topics.service';
 
 export class ViewAllTopicsComponent implements OnInit {
   topic: Array<any> = []
-  p: number = 1;
   lowValue: number = 0;
   highValue: number = 20;
 
