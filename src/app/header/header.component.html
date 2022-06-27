@@ -74,7 +74,7 @@
             </mat-form-field> -->
             
             <!-- <label style="color: white;">Language</label> -->
-            <select  matTooltip="Change your Language" class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
+            <select  matTooltip="Change your Language" class="form-control" #selectedLang (change)="switchLanguage(selectedLang.value)">
 
                 <option *ngFor="let language of translate.getLangs()" [value]="language"
                     [selected]="language === translate.currentLang">
