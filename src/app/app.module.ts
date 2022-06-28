@@ -10,13 +10,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { AuthinterceptorService } from './service/authinterceptor.service';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
+// import { MatInputModule } from '@angular/material/input';
+// import { MatFormFieldModule } from "@angular/material/form-field";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -30,23 +30,27 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatFormFieldModule,
-    MatInputModule,
+    // MatFormFieldModule,
+    // MatInputModule,
     FontAwesomeModule,
+    MatSnackBarModule,
     // FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-  })
+    })
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
+    [
+      MatSnackBarModule,
+    ],
     {
       provide: "SocialAuthServiceConfig",
       useValue: {
@@ -66,7 +70,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       useClass: AuthinterceptorService,
       multi: true
     },
-    {provide: ErrorHandler, useClass: GlobalErrorHandler}
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
 
   bootstrap: [AppComponent]

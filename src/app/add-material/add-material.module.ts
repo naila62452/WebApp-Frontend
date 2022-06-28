@@ -13,6 +13,7 @@ import { ViewActivityComponent } from './view-activity/view-activity.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchPairsComponent } from './match-pairs/match-pairs.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -24,15 +25,16 @@ import { TranslateModule } from '@ngx-translate/core';
     ViewActivityComponent,
     IntroductionComponent,
     MatchPairsComponent,
-    
-    ],
+
+  ],
   imports: [
     CommonModule,
     AddMaterialRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    MatSnackBarModule,
   ]
 })
 export class AddMaterialModule { }

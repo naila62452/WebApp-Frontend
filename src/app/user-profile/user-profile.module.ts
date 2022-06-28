@@ -10,6 +10,7 @@ import { ViewTopicsComponent } from './view-topics/view-topics.component';
 import { ViewAllTopicsComponent } from './view-all-topics/view-all-topics.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    MatSnackBarModule
   ]
 })
 export class UserProfileModule { }
