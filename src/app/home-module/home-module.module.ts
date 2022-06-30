@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeModuleRoutingModule } from './home-module-routing.module';
@@ -22,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     TranslateModule,
     MaterialModule,
     FlexLayoutModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeModuleModule { }

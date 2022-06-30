@@ -54,7 +54,7 @@
     </div>
 </header> -->
 
-<div [ngClass]="{'dark-theme-mode':isDarkTheme}">
+<div [ngClass]="{'dark-mode':isDarkTheme}">
     <mat-toolbar color="">
         <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
             <mat-icon [ngClass]="{ 'hidden': opened ? false : true }">menu</mat-icon>
@@ -63,25 +63,13 @@
         <span class="head-menu">
         </span>
         <span class="lang">
-            <!-- <mat-form-field>
-                <mat-label>Choose language</mat-label>
-                <mat-select class="select" #selectedLang (change)="switchLanguage(selectedLang.value)">
-                    <mat-option *ngFor="let language of translate.getLangs()" [value]="language"
-                        [selected]="language === translate.currentLang">
-                        {{ language }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
-            
-            <!-- <label style="color: white;">Language</label> -->
-            <select  matTooltip="Change your Language" class="form-control" #selectedLang (change)="switchLanguage(selectedLang.value)">
-
+            <select matTooltip="Change your Language" class="form-control" #selectedLang
+                (change)="switchLanguage(selectedLang.value)">
                 <option *ngFor="let language of translate.getLangs()" [value]="language"
                     [selected]="language === translate.currentLang">
                     {{ language }}
                 </option>
             </select>
-            <!-- <span matPrefix class="material-icons">arrow_drop_down</span> -->
         </span>
         <div class="menu-button">
             <button mat-stroked-button class="button" type="button" *ngIf="teacherAuth.isLoggedIn()"
@@ -98,7 +86,8 @@
         <mat-icon>bedtime</mat-icon>
 
     </mat-toolbar>
-    <mat-sidenav-container>
+    <mat-sidenav-container [ngStyle]="{'background-color': isDarkTheme === true ? '#454242' : 'aliceblue'}">
+        <!-- <mat-sidenav-container> -->
         <mat-sidenav class="mat-elevation-z8" #sidenav [mode]="opened === false ? 'over' : 'side'"
             [opened]="opened === true">
             <img class="avatar mat-elevation-z8" routerLink="/home" cursor="pointer" src="assets/logo.png" />

@@ -126,7 +126,7 @@
 .mat-badge-small .mat-badge-content{font-size:9px}
 .mat-badge-large .mat-badge-content{font-size:24px}
 .mat-h1,.mat-headline,.mat-typography h1{font:400 45px/32px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px;
-color: black; line-height: 4.5rem;}
+ line-height: 4.5rem;}
 .mat-h2,.mat-title,.mat-typography h2{font:500 30px/32px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
 .mat-h3,.mat-subheading-2,.mat-typography h3{font:400 16px/28px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
 .mat-h4,.mat-subheading-1,.mat-typography h4{font:400 15px/24px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
@@ -798,12 +798,12 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  color: black;
+  // color: black;
 }
 p {
   margin-top: 0;
   margin-bottom: 1rem;
-  color: black;
+  // color: black;
   font-size: 18px;
 }
 abbr[title],

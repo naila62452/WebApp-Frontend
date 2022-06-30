@@ -2,39 +2,7 @@
 // // @use 'palette-helper';
 // @include mat.core();
 
-// // define a real custom palette (using http://mcg.mbitson.com)
-// $bv-brand: (
-//     50: #ffffff,
-//     100: #dde6f3,
-//     200: #b4c9e4,
-//     300: #7fa3d1,
-//     400: #6992c9,
-//     500: #5282c1,
-//     600: #4072b4,
-//     700: #38649d,
-//     800: #305687,
-//     900: #284770,
-//     A100: #ffffff,
-//     A200: #dde6f3,
-//     A400: #6992c9,
-//     A700: #38649d,
-//     contrast: (
-//         50: $black-87-opacity,
-//         100: $black-87-opacity,
-//         200: $black-87-opacity,
-//         300: $black-87-opacity,
-//         400: $black-87-opacity,
-//         500: white,
-//         600: white,
-//         700: white,
-//         800: white,
-//         900: white,
-//         A100: $black-87-opacity,
-//         A200: $black-87-opacity,
-//         A400: $black-87-opacity,
-//         A700: white,
-//     )
-// );
+// // define a real custom palette (using http://mcg.mbitson.com
 
 
 // // Define a light theme
@@ -53,23 +21,25 @@
 //                 accent: $app-dark-accent,
 //             )));
 
-// @function mat-set-background($app-dark-theme, $backgroundColor) {
-//     $palette-color : map-get($app-dark-theme, color);
-//     $background: map-get($palette-color, background);
-//     $background: map_merge($background, (background: $backgroundColor));
-//     $palette-color: map_merge($palette-color, (background: $background));
-//     @return map_merge($app-dark-theme, (color: $palette-color));
-// }
-// $app-dark-theme: mat-set-background($app-dark-theme, #000000);
+// // @function mat-set-background($app-dark-theme, $backgroundColor) {
+// //     $palette-color : map-get($app-dark-theme, color);
+// //     $background: map-get($palette-color, background);
+// //     $background: map_merge($background, (background: $backgroundColor));
+// //     $palette-color: map_merge($palette-color, (background: $background));
+// //     @return map_merge($app-dark-theme, (color: $palette-color));
+// // }
+// // $app-dark-theme: mat-set-background($app-dark-theme, #000000);
 // // Apply the light theme by default
 // // @include mat.core($custom-typography);
 // @include mat.all-component-themes($app-light-theme);
 
 // // Apply the dark theme only when the `.dark-theme-mode` CSS class is applied
 // // to an ancestor element of the components (such as `body`).
-// .dark-theme-mode {
+// .dark-mode {
 //     // @include mat.all-component-themes($app-dark-theme);
 //     @include mat.all-component-themes($app-dark-theme);
+//     background-color: #333;
+//     color: whitesmoke;
 // }
 
 
@@ -162,7 +132,7 @@ $mat-dark-theme-foreground: (
 
 // Background config
 // Light bg
-$light-background:    #fafafa;
+$light-background:    aliceblue;
 $light-bg-darker-5:   darken($light-background, 5%);
 $light-bg-darker-10:  darken($light-background, 10%);
 $light-bg-darker-20:  darken($light-background, 20%);
@@ -191,7 +161,7 @@ $mat-light-theme-background: (
 );
 
 // Dark bg
-$dark-background:     #2c2c2c;
+$dark-background:       #252323;
 $dark-bg-lighter-5:   lighten($dark-background, 5%);
 $dark-bg-lighter-10:  lighten($dark-background, 10%);
 $dark-bg-lighter-20:  lighten($dark-background, 20%);
@@ -202,6 +172,7 @@ $light-bg-alpha-12:   rgba(#fafafa, 0.12);
 // Background palette for dark themes.
 $mat-dark-theme-background: (
   background:               $dark-background,
+  toolbar:                  pink,
   status-bar:               $dark-bg-lighter-20,
   app-bar:                  $dark-bg-lighter-5,
   hover:                    $light-bg-alpha-4,
@@ -309,7 +280,7 @@ $altTheme: (
 // Theme Init
 @include mat.all-component-themes($altTheme);
 
-.dark-theme-mode {
+.dark-mode {
   @include mat.all-component-themes($theme);
 }
 
@@ -381,14 +352,4 @@ mat-label {
 
 .mat-drawer-inner-container::-webkit-scrollbar {
     display: none;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

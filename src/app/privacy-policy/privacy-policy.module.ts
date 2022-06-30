@@ -6,6 +6,7 @@ import { ContactComponent } from './contact/contact.component';
 import { FaqComponent } from './faq/faq.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { MaterialModule } from '../angular_material/material.module';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { MaterialModule } from '../angular_material/material.module';
   imports: [
     CommonModule,
     PrivacyPolicyRoutingModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    MatExpansionModule
+  ],
+  exports: [MatExpansionModule]
 })
 export class PrivacyPolicyModule { }

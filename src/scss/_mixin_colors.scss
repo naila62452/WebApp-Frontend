@@ -18,6 +18,9 @@ $button_color: #ccdceb;
     justify-self: center;
     display: grid;
 }
+@mixin text_align_paragraph {
+    text-align: justify;
+}
 .button {
     @include button_style()
 }

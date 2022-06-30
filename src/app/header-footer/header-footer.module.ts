@@ -23,6 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
   exports: [
     FooterComponent,
     HeaderComponent
-  ]
+  ],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class HeaderFooterModule { }

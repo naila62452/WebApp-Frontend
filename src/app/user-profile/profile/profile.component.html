@@ -5,8 +5,8 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">{{'user_profile.edit' | translate}}</h4>
-                        <button mat-stroked-button class="button" type="button"
-                             (click)="openDialogue()">Edit Profile</button>
+                        <button mat-stroked-button class="button" type="button" (click)="openDialogue()">Edit
+                            Profile</button>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -66,15 +66,17 @@
                         </a> -->
                     </div>
                     <div class="card-body">
-                        <h6 class="card-category text-gray">{{'user_profile.welcome' | translate}}</h6>
-                        <h4>{{'header.hello' | translate}} {{username}}</h4>
-                        <p class="card-description">
-                            {{'user_profile.profile_text' | translate}}
-                            <!-- Here, you can edit your profile, update your information, and create new learning content
-                            for students here. Please click the button below to start the content creation process. Use
-                            the fields on the left, to edit your information. If you have any questions please check the
-                            FAQ section, and do not hesitate to contact us for more help. -->
-                        </p>
+                        <div class="profile_text">
+                            <h6 class="card-category text-gray">{{'user_profile.welcome' | translate}}</h6>
+                            <h4>{{'header.hello' | translate}} {{username}}</h4>
+                            <p class="card-description">
+                                {{'user_profile.profile_text' | translate}}
+                                <!-- Here, you can edit your profile, update your information, and create new learning content
+                                for students here. Please click the button below to start the content creation process. Use
+                                the fields on the left, to edit your information. If you have any questions please check the
+                                FAQ section, and do not hesitate to contact us for more help. -->
+                            </p>
+                        </div>
                         <div class="main-button">
                             <button mat-stroked-button type="button" class="button" routerLink="/user/add">
                                 {{'user_profile.add' | translate}}</button>
