@@ -45,7 +45,7 @@ export interface TopicElement {
 })
 export class ViewTopicsComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['topic', 'country', 'language', 'grade', 'action'];
+  displayedColumns: string[] = ['topic', 'country', 'language', 'grade', 'view', 'delete'];
   topic: TopicElement[] = [];
   dataSource: MatTableDataSource<TopicElement>;
   constructor(private topicService: TopicsService,
@@ -66,10 +66,12 @@ export class ViewTopicsComponent implements AfterViewInit {
     this.topicService.deleteTopic(id).subscribe(
       res => {
         this.ngOnInit();
+        
         this.snackbar.open(" Your Topic has been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        window.location.reload()
       }, err => {
         console.log(err + 'I am error');
         this.snackbar.open("Failed to delete Topic", "Ok", {
