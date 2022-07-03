@@ -19,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderFooterModule } from './header-footer/header-footer.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatConfirmDialogueComponent } from './user-profile/mat-confirm-dialogue/mat-confirm-dialogue.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +77,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
 

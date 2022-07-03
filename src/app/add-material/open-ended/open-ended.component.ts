@@ -41,7 +41,10 @@ export class OpenEndedComponent implements OnInit {
   onSubmit() {
     this.topic = localStorage.getItem('topicId')
     const formData = new FormData();
-    formData.append('file', this.openEndedForm.get('file').value);
+    if(this.openEndedForm.get('file').value) { 
+      formData.append('file', this.openEndedForm.get('file').value);
+    }
+    
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(this.openEndedForm.value)

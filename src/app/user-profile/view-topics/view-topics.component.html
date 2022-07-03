@@ -83,7 +83,7 @@
                 <!-- <button mat-stroked-button style="background-color:#ccdceb ;" class="pointer"
                     [routerLink]="['/material/view/', element._id]">Delete</button> -->
                 <button mat-stroked-button style="background-color:#ccdceb ;" class="pointer"
-                    (click)="onDelete(element._id)">Delete</button>
+                    (click)="openDialogue(); row=element">Delete</button>
             </td>
         </ng-container>
 

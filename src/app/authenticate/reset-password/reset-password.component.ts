@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 // import { MustMatch } from 'src/_validator/password_validator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomValidators } from 'src/_validator/password_validator';
+import { SafeData } from 'src/app/_models/save-data-interface';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit, SafeData {
 
   // resetForm: FormGroup;
   constructor(private route: ActivatedRoute,
@@ -24,6 +25,17 @@ export class ResetPasswordComponent implements OnInit {
     //   password: new FormControl("", [Validators.required, Validators.minLength(8)]),
     //   conpass: ["", [Validators.required]],
     // }, { validator: MustMatch('password', 'conpass') });
+  }
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeReload(e: BeforeUnloadEvent) {
+    e.stopPropagation();
+    if (this.resetForm.dirty) {
+      return (e.returnValue = 'Are you sure you want to exit?');
+    }
+    return true;
+  }
+  isDataSaved(): boolean {
+    return this.resetForm.dirty;
   }
   resetForm = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
