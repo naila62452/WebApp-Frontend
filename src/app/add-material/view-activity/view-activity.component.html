@@ -17,11 +17,14 @@
             <br>
         </div>
 
-        <div class="mcqs" *ngIf="combine.type === 'mcqs'" class="mcqs">
+        <div class="mcqs" *ngIf="combine.type === 'mcqs'">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{combine.mcqs}}</h3>
-            <img [src]="combine.file">
+            <div *ngIf="combine.file !== ''">
+                <img [src]="combine.file" style="height: 200px; width: 300px">
+            </div>
+            <br>
             <ul>
                 <h4>
                     <mat-radio-button value="1">{{ combine.option1 }}</mat-radio-button>
@@ -35,26 +38,36 @@
                 <h4>
                     <mat-radio-button value="4">{{ combine.option4 }}</mat-radio-button>
                 </h4>
-                <h4>Correct answer: {{combine.answer}}</h4>
+                <h3>Correct answer:</h3>
+                <p> {{combine.answer}}</p>
+                <h3>Feedback if the answer is correct:</h3>
+                <p> {{combine.posFeedback}}</p>
+                <h3>Feedback if the answer is wrong:</h3>
+                <p> {{combine.negFeedback}}</p>
             </ul>
         </div>
-        <br>
 
         <div *ngIf="combine.type === 'trueFalse'" class="mcqs">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{ combine.question }}</h3>
-            <ul>Correct answer: {{ combine.answer }}</ul>
+            <h3>Correct answer:</h3>
+            <p> {{combine.answer}}</p>
+            <h3>Feedback if the answer is correct:</h3>
+            <p> {{combine.posFeedback}}</p>
+            <h3>Feedback if the answer is wrong:</h3>
+            <p> {{combine.negFeedback}}</p>
+            <!-- <ul>Correct answer: {{ combine.answer }}</ul> -->
         </div>
-        <br>
 
         <div class="mcqs" *ngIf="combine.type === 'openEnded'">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{ combine.question }}</h3>
-            <img [src]="combine.file">
+            <div *ngIf="combine.file !== ''">
+                <img [src]="combine.file" style="height: 200px; width: 300px">
+            </div>
         </div>
-        <br>
 
         <div class="mcqs" *ngIf="combine.type === 'matchPairs'">
             <span>Question number: {{combine.sequence}}</span>
@@ -98,14 +111,17 @@
                     </tbody>
                 </table>
             </div>
+            <h3>Feedback if the answer is correct:</h3>
+            <p> {{combine.posFeedback}}</p>
+            <h3>Feedback if the answer is wrong:</h3>
+            <p> {{combine.negFeedback}}</p>
         </div>
     </div>
-    <br>
 </div>
 
 <div class="container">
     <button mat-stroked-button routerLink="/user/add" class="button"
-        style="width: auto; text-align: center; font-size: px;">
+        style="width: fit-content; text-align: center; font-size: px;">
         Add New Topic?</button>
 </div>
 <br>

@@ -99,8 +99,11 @@ export class MCQSComponent implements OnInit {
   onSubmit() {
     this.topic = this.route.snapshot.paramMap.get('id')
     const formData = new FormData();
-    formData.append('file', this.mcqsForm.get('file').value);
-    console.log(this.mcqsForm.get('file').value);
+    if(this.mcqsForm.get('file').value) { 
+      formData.append('file', this.mcqsForm.get('file').value);
+    }
+    // formData.append('file', this.mcqsForm.get('file').value);
+    // console.log(this.mcqsForm.get('file').value);
     formData.append("mcqs", this.mcqsForm.get('mcqs').value)
     formData.append("option1", this.mcqsForm.get('option1').value)
     formData.append("option2", this.mcqsForm.get('option2').value)
@@ -131,13 +134,13 @@ export class MCQSComponent implements OnInit {
           })
         });
   }
-  processFile(event: any) {
+  // processFile(event: any) {
 
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0] as File;
-      this.mcqsForm.get('file').setValue(file);
-    }
-  }
+  //   if (event.target.files.length > 0) {
+  //     const file = event.target.files[0] as File;
+  //     this.mcqsForm.get('file').setValue(file);
+  //   }
+  // }
 }
 
  // onSubmit() {
