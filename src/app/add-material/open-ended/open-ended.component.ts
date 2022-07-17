@@ -17,40 +17,97 @@ export class OpenEndedComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  public openEndedForm: FormGroup = new FormGroup({
-    question: new FormControl("", [
-      Validators.required
-    ]),
-    sequence: new FormControl("", [
-      Validators.required
-    ]),
-    file: new FormControl("", [
-    ]),
-  })
   question: Array<any> = []
   topic: string
   Pickedimage: string;
-
+  openEndedQuestion: any
+  openEndedQuestionId = 0
+  loading: boolean
+  id: any;
+  isAddMode: boolean;
+  submitted = false;
+  openEndedForm: any;
+  questionData: any
+  updatedQuestion: any
+  topicId: any
+  imageUrl: any
   constructor(
     private openEnded: OpenEndedService,
     private router: Router, private _snackBar: MatSnackBar,
     private route: ActivatedRoute, private topicService: TopicsService) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('questionId');
+    this.isAddMode = !this.id;
+    console.log(this.id)
+    this.openEndedForm = new FormGroup({
+      question: new FormControl("", [
+        Validators.required
+      ]),
+      sequence: new FormControl("", [
+        Validators.required
+      ]),
+      file: new FormControl("", [
+      ]),
+    })
+
+    if (!this.isAddMode) {
+      console.log(this.id)
+      this.openEnded.getQuestionById(this.id).subscribe(
+        res => {
+          this.questionData = res;
+          this.imageUrl = this.questionData.file
+          this.topicId = this.questionData.topicId
+          this.openEndedForm.patchValue({
+            question: this.questionData.question,
+            sequence: this.questionData.sequence,
+            file: this.questionData.file
+          })
+          console.log(this.questionData)
+        }, err => {
+          // console.log(this.questionData.statusCode);
+          if (err.status === 404) {
+            this.id = !this.id
+          }
+          console.log(err.status + 'i am error')
+        });
+    }
   }
+  // convenience getter for easy access to form fields
+  // get f() { return this.openEndedForm.controls; }
+
   onSubmit() {
+    //   this.submitted = true;
+
+    //   // reset alerts on submit
+    //   this._snackBar.dismiss();
+
+    //   // stop here if form is invalid
+    //   if (this.openEndedForm.invalid) {
+    //     return;
+    //   }
+
+    //   this.loading = true;
+    if (this.isAddMode) {
+      this.createQuestion();
+    } else {
+      this.updateQuestion();
+    }
+  }
+  createQuestion() {
     this.topic = localStorage.getItem('topicId')
     const formData = new FormData();
-    if(this.openEndedForm.get('file').value) { 
+    if (this.openEndedForm.get('file').value) {
       formData.append('file', this.openEndedForm.get('file').value);
     }
-    
+
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(this.openEndedForm.value)
     this.openEnded.addAll(formData, this.topic)
       .subscribe(
         res => {
+          this.openEndedQuestion = res
           this.question.push(res);
           this._snackBar.open(" Your Question has been Posted", "Ok", {
             duration: 5000,
@@ -63,6 +120,28 @@ export class OpenEndedComponent implements OnInit {
         err => {
           console.log(err)
         });
+  }
+  updateQuestion() {
+    let body = this.openEndedForm.value;
+    this.openEnded.update(this.questionData._id, body).subscribe(
+      res => {
+        console.log("response:", res)
+        this.updatedQuestion = res;
+
+        this.openEndedForm.patchValue({
+          question: this.updatedQuestion.question,
+          sequence: this.updatedQuestion.sequence,
+          file: this.updatedQuestion.file
+        })
+        this.questionData = this.openEndedForm.value;
+        console.log(this.questionData);
+        this._snackBar.open(" You Question has been updated", "Ok", { duration: 3000 });
+        this.router.navigate([`/material/view/${this.topicId}`]);
+      },
+      err => {
+        console.log(err + 'error');
+        this._snackBar.open("Failed to update Question", "Ok", { duration: 3000 });
+      });
   }
 
   PickedImage(event: Event) {

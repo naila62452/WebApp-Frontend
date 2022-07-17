@@ -6,6 +6,16 @@ import { McqsService } from 'src/app/service/mcqs.service';
 import { OpenEndedService } from 'src/app/service/open-ended-service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { TrueFalseService } from 'src/app/service/true-false-service';
+import { MatDialog } from '@angular/material/dialog';
+import { OpenEndedComponent } from '../open-ended/open-ended.component';
+
+enum ServiceEnum {
+  mcqsService = 'mcqsService',
+  trueFalseService = 'trueFalseService',
+  openEndedService = 'openEndedService',
+  introductionService = 'intro',
+  matchPairsService = 'matchPairsService'
+}
 
 @Component({
   selector: 'app-view-activity',
@@ -30,14 +40,12 @@ export class ViewActivityComponent implements OnInit {
   topic: any;
   topicGetById: Array<any> = []
   processSort: any
-  // mcqsArray: Array<any> = []
-  // trueFalse: Array<any> = []
-  // openEnded: Array<any> = []
 
   constructor(private mcqsService: McqsService,
     private openEndedService: OpenEndedService,
     private trueFalseService: TrueFalseService,
     private route: ActivatedRoute, private topicService: TopicsService,
+    private dialogue: MatDialog,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -46,73 +54,19 @@ export class ViewActivityComponent implements OnInit {
       .subscribe(
         response => {
           this.topicGetById = <any>response
-          this.topicGetById[0]["combineQuestion"] = this.topicGetById[0].topics_mcqs_info;
-          const mcqs = [...this.topicGetById[0].topics_mcqs_info];
-          mcqs.forEach((element: any) => {
-            element.type= 'mcqs';
-          });
-          const trueFalse = [...this.topicGetById[0].topics_trueFalse_info];
-          trueFalse.forEach((element: any) => {
-            element.type= 'trueFalse';
-          });
-          const introduction = [...this.topicGetById[0].topics_intro_info];
-          introduction.forEach((element: any) => {
-            element.type= 'intro';
-          });
-          console.log(introduction)
-
-          const matchPairs = [...this.topicGetById[0].topics_match_info];
-          matchPairs.forEach((element: any) => {
-            element.type= 'matchPairs';
-          });
-          const openEnded = [...this.topicGetById[0].topics_openEnded_info];
-          openEnded.forEach((element: any) => {
-            element.type= 'openEnded';
-          });
-          console.log(openEnded)
-
-          this.topicGetById[0]["combineQuestion"] = [...mcqs,...trueFalse,...openEnded,...matchPairs,...introduction]
-          .sort((low: { sequence: number; }, high: { sequence: number; }) => {
-            return low.sequence - high.sequence;
-          })
-          // this.topicGetById[0]["combineQuestion"] = this.topicGetById[0].topics_mcqs_info.
-          //   concat(this.topicGetById[0].topics_trueFalse_info).concat(this.topicGetById[0].topics_openEnded_info)
-          //   .concat(this.topicGetById[0].topics_intro_info)
-          //   .sort((low: { sequence: number; }, high: { sequence: number; }) => {
-          //     return low.sequence - high.sequence;
-          //   })
+          this.topicGetById[0]["combineQuestion"] = this.topicGetById[0].allQuestions
+            .sort((low: { sequence: number; }, high: { sequence: number; }) => {
+              return low.sequence - high.sequence;
+            })
           console.log('response', this.topicGetById[0])
         }, err => {
           console.log(err)
         })
-
-    // this.mcqsService.getQuestionByTopic(this.topic).subscribe(
-    //   res => {
-    //     console.log('mcqs', res)
-    //     // this.imageBlobUrl = []
-    //     this.mcqsArray = <any>res;
-    //     // this.mcqs.forEach(item => {
-    //     //   this.getImage(item.id)
-    //     // })
-    //   },
-    //   err => {
-    //     console.log(err)
-    //   })
-    //   this.trueFalseService.getQuestionByTopic(this.topic)
-    //   .subscribe(res => {
-    //     this.trueFalse = <any>res
-    //     console.log('true false', res)
-    //   }, err => {
-    //     console.log(err)
-    //   })
-    //   this.openEndedService.getQuestionByTopic(this.topic)
-    //   .subscribe(res => {
-    //     this.openEnded = <any>res
-    //     console.log('openended', res)
-    //   }, err => {
-    //     console.log(err)
-    //   })
   }
+
+  openDialogue() {
+		this.dialogue.open(OpenEndedComponent)
+	}
   // onDeleteMcqs(id: any) {
   //   this.mcqsService.delete(id).subscribe(
   //     res => {
@@ -148,6 +102,48 @@ export class ViewActivityComponent implements OnInit {
   //     }
   //   )
   // }
+
+  getServiceName(service: ServiceEnum) {
+    switch (service) {
+      case ServiceEnum.mcqsService:
+        break;
+      // console.log(service + ' enum service')
+      // return 'mcqsService';
+      case ServiceEnum.trueFalseService:
+        break;
+      // return 'trueFalseService';
+      case ServiceEnum.introductionService:
+        console.log(ServiceEnum.introductionService)
+        break;
+      // return 'introService';
+      case ServiceEnum.matchPairsService:
+        break;
+      // return 'matchPairsService';
+      case ServiceEnum.openEndedService:
+        break;
+      // return 'openEndedService';
+      default:
+        throw new Error(`Non-existent service in switch: ${service}`);
+    }
+  }
+
+  deleteQuestions(id: any, type: ServiceEnum) {
+    this.openEndedService.delete(id, type).subscribe(
+      res => {
+        this.ngOnInit();
+        this._snackBar.open(" Your Question has been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+      }, err => {
+        console.log(err)
+        this._snackBar.open(" Your Question has not been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+      }
+    )
+  }
 
   // onDeleteOpenEnded(id: any) {
   //   this.openEndedService.delete(id).subscribe(

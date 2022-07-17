@@ -14,6 +14,7 @@ import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchPairsComponent } from './match-pairs/match-pairs.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EditQuestionComponent } from './edit-question/edit-question.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ViewActivityComponent,
     IntroductionComponent,
     MatchPairsComponent,
+    EditQuestionComponent,
 
   ],
   imports: [

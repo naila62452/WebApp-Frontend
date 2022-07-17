@@ -1,3 +1,5 @@
+<h1 *ngIf="isAddMode">Add User</h1>
+<h1 *ngIf="!isAddMode">Edit User</h1>
 <div class="spinnerDiv" *ngIf="loading">
     <mat-spinner aria-label="Please wait"></mat-spinner>
     <div style="position:relative; top: -60px; left: 30px;">Please wait, your registration is in progress.</div>
@@ -15,26 +17,29 @@
                     <div class="card-body">
                         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="border: none;">
                             <!-- <label for="email"><b>{{'register_page.email' | translate}}</b></label> -->
-                            <mat-form-field class="input_text">
-                                <mat-label>{{'register_page.email' | translate}}</mat-label>
-                                <input class="input_form" matInput formControlName="email" type="email" name="email"
-                                    id="email" placeholder="Ex. john@example.com" required>
-                            </mat-form-field>
-                            <div *ngIf="email.pending">Checking Email...</div>
-                            <div *ngIf="email.touched && email.invalid">
-                                <mat-error *ngIf="email.errors?.['required']">
-                                    <div>
-                                        {{'register_page.email_error' | translate}}
-                                    </div>
-                                </mat-error>
-                                <mat-error *ngIf="email.errors?.['email']">
-                                    <div>
-                                        {{'register_page.valid_email' | translate}}
-                                    </div>
-                                </mat-error>
-                                <mat-error *ngIf="email.errors?.['emailExists']">
-                                    {{'register_page.already_exist_email' | translate}}</mat-error>
+                            <div *ngIf="isAddMode">
+                                <mat-form-field class="input_text">
+                                    <mat-label>{{'register_page.email' | translate}}</mat-label>
+                                    <input class="input_form" matInput formControlName="email" type="email" name="email"
+                                        id="email" placeholder="Ex. john@example.com" required>
+                                </mat-form-field>
+                                <div *ngIf="email.pending">Checking Email...</div>
+                                <div *ngIf="email.touched && email.invalid">
+                                    <mat-error *ngIf="email.errors?.['required']">
+                                        <div>
+                                            {{'register_page.email_error' | translate}}
+                                        </div>
+                                    </mat-error>
+                                    <mat-error *ngIf="email.errors?.['email']">
+                                        <div>
+                                            {{'register_page.valid_email' | translate}}
+                                        </div>
+                                    </mat-error>
+                                    <mat-error *ngIf="email.errors?.['emailExists']">
+                                        {{'register_page.already_exist_email' | translate}}</mat-error>
+                                </div>
                             </div>
+                            
 
                             <!-- <label for="name"><b>{{'register_page.full name' | translate}}</b></label> -->
                             <mat-form-field class="input_text">

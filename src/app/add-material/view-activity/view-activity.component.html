@@ -10,14 +10,14 @@
     <br>
 
     <div *ngFor="let combine of topics.combineQuestion">
-        <div *ngIf="combine.type === 'intro'" class="mcqs">
+        <div *ngIf="combine.questionType === 'introduction'" class="mcqs">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{ combine.introduction }}</h3>
             <br>
         </div>
 
-        <div class="mcqs" *ngIf="combine.type === 'mcqs'">
+        <div class="mcqs" *ngIf="combine.questionType === 'mcqs'">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{combine.mcqs}}</h3>
@@ -47,7 +47,7 @@
             </ul>
         </div>
 
-        <div *ngIf="combine.type === 'trueFalse'" class="mcqs">
+        <div *ngIf="combine.questionType === 'trueFalse'" class="mcqs">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{ combine.question }}</h3>
@@ -57,19 +57,21 @@
             <p> {{combine.posFeedback}}</p>
             <h3>Feedback if the answer is wrong:</h3>
             <p> {{combine.negFeedback}}</p>
-            <!-- <ul>Correct answer: {{ combine.answer }}</ul> -->
         </div>
 
-        <div class="mcqs" *ngIf="combine.type === 'openEnded'">
+        <div class="mcqs" *ngIf="combine.questionType === 'openEnded'">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{ combine.question }}</h3>
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
+            <button mat-stroked-button class="button" class="pointer">Delete</button>
+            <button mat-stroked-button class="button" class="pointer" [routerLink]="['/material/openEnded', combine._id]">Edit</button>
+            <!-- <button mat-stroked-button class="button" class="pointer" routerLink='/material/editQuestion'>Edit</button> -->
         </div>
 
-        <div class="mcqs" *ngIf="combine.type === 'matchPairs'">
+        <div class="mcqs" *ngIf="combine.questionType === 'matchPairs'">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{ combine.question }}</h3>
@@ -117,6 +119,113 @@
             <p> {{combine.negFeedback}}</p>
         </div>
     </div>
+    <!-- <div *ngFor="let combine of topics.allQuestions">
+        <div *ngIf="combine.questionType === 'introduction'" class="mcqs">
+            <span>Question number: {{combine.sequence}}</span>
+            <hr>
+            <h3>Question Statement: {{ combine.introduction }}</h3>
+            <br>
+        </div>
+
+        <div class="mcqs" *ngIf="combine.questionType === 'mcqs'">
+            <span>Question number: {{combine.sequence}}</span>
+            <hr>
+            <h3>Question Statement: {{combine.mcqs}}</h3>
+            <div *ngIf="combine.file !== ''">
+                <img [src]="combine.file" style="height: 200px; width: 300px">
+            </div>
+            <br>
+            <ul>
+                <h4>
+                    <mat-radio-button value="1">{{ combine.option1 }}</mat-radio-button>
+                </h4>
+                <h4>
+                    <mat-radio-button value="2">{{ combine.option2 }}</mat-radio-button>
+                </h4>
+                <h4>
+                    <mat-radio-button value="3">{{ combine.option3 }}</mat-radio-button>
+                </h4>
+                <h4>
+                    <mat-radio-button value="4">{{ combine.option4 }}</mat-radio-button>
+                </h4>
+                <h3>Correct answer:</h3>
+                <p> {{combine.answer}}</p>
+                <h3>Feedback if the answer is correct:</h3>
+                <p> {{combine.posFeedback}}</p>
+                <h3>Feedback if the answer is wrong:</h3>
+                <p> {{combine.negFeedback}}</p>
+            </ul>
+        </div>
+
+        <div *ngIf="combine.questionType === 'trueFalse'" class="mcqs">
+            <span>Question number: {{combine.sequence}}</span>
+            <hr>
+            <h3>Question Statement: {{ combine.question }}</h3>
+            <h3>Correct answer:</h3>
+            <p> {{combine.answer}}</p>
+            <h3>Feedback if the answer is correct:</h3>
+            <p> {{combine.posFeedback}}</p>
+            <h3>Feedback if the answer is wrong:</h3>
+            <p> {{combine.negFeedback}}</p>
+        </div>
+
+        <div class="mcqs" *ngIf="combine.questionType === 'openEnded'">
+            <span>Question number: {{combine.sequence}}</span>
+            <hr>
+            <h3>Question Statement: {{ combine.question }}</h3>
+            <div *ngIf="combine.file !== ''">
+                <img [src]="combine.file" style="height: 200px; width: 300px">
+            </div>
+        </div>
+
+        <div class="mcqs" *ngIf="combine.questionType === 'matchPairs'">
+            <span>Question number: {{combine.sequence}}</span>
+            <hr>
+            <h3>Question Statement: {{ combine.question }}</h3>
+            <div class="container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Serial number</th>
+                            <th>Statements</th>
+                            <th>Answers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>{{combine.statement1}}</td>
+                            <td>{{ combine.answer1 }}</td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>{{combine.statement2}}</td>
+                            <td>{{ combine.answer2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td>{{combine.statement3}}</td>
+                            <td>{{ combine.answer3 }}</td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td>{{combine.statement4}}</td>
+                            <td>{{ combine.answer4 }}</td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td>{{combine.statement5}}</td>
+                            <td>{{ combine.answer5 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Feedback if the answer is correct:</h3>
+            <p> {{combine.posFeedback}}</p>
+            <h3>Feedback if the answer is wrong:</h3>
+            <p> {{combine.negFeedback}}</p>
+        </div>
+    </div> -->
 </div>
 
 <div class="container">

@@ -51,7 +51,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            
+
             <div *ngIf="selectedValue[i] === 'MCQS'">
                 <app-mcqs (submitEvent)="setSubmit($event, i)"></app-mcqs>
             </div>
@@ -63,6 +63,9 @@
             <div *ngIf="selectedValue[i] === 'Open Ended Question'">
                 <app-open-ended (submitEvent)="setSubmit($event, i)"></app-open-ended>
             </div>
+            <!-- <div *ngIf="selectedValue[i] === 'Open Ended Question'">
+                <p routerLink="/material/openEnded"></p>
+            </div> -->
 
             <div *ngIf="selectedValue[i] === 'Introduction'">
                 <app-introduction (submitEvent)="setSubmit($event, i)"></app-introduction>

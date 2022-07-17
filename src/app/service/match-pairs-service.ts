@@ -5,12 +5,13 @@ import { environment } from 'src/environments/environment';
 import { DataService } from './curd-data-service';
 
 const api_path_match_psirs = `${environment.web_URL}/api/match`;
+const type = 'matchPairsService'
 @Injectable({
   providedIn: 'root'
 })
 export class MatchPairsService extends DataService {
 
   constructor(http: HttpClient) {
-    super(http, api_path_match_psirs)
+    super(http, api_path_match_psirs, type)
   }
 }

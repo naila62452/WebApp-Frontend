@@ -78,12 +78,13 @@ import { environment } from 'src/environments/environment';
 import { DataService } from './curd-data-service';
 
 const api_path_mcqs = `${environment.web_URL}/api/mcqs`;
+const type = 'mcqsService'
 @Injectable({
   providedIn: 'root'
 })
 export class McqsService extends DataService {
 
   constructor(http: HttpClient) {
-    super(http, api_path_mcqs)
+    super(http, api_path_mcqs, type)
   }
 }

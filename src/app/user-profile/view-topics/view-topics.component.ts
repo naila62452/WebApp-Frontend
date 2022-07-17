@@ -112,7 +112,7 @@ export class ViewTopicsComponent implements AfterViewInit {
     this.dialogueService.open(options)
     this.dialogueService.confirmed().subscribe(confirm => {
       console.log('this is row')
-      console.log(this.row)
+      console.log(this.row + 'hello row')
       if(confirm) {
         // console.log(confirm)
         // let arr = this.dataSource.filteredData
