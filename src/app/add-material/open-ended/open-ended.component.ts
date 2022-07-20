@@ -157,6 +157,13 @@ export class OpenEndedComponent implements OnInit {
       console.log(this.Pickedimage)
     };
     reader.readAsDataURL(file);
+  }
 
+  DeleteImage() {
+    this.Pickedimage = ''
+  }
+
+  DeleteImageBackend() {
+    this.imageUrl = ''
   }
 }

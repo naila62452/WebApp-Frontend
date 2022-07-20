@@ -152,3 +152,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  padding: 10px;
+}

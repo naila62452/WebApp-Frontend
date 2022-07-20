@@ -153,18 +153,6 @@ export class MCQSComponent implements OnInit {
   }
   get file() { return this.mcqsForm.get('file'); }
 
-  PickedImage(event: Event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.mcqsForm.patchValue({ file: file })
-    this.mcqsForm.get('file').updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.Pickedimage = reader.result as string;
-      console.log(this.Pickedimage)
-    };
-    reader.readAsDataURL(file);
-
-  }
   onSubmit() {
     //   this.submitted = true;
 
@@ -267,13 +255,26 @@ export class MCQSComponent implements OnInit {
         });
       });
   }
-  // processFile(event: any) {
 
-  //   if (event.target.files.length > 0) {
-  //     const file = event.target.files[0] as File;
-  //     this.mcqsForm.get('file').setValue(file);
-  //   }
-  // }
+  PickedImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.mcqsForm.patchValue({ file: file })
+    this.mcqsForm.get('file').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.Pickedimage = reader.result as string;
+      console.log(this.Pickedimage)
+    };
+    reader.readAsDataURL(file);
+  }
+
+  DeleteImage() {
+    this.Pickedimage = ''
+  }
+
+  DeleteImageBackend() {
+    this.imageUrl = ''
+  }
 }
 
  // onSubmit() {
