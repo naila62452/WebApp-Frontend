@@ -91,4 +91,9 @@ export class DataService {
     getQuestionById(id: any) {
         return this.http.get(`${this.url}/getQuestion/${id}`)
     }
+
+    // Delete Image
+    deleteImage(key: any) {
+        return this.http.delete(`${this.url}/deleteImage/${key}`)
+    }
 }

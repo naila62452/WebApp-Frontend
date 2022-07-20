@@ -131,6 +131,14 @@
                                     <div *ngIf="imageUrl === ''">
                                         <input type="file" (change)="PickedImage($event)">
                                         <span>* Only png, jpeg, jpg</span>
+                                        <div class="image-preview" *ngIf="Pickedimage">
+                                            <img [src]="Pickedimage" alt="No Profile picture">
+                                            <button mat-stroked-button class="button" class="pointer"
+                                                (click)="DeleteImage()">Delete <mat-icon
+                                                    style="color: rgb(199, 24, 24)">
+                                                    delete</mat-icon></button>
+                                            <br>
+                                        </div>
                                     </div>
                                     <div class="image-preview" *ngIf="imageUrl !== ''">
                                         <img [src]="imageUrl" alt="No Profile picture">

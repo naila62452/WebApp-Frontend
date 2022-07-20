@@ -30,6 +30,8 @@ export class OpenEndedComponent implements OnInit {
   updatedQuestion: any
   topicId: any
   imageUrl: any
+  url: any
+
   constructor(
     private openEnded: OpenEndedService,
     private router: Router, private _snackBar: MatSnackBar,
@@ -165,5 +167,13 @@ export class OpenEndedComponent implements OnInit {
 
   DeleteImageBackend() {
     this.imageUrl = ''
+    // this.url = this.questionData.file
+    // this.openEnded.deleteImage(this.url.split('?')[0].split('/').pop()).subscribe(
+    //   res => {
+    //     console.log('Image deleted' + res)
+    //   },
+    //   err => {
+    //     console.log(err + 'Image error')
+    //   })
   }
 }
