@@ -15,6 +15,12 @@
             <hr>
             <h3>Question Statement: {{ combine.introduction }}</h3>
             <br>
+            <div class="deleteEditButton">
+                <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
+                        style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
+                <button mat-stroked-button class="button" class="pointer"
+                    [routerLink]="['/material/introduction', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+            </div>
         </div>
 
         <div class="mcqs" *ngIf="combine.questionType === 'mcqs'">
@@ -45,6 +51,12 @@
                 <h3>Feedback if the answer is wrong:</h3>
                 <p> {{combine.negFeedback}}</p>
             </ul>
+            <div class="deleteEditButton">
+                <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
+                        style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
+                <button mat-stroked-button class="button" class="pointer"
+                    [routerLink]="['/material/mcqs', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+            </div>
         </div>
 
         <div *ngIf="combine.questionType === 'trueFalse'" class="mcqs">
@@ -57,6 +69,12 @@
             <p> {{combine.posFeedback}}</p>
             <h3>Feedback if the answer is wrong:</h3>
             <p> {{combine.negFeedback}}</p>
+            <div class="deleteEditButton">
+                <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
+                        style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
+                <button mat-stroked-button class="button" class="pointer"
+                    [routerLink]="['/material/true', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+            </div>
         </div>
 
         <div class="mcqs" *ngIf="combine.questionType === 'openEnded'">
@@ -66,9 +84,12 @@
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
-            <button mat-stroked-button class="button" class="pointer">Delete</button>
-            <button mat-stroked-button class="button" class="pointer" [routerLink]="['/material/openEnded', combine._id]">Edit</button>
-            <!-- <button mat-stroked-button class="button" class="pointer" routerLink='/material/editQuestion'>Edit</button> -->
+            <div class="deleteEditButton">
+                <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
+                        style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
+                <button mat-stroked-button class="button" class="pointer"
+                    [routerLink]="['/material/openEnded', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+            </div>
         </div>
 
         <div class="mcqs" *ngIf="combine.questionType === 'matchPairs'">
@@ -117,6 +138,12 @@
             <p> {{combine.posFeedback}}</p>
             <h3>Feedback if the answer is wrong:</h3>
             <p> {{combine.negFeedback}}</p>
+            <div class="deleteEditButton">
+                <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
+                        style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
+                <button mat-stroked-button class="button" class="pointer"
+                    [routerLink]="['/material/match', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+            </div>
         </div>
     </div>
     <!-- <div *ngFor="let combine of topics.allQuestions">

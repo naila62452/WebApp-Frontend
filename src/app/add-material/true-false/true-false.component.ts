@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TopicsService } from 'src/app/service/topics.service';
 import { Output, EventEmitter } from '@angular/core';
 import { TrueFalseService } from 'src/app/service/true-false-service';
@@ -17,50 +17,85 @@ export class TrueFalseComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  public trueFalseForm: FormGroup = new FormGroup({
-    question: new FormControl("", [
-      Validators.required
-    ]),
-    answer: new FormControl("", [
-      Validators.required
-    ]),
-    posFeedback: new FormControl("", [
-      Validators.required
-    ]),
-    negFeedback: new FormControl("", [
-      Validators.required
-    ]),
-    sequence: new FormControl("", [
-      Validators.required
-    ])
-  })
+  id: any;
+  isAddMode: boolean;
+  submitted = false;
+  questionData: any
+  updatedQuestion: any
+  topicId: any
+  trueFalse: Array<any> = []
+  topicGetById: any
+  trueFalseForm: any
 
   constructor(
     private trueFalseService: TrueFalseService,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
-    private topicService: TopicsService ) { }
-  trueFalse: Array<any> = []
-  topicId: any
-  topicGetById: any
+    private router: Router) { }
+
   ngOnInit(): void {
-    this.topicId = this.route.snapshot.paramMap.get('id')
-    this.topicService.getTopicByTopicId(this.topicId)
-      .subscribe(res => {
-        this.topicGetById = res
-        console.log('response', res)
-      }, err => {
-        console.log(err)
-      })
-  }
-  onSubmit() {
-    if (this.trueFalse.length >= this.topicGetById.noOfQuestions) {
-      this._snackBar.open(" Your Limit has been execced", "Ok", {
-        duration: 5000,
-        panelClass: ['blue-snackbar']
-      });
-      return
+    this.id = this.route.snapshot.paramMap.get('trueFalseId');
+    this.isAddMode = !this.id;
+    console.log(this.id)
+    this.trueFalseForm = new FormGroup({
+      question: new FormControl("", [
+        Validators.required
+      ]),
+      answer: new FormControl("", [
+        Validators.required
+      ]),
+      posFeedback: new FormControl("", [
+        Validators.required
+      ]),
+      negFeedback: new FormControl("", [
+        Validators.required
+      ]),
+      sequence: new FormControl("", [
+        Validators.required
+      ])
+    })
+
+    if (!this.isAddMode) {
+      console.log(this.id)
+      this.trueFalseService.getQuestionById(this.id).subscribe(
+        res => {
+          this.questionData = res;
+          this.topicId = this.questionData.topicId
+          this.trueFalseForm.patchValue({
+            question: this.questionData.question,
+            sequence: this.questionData.sequence,
+            answer: this.questionData.answer,
+            posFeedback: this.questionData.posFeedback,
+            negFeedback: this.questionData.negFeedback
+          })
+          console.log(this.questionData)
+        }, err => {
+          console.log(err + 'i am error')
+        });
     }
+  }
+
+  onSubmit() {
+    //   this.submitted = true;
+
+    //   // reset alerts on submit
+    //   this._snackBar.dismiss();
+
+    //   // stop here if form is invalid
+    //   if (this.openEndedForm.invalid) {
+    //     return;
+    //   }
+
+    //   this.loading = true;
+    if (this.isAddMode) {
+      this.createQuestion();
+    } else {
+      this.updateQuestion();
+    }
+  }
+
+
+  createQuestion() {
     this.topicId = this.route.snapshot.paramMap.get('id')
     this.trueFalseService.addAll(this.trueFalseForm.value, this.topicId)
       .subscribe(res => {
@@ -69,7 +104,6 @@ export class TrueFalseComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
-        // window.location.reload();
         this.SetAsSubmitted(true);
         localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
         this.trueFalseForm.reset();
@@ -77,5 +111,37 @@ export class TrueFalseComponent implements OnInit {
         err => {
           console.log(err)
         });
+  }
+
+  updateQuestion() {
+    let body = this.trueFalseForm.value;
+    this.trueFalseService.updateTrueFalse(this.questionData._id, body).subscribe(
+      res => {
+        console.log("response:", res)
+        this.updatedQuestion = res;
+
+        this.trueFalseForm.patchValue({
+          question: this.updatedQuestion.question,
+          sequence: this.updatedQuestion.sequence,
+          answer: this.updatedQuestion.answer,
+          posFeedback: this.updatedQuestion.posFeedback,
+          negFeedback: this.updatedQuestion.negFeedback
+
+        })
+        this.questionData = this.trueFalseForm.value;
+        console.log(this.questionData);
+        this._snackBar.open(" Your Question has been updated", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+        this.router.navigate([`/material/view/${this.topicId}`]);
+      },
+      err => {
+        console.log(err + 'error');
+        this._snackBar.open(" Your Question has not been updated", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+      });
   }
 }

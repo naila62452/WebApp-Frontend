@@ -88,7 +88,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Create MCQs</h4>
+                        <h4 class="card-title" *ngIf="isAddMode">Create MCQs</h4>
+                        <h4 class="card-title" *ngIf="!isAddMode">Edit MCQs</h4>
                     </div>
                     <br>
                     <div class="card-body">

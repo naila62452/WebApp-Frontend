@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title" *ngIf="isAddMode">Create Open Ended Questions</h4>
-                        <h4 class="card-title" *ngIf="!isAddMode">Update Open Ended Questions</h4>
+                        <h4 class="card-title" *ngIf="!isAddMode">Edit Open Ended Questions</h4>
                     </div>
                     <br>
                     <div class="card-body">
@@ -46,7 +46,7 @@
                             </div>
                             <button mat-stroked-button [disabled]="openEndedForm.invalid" type="submit"
                                 (click)="onSubmit()"
-                                style="width: 40%; text-align: center; font-size: px;">Create</button>
+                                style="width: 40%; text-align: center; font-size: px;">Submit</button>
                         </form>
                         <br>
                     </div>

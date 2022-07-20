@@ -350,6 +350,15 @@ mat-label {
     }
 }
 
+.red-snackbar {
+  background: #b71c1c;
+  color: white;
+
+  .mat-simple-snackbar-action {
+      color: white !important;
+  }
+}
+
 .mat-drawer-inner-container::-webkit-scrollbar {
     display: none;
 }

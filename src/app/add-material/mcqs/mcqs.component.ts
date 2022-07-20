@@ -20,45 +20,44 @@ export class MCQSComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  // image: any
-  public mcqsForm: FormGroup = new FormGroup({
-    mcqs: new FormControl("", [
-      Validators.required
-    ]),
-    option1: new FormControl("", [
-      Validators.required
-    ]),
-    option2: new FormControl("", [
-      Validators.required
-    ]),
-    option3: new FormControl("", [
-      Validators.required
-    ]),
-    option4: new FormControl("", [
-      Validators.required
-    ]),
-    answer: new FormControl("", [
-      Validators.required
-    ]),
-    // file: new FormControl('', {
-    //   validators: [Validators.required],
-    //   asyncValidators: [mimetype]
-    // }),
-    file: new FormControl("", [
-    ]),
-    posFeedback: new FormControl("", [
-      Validators.required
-    ]),
-    negFeedback: new FormControl("", [
-      Validators.required
-    ]),
-    sequence: new FormControl("", [
-      Validators.required
-    ])
-  })
+  // public mcqsForm: FormGroup = new FormGroup({
+  //   question: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   option1: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   option2: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   option3: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   option4: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   answer: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   // file: new FormControl('', {
+  //   //   validators: [Validators.required],
+  //   //   asyncValidators: [mimetype]
+  //   // }),
+  //   file: new FormControl("", [
+  //   ]),
+  //   posFeedback: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   negFeedback: new FormControl("", [
+  //     Validators.required
+  //   ]),
+  //   sequence: new FormControl("", [
+  //     Validators.required
+  //   ])
+  // })
 
-  constructor(private mcqsService:
-    McqsService, private router: Router,
+  constructor(private mcqsService: McqsService,
+    private router: Router,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
     private topicService: TopicsService) { }
@@ -70,16 +69,87 @@ export class MCQSComponent implements OnInit {
   mcqImages: Array<any> = []
   imageBlobUrl: Array<any> = [];
   Pickedimage: string;
-
+  id: any;
+  isAddMode: boolean;
+  submitted = false;
+  mcqsForm: any;
+  questionData: any
+  updatedQuestion: any
+  imageUrl: any
   ngOnInit(): void {
-    this.topic = this.route.snapshot.paramMap.get('id')
-    this.topicService.getTopicByTopicId(this.topic)
-      .subscribe(res => {
-        this.topicGetById = res
-        console.log('response', res)
-      }, err => {
-        console.log(err)
-      })
+
+    this.id = this.route.snapshot.paramMap.get('mcqsId');
+    this.isAddMode = !this.id;
+    console.log(this.id)
+    this.mcqsForm = new FormGroup({
+      mcqs: new FormControl("", [
+        Validators.required
+      ]),
+      option1: new FormControl("", [
+        Validators.required
+      ]),
+      option2: new FormControl("", [
+        Validators.required
+      ]),
+      option3: new FormControl("", [
+        Validators.required
+      ]),
+      option4: new FormControl("", [
+        Validators.required
+      ]),
+      answer: new FormControl("", [
+        Validators.required
+      ]),
+      // file: new FormControl('', {
+      //   validators: [Validators.required],
+      //   asyncValidators: [mimetype]
+      // }),
+      file: new FormControl("", [
+      ]),
+      posFeedback: new FormControl("", [
+        Validators.required
+      ]),
+      negFeedback: new FormControl("", [
+        Validators.required
+      ]),
+      sequence: new FormControl("", [
+        Validators.required
+      ])
+    })
+
+    if (!this.isAddMode) {
+      console.log(this.id)
+      this.mcqsService.getQuestionById(this.id).subscribe(
+        res => {
+          this.questionData = res;
+          this.imageUrl = this.questionData.file
+          this.topicId = this.questionData.topicId
+          this.mcqsForm.patchValue({
+            mcqs: this.questionData.mcqs,
+            sequence: this.questionData.sequence,
+            option1: this.questionData.option1,
+            option2: this.questionData.option2,
+            option3: this.questionData.option3,
+            option4: this.questionData.option4,
+            answer: this.questionData.answer,
+            posFeedback: this.questionData.posFeedback,
+            negFeedback: this.questionData.negFeedback,
+            file: this.questionData.file
+          })
+          console.log(this.questionData)
+        }, err => {
+          console.log(err.status + 'i am error')
+        });
+    }
+
+    // this.topic = this.route.snapshot.paramMap.get('id')
+    // this.topicService.getTopicByTopicId(this.topic)
+    //   .subscribe(res => {
+    //     this.topicGetById = res
+    //     console.log('response', res)
+    //   }, err => {
+    //     console.log(err)
+    //   })
   }
   get file() { return this.mcqsForm.get('file'); }
 
@@ -95,11 +165,28 @@ export class MCQSComponent implements OnInit {
     reader.readAsDataURL(file);
 
   }
-
   onSubmit() {
+    //   this.submitted = true;
+
+    //   // reset alerts on submit
+    //   this._snackBar.dismiss();
+
+    //   // stop here if form is invalid
+    //   if (this.openEndedForm.invalid) {
+    //     return;
+    //   }
+
+    //   this.loading = true;
+    if (this.isAddMode) {
+      this.createQuestion();
+    } else {
+      this.updateQuestion();
+    }
+  }
+  createQuestion() {
     this.topic = this.route.snapshot.paramMap.get('id')
     const formData = new FormData();
-    if(this.mcqsForm.get('file').value) { 
+    if (this.mcqsForm.get('file').value) {
       formData.append('file', this.mcqsForm.get('file').value);
     }
     // formData.append('file', this.mcqsForm.get('file').value);
@@ -133,6 +220,52 @@ export class MCQSComponent implements OnInit {
             panelClass: ['blue-snackbar']
           })
         });
+  }
+
+  updateQuestion() {
+    const formData = new FormData();
+    if (this.mcqsForm.get('file').value) {
+      formData.append('file', this.mcqsForm.get('file').value);
+    }
+    formData.append("mcqs", this.mcqsForm.get('mcqs').value)
+    formData.append("option1", this.mcqsForm.get('option1').value)
+    formData.append("option2", this.mcqsForm.get('option2').value)
+    formData.append("option3", this.mcqsForm.get('option3').value)
+    formData.append("option4", this.mcqsForm.get('option4').value)
+    formData.append("answer", this.mcqsForm.get('answer').value)
+    formData.append("sequence", this.mcqsForm.get('sequence').value)
+    formData.append("posFeedback", this.mcqsForm.get('posFeedback').value)
+    formData.append("negFeedback", this.mcqsForm.get('negFeedback').value)
+    this.mcqsService.updateMcqs(formData, this.questionData._id).subscribe(
+      res => {
+        this.updatedQuestion = res;
+        this.mcqsForm.patchValue({
+          mcqs: this.updatedQuestion.mcqs,
+          sequence: this.updatedQuestion.sequence,
+          option1: this.updatedQuestion.option1,
+          option2: this.updatedQuestion.option2,
+          option3: this.updatedQuestion.option3,
+          option4: this.updatedQuestion.option4,
+          answer: this.updatedQuestion.answer,
+          posFeedback: this.updatedQuestion.posFeedback,
+          negFeedback: this.updatedQuestion.negFeedback,
+          file: this.updatedQuestion.file
+        })
+        this.questionData = this.mcqsForm.value;
+        console.log(this.questionData);
+        this._snackBar.open(" Your Question has been updated", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+        this.router.navigate([`/material/view/${this.topicId}`]);
+      },
+      err => {
+        console.log(err + 'error');
+        this._snackBar.open(" Your Question has not been updated", "Ok", {
+          duration: 5000,
+          panelClass: ['red-snackbar']
+        });
+      });
   }
   // processFile(event: any) {
 

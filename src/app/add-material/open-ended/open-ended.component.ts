@@ -21,7 +21,6 @@ export class OpenEndedComponent implements OnInit {
   topic: string
   Pickedimage: string;
   openEndedQuestion: any
-  openEndedQuestionId = 0
   loading: boolean
   id: any;
   isAddMode: boolean;
@@ -65,17 +64,10 @@ export class OpenEndedComponent implements OnInit {
           })
           console.log(this.questionData)
         }, err => {
-          // console.log(this.questionData.statusCode);
-          if (err.status === 404) {
-            this.id = !this.id
-          }
           console.log(err.status + 'i am error')
         });
     }
   }
-  // convenience getter for easy access to form fields
-  // get f() { return this.openEndedForm.controls; }
-
   onSubmit() {
     //   this.submitted = true;
 
@@ -95,7 +87,9 @@ export class OpenEndedComponent implements OnInit {
     }
   }
   createQuestion() {
-    this.topic = localStorage.getItem('topicId')
+    // this.topic = localStorage.getItem('topicId')
+    this.topicId = this.route.snapshot.paramMap.get('id')
+
     const formData = new FormData();
     if (this.openEndedForm.get('file').value) {
       formData.append('file', this.openEndedForm.get('file').value);
@@ -104,7 +98,7 @@ export class OpenEndedComponent implements OnInit {
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(this.openEndedForm.value)
-    this.openEnded.addAll(formData, this.topic)
+    this.openEnded.addAll(formData, this.topicId)
       .subscribe(
         res => {
           this.openEndedQuestion = res
@@ -122,12 +116,15 @@ export class OpenEndedComponent implements OnInit {
         });
   }
   updateQuestion() {
-    let body = this.openEndedForm.value;
-    this.openEnded.update(this.questionData._id, body).subscribe(
+    const formData = new FormData();
+    if (this.openEndedForm.get('file').value) {
+      formData.append('file', this.openEndedForm.get('file').value);
+    }
+    formData.append("question", this.openEndedForm.get('question').value)
+    formData.append("sequence", this.openEndedForm.get('sequence').value)
+    this.openEnded.updateOpenEnded(formData, this.questionData._id).subscribe(
       res => {
-        console.log("response:", res)
         this.updatedQuestion = res;
-
         this.openEndedForm.patchValue({
           question: this.updatedQuestion.question,
           sequence: this.updatedQuestion.sequence,
@@ -135,12 +132,18 @@ export class OpenEndedComponent implements OnInit {
         })
         this.questionData = this.openEndedForm.value;
         console.log(this.questionData);
-        this._snackBar.open(" You Question has been updated", "Ok", { duration: 3000 });
+        this._snackBar.open(" Your Question has been updated", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
         this.router.navigate([`/material/view/${this.topicId}`]);
       },
       err => {
         console.log(err + 'error');
-        this._snackBar.open("Failed to update Question", "Ok", { duration: 3000 });
+        this._snackBar.open(" Your Question has not been updated", "Ok", {
+          duration: 5000,
+          panelClass: ['red-snackbar']
+        });
       });
   }
 
