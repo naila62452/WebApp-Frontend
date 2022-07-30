@@ -1,0 +1,91 @@
+{
+    "Home_page": {
+        "welcome": "Welcome to SEEDS",
+        "Home Text": "Welcome to SEED! The corona pandemic has uncovered a number of systemic inequalities with regard to education and access to learning opportunities. Across countries and settings in the EU, the necessity to resort to the digital sphere with learning has shown that it is not equally possible for all members of a society to follow suit. Particularly vulnerable groups, including people with a migration background, people with a refugee background, or non-native speakers, who were already having a difficult experience before. These groups have now been even more strongly left behind in terms of education.",
+        "teach": "Let's teach together",
+        "paragraph": "Working with social workers as well as the newly emerged profession of cultural mediators who is acting as a bridge towards municipalities and local educational institutions, such as schools, and extending their personal reach-out towards the digital sphere by means of chatbots, the SEEDS project proposes a combination of social and digital outreach to mitigate this effect. Needed learning contents will be communicated in a new way by means of chatbots, where municipalities and educational institutions can create learning materials in a pre-defined processes, and cultural mediators, social workers, or individual learners themselves can access the learning material that teachers created, to enhance the learners’ educational experience.",
+        "who we are": "Who we are"
+    },
+    "login_page": {
+        "login": "Login",
+        "text": "Please login to your account.",
+        "email": "E-mail",
+        "password": "Password",
+        "remember": "Remember me",
+        "forgot": "Forgot <a href =\"/authenticate/forgotPassword\">Password?</a>",
+        "account": "You don't have an account? Please <a href =\"/authenticate/register\">Sign up.</a>",
+        "Seeds": "SEEDS content creation tool",
+        "Seeds_text": "Create new content and manage your account, to spread the seed of your knowledge.",
+        "email_error": "Please enter your e-mail.",
+        "pass_error": "Please enter your password."
+    },
+    "register_page": {
+        "register": "Register",
+        "text": "Please fill out all fields.",
+        "email": "E-mail",
+        "full name": "Full name",
+        "password": "Password",
+        "confirm": "Confirm your password",
+        "terms": "By creating an account you agree to our<br><a href =\"/policy/privacy\">Terms & Privacy.</a>",
+        "accept": "Please accept terms and conditions for privacy policy.",
+        "already_acc": "Already have an account? Please <a href =\"/authenticate/login\">Login</a>",
+        "sign_up": "Sign up",
+        "email_error": "Please enter a e-mail address.",
+        "valid_email": "Please enter a valid e-mail address.",
+        "already_exist_email":"This e-mail already exists.",
+        "name_error": "Please enter your name.",
+        "pass_error": "Please enter a password.",
+        "pass_long": "Your password must be at least 8 characters long.",
+        "pass_match": "Your password and confirmation password must be matched.",
+        "confirm_pass": "Please confirm your password."
+    },
+    "header": {
+        "login": "Login",
+        "logout": "Logout",
+        "home": "Home",
+        "about":"About",
+        "profile": "Profile",
+        "help": "Help",
+        "view": "View all Topics",
+        "learn": "Learn Together!",
+        "hello": "Hello"
+    },
+    "footer": {
+        "contact": "Contact",
+        "privacy": "<a href =\"/policy/privacy\">Privacy & Cookies</a>"
+    },
+    "user_profile": {
+        "edit": "Profile",
+        "name": "Name",
+        "email": "Email Address",
+        "update": "Update Profile",
+        "delete": "Delete Account",
+        "change_pass": "Change Password",
+        "add": "Add new Topic",
+        "view": "View Topics",
+        "profile_text": "Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and do not hesitate to contact us for more help.",
+        "welcome": "Welcome to SEEDS!"
+    },
+    "add_topics": {
+        "add": "Add Topic",
+        "text": "Please add your topic for material creation.",
+        "name": "Topic Name",
+        "name_error": "Please enter a Topic.",
+        "name_already_exist": "This topic already exists.",
+        "age": "Please select age group.",
+        "age_label": "Choose age group",
+        "lang": "Please select language.",
+        "lang_label": "Choose Language",
+        "country": "Please select country.",
+        "country_label": "Choose Country",
+        "grade": "Please select Grade.",
+        "grade_label": "Choose Grade",
+        "activities": "Please select no of activities.",
+        "act_label": "Choose Number",
+        "time": "Time to complete in minutes.",
+        "time_error": "Please enter Time",
+        "create": "Create"
+    }
+
+
+}
