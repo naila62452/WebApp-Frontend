@@ -4,56 +4,31 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Edit Profile</h4>
-                        <button style="color: black;" mat-stroked-button class="button" type="button"
-                            (click)="onLogout()" routerLink="/authenticate/login">Logout</button>
+                        <h4 class="card-title">{{'user_profile.edit' | translate}}</h4>
+                        <button mat-stroked-button class="button" type="button" (click)="openDialogue()">Edit
+                            Profile</button>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="row">
-                            <div class="col-md-5">
+                        <div class="row">
+                            <div class="row-cols-1">
                                 <span>Company Seeds</span>
-
                             </div>
-                            <div class="col-md-3">
-                                <span>{{user}}</span>
-
-                            </div>
-                            <div class="col-md-4">
-                                <span>{{user.data.email}}</span>
-
-                            </div>
-                        </div> -->
-
-                        <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Company Seeds" disabled>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="name" placeholder="Full name" type="text"
-                                            name="name" id="name">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="email" placeholder="Email address"
-                                            type="email">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <button mat-stroked-button type="submit" class="button">Update Profile</button>
                             <hr>
-                            <div class="clearfix"></div>
-                        </form>
+                            <div class="row-cols-1">
+                                <span class="user-profile">Your Name:</span>
+                                <span>{{user?.data?.name}}</span>
+                            </div>
+                            <div class="row-cols-1">
+                                <span class="user-profile">Your Email Address:</span>
+                                <span>{{user?.data?.email}}</span>
+                            </div>
+                        </div>
                         <div class="buttonDiv">
-                            <button mat-stroked-button type="submit" class="button" (click)="deleteUser()">Delete
-                                account</button>
                             <button mat-stroked-button type="submit" class="button"
-                                routerLink="/authenticate/changePassword">Change
-                                Password</button>
+                                (click)="openDeleteDialogue()">{{'user_profile.delete' | translate}}</button>
+                            <button mat-stroked-button type="submit" class="button"
+                                routerLink="/authenticate/changePassword">{{'user_profile.change_pass' |
+                                translate}}</button>
                         </div>
                     </div>
                 </div>
@@ -62,6 +37,13 @@
             <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
+                        <!-- <div>
+                            <input type="file" #filepicker (change)="PickedImage($event)">
+                            <div class="image-preview" *ngIf="Pickedimage">
+                                <img [src]="Pickedimage" alt="No Profile picture">
+                        
+                            </div>
+                        </div> -->
                         <img src="assets/avatar.png">
                         <!-- <label class="hoverable" for="blah">
                             <img id="blah" [src]="image ? image : '{{image}}'">
@@ -84,13 +66,23 @@
                         </a> -->
                     </div>
                     <div class="card-body">
-                        <h6 class="card-category text-gray">Welcome to Seeds</h6>
-                        <h4>Hello {{username}}</h4>
-                        <p class="card-description">
-                            Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and don’t hesitate to contact us for more help.
-                        </p>
+                        <div class="profile_text">
+                            <h6 class="card-category text-gray">{{'user_profile.welcome' | translate}}</h6>
+                            <h4>{{'header.hello' | translate}} {{username}}</h4>
+                            <p class="card-description">
+                                {{'user_profile.profile_text' | translate}}
+                                <!-- Here, you can edit your profile, update your information, and create new learning content
+                                for students here. Please click the button below to start the content creation process. Use
+                                the fields on the left, to edit your information. If you have any questions please check the
+                                FAQ section, and do not hesitate to contact us for more help. -->
+                            </p>
+                        </div>
                         <div class="main-button">
-                            <button mat-stroked-button type="button" class="button" routerLink="/user/add">Add new Topic</button>
+                            <button mat-stroked-button type="button" class="button" routerLink="/user/add">
+                                {{'user_profile.add' | translate}}</button>
+                            <button mat-stroked-button type="button" class="button" routerLink="/user/view">
+                                {{'user_profile.view' | translate}}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -100,6 +92,9 @@
 </div>
 <br>
 <br>
+
+
+
 
 <!-- <div *ngIf="currentFile" class="progress">
     <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"

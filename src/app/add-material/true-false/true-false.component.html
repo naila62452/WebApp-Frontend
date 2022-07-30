@@ -4,7 +4,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Create True/False Question</h4>
+                        <h4 class="card-title" *ngIf="isAddMode">Create True/False Question</h4>
+                        <h4 class="card-title" *ngIf="!isAddMode">Edit True/False Question</h4>
                     </div>
                     <br>
                     <div class="card-body">
@@ -60,7 +61,7 @@
                                     </div>
                                     <button mat-stroked-button [disabled]="trueFalseForm.invalid" type="submit"
                                         (click)="onSubmit()"
-                                        style="width: 40%; text-align: center; font-size: px;">Create</button>
+                                        style="width: 40%; text-align: center; font-size: px;">Submit</button>
                                 </div>
                         </form>
                         <br>

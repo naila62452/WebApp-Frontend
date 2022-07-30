@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PasswordStrengthBarComponent } from './password-strength-bar/password-strength-bar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PasswordStrengthBarComponent } from './password-strength-bar/password-s
     ReactiveFormsModule,
     MaterialModule,
     FontAwesomeModule,
-    TranslateModule
+    TranslateModule,
+    MatSnackBarModule
   ]
 })
 export class AuthenticateModule { }

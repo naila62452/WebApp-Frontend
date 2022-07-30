@@ -1,3 +1,4 @@
+
 <div class="spinnerDiv" *ngIf="loading">
     <mat-spinner aria-label="Please wait"></mat-spinner>
     <div style="position:relative; top: -60px; left: 30px;">Please wait, your registration is in progress.</div>
@@ -8,49 +9,52 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Register</h4>
-                        <p class="card-category">Please Fill all fields.</p>
+                        <h4 class="card-title">{{'register_page.register' | translate}}</h4>
+                        <p class="card-category">{{'register_page.text' | translate}}</p>
                     </div>
                     <br>
                     <div class="card-body">
                         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="border: none;">
-                            <label for="email"><b>Email</b></label>
+                            <!-- <label for="email"><b>{{'register_page.email' | translate}}</b></label> -->
                             <mat-form-field class="input_text">
+                                <mat-label>{{'register_page.email' | translate}}</mat-label>
                                 <input class="input_form" matInput formControlName="email" type="email" name="email"
-                                    id="email" required>
+                                    id="email" placeholder="Ex. john@example.com" required>
                             </mat-form-field>
                             <div *ngIf="email.pending">Checking Email...</div>
                             <div *ngIf="email.touched && email.invalid">
-                                <small class="text-danger" *ngIf="email.errors?.['required']">
+                                <mat-error *ngIf="email.errors?.['required']">
                                     <div>
-                                        Please enter a Email address.
+                                        {{'register_page.email_error' | translate}}
                                     </div>
-                                </small>
-                                <small class="text-danger" *ngIf="email.errors?.['email']">
+                                </mat-error>
+                                <mat-error *ngIf="email.errors?.['email']">
                                     <div>
-                                        Please enter a valid Email address.
+                                        {{'register_page.valid_email' | translate}}
                                     </div>
-                                </small>
-                                <small class="text-danger" *ngIf="email.errors?.['emailExists']">
-                                    This Email already exists.</small>
+                                </mat-error>
+                                <mat-error *ngIf="email.errors?.['emailExists']">
+                                    {{'register_page.already_exist_email' | translate}}</mat-error>
                             </div>
 
-                            <label for="name"><b>Full Name</b></label>
+                            <!-- <label for="name"><b>{{'register_page.full name' | translate}}</b></label> -->
                             <mat-form-field class="input_text">
+                                <mat-label>{{'register_page.full name' | translate}}</mat-label>
                                 <input class="input_form" matInput formControlName="name" type="text" name="name"
                                     id="name">
                             </mat-form-field>
-                            <small class="text-danger" *ngIf="(!registerForm.valid && registerForm.get('name')?.errors) && 
+                            <mat-error *ngIf="(!registerForm.valid && registerForm.get('name')?.errors) && 
                             (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)">
                                 <div>
-                                    Please enter your name.
+                                    {{'register_page.name_error' | translate}}
                                 </div>
-                            </small>
+                            </mat-error>
                             <br>
 
-                            <label for="password"><b>Password</b></label>
+                            <!-- <label for="password"><b>{{'register_page.password' | translate}}</b></label> -->
                             <div>
                                 <mat-form-field class="password_form view-pass">
+                                    <mat-label>{{'register_page.password' | translate}}</mat-label>
                                     <input class="input_form" matInput formControlName="password"
                                         [type]="hide ? 'password' : 'text'" name="password" id="password" required>
                                     <mat-icon matSuffix class="pointer" (click)="hide = !hide">{{hide ? 'visibility_off'
@@ -58,71 +62,83 @@
                                         'visibility'}}
                                     </mat-icon>
                                 </mat-form-field>
-                                <app-password-strength-bar [passwordToVerify]="registerForm.value.password"
-                                    (passwordStrength)="passwordValid($event)"></app-password-strength-bar>
+                                <!-- <app-password-strength-bar [passwordToVerify]="registerForm.value.password"
+                                    (passwordStrength)="passwordValid($event)"></app-password-strength-bar> -->
                             </div>
                             <div *ngIf="password.touched && password.invalid">
-                                <small class="text-danger" *ngIf="password.errors?.['required']">
-                                    Please enter a password.
-                                </small>
-                                <small class="text-danger" *ngIf="password.errors?.['minlength']">
-                                    Your password must be at least 8 characters long.
-                                </small>
+                                <mat-error *ngIf="password.errors?.['required']">
+                                    {{'register_page.pass_error' | translate}}
+                                </mat-error>
+                                <mat-error *ngIf="password.errors?.['minlength']">
+                                    {{'register_page.pass_long' | translate}}
+                                </mat-error>
                                 <div>
-                                    <small class="text-danger"
-                                        *ngIf="registerForm.get('password').hasError('passwordStrength')">
+                                    <mat-error *ngIf="registerForm.get('password').hasError('passwordStrength')">
                                         {{registerForm.get('password').errors['passwordStrength']}}
-                                    </small>
+                                    </mat-error>
                                 </div>
                             </div>
 
-                            <label for="psw_repeat"><b>Confirm Password</b></label> <br>
+                            <!-- <label for="psw_repeat"><b>{{'register_page.confirm' | translate}}</b></label> <br> -->
                             <mat-form-field class="password_form">
+                                <mat-label>{{'register_page.confirm' | translate}}</mat-label>
                                 <input class="input_password" matInput formControlName="psw_repeat" type="password"
                                     name="psw_repeat" id="psw_repeat" required>
                             </mat-form-field>
 
                             <div *ngIf="psw_repeat.touched && psw_repeat.invalid">
-                                <small class="text-danger" *ngIf="psw_repeat.errors?.['required']">
-                                    Please enter a Confirm Password.
-                                </small>
+                                <mat-error *ngIf="psw_repeat.errors?.['required']">
+                                    {{'register_page.confirm_pass' | translate}}
+                                </mat-error>
                             </div>
                             <div>
-                                <small class="text-danger"
+                                <mat-error
                                     *ngIf="psw_repeat.valid && registerForm.invalid && registerForm.hasError('notSame')">
                                     <div>
-                                        Your Password and Confirm Password must be matched.
+                                        {{'register_page.pass_match' | translate}}
                                     </div>
-                                </small>
+                                </mat-error>
                             </div>
 
+                            <!-- <mat-form-field appearance="fill">
+                                <mat-label>Choose a date</mat-label>
+                                <input (focus)="picker.open()" matInput [matDatepicker]="picker">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker touchUi="true"></mat-datepicker>
+                            </mat-form-field> -->
 
-                            <label>
-                                <input formControlName="remember" type="checkbox" name="remember" id="remember"
-                                    required>
-                                By creating an account you agree to our<br style="line-height:0;"><a href
-                                    routerLink="/policy/privacy">Terms & Privacy</a>.
-                                <small class="text-danger" *ngIf="!registerForm.valid && registerForm.get('remember')?.errors && 
+                            <section class="example-section">
+                                <mat-checkbox class="example-margin" formControlName="remember" name="remember"
+                                    id="remember">
+                                    <!-- By creating an account you agree to our<br style="line-height:0;"><a href
+                                        routerLink="/policy/privacy">Terms & Privacy</a>. -->
+                                    <span [innerHTML]="'register_page.terms' | translate"></span>
+
+                                </mat-checkbox>
+                            </section>
+                            <mat-error *ngIf="!registerForm.valid && registerForm.get('remember')?.errors && 
                                 (registerForm.get('remember')?.dirty || registerForm.get('remember')?.touched)">
-                                    <p>Please accept terms and conditions for privacy policy.</p>
-                                </small>
-                            </label>
+                                <div>
+                                    {{'register_page.accept' | translate}}
+                                </div>
+                            </mat-error>
                             <br>
                             <br>
                             <button mat-stroked-button type="submit" class="button" class="pointer"
-                                [disabled]="registerForm.invalid">Sign
-                                up<span class="material-icons">
+                                [disabled]="registerForm.invalid">{{'register_page.sign_up' | translate}}
+                                <span class="material-icons">
                                     chevron_right
                                 </span></button>
                             <hr>
                         </form>
-                        <p>Already have an account? <a href routerLink="/authenticate/login">Login</a></p>
+                        <p [innerHTML]="'register_page.already_acc' | translate"></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" style="width: 70%;">
-                <h1 style="font-weight: bold;">SEEDS content creation tool</h1>
-                <h2>Create new content and manage your account, to spread the seed of your knowledge.</h2>
+                <h1 style="font-weight: bold;">{{'login_page.Seeds' | translate}}</h1>
+                <h2>{{'login_page.Seeds_text' | translate}}</h2>
                 <div class="card card-profile">
                     <img src="/assets/welcome_img.png">
                 </div>

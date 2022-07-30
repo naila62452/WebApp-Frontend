@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
@@ -6,16 +6,29 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomValidators } from 'src/_validator/password_validator';
 import { catchError, map, Observable, switchMap } from 'rxjs';
 import { AESEncryptDecryptServiceService } from '../../service/aesencrypt-decrypt-service.service'
+import { SafeData } from 'src/app/_models/save-data-interface';
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent implements OnInit, SafeData {
   constructor(private teacherService: TeacherAuthService,
     private snackbar: MatSnackBar, private router: Router,
     private _AESEncryptDecryptService: AESEncryptDecryptServiceService) { }
+    
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeReload(e: BeforeUnloadEvent) {
+    e.stopPropagation();
+    if (this.changeForm.dirty) {
+      return (e.returnValue = 'Are you sure you want to exit?');
+    }
+    return true;
+  }
+  isDataSaved(): boolean {
+    return this.changeForm.dirty;
+  }
 
   ngOnInit(): void {
   }

@@ -11,6 +11,11 @@ import { TrueFalseComponent } from './true-false/true-false.component';
 import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ViewActivityComponent } from './view-activity/view-activity.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+import { MatchPairsComponent } from './match-pairs/match-pairs.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EditQuestionComponent } from './edit-question/edit-question.component';
+
 @NgModule({
   declarations: [
     ScienceComponent,
@@ -19,14 +24,19 @@ import { IntroductionComponent } from './introduction/introduction.component';
     TrueFalseComponent,
     OpenEndedComponent,
     ViewActivityComponent,
-    IntroductionComponent
+    IntroductionComponent,
+    MatchPairsComponent,
+    EditQuestionComponent,
+
   ],
   imports: [
     CommonModule,
     AddMaterialRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule,
+    MatSnackBarModule,
   ]
 })
 export class AddMaterialModule { }

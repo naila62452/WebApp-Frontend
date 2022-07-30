@@ -7,10 +7,10 @@ import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
-    path: 'admin', component: AdminComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['Admin', 'SuperAdmin'] }
+    path: 'admin', component: AdminComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'Admin'}
   },
   {
-    path: 'profile', component: AdminProfileComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['Admin', 'SuperAdmin'] }
+    path: 'profile', component: AdminProfileComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'Admin' }
   }
 ];
 

@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminProfileComponent } from './admin-profile.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AdminProfileComponent', () => {
   let component: AdminProfileComponent;
@@ -8,7 +12,9 @@ describe('AdminProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminProfileComponent ]
+      declarations: [ AdminProfileComponent ],
+      imports: [HttpClientTestingModule, RouterTestingModule,
+        TranslateModule.forRoot()]
     })
     .compileComponents();
   });

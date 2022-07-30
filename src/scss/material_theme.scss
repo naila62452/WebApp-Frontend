@@ -125,13 +125,13 @@
 .mat-badge-content{font-weight:600;font-size:12px;font-family:Roboto, "Helvetica Neue", sans-serif}
 .mat-badge-small .mat-badge-content{font-size:9px}
 .mat-badge-large .mat-badge-content{font-size:24px}
-.mat-h1,.mat-headline,.mat-typography h1{font:400 45px/32px Roboto, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px;
-color: black; line-height: 4.5rem;}
-.mat-h2,.mat-title,.mat-typography h2{font:500 30px/32px Roboto, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
-.mat-h3,.mat-subheading-2,.mat-typography h3{font:400 16px/28px Roboto, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
-.mat-h4,.mat-subheading-1,.mat-typography h4{font:400 15px/24px Roboto, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
-.mat-h5,.mat-typography h5{font:400 calc(14px * 0.83)/20px Roboto, "Helvetica Neue", sans-serif;margin:0 0 12px}
-.mat-h6,.mat-typography h6{font:400 calc(14px * 0.67)/20px Roboto, "Helvetica Neue", sans-serif;margin:0 0 12px}
+.mat-h1,.mat-headline,.mat-typography h1{font:400 45px/32px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px;
+ line-height: 4.5rem;}
+.mat-h2,.mat-title,.mat-typography h2{font:500 30px/32px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
+.mat-h3,.mat-subheading-2,.mat-typography h3{font:400 16px/28px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
+.mat-h4,.mat-subheading-1,.mat-typography h4{font:400 15px/24px Oswald, "Helvetica Neue", sans-serif;letter-spacing:normal;margin:0 0 16px}
+.mat-h5,.mat-typography h5{font:400 calc(14px * 0.83)/20px Oswald, "Helvetica Neue", sans-serif;margin:0 0 12px}
+.mat-h6,.mat-typography h6{font:400 calc(14px * 0.67)/20px Oswald, "Helvetica Neue", sans-serif;margin:0 0 12px}
 .mat-body-strong,.mat-body-2{font:500 14px/24px Roboto, "Helvetica Neue", sans-serif;letter-spacing:normal}
 .mat-body,.mat-body-1,.mat-typography{font:400 14px/20px Roboto, "Helvetica Neue", sans-serif;letter-spacing:normal}
 .mat-body p,.mat-body-1 p,.mat-typography p{margin:0 0 12px}
@@ -355,7 +355,8 @@ textarea.cdk-textarea-autosize-measuring-firefox{padding:2px 0 !important;box-si
 .mat-badge-warn .mat-badge-content{color:#fff;background:#f44336}
 .mat-badge-disabled .mat-badge-content{background:#b9b9b9;color:rgba(0,0,0,.38)}
 .mat-bottom-sheet-container{box-shadow:0px 8px 10px -5px rgba(0, 0, 0, 0.2),0px 16px 24px 2px rgba(0, 0, 0, 0.14),0px 6px 30px 5px rgba(0, 0, 0, 0.12);background:#fff;color:rgba(0,0,0,.87)}
-.mat-button,.mat-icon-button,.mat-stroked-button{color:inherit;background:transparent}
+.mat-button,.mat-icon-button,.mat-stroked-button{color:inherit;
+  background:transparent}
 .mat-button.mat-primary,.mat-icon-button.mat-primary,.mat-stroked-button.mat-primary{color:#3f51b5}
 .mat-button.mat-accent,.mat-icon-button.mat-accent,.mat-stroked-button.mat-accent{color:#ff4081}
 .mat-button.mat-warn,.mat-icon-button.mat-warn,.mat-stroked-button.mat-warn{color:#f44336}
@@ -797,10 +798,13 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  // color: black;
 }
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  // color: black;
+  font-size: 18px;
 }
 abbr[title],
 abbr[data-original-title] {
@@ -1245,6 +1249,10 @@ pre code {
 .row-cols-1 > * {
   flex: 0 0 100%;
   max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+  padding-top: 2rem;
 }
 .row-cols-2 > * {
   flex: 0 0 50%;
@@ -14829,8 +14837,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   transition: opacity 0.1s linear 0s !important;
 }
 .footer {
-  padding: 0.9375rem 0;
-  text-align: center;
+  // padding: 0.9375rem 0;
+  // text-align: center;
   /* Safari */
   /* Safari 6.1+ */
   display: flex;

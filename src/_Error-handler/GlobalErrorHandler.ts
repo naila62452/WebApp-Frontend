@@ -13,7 +13,7 @@ export class GlobalErrorHandler implements ErrorHandler {
             duration: 5000,
             panelClass: ['blue-snackbar']
         });
-        throw new Error("Method not implemented.");
+        throw new Error("Method not implemented." + error);
     }
 
 }

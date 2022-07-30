@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,6 +8,7 @@ import { PasswordStrengthValidator } from '../../../_validator/password-strength
 import { catchError, map, Observable } from 'rxjs';
 import { APPErrors } from 'src/_Error-handler/appError';
 import { UnauthorizedErrors } from 'src/_Error-handler/unauthorizedErrors';
+import { SafeData } from 'src/app/_models/save-data-interface';
 // import {
 //   SocialAuthService,
 //   GoogleLoginProvider,
@@ -19,7 +20,7 @@ import { UnauthorizedErrors } from 'src/_Error-handler/unauthorizedErrors';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, SafeData {
 
   loginForm!: FormGroup;
   passwordIsValid = false;
@@ -34,6 +35,19 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute, private _snackBar: MatSnackBar,
     private teacherService: TeacherAuthService) { }
 
+    @HostListener('window:beforeunload', ['$event'])
+    onBeforeReload(e: BeforeUnloadEvent) {
+      e.stopPropagation();
+      if (this.registerForm.dirty) {
+        return (e.returnValue = 'Are you sure you want to exit?');
+      }
+      return true;
+    }
+    
+  isDataSaved(): boolean {
+    return this.registerForm.dirty;
+  }
+
   registerForm = new FormGroup({
     // email: new FormControl("", [Validators.required, Validators.email]),
     email: new FormControl('', {
@@ -42,7 +56,8 @@ export class RegisterComponent implements OnInit {
       updateOn: 'blur',
     }),
     name: new FormControl("", [Validators.required]),
-    password: new FormControl("", [Validators.required, Validators.minLength(8), PasswordStrengthValidator]),
+    password: new FormControl("", [Validators.required, Validators.minLength(8)]),
+    // password: new FormControl("", [Validators.required, Validators.minLength(8), PasswordStrengthValidator]),
     psw_repeat: new FormControl("", [Validators.required]),
     remember: new FormControl("", Validators.requiredTrue)
   }, CustomValidators.checkPasswords

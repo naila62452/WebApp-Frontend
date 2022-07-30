@@ -1,23 +1,30 @@
-import { ErrorHandler, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ErrorHandler, NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+// import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './angular_material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FooterComponent } from './footer/footer.component';
+// import { FooterComponent } from './footer/footer.component';
 import { AuthinterceptorService } from './service/authinterceptor.service';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatFormFieldModule } from "@angular/material/form-field";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HeaderFooterModule } from './header-footer/header-footer.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatConfirmDialogueComponent } from './user-profile/mat-confirm-dialogue/mat-confirm-dialogue.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
+    // HeaderComponent,
+    // FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,19 +32,29 @@ import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    FontAwesomeModule,
+    HeaderFooterModule,
+    MatSnackBarModule,
+    // FlexLayoutModule,
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule,
     SocialLoginModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-  })
+    })
   ],
-  schemas: [NO_ERRORS_SCHEMA],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
+    [
+      MatSnackBarModule,
+    ],
     {
       provide: "SocialAuthServiceConfig",
       useValue: {
@@ -57,10 +74,10 @@ import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
       useClass: AuthinterceptorService,
       multi: true
     },
-    {provide: ErrorHandler, useClass: GlobalErrorHandler}
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
 
