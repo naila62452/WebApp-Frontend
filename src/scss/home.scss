@@ -7,14 +7,28 @@ html{
   //   "black": #000,
   //   "green": #0EAF6E
   // );
-  
+
   .spinnerDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60vh;
-    .spinner {
-      height: 500px;
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    // display: inline-block;
+    // position: relative;
+    img {
+      max-width: 100%;
+      position: absolute;
+      max-height: 100%;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      clip-path: circle(45% at 50% 49%);
     }
   }
   

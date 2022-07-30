@@ -81,8 +81,11 @@
 <br>
 <br> -->
 
-
-<div class="main-content">
+<div class="spinnerDiv" *ngIf="loading">
+    <mat-spinner aria-label="Please wait" strokeWidth="2" [diameter]="100" mode="indeterminate"></mat-spinner>
+    <img src="/assets/logo.png">
+</div>
+<div class="main-content" *ngIf="!loading">
     <div class="container">
         <div class="row">
             <div class="col-md-8">

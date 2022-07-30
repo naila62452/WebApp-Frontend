@@ -31,6 +31,7 @@ export class OpenEndedComponent implements OnInit {
   topicId: any
   imageUrl: any
   url: any
+  deleteImage: any
 
   constructor(
     private openEnded: OpenEndedService,
@@ -81,7 +82,7 @@ export class OpenEndedComponent implements OnInit {
     //     return;
     //   }
 
-    //   this.loading = true;
+    this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -109,6 +110,7 @@ export class OpenEndedComponent implements OnInit {
             duration: 5000,
             panelClass: ['blue-snackbar']
           });
+          this.loading = false;
           this.SetAsSubmitted(true);
           localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
           this.openEndedForm.reset();
@@ -124,6 +126,7 @@ export class OpenEndedComponent implements OnInit {
     }
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
+    console.log(formData.get('file'))
     this.openEnded.updateOpenEnded(formData, this.questionData._id).subscribe(
       res => {
         this.updatedQuestion = res;
@@ -138,6 +141,7 @@ export class OpenEndedComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading = false;
         this.router.navigate([`/material/view/${this.topicId}`]);
       },
       err => {
@@ -167,13 +171,41 @@ export class OpenEndedComponent implements OnInit {
 
   DeleteImageBackend() {
     this.imageUrl = ''
-    // this.url = this.questionData.file
-    // this.openEnded.deleteImage(this.url.split('?')[0].split('/').pop()).subscribe(
+    this.openEndedForm.patchValue({
+      file: ''
+    })
+    // this.url = this.questionData.file.split('?')[0].split('/').pop()
+
+    // this.openEnded.deleteImage(this.url).subscribe(
     //   res => {
     //     console.log('Image deleted' + res)
     //   },
     //   err => {
     //     console.log(err + 'Image error')
+    //   })
+
+    // let body = this.openEndedForm.value
+    // this.openEnded.updateOpenEndedImage(this.questionData._id, body).subscribe(
+    //   res => {
+    //     this.deleteImage = res;
+    //     this.openEndedForm.patchValue({
+    //       question: this.deleteImage.question,
+    //       sequence: this.deleteImage.sequence,
+    //       file: ''
+    //     })
+    //     this.questionData = this.openEndedForm.value;
+    //     console.log(this.questionData);
+    //     this._snackBar.open(" Your Image has been deleted", "Ok", {
+    //       duration: 5000,
+    //       panelClass: ['blue-snackbar']
+    //     });
+    //   },
+    //   err => {
+    //     console.log(err + 'error');
+    //     this._snackBar.open(" Your Image has not been deleted", "Ok", {
+    //       duration: 5000,
+    //       panelClass: ['red-snackbar']
+    //     });
     //   })
   }
 }

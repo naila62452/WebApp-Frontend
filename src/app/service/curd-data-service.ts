@@ -37,6 +37,16 @@ export class DataService {
         return this.http.put(path, body)
     }
 
+    //Update question
+    updateOpenEndedImage(id: any, body: any) {
+        const openEndedQuestion = {
+            sequence: body.sequence,
+            question: body.question,
+            file: body.file,
+        }
+        const path = `${this.url}/update/${id}`;
+        return this.http.put(path, openEndedQuestion)
+    }
     //Update Mcqs
     updateMcqs(body: any, id: any) {
         const path = `${this.url}/update/${id}`;
@@ -66,27 +76,27 @@ export class DataService {
         return this.http.put(path, bodys)
     }
 
-   //Update introduction
-   updateMatchPairs(id: any, body: any) {
-    const bodys = {
-        sequence: body.sequence,
-        question: body.question,
-        statement1: body.statement1,
-        statement2: body.statement2,
-        statement3: body.statement3,
-        statement4: body.statement4,
-        statement5: body.statement4,
-        posFeedback: body.posFeedback,
-        negFeedback: body.negFeedback,
-        answer1: body.answer1,
-        answer2: body.answer2,
-        answer3: body.answer3,
-        answer4: body.answer4,
-        answer5: body.answer5,
+    //Update introduction
+    updateMatchPairs(id: any, body: any) {
+        const bodys = {
+            sequence: body.sequence,
+            question: body.question,
+            statement1: body.statement1,
+            statement2: body.statement2,
+            statement3: body.statement3,
+            statement4: body.statement4,
+            statement5: body.statement4,
+            posFeedback: body.posFeedback,
+            negFeedback: body.negFeedback,
+            answer1: body.answer1,
+            answer2: body.answer2,
+            answer3: body.answer3,
+            answer4: body.answer4,
+            answer5: body.answer5,
+        }
+        const path = `${this.url}/update/${id}`;
+        return this.http.put(path, bodys)
     }
-    const path = `${this.url}/update/${id}`;
-    return this.http.put(path, bodys)
-}
     // Get question by Id
     getQuestionById(id: any) {
         return this.http.get(`${this.url}/getQuestion/${id}`)

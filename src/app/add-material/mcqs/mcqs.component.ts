@@ -20,41 +20,6 @@ export class MCQSComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  // public mcqsForm: FormGroup = new FormGroup({
-  //   question: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   option1: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   option2: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   option3: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   option4: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   answer: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   // file: new FormControl('', {
-  //   //   validators: [Validators.required],
-  //   //   asyncValidators: [mimetype]
-  //   // }),
-  //   file: new FormControl("", [
-  //   ]),
-  //   posFeedback: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   negFeedback: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   sequence: new FormControl("", [
-  //     Validators.required
-  //   ])
-  // })
 
   constructor(private mcqsService: McqsService,
     private router: Router,
@@ -71,6 +36,7 @@ export class MCQSComponent implements OnInit {
   Pickedimage: string;
   id: any;
   isAddMode: boolean;
+  loading: boolean
   submitted = false;
   mcqsForm: any;
   questionData: any
@@ -141,15 +107,6 @@ export class MCQSComponent implements OnInit {
           console.log(err.status + 'i am error')
         });
     }
-
-    // this.topic = this.route.snapshot.paramMap.get('id')
-    // this.topicService.getTopicByTopicId(this.topic)
-    //   .subscribe(res => {
-    //     this.topicGetById = res
-    //     console.log('response', res)
-    //   }, err => {
-    //     console.log(err)
-    //   })
   }
   get file() { return this.mcqsForm.get('file'); }
 
@@ -164,7 +121,7 @@ export class MCQSComponent implements OnInit {
     //     return;
     //   }
 
-    //   this.loading = true;
+      this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -198,6 +155,7 @@ export class MCQSComponent implements OnInit {
             panelClass: ['blue-snackbar']
           });
           this.SetAsSubmitted(true);
+          this.loading = false
           localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
           this.mcqsForm.reset();
         },
@@ -245,6 +203,7 @@ export class MCQSComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading = false
         this.router.navigate([`/material/view/${this.topicId}`]);
       },
       err => {
