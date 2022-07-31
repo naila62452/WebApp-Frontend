@@ -73,7 +73,7 @@ export class AddTopicComponent implements OnInit, SafeData {
   ageId: any
   selectedAge: string = '';
   topicName: any
-
+  loading: boolean
   age: any = []
   language: any = []
   country: any = []
@@ -122,7 +122,8 @@ export class AddTopicComponent implements OnInit, SafeData {
   }
 
   onSubmit() {
-    console.log(this.topicForm.value)
+    this.loading = true
+    // console.log(this.topicForm.value)
     this.subId = this.route.snapshot.paramMap.get('id');
     this.topicService.addTopic(this.topicForm.value, this.subId, this.topicForm.value.ageGroup)
       .subscribe(
@@ -132,6 +133,7 @@ export class AddTopicComponent implements OnInit, SafeData {
             duration: 5000,
             panelClass: ['blue-snackbar']
           });
+          this.loading = false 
           this.getTopicByAgeId(this.topicForm.value.ageGroup);
           this.topicForm.reset();
           localStorage.setItem('remainingQuestions', '0')
@@ -141,7 +143,7 @@ export class AddTopicComponent implements OnInit, SafeData {
           console.log(err);
           this.snackbar.open("Failed to post the Topic", "Ok", {
             duration: 5000,
-            panelClass: ['blue-snackbar']
+            panelClass: ['red-snackbar']
           });
         })
   }

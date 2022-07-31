@@ -117,6 +117,10 @@ export class OpenEndedComponent implements OnInit {
         },
         err => {
           console.log(err)
+          this._snackBar.open(" Your Question has not been Posted", "Ok", {
+            duration: 5000,
+            panelClass: ['red-snackbar']
+          });
         });
   }
   updateQuestion() {

@@ -21,7 +21,7 @@ export class MatchPairsComponent implements OnInit {
   match_pairsForm: any;
   questionData: any
   updatedQuestion: any
-
+  loading: boolean
   constructor(private matchPairsService: MatchPairsService,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar, private router: Router) { }
@@ -115,7 +115,7 @@ export class MatchPairsComponent implements OnInit {
     //     return;
     //   }
 
-    //   this.loading = true;
+      this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -132,6 +132,7 @@ export class MatchPairsComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading = false
         // window.location.reload();
         this.SetAsSubmitted(true);
         localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
@@ -141,7 +142,7 @@ export class MatchPairsComponent implements OnInit {
           console.log(err)
           this._snackBar.open(" Your Question has not been created", "Ok", {
             duration: 5000,
-            panelClass: ['blue-snackbar']
+            panelClass: ['red-snackbar']
           });
         })
   }
@@ -175,13 +176,14 @@ export class MatchPairsComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading = false
         this.router.navigate([`/material/view/${this.topicId}`]);
       },
       err => {
         console.log(err + 'error');
         this._snackBar.open(" Your Question has not been updated", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       });
 

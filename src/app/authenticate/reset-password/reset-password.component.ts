@@ -53,7 +53,7 @@ export class ResetPasswordComponent implements OnInit, SafeData {
 
     this.teacherService.requestResetPassword(userId, token)
       .subscribe(res => {
-        this._snackBar.open('reset your password', "Ok", {
+        this._snackBar.open('Reset your password', "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
         })
@@ -81,7 +81,7 @@ export class ResetPasswordComponent implements OnInit, SafeData {
         console.log(err)
         this._snackBar.open("The password reset link has been expired", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
 
         // if (err?.error?.type === 'token-expired')

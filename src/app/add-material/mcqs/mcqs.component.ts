@@ -163,7 +163,7 @@ export class MCQSComponent implements OnInit {
           console.log('I am error' + err)
           this._snackBar.open('You question has not posted', 'Ok', {
             duration: 5000,
-            panelClass: ['blue-snackbar']
+            panelClass: ['red-snackbar']
           })
         });
   }

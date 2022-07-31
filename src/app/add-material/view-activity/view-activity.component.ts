@@ -139,7 +139,7 @@ export class ViewActivityComponent implements OnInit {
         console.log(err)
         this._snackBar.open(" Your Question has not been Deleted", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
     )

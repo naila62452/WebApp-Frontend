@@ -62,7 +62,7 @@ export class EditProfileComponent implements OnInit {
 			(err: any) => {
 				this._snackBar.open("Failed to update account", "Ok", {
 					duration: 5000,
-					panelClass: ['blue-snackbar']
+					panelClass: ['red-snackbar']
 				});
 				this.router.navigate(['/user/profile']);
 			});

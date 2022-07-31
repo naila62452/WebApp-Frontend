@@ -41,7 +41,7 @@ export class ForgotPasswordComponent implements OnInit, SafeData {
       }, err => {
         this._snackBar.open('There is no account assosiated with this email', 'Ok', {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         })
       });
   }

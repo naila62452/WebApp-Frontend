@@ -26,7 +26,7 @@ export class TrueFalseComponent implements OnInit {
   trueFalse: Array<any> = []
   topicGetById: any
   trueFalseForm: any
-
+  loading: boolean
   constructor(
     private trueFalseService: TrueFalseService,
     private route: ActivatedRoute,
@@ -86,7 +86,7 @@ export class TrueFalseComponent implements OnInit {
     //     return;
     //   }
 
-    //   this.loading = true;
+      this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -104,12 +104,17 @@ export class TrueFalseComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading = false
         this.SetAsSubmitted(true);
         localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
         this.trueFalseForm.reset();
       },
         err => {
           console.log(err)
+          this._snackBar.open(" Your Question has not been created", "Ok", {
+            duration: 5000,
+            panelClass: ['red-snackbar']
+          });
         });
   }
 
@@ -134,13 +139,14 @@ export class TrueFalseComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading = false
         this.router.navigate([`/material/view/${this.topicId}`]);
       },
       err => {
         console.log(err + 'error');
         this._snackBar.open(" Your Question has not been updated", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       });
   }

@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
 					console.log(err);
 					this._snackBar.open("Failed to delete account", "Ok", {
 						duration: 5000,
-						panelClass: ['blue-snackbar']
+						panelClass: ['red-snackbar']
 					});
 				});
 	}

@@ -72,13 +72,13 @@ export class LoginComponent implements OnInit {
           if (err instanceof NotFoundError) {
             this._snackBar.open("No user associated with this email", "Ok", {
               duration: 5000,
-              panelClass: ['blue-snackbar']
+              panelClass: ['red-snackbar']
             });
           }
           else if (err instanceof UnauthorizedErrors) {
             this._snackBar.open("Incorrect Email or Password", "Ok", {
               duration: 5000,
-              panelClass: ['blue-snackbar']
+              panelClass: ['red-snackbar']
             });
           }
           else throw err;

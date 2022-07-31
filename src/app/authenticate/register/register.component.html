@@ -1,7 +1,10 @@
-
-<div class="spinnerDiv" *ngIf="loading">
+<!-- <div class="spinnerDiv" *ngIf="loading">
     <mat-spinner aria-label="Please wait"></mat-spinner>
     <div style="position:relative; top: -60px; left: 30px;">Please wait, your registration is in progress.</div>
+</div> -->
+<div class="spinnerDiv" *ngIf="loading">
+    <mat-spinner aria-label="Please wait" [diameter]="100" strokeWidth="2"></mat-spinner>
+    <div style="position:relative; top: -60px; left: 30px;">Please wait.</div>
 </div>
 <div class="main-content" *ngIf="!loading">
     <div class="container">

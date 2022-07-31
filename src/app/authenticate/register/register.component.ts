@@ -101,7 +101,7 @@ export class RegisterComponent implements OnInit, SafeData {
           if (err instanceof UnauthorizedErrors) {
             this._snackBar.open("There is already an account with this email, Please login.", "Ok", {
               duration: 5000,
-              panelClass: ['blue-snackbar']
+              panelClass: ['red-snackbar']
             });
             console.log(err)
 

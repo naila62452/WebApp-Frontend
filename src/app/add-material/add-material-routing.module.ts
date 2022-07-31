@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/_validator/_auth/auth-guard';
 import { CanDeactivateGuard } from 'src/_validator/_auth/deactive-guard';
 import { AddTopicComponent } from './add-topic/add-topic.component';
-import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchPairsComponent } from './match-pairs/match-pairs.component';
 import { MCQSComponent } from './mcqs/mcqs.component';

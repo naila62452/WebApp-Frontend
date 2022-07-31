@@ -131,7 +131,7 @@ export class ViewTopicsComponent implements AfterViewInit {
                 console.log(err + 'I am error');
                 this.snackbar.open("Failed to delete Topic", "Ok", {
                   duration: 5000,
-                  panelClass: ['blue-snackbar']
+                  panelClass: ['red-snackbar']
                 });
                 this.row = null
               }

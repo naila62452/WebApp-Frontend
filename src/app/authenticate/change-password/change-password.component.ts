@@ -103,7 +103,7 @@ export class ChangePasswordComponent implements OnInit, SafeData {
         err => {
           this.snackbar.open('Your old password is incorrect', 'Ok', {
             duration: 5000,
-            panelClass: ['blue-snackbar']
+            panelClass: ['red-snackbar']
           })
           console.log(err)
         })

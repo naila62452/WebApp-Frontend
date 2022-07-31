@@ -32,7 +32,7 @@ export class IntroductionComponent implements OnInit {
   questionData: any
   updatedQuestion: any
   topicId: any
-
+  loading: boolean
   constructor(
     private introService: IntroductionService,
     private _snackBar: MatSnackBar,
@@ -79,7 +79,7 @@ export class IntroductionComponent implements OnInit {
     //     return;
     //   }
 
-    //   this.loading = true;
+      this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -100,6 +100,7 @@ export class IntroductionComponent implements OnInit {
             duration: 5000,
             panelClass: ['blue-snackbar']
           });
+          this.loading = false
           this.SetAsSubmitted(true);
           localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
           this.introForm.reset();
@@ -108,7 +109,7 @@ export class IntroductionComponent implements OnInit {
           console.log(err)
           this._snackBar.open(" Your Introduction has not been Posted", "Ok", {
             duration: 5000,
-            panelClass: ['blue-snackbar']
+            panelClass: ['red-snackbar']
           });
         });
   }
@@ -131,13 +132,14 @@ export class IntroductionComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.loading = false
         this.router.navigate([`/material/view/${this.topicId}`]);
       },
       err => {
         console.log(err + 'error');
         this._snackBar.open(" Your Question has not been updated", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       });
   }
