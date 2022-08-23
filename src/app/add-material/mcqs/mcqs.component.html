@@ -108,12 +108,16 @@
                                 <input class="input_form" matInput type="number" name="sequence" id="sequence"
                                     formControlName="sequence" required>
                             </mat-form-field>
-                            <mat-error *ngIf="(!mcqsForm.valid && mcqsForm.get('sequence')?.errors) && 
-                                (mcqsForm.get('sequence')?.dirty || mcqsForm.get('sequence')?.touched)">
-                                <div>
-                                    Please enter a Sequence of activity.
-                                </div>
-                            </mat-error>
+                            <div *ngIf="sequence.touched && sequence.invalid">
+                                <mat-error *ngIf="sequence.errors?.['required']">
+                                    <div>
+                                        Please enter a Sequence of Number.
+                                    </div>
+                                </mat-error>
+                                <mat-error *ngIf="sequence.errors?.['min']">
+                                    Please enter a Positive Sequence of Number.</mat-error>
+                            </div>
+                            
                             <br>
 
                             <div class="textarea">

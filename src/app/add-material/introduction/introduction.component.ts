@@ -38,6 +38,8 @@ export class IntroductionComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router: Router, private route: ActivatedRoute) { }
 
+    get sequence() { return this.introForm.get('sequence'); }
+
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('introId');
     this.isAddMode = !this.id;
@@ -47,7 +49,8 @@ export class IntroductionComponent implements OnInit {
         Validators.required
       ]),
       sequence: new FormControl("", [
-        Validators.required
+        Validators.required,
+        Validators.min(0)
       ])
     })
 

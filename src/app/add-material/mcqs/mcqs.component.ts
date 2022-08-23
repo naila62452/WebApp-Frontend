@@ -42,8 +42,10 @@ export class MCQSComponent implements OnInit {
   questionData: any
   updatedQuestion: any
   imageUrl: any
-  ngOnInit(): void {
 
+  get sequence() { return this.mcqsForm.get('sequence'); }
+
+  ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('mcqsId');
     this.isAddMode = !this.id;
     console.log(this.id)
@@ -79,7 +81,8 @@ export class MCQSComponent implements OnInit {
         Validators.required
       ]),
       sequence: new FormControl("", [
-        Validators.required
+        Validators.required,
+        Validators.min(0)
       ])
     })
 

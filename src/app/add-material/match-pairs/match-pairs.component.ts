@@ -26,6 +26,8 @@ export class MatchPairsComponent implements OnInit {
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar, private router: Router) { }
 
+    get sequence() { return this.match_pairsForm.get('sequence'); }
+
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('matchId');
     this.isAddMode = !this.id;
@@ -71,7 +73,8 @@ export class MatchPairsComponent implements OnInit {
         Validators.required
       ]),
       sequence: new FormControl("", [
-        Validators.required
+        Validators.required,
+        Validators.min(0)
       ])
     })
 

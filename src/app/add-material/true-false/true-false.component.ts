@@ -27,6 +27,8 @@ export class TrueFalseComponent implements OnInit {
   topicGetById: any
   trueFalseForm: any
   loading: boolean
+  get sequence() { return this.trueFalseForm.get('sequence'); }
+
   constructor(
     private trueFalseService: TrueFalseService,
     private route: ActivatedRoute,
@@ -51,7 +53,8 @@ export class TrueFalseComponent implements OnInit {
         Validators.required
       ]),
       sequence: new FormControl("", [
-        Validators.required
+        Validators.required,
+        Validators.min(0)
       ])
     })
 

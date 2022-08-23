@@ -18,7 +18,7 @@
             <div class="deleteEditButton">
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
-                <button mat-stroked-button class="button" class="pointer"
+                <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
                     [routerLink]="['/material/introduction', combine._id]">Edit <mat-icon>edit</mat-icon></button>
             </div>
         </div>
@@ -54,7 +54,7 @@
             <div class="deleteEditButton">
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
-                <button mat-stroked-button class="button" class="pointer"
+                <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
                     [routerLink]="['/material/mcqs', combine._id]">Edit <mat-icon>edit</mat-icon></button>
             </div>
         </div>
@@ -72,7 +72,7 @@
             <div class="deleteEditButton">
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
-                <button mat-stroked-button class="button" class="pointer"
+                <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
                     [routerLink]="['/material/true', combine._id]">Edit <mat-icon>edit</mat-icon></button>
             </div>
         </div>
@@ -87,7 +87,7 @@
             <div class="deleteEditButton">
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
-                <button mat-stroked-button class="button" class="pointer"
+                <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
                     [routerLink]="['/material/openEnded', combine._id]">Edit <mat-icon>edit</mat-icon></button>
             </div>
         </div>
@@ -141,7 +141,7 @@
             <div class="deleteEditButton">
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
-                <button mat-stroked-button class="button" class="pointer"
+                <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
                     [routerLink]="['/material/match', combine._id]">Edit <mat-icon>edit</mat-icon></button>
             </div>
         </div>

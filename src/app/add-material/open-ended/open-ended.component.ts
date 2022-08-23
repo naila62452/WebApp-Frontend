@@ -32,6 +32,7 @@ export class OpenEndedComponent implements OnInit {
   imageUrl: any
   url: any
   deleteImage: any
+  get sequence() { return this.openEndedForm.get('sequence'); }
 
   constructor(
     private openEnded: OpenEndedService,
@@ -47,7 +48,8 @@ export class OpenEndedComponent implements OnInit {
         Validators.required
       ]),
       sequence: new FormControl("", [
-        Validators.required
+        Validators.required,
+        Validators.min(0)
       ]),
       file: new FormControl("", [
       ]),

@@ -19,12 +19,16 @@
                                 <input class="input_form" matInput type="number" name="sequence" id="sequence"
                                     formControlName="sequence" required>
                             </mat-form-field>
-                            <small class="text-danger" role="alert" *ngIf="(!introForm.valid && introForm.get('sequence')?.errors) && 
-                                (introForm.get('sequence')?.dirty || introForm.get('sequence')?.touched)">
-                                <div>
-                                    Please enter a Sequence of Number.
-                                </div>
-                            </small>
+                            
+                            <div *ngIf="sequence.touched && sequence.invalid">
+                                <mat-error *ngIf="sequence.errors?.['required']">
+                                    <div>
+                                        Please enter a Sequence of Number.
+                                    </div>
+                                </mat-error>
+                                <mat-error *ngIf="sequence.errors?.['min']">
+                                    Please enter a Positive Sequence of Number.</mat-error>
+                            </div>
                             <br>
 
                             <div class="textarea">

@@ -40,7 +40,8 @@ export class ViewActivityComponent implements OnInit {
   topic: any;
   topicGetById: Array<any> = []
   processSort: any
-
+  userId = localStorage.getItem('id');
+  
   constructor(private mcqsService: McqsService,
     private openEndedService: OpenEndedService,
     private trueFalseService: TrueFalseService,
