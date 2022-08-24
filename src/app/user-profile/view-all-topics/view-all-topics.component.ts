@@ -11,8 +11,11 @@ export interface TopicElement {
   grade: string;
   position: number;
   index: number
+  subId: any
 }
-
+export interface Subject {
+  subject: string
+}
 @Component({
   selector: 'app-view-all-topics',
   templateUrl: './view-all-topics.component.html',
@@ -25,7 +28,7 @@ export interface TopicElement {
           stagger('250ms', [
             animate('500ms', style({ opacity: 1, transform: "translateX(10px)" }))
           ])
-        ], {optional: true})
+        ], { optional: true })
       ])
     ]),
     trigger('viewAnimation', [
@@ -43,9 +46,10 @@ export interface TopicElement {
 
 export class ViewAllTopicsComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['topic', 'country', 'language', 'grade', 'action'];
+  displayedColumns: string[] = ['subject', 'topic', 'country', 'language', 'grade', 'action'];
   topic: TopicElement[] = [];
   dataSource: MatTableDataSource<TopicElement>;
+  subjSource: MatTableDataSource<Subject>;
 
   constructor(private topicService: TopicsService) { }
 
@@ -53,8 +57,15 @@ export class ViewAllTopicsComponent implements AfterViewInit {
     this.topicService.getAllTopic().subscribe(res => {
       this.dataSource = new MatTableDataSource<TopicElement>(<any>res)
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource)
+      console.log(this.dataSource.filteredData.map(x => {
+        return x.subId
+      }))
     })
+
+    // this.topicService.getSubject(this.dataSource?.filteredData.map(x => {x.subId}))
+    // .subscribe(res => {
+    //   console.log(res, 'subject')
+    // })
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngAfterViewInit() {

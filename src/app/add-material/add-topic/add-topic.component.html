@@ -9,6 +9,7 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">{{'add_topics.add' | translate}}</h4>
+                        <span>{{subject?.data.subject}}</span>
                     </div>
                     <br>
                     <br>
@@ -18,12 +19,22 @@
                     </div>
                     <div class="card-body">
                         <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
-                            <!-- <mat-label for="topic"><b>{{'add_topics.name' | translate}}</b></mat-label> -->
+
+                            <mat-form-field class="input_text">
+                                <mat-label>Subject</mat-label>
+                                <!-- <mat-select formControlName="subject">
+                                    <mat-option value="{{subject?.data.subject}}">{{subject?.data.subject}}</mat-option>
+                                </mat-select> -->
+                                <input class="input_form" matInput type="text" name="subject" id="subject"
+                                    formControlName="subject" required>
+                            </mat-form-field>
+
                             <mat-form-field class="input_text">
                                 <mat-label>{{'add_topics.name' | translate}}</mat-label>
                                 <input class="input_form" matInput type="text" name="topic" id="topic"
                                     formControlName="topic" required>
                             </mat-form-field>
+
                             <div *ngIf="topicForm.get('topic').pending">Checking Topic...</div>
                             <mat-error *ngIf="(!topicForm.valid && topicForm.get('topic')?.errors) && 
                             (topicForm.get('topic')?.dirty || topicForm.get('topic')?.touched)">

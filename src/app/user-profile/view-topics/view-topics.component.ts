@@ -49,7 +49,7 @@ export interface TopicElement {
 })
 export class ViewTopicsComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['topic', 'country', 'language', 'grade', 'view', 'delete'];
+  displayedColumns: string[] = ['subject', 'topic', 'country', 'language', 'grade', 'view', 'delete'];
   topic: TopicElement[] = [];
   topicId: any
   tpoicById: Array<any> = []

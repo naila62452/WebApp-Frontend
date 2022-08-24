@@ -50,6 +50,9 @@ export class AddTopicComponent implements OnInit, SafeData {
     ageGroup: new FormControl("", [
       Validators.required
     ]),
+    subject: new FormControl("", [
+
+    ]),
     language: new FormControl("", [
       Validators.required
     ]),
@@ -67,8 +70,9 @@ export class AddTopicComponent implements OnInit, SafeData {
     ])
   });
   topic: Array<any> = []
-  searchText = ''
   subject: any
+  searchText = ''
+  subjectId: any
   subId: any
   ageId: any
   selectedAge: string = '';
@@ -81,14 +85,33 @@ export class AddTopicComponent implements OnInit, SafeData {
   type: any = []
 
   ngOnInit(): void {
-    this.subject = this.route.snapshot.paramMap.get('id');
-    this.topicService.getTopicBySubject(this.subject)
+    // this.topicForm.get('subject').setValue(this.subject?.data.subject);
+    this.subjectId = this.route.snapshot.paramMap.get('id');
+    this.topicService.getTopicBySubject(this.subjectId)
       .subscribe(res => {
         this.topic = res
         console.log('response', res)
       }, err => {
         console.log(err)
       })
+
+    this.topicService.getSubject(this.subjectId)
+      .subscribe(res => {
+        this.subject = res
+        this.topicForm.patchValue({ subject: this.subject?.data.subject });
+        console.log('subject', res.data)
+      }, err => {
+        console.log(err)
+      })
+
+    // this.topicService.getSubject(this.subjectId).subscribe(
+    //   res => {
+    //     this.subject = res;
+    //     this.topicForm.patchValue({
+    //       subject: this.subject.data.name,
+    //     })
+    //     console.log(this.subject.data.subject)
+    //   });
 
     this.activityService.getGeGroup()
       .subscribe(data => {
@@ -133,7 +156,7 @@ export class AddTopicComponent implements OnInit, SafeData {
             duration: 5000,
             panelClass: ['blue-snackbar']
           });
-          this.loading = false 
+          this.loading = false
           this.getTopicByAgeId(this.topicForm.value.ageGroup);
           this.topicForm.reset();
           localStorage.setItem('remainingQuestions', '0')

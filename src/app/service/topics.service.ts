@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { catchError, delay, map } from 'rxjs/operators';
-const api_path = `${environment.web_URL}/api/topic`;
+import { Observable } from 'rxjs';
 
+const api_path = `${environment.web_URL}/api/topic`;
+const subject_api = `${environment.web_URL}/api/subject`
 @Injectable({
   providedIn: 'root'
 })
@@ -55,6 +53,10 @@ export class TopicsService {
 
   deleteTopic(id: string): Observable<any> {
     return this.http.delete(`${api_path}/delete/${id}`, { responseType: 'text' })
+  }
+  
+  getSubject(id: any): Observable<any> {
+    return this.http.get(`${subject_api}/getSub/${id}`)
   }
   
   // searchTopic(data: any): Observable<any> {
