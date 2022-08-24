@@ -27,32 +27,32 @@ export class DataService {
     }
 
     //Update question
-    updateOpenEnded(body: any, id: any) {
+    updateQuestion(body: any, id: any) {
         const path = `${this.url}/update/${id}`;
         return this.http.put(path, body)
     }
 
-    //Update Mcqs
-    updateMcqs(body: any, id: any) {
-        const path = `${this.url}/update/${id}`;
-        return this.http.put(path, body)
-    }
+    // //Update Mcqs
+    // updateMcqs(body: any, id: any) {
+    //     const path = `${this.url}/update/${id}`;
+    //     return this.http.put(path, body)
+    // }
 
-    //Update true false
-    updateTrueFalse( body: any, id: any) {
-        const path = `${this.url}/update/${id}`;
-        return this.http.put(path, body)
-    }
+    // //Update true false
+    // updateTrueFalse( body: any, id: any) {
+    //     const path = `${this.url}/update/${id}`;
+    //     return this.http.put(path, body)
+    // }
 
-    //Update introduction
-    updateIntroduction(id: any, body: any) {
-        const bodys = {
-            sequence: body.sequence,
-            introduction: body.introduction,
-        }
-        const path = `${this.url}/update/${id}`;
-        return this.http.put(path, bodys)
-    }
+    // //Update introduction
+    // updateIntroduction(id: any, body: any) {
+    //     const bodys = {
+    //         sequence: body.sequence,
+    //         introduction: body.introduction,
+    //     }
+    //     const path = `${this.url}/update/${id}`;
+    //     return this.http.put(path, bodys)
+    // }
 
     //Update introduction
     updateMatchPairs(id: any, body: any) {

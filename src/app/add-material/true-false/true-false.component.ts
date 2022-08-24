@@ -150,7 +150,7 @@ export class TrueFalseComponent implements OnInit {
     formData.append("negFeedback", this.trueFalseForm.get('negFeedback').value)
     formData.append("answer", this.trueFalseForm.get('answer').value)
 
-    this.trueFalseService.updateTrueFalse(formData, this.questionData._id).subscribe(
+    this.trueFalseService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;

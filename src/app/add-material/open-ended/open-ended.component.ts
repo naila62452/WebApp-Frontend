@@ -133,7 +133,7 @@ export class OpenEndedComponent implements OnInit {
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(formData.get('file'))
-    this.openEnded.updateOpenEnded(formData, this.questionData._id).subscribe(
+    this.openEnded.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         this.updatedQuestion = res;
         this.openEndedForm.patchValue({

@@ -33,12 +33,14 @@ export class IntroductionComponent implements OnInit {
   updatedQuestion: any
   topicId: any
   loading: boolean
+  Pickedimage: string;
+  imageUrl: any
   constructor(
     private introService: IntroductionService,
     private _snackBar: MatSnackBar,
     private router: Router, private route: ActivatedRoute) { }
 
-    get sequence() { return this.introForm.get('sequence'); }
+  get sequence() { return this.introForm.get('sequence'); }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('introId');
@@ -51,7 +53,9 @@ export class IntroductionComponent implements OnInit {
       sequence: new FormControl("", [
         Validators.required,
         Validators.min(0)
-      ])
+      ]),
+      file: new FormControl("", [
+      ]),
     })
 
     if (!this.isAddMode) {
@@ -59,10 +63,12 @@ export class IntroductionComponent implements OnInit {
       this.introService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
+          this.imageUrl = this.questionData.file
           this.topicId = this.questionData.topicId
           this.introForm.patchValue({
             introduction: this.questionData.introduction,
             sequence: this.questionData.sequence,
+            file: this.questionData.file
           })
           console.log(this.questionData)
         }, err => {
@@ -82,7 +88,7 @@ export class IntroductionComponent implements OnInit {
     //     return;
     //   }
 
-      this.loading = true;
+    this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -92,10 +98,15 @@ export class IntroductionComponent implements OnInit {
 
   createQuestion() {
     this.topic = localStorage.getItem('topicId')
-    console.log(this.introForm.value)
+    const formData = new FormData();
+    if (this.introForm.get('file').value) {
+      formData.append('file', this.introForm.get('file').value);
+    }
 
+    formData.append("introduction", this.introForm.get('introduction').value)
+    formData.append("sequence", this.introForm.get('sequence').value)
 
-    this.introService.addAll(this.introForm.value, this.topic)
+    this.introService.addAll(formData, this.topic)
       .subscribe(
         res => {
           this.introduction = res;
@@ -118,16 +129,21 @@ export class IntroductionComponent implements OnInit {
   }
 
   updateQuestion() {
-    let body = this.introForm.value;
-    this.introService.updateIntroduction(this.questionData._id, body).subscribe(
+    const formData = new FormData();
+    if (this.introForm.get('file').value) {
+      formData.append('file', this.introForm.get('file').value);
+    }
+    formData.append("introduction", this.introForm.get('introduction').value)
+    formData.append("sequence", this.introForm.get('sequence').value)
+    this.introService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;
 
         this.introForm.patchValue({
           introduction: this.updatedQuestion.introduction,
-          sequence: this.updatedQuestion.sequence
-
+          sequence: this.updatedQuestion.sequence,
+          file: this.updatedQuestion.file
         })
         this.questionData = this.introForm.value;
         console.log(this.questionData);
@@ -146,5 +162,26 @@ export class IntroductionComponent implements OnInit {
         });
       });
   }
+  PickedImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.introForm.patchValue({ file: file })
+    this.introForm.get('file').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.Pickedimage = reader.result as string;
+      console.log(this.Pickedimage)
+    };
+    reader.readAsDataURL(file);
+  }
 
+  DeleteImage() {
+    this.Pickedimage = ''
+  }
+
+  DeleteImageBackend() {
+    this.imageUrl = ''
+    this.introForm.patchValue({
+      file: ''
+    })
+  }
 }

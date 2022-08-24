@@ -185,7 +185,7 @@ export class MCQSComponent implements OnInit {
     formData.append("sequence", this.mcqsForm.get('sequence').value)
     formData.append("posFeedback", this.mcqsForm.get('posFeedback').value)
     formData.append("negFeedback", this.mcqsForm.get('negFeedback').value)
-    this.mcqsService.updateMcqs(formData, this.questionData._id).subscribe(
+    this.mcqsService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         this.updatedQuestion = res;
         this.mcqsForm.patchValue({

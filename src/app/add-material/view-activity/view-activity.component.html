@@ -17,6 +17,9 @@
             <hr>
             <h3>Question Statement: {{ combine.introduction }}</h3>
             <br>
+            <div *ngIf="combine.file !== ''">
+                <img [src]="combine.file" style="height: 200px; width: 300px">
+            </div>
             <div class="deleteEditButton">
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
