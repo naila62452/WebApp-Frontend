@@ -8,8 +8,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">{{'add_topics.add' | translate}}</h4>
-                        <!-- <h4>Edit Topic</h4> -->
+                        <h4 class="card-title">Edit Topic</h4>
                     </div>
                     <br>
                     <br>
@@ -18,7 +17,7 @@
                         <hr>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
+                        <form [formGroup]="topicForm" (ngSubmit)="onUpdate()">
 
                             <mat-form-field class="input_text">
                                 <mat-label>Subject</mat-label>
@@ -154,25 +153,8 @@
                             </mat-error>
                             <br>
 
-                            <!-- <mat-label for="access"><b>Please select material privacy.</b></mat-label>
-                            <mat-form-field appearance="fill">
-                                <mat-label> Choose privacy</mat-label>
-                                <mat-select formControlName="access">
-                                    <mat-option value="private">Private</mat-option>
-                                    <mat-option value="public">Public</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <mat-error class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('access')?.errors) && 
-                            (topicForm.get('access')?.dirty || topicForm.get('access')?.touched)">
-                                <div>
-                                    Please select Privacy.
-                                </div>
-                            </mat-error>
-                            <br> -->
-
                             <button mat-stroked-button type="submit" class="button" class="pointer"
-                                [disabled]="topicForm.invalid">{{'add_topics.create'
-                                | translate}}<span class="material-icons">
+                                [disabled]="topicForm.invalid">Update<span class="material-icons">
                                     chevron_right
                                 </span></button>
                             <hr>
@@ -182,59 +164,9 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-4">
-                <div class="content" role="main">
-                    <div class="card">
-                        <input (keyup)="searchData($event)" type="text" class="form-control" placeholder="Search"
-                            aria-label="Searchbox" aria-describedby="basic-addon1">
-                        <div *ngFor="let topic of topics">
-                            <button>{{topic.topic}}</button>
-                            <span>{{topic.topic}}</span>
-                        </div>
-                    </div>
-                </div>
-                <h2 style="color: black;">Topic added list:</h2>
-                <div class="container">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Topic Name</th>
-                                <th>Country</th>
-                                <th>Language</th>
-                                <th>Grade</th>
-                                <th>View</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let topics of topic; let i = index" @slideEffectWithBounce>
-                                <td>{{ topics.topic }}</td>
-                                <td>{{ topics.country }}</td>
-                                <td>{{ topics.language }}</td>
-                                <td>{{ topics.grade }}</td>
-                                <td>
-                                    <button mat-stroked-button class="button" class="pointer"
-                                        [routerLink]="['/material/view/', topics._id]">View</button>
-                                </td>
-                                <td><button mat-stroked-button class="button" class="pointer"
-                                        (click)="onDelete(topics._id)">Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> -->
+          
         </div>
     </div>
 </div>
 <br>
 <br>
-
-<!-- <button mat-stroked-button class="button" class="pointer" *ngIf="topics.type === 'MCQS'"
-                                [routerLink]="['/material/mcqs/', topics._id]">Create Activity</button>
-                            <button mat-stroked-button class="button" class="pointer"
-                                *ngIf="topics.type === 'True False'"
-                                [routerLink]="['/material/true/', topics._id]">Create Activity</button>
-                            <button mat-stroked-button class="button" class="pointer"
-                                *ngIf="topics.type === 'Open Ended Question'"
-                                [routerLink]="['/material/openEnded/', topics._id]">Create Activity</button> -->

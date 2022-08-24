@@ -28,25 +28,10 @@ export class DataService {
 
     //Update question
     updateOpenEnded(body: any, id: any) {
-        // const openEndedQuestion = {
-        //     sequence: body.sequence,
-        //     question: body.question,
-        //     file: body.file,
-        // }
         const path = `${this.url}/update/${id}`;
         return this.http.put(path, body)
     }
 
-    //Update question
-    updateOpenEndedImage(id: any, body: any) {
-        const openEndedQuestion = {
-            sequence: body.sequence,
-            question: body.question,
-            file: body.file,
-        }
-        const path = `${this.url}/update/${id}`;
-        return this.http.put(path, openEndedQuestion)
-    }
     //Update Mcqs
     updateMcqs(body: any, id: any) {
         const path = `${this.url}/update/${id}`;
@@ -54,16 +39,9 @@ export class DataService {
     }
 
     //Update true false
-    updateTrueFalse(id: any, body: any) {
-        const bodys = {
-            sequence: body.sequence,
-            question: body.question,
-            answer: body.answer,
-            posFeedback: body.posFeedback,
-            negFeedback: body.negFeedback
-        }
+    updateTrueFalse( body: any, id: any) {
         const path = `${this.url}/update/${id}`;
-        return this.http.put(path, bodys)
+        return this.http.put(path, body)
     }
 
     //Update introduction

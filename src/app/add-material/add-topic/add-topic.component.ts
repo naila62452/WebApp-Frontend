@@ -85,7 +85,6 @@ export class AddTopicComponent implements OnInit, SafeData {
   type: any = []
 
   ngOnInit(): void {
-    // this.topicForm.get('subject').setValue(this.subject?.data.subject);
     this.subjectId = this.route.snapshot.paramMap.get('id');
     this.topicService.getTopicBySubject(this.subjectId)
       .subscribe(res => {
@@ -103,15 +102,6 @@ export class AddTopicComponent implements OnInit, SafeData {
       }, err => {
         console.log(err)
       })
-
-    // this.topicService.getSubject(this.subjectId).subscribe(
-    //   res => {
-    //     this.subject = res;
-    //     this.topicForm.patchValue({
-    //       subject: this.subject.data.name,
-    //     })
-    //     console.log(this.subject.data.subject)
-    //   });
 
     this.activityService.getGeGroup()
       .subscribe(data => {

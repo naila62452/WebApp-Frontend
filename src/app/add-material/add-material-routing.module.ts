@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/_validator/_auth/auth-guard';
 import { CanDeactivateGuard } from 'src/_validator/_auth/deactive-guard';
 import { AddTopicComponent } from './add-topic/add-topic.component';
+import { EditTopicComponent } from './edit-topic/edit-topic.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { MatchPairsComponent } from './match-pairs/match-pairs.component';
 import { MCQSComponent } from './mcqs/mcqs.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'view/:id', component: ViewActivityComponent, canActivate: [AuthGuard] },
   { path: 'match/:matchId', component: MatchPairsComponent, canActivate: [AuthGuard] },
   { path: 'introduction/:introId', component: IntroductionComponent, canActivate: [AuthGuard] },
+  { path: 'edit-topic/:topicId', component: EditTopicComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

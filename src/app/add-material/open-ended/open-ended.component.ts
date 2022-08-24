@@ -180,38 +180,5 @@ export class OpenEndedComponent implements OnInit {
     this.openEndedForm.patchValue({
       file: ''
     })
-    // this.url = this.questionData.file.split('?')[0].split('/').pop()
-
-    // this.openEnded.deleteImage(this.url).subscribe(
-    //   res => {
-    //     console.log('Image deleted' + res)
-    //   },
-    //   err => {
-    //     console.log(err + 'Image error')
-    //   })
-
-    // let body = this.openEndedForm.value
-    // this.openEnded.updateOpenEndedImage(this.questionData._id, body).subscribe(
-    //   res => {
-    //     this.deleteImage = res;
-    //     this.openEndedForm.patchValue({
-    //       question: this.deleteImage.question,
-    //       sequence: this.deleteImage.sequence,
-    //       file: ''
-    //     })
-    //     this.questionData = this.openEndedForm.value;
-    //     console.log(this.questionData);
-    //     this._snackBar.open(" Your Image has been deleted", "Ok", {
-    //       duration: 5000,
-    //       panelClass: ['blue-snackbar']
-    //     });
-    //   },
-    //   err => {
-    //     console.log(err + 'error');
-    //     this._snackBar.open(" Your Image has not been deleted", "Ok", {
-    //       duration: 5000,
-    //       panelClass: ['red-snackbar']
-    //     });
-    //   })
   }
 }

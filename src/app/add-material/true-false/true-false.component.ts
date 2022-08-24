@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TopicsService } from 'src/app/service/topics.service';
 import { Output, EventEmitter } from '@angular/core';
 import { TrueFalseService } from 'src/app/service/true-false-service';
 
@@ -27,6 +26,9 @@ export class TrueFalseComponent implements OnInit {
   topicGetById: any
   trueFalseForm: any
   loading: boolean
+  Pickedimage: string;
+  imageUrl: any
+
   get sequence() { return this.trueFalseForm.get('sequence'); }
 
   constructor(
@@ -55,7 +57,9 @@ export class TrueFalseComponent implements OnInit {
       sequence: new FormControl("", [
         Validators.required,
         Validators.min(0)
-      ])
+      ]),
+      file: new FormControl("", [
+      ]),
     })
 
     if (!this.isAddMode) {
@@ -63,13 +67,15 @@ export class TrueFalseComponent implements OnInit {
       this.trueFalseService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
+          this.imageUrl = this.questionData.file
           this.topicId = this.questionData.topicId
           this.trueFalseForm.patchValue({
             question: this.questionData.question,
             sequence: this.questionData.sequence,
             answer: this.questionData.answer,
             posFeedback: this.questionData.posFeedback,
-            negFeedback: this.questionData.negFeedback
+            negFeedback: this.questionData.negFeedback,
+            file: this.questionData.file
           })
           console.log(this.questionData)
         }, err => {
@@ -100,7 +106,18 @@ export class TrueFalseComponent implements OnInit {
 
   createQuestion() {
     this.topicId = this.route.snapshot.paramMap.get('id')
-    this.trueFalseService.addAll(this.trueFalseForm.value, this.topicId)
+    const formData = new FormData();
+    if (this.trueFalseForm.get('file').value) {
+      formData.append('file', this.trueFalseForm.get('file').value);
+    }
+
+    formData.append("question", this.trueFalseForm.get('question').value)
+    formData.append("sequence", this.trueFalseForm.get('sequence').value)
+    formData.append("posFeedback", this.trueFalseForm.get('posFeedback').value)
+    formData.append("negFeedback", this.trueFalseForm.get('negFeedback').value)
+    formData.append("answer", this.trueFalseForm.get('answer').value)
+
+    this.trueFalseService.addAll(formData, this.topicId)
       .subscribe(res => {
         console.log(res)
         this._snackBar.open(" Your Question has been created", "Ok", {
@@ -122,8 +139,18 @@ export class TrueFalseComponent implements OnInit {
   }
 
   updateQuestion() {
-    let body = this.trueFalseForm.value;
-    this.trueFalseService.updateTrueFalse(this.questionData._id, body).subscribe(
+    const formData = new FormData();
+    if (this.trueFalseForm.get('file').value) {
+      formData.append('file', this.trueFalseForm.get('file').value);
+    }
+
+    formData.append("question", this.trueFalseForm.get('question').value)
+    formData.append("sequence", this.trueFalseForm.get('sequence').value)
+    formData.append("posFeedback", this.trueFalseForm.get('posFeedback').value)
+    formData.append("negFeedback", this.trueFalseForm.get('negFeedback').value)
+    formData.append("answer", this.trueFalseForm.get('answer').value)
+
+    this.trueFalseService.updateTrueFalse(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;
@@ -133,7 +160,8 @@ export class TrueFalseComponent implements OnInit {
           sequence: this.updatedQuestion.sequence,
           answer: this.updatedQuestion.answer,
           posFeedback: this.updatedQuestion.posFeedback,
-          negFeedback: this.updatedQuestion.negFeedback
+          negFeedback: this.updatedQuestion.negFeedback,
+          file: this.updatedQuestion.file
 
         })
         this.questionData = this.trueFalseForm.value;
@@ -152,5 +180,28 @@ export class TrueFalseComponent implements OnInit {
           panelClass: ['red-snackbar']
         });
       });
+  }
+
+  PickedImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.trueFalseForm.patchValue({ file: file })
+    this.trueFalseForm.get('file').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.Pickedimage = reader.result as string;
+      console.log(this.Pickedimage)
+    };
+    reader.readAsDataURL(file);
+  }
+
+  DeleteImage() {
+    this.Pickedimage = ''
+  }
+
+  DeleteImageBackend() {
+    this.imageUrl = ''
+    this.trueFalseForm.patchValue({
+      file: ''
+    })
   }
 }
