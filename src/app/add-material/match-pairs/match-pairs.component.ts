@@ -22,6 +22,9 @@ export class MatchPairsComponent implements OnInit {
   questionData: any
   updatedQuestion: any
   loading: boolean
+  imageUrl: any
+  Pickedimage: string
+
   constructor(private matchPairsService: MatchPairsService,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar, private router: Router) { }
@@ -75,7 +78,9 @@ export class MatchPairsComponent implements OnInit {
       sequence: new FormControl("", [
         Validators.required,
         Validators.min(0)
-      ])
+      ]),
+      file: new FormControl("", [
+      ]),
     })
 
     if (!this.isAddMode) {
@@ -83,6 +88,7 @@ export class MatchPairsComponent implements OnInit {
       this.matchPairsService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
+          this.imageUrl = this.questionData.file
           this.topicId = this.questionData.topicId
           this.match_pairsForm.patchValue({
             question: this.questionData.question,
@@ -98,7 +104,8 @@ export class MatchPairsComponent implements OnInit {
             answer4: this.questionData.answer4,
             answer5: this.questionData.answer5,
             posFeedback: this.questionData.posFeedback,
-            negFeedback: this.questionData.negFeedback
+            negFeedback: this.questionData.negFeedback,
+            file: this.questionData.file
           })
           console.log(this.questionData)
         }, err => {
@@ -128,7 +135,27 @@ export class MatchPairsComponent implements OnInit {
 
   createQuestion() {
     this.topicId = this.route.snapshot.paramMap.get('id')
-    this.matchPairsService.addAll(this.match_pairsForm.value, this.topicId)
+    const formData = new FormData();
+    if (this.match_pairsForm.get('file').value) {
+      formData.append('file', this.match_pairsForm.get('file').value);
+    }
+
+    formData.append("question", this.match_pairsForm.get('question').value)
+    formData.append("sequence", this.match_pairsForm.get('sequence').value)
+    formData.append("statement1", this.match_pairsForm.get('statement1').value)
+    formData.append("statement2", this.match_pairsForm.get('statement2').value)
+    formData.append("statement3", this.match_pairsForm.get('statement3').value)
+    formData.append("statement4", this.match_pairsForm.get('statement4').value)
+    formData.append("statement5", this.match_pairsForm.get('statement5').value)
+    formData.append("answer1", this.match_pairsForm.get('answer1').value)
+    formData.append("answer2", this.match_pairsForm.get('answer2').value)
+    formData.append("answer3", this.match_pairsForm.get('answer3').value)
+    formData.append("answer4", this.match_pairsForm.get('answer4').value)
+    formData.append("answer5", this.match_pairsForm.get('answer5').value)
+    formData.append("posFeedback", this.match_pairsForm.get('posFeedback').value)
+    formData.append("negFeedback", this.match_pairsForm.get('negFeedback').value)
+
+    this.matchPairsService.addAll(formData, this.topicId)
       .subscribe(res => {
         console.log(res)
         this._snackBar.open(" Your Question has been created", "Ok", {
@@ -151,8 +178,26 @@ export class MatchPairsComponent implements OnInit {
   }
 
   updateQuestion() {
-    let body = this.match_pairsForm.value;
-    this.matchPairsService.updateMatchPairs(this.questionData._id, body).subscribe(
+    const formData = new FormData();
+    if (this.match_pairsForm.get('file').value) {
+      formData.append('file', this.match_pairsForm.get('file').value);
+    }
+
+    formData.append("question", this.match_pairsForm.get('question').value)
+    formData.append("sequence", this.match_pairsForm.get('sequence').value)
+    formData.append("statement1", this.match_pairsForm.get('statement1').value)
+    formData.append("statement2", this.match_pairsForm.get('statement2').value)
+    formData.append("statement3", this.match_pairsForm.get('statement3').value)
+    formData.append("statement4", this.match_pairsForm.get('statement4').value)
+    formData.append("statement5", this.match_pairsForm.get('statement5').value)
+    formData.append("answer1", this.match_pairsForm.get('answer1').value)
+    formData.append("answer2", this.match_pairsForm.get('answer2').value)
+    formData.append("answer3", this.match_pairsForm.get('answer3').value)
+    formData.append("answer4", this.match_pairsForm.get('answer4').value)
+    formData.append("answer5", this.match_pairsForm.get('answer5').value)
+    formData.append("posFeedback", this.match_pairsForm.get('posFeedback').value)
+    formData.append("negFeedback", this.match_pairsForm.get('negFeedback').value)
+    this.matchPairsService.updateQuestion(formData ,this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;
@@ -189,6 +234,27 @@ export class MatchPairsComponent implements OnInit {
           panelClass: ['red-snackbar']
         });
       });
+  }
+  PickedImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.match_pairsForm.patchValue({ file: file })
+    this.match_pairsForm.get('file').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.Pickedimage = reader.result as string;
+      console.log(this.Pickedimage)
+    };
+    reader.readAsDataURL(file);
+  }
 
+  DeleteImage() {
+    this.Pickedimage = ''
+  }
+
+  DeleteImageBackend() {
+    this.imageUrl = ''
+    this.match_pairsForm.patchValue({
+      file: ''
+    })
   }
 }
