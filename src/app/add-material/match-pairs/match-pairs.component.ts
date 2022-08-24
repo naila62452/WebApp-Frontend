@@ -40,34 +40,52 @@ export class MatchPairsComponent implements OnInit {
         Validators.required
       ]),
       statement1: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer1: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement2: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer2: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement3: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer3: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement4: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer4: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement5: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer5: new FormControl("", [
-        Validators.required
+        // Validators.required
+      ]),
+      statement6: new FormControl("", [
+        // Validators.required
+      ]),
+      answer6: new FormControl("", [
+        // Validators.required
+      ]),
+      statement7: new FormControl("", [
+        // Validators.required
+      ]),
+      answer7: new FormControl("", [
+        // Validators.required
+      ]),
+      statement8: new FormControl("", [
+        // Validators.required
+      ]),
+      answer8: new FormControl("", [
+        // Validators.required
       ]),
       posFeedback: new FormControl("", [
         Validators.required

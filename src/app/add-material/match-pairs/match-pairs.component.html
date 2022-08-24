@@ -14,8 +14,8 @@
                     <br>
                     <div class="card-body">
                         <form [formGroup]="match_pairsForm">
-                            <mat-label for="sequence"><b>Activity Sequence Number *</b></mat-label>
                             <mat-form-field class="input_text">
+                                <mat-label>Activity Sequence Number</mat-label>
                                 <input class="input_form" matInput type="number" name="sequence" id="sequence"
                                     formControlName="sequence" required>
                             </mat-form-field>
@@ -28,16 +28,10 @@
                                 <mat-error *ngIf="sequence.errors?.['min']">
                                     Please enter a Positive Sequence of Number.</mat-error>
                             </div>
-                            <!-- <small class="text-danger" role="alert" *ngIf="(!match_pairsForm.valid && match_pairsForm.get('sequence')?.errors) && 
-                                (match_pairsForm.get('sequence')?.dirty || match_pairsForm.get('sequence')?.touched)">
-                                <div>
-                                    Please enter a Sequence of activity.
-                                </div>
-                            </small> -->
                             <br>
 
                             <div class="textarea">
-                                <mat-label>Please enter the Question Statement.</mat-label>
+                                <mat-label>Please enter the Question Statement *</mat-label>
                                 <ul>
                                     <textarea type="text" name="question" id="question" formControlName="question"
                                         required rows="4" cols="40"> </textarea>
@@ -62,8 +56,7 @@
                                     <div class="image-preview" *ngIf="Pickedimage">
                                         <img [src]="Pickedimage" alt="No Profile picture">
                                         <button mat-stroked-button class="button" class="pointer"
-                                            (click)="DeleteImage()">Delete <mat-icon
-                                                style="color: rgb(199, 24, 24)">
+                                            (click)="DeleteImage()">Delete <mat-icon style="color: rgb(199, 24, 24)">
                                                 delete</mat-icon></button>
                                         <br>
                                     </div>
@@ -71,8 +64,7 @@
                                 <div class="image-preview" *ngIf="imageUrl !== ''">
                                     <img [src]="imageUrl" alt="No Profile picture">
                                     <button mat-stroked-button class="button" class="pointer"
-                                        (click)="DeleteImageBackend()">Delete <mat-icon
-                                            style="color: rgb(199, 24, 24)">
+                                        (click)="DeleteImageBackend()">Delete <mat-icon style="color: rgb(199, 24, 24)">
                                             delete</mat-icon></button>
                                     <br>
                                 </div>
@@ -83,25 +75,37 @@
                                 </mat-label>
                                 <ul>
                                     <span>Statement 1:</span><input type="text" name="statement1" id="statement1"
-                                        formControlName="statement1" required>
+                                        formControlName="statement1">
                                     <span>Answer 1:</span><input type="text" name="answer1" id="answer1"
-                                        formControlName="answer1" required>
+                                        formControlName="answer1">
                                     <span>Statement 2:</span><input type="text" name="statement2" id="statement2"
-                                        formControlName="statement2" required>
+                                        formControlName="statement2">
                                     <span>Answer 2:</span><input type="text" name="answer2" id="answer2"
-                                        formControlName="answer2" required>
+                                        formControlName="answer2">
                                     <span>Statement 3:</span><input type="text" name="statement3" id="statement3"
-                                        formControlName="statement3" required>
+                                        formControlName="statement3">
                                     <span>Answer 3:</span><input type="text" name="answer3" id="answer3"
-                                        formControlName="answer3" required>
+                                        formControlName="answer3">
                                     <span>Statement 4:</span><input type="text" name="statement4" id="statement4"
-                                        formControlName="statement4" required>
+                                        formControlName="statement4">
                                     <span>Answer 4:</span><input type="text" name="answer4" id="answer4"
-                                        formControlName="answer4" required>
+                                        formControlName="answer4">
                                     <span>Statement 5:</span><input type="text" name="statement5" id="statement5"
-                                        formControlName="statement5" required>
+                                        formControlName="statement5">
                                     <span>Answer 5:</span><input type="text" name="answer5" id="answer5"
-                                        formControlName="answer5" required>
+                                        formControlName="answer5">
+                                    <span>Statement 6:</span><input type="text" name="statement6" id="statement6"
+                                        formControlName="statement6">
+                                    <span>Answer 6:</span><input type="text" name="answer6" id="answer6"
+                                        formControlName="answer6">
+                                    <span>Statement 7:</span><input type="text" name="statement7" id="statement7"
+                                        formControlName="statement7">
+                                    <span>Answer 7:</span><input type="text" name="answer7" id="answer7"
+                                        formControlName="answer7">
+                                    <span>Statement 8:</span><input type="text" name="statement8" id="statement8"
+                                        formControlName="statement8">
+                                    <span>Answer 8:</span><input type="text" name="answer8" id="answer8"
+                                        formControlName="answer8">
                                 </ul>
                             </div>
                             <div>
@@ -127,12 +131,12 @@
 
                                 <div class="feedback">
                                     <div class="feedback__step">
-                                        <mat-label>Feedback, if the answer is correct:</mat-label>
+                                        <mat-label>Feedback, if the answer is correct *</mat-label>
                                         <textarea type="text" name="posFeedback" id="posFeedback"
                                             formControlName="posFeedback" required> </textarea>
                                     </div>
                                     <div class="feedback__step">
-                                        <mat-label>Feedback, if the answer is incorrect:</mat-label>
+                                        <mat-label>Feedback, if the answer is incorrect *</mat-label>
                                         <textarea type="text" name="negFeedback" id="negFeedback"
                                             formControlName="negFeedback" required> </textarea>
                                     </div>
