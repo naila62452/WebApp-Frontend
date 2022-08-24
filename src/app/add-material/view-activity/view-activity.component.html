@@ -8,15 +8,14 @@
     <p>Total number of Questions: {{topics.noOfQuestions}}</p>
     <p>Time to complete: {{topics.time}} minutes</p>
     <button mat-stroked-button *ngIf="userId === topics.userId" [routerLink]="['/material/edit-topic', topics._id]" class="button"
-    style="width: fit-content; text-align: center; font-size: px;">Edit</button>
+    style="width: fit-content; text-align: center; font-size: px;">Edit Topic</button>
     <br>
-
     <div *ngFor="let combine of topics.combineQuestion">
         <div *ngIf="combine.questionType === 'introduction'" class="mcqs">
             <span>Question number: {{combine.sequence}}</span>
             <hr>
             <h3>Question Statement: {{ combine.introduction }}</h3>
-            <br>
+            <a href="{{combine.link}}">{{combine.link}}</a>
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>

@@ -15,14 +15,7 @@ export class IntroductionComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  // public introForm: FormGroup = new FormGroup({
-  //   introduction: new FormControl("", [
-  //     Validators.required
-  //   ]),
-  //   sequence: new FormControl("", [
-  //     Validators.required
-  //   ])
-  // })
+  
   introduction: Array<any> = []
   topic: string
   id: any;
@@ -56,6 +49,8 @@ export class IntroductionComponent implements OnInit {
       ]),
       file: new FormControl("", [
       ]),
+      link: new FormControl("", [
+      ]),
     })
 
     if (!this.isAddMode) {
@@ -68,7 +63,8 @@ export class IntroductionComponent implements OnInit {
           this.introForm.patchValue({
             introduction: this.questionData.introduction,
             sequence: this.questionData.sequence,
-            file: this.questionData.file
+            file: this.questionData.file,
+            link: this.questionData.link
           })
           console.log(this.questionData)
         }, err => {
@@ -102,7 +98,9 @@ export class IntroductionComponent implements OnInit {
     if (this.introForm.get('file').value) {
       formData.append('file', this.introForm.get('file').value);
     }
-
+    if (this.introForm.get('link').value) {
+      formData.append("link", this.introForm.get('link').value)
+    }
     formData.append("introduction", this.introForm.get('introduction').value)
     formData.append("sequence", this.introForm.get('sequence').value)
 
@@ -133,8 +131,12 @@ export class IntroductionComponent implements OnInit {
     if (this.introForm.get('file').value) {
       formData.append('file', this.introForm.get('file').value);
     }
+    if (this.introForm.get('link').value) {
+      formData.append("link", this.introForm.get('link').value)
+    }
     formData.append("introduction", this.introForm.get('introduction').value)
     formData.append("sequence", this.introForm.get('sequence').value)
+
     this.introService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
@@ -143,7 +145,8 @@ export class IntroductionComponent implements OnInit {
         this.introForm.patchValue({
           introduction: this.updatedQuestion.introduction,
           sequence: this.updatedQuestion.sequence,
-          file: this.updatedQuestion.file
+          file: this.updatedQuestion.file,
+          link: this.updatedQuestion.link
         })
         this.questionData = this.introForm.value;
         console.log(this.questionData);
