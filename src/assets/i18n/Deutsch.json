@@ -85,6 +85,10 @@
         "time": "Time to complete in minutes.",
         "time_error": "Please enter Time",
         "create": "Create"
+    },
+    "about": {
+        "about_text": "Die Corona-Pandemie hat eine Reihe von systemischen Ungleichheiten in Bezug auf Bildung und Zugang zu Lernmöglichkeiten aufgedeckt. Die Notwendigkeit, beim Lernen auf die digitale Sphäre zurückzugreifen, hat in allen Ländern und Settings in der EU gezeigt, dass es nicht für alle Mitglieder einer Gesellschaft gleichermaßen möglich ist, diesem Beispiel zu folgen. Besonders schutzbedürftige Gruppen, darunter Menschen mit Migrationshintergrund, Menschen mit Flüchtlingshintergrund oder Nicht-Muttersprachler, die schon vorher schwierige Erfahrungen gemacht haben. Diese Gruppen sind nun in Sachen Bildung noch stärker ins Hintertreffen geraten. 
+        In Zusammenarbeit mit Sozialarbeitern sowie dem neu entstandenen Berufsstand der Kulturmediatoren, die als Brücke zu Kommunen und lokalen Bildungseinrichtungen wie Schulen fungieren und ihre persönliche Reichweite mit Hilfe von Chatbots auf die digitale Sphäre ausdehnen, schlägt das SEEDS-Projekt eine Kombination aus sozialer und digitaler Ansprache vor, um diesen Effekt zu mildern. Benötigte Lerninhalte werden mit Hilfe von Chatbots auf eine neue Art und Weise vermittelt, bei der Gemeinden und Bildungseinrichtungen Lernmaterialien in einem vordefinierten Prozess erstellen können und Kulturvermittler, Sozialarbeiter oder einzelne Lernende selbst auf das von den Lehrern erstellte Lernmaterial zugreifen können, um die Lernerfahrung der Lernenden zu verbessern."
     }
 
 
