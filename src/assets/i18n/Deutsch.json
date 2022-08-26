@@ -89,6 +89,28 @@
     "about": {
         "about_text": "Die Corona-Pandemie hat eine Reihe von systemischen Ungleichheiten in Bezug auf Bildung und Zugang zu Lernmöglichkeiten aufgedeckt. Die Notwendigkeit, beim Lernen auf die digitale Sphäre zurückzugreifen, hat in allen Ländern und Settings in der EU gezeigt, dass es nicht für alle Mitglieder einer Gesellschaft gleichermaßen möglich ist, diesem Beispiel zu folgen. Besonders schutzbedürftige Gruppen, darunter Menschen mit Migrationshintergrund, Menschen mit Flüchtlingshintergrund oder Nicht-Muttersprachler, die schon vorher schwierige Erfahrungen gemacht haben. Diese Gruppen sind nun in Sachen Bildung noch stärker ins Hintertreffen geraten. 
         In Zusammenarbeit mit Sozialarbeitern sowie dem neu entstandenen Berufsstand der Kulturmediatoren, die als Brücke zu Kommunen und lokalen Bildungseinrichtungen wie Schulen fungieren und ihre persönliche Reichweite mit Hilfe von Chatbots auf die digitale Sphäre ausdehnen, schlägt das SEEDS-Projekt eine Kombination aus sozialer und digitaler Ansprache vor, um diesen Effekt zu mildern. Benötigte Lerninhalte werden mit Hilfe von Chatbots auf eine neue Art und Weise vermittelt, bei der Gemeinden und Bildungseinrichtungen Lernmaterialien in einem vordefinierten Prozess erstellen können und Kulturvermittler, Sozialarbeiter oder einzelne Lernende selbst auf das von den Lehrern erstellte Lernmaterial zugreifen können, um die Lernerfahrung der Lernenden zu verbessern."
+    },
+    "faq": {
+        "q_what_is_seeds": "Was ist SEEDS?",
+        "q_who_is_funding_seeds": "Wer finanziert das SEEDS-Projekt?",
+        "q_what_is_project_website": "Wie lautet die Website des Projekts?",
+        "q_how_to_contact": "Wie kann ich das Team kontaktieren?",
+        "q_who_are_project_partners": "Wer sind die Projektpartner?",
+        "q_is_project_running": "Läuft das Projekt noch oder ist es beendet?",
+        "q_are_project_results_open": "Sind die Ergebnisse des Projekts öffentlich zugänglich?",
+        "q_where_are_project_results": "Wo kann ich die Ergebnisse des Projekts finden?",
+        "a_what_is_seeds": "SEEDS ist ein Projekt zur Unterstützung von Lernen und Bildung am Rande der digitalen Sphäre. Aufgrund des fehlenden Zugangs zu Bildungseinrichtungen und der geringen oder fehlenden Ausstattung (Tablets oder Laptops und PCs) mit den notwendigen digitalen Technologien haben junge Menschen Schwierigkeiten, dem Unterricht zu folgen. IKT und vor allem das Smartphone können hier eingesetzt werden, um dieses Defizit abzumildern. Dabei müssen die Bedürfnisse und Herausforderungen der Zielgruppe berücksichtigt werden (d.h. keine aktuellen Smartphones mit veralteter Software). Unsere Idee ist es, mit Hilfe von Chatbots Lerninhalte auf eine neue Art und Weise an gefährdete Menschen zu vermitteln.",
+        "a_who_is_funding_seeds": "SEEDS wird finanziert von: Erasmus+ Strategic Partnership",
+        "a_what_is_project_website": "Sie können uns besuchen auf: https://seeds.wineme.wiwi.uni-siegen.de",
+        "a_how_to_contact": "Sie können uns über unsere E-Mail kontaktieren: seeds.members@listserv.dfn.de",
+        "a_who_are_project_partners": "SEEDS ist eine Zusammenarbeit von 4 Partnern:
+        1) Universität Siegen, Institut für Wissensbasierte Systeme und Wissensmanagement.
+        2) Universität Siegen, Lehrstuhl für Wirtschaftsinformatik und Neue Medien.
+        3) Universität von Alicante.
+        4) Open Lab Athen.",
+        "a_is_project_running": "Das Projekt hat eine Laufzeit von zwei Jahren, zwischen 2021 und 2023.",
+        "a_are_project_results_open": "Alle Ergebnisse des SEEDS-Projekts sind frei zugänglich und können auf der Projektwebsite und in den Repositories eingesehen werden.",
+        "a_where_are_project_results": "Die Projektergebnisse und Repository-Links finden Sie auf der Projektwebsite."   
     }
 
 
