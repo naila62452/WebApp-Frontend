@@ -161,11 +161,11 @@ export class EditTopicComponent implements OnInit {
         this.router.navigate([`/material/view/${this.topicId}`]);
       },
       (err: any) => {
-        this.snackbar.open("Failed to update topic", "Ok", {
+        this.snackbar.open("That topic name already exists.", "Ok", {
           duration: 5000,
           panelClass: ['red-snackbar']
         });
-        this.router.navigate(['/user/view']);
+        this.router.navigate([`/material/edit-topic/${this.topicId}`]);
       });
   }
   isAccessChange(event: any) {
