@@ -18,5 +18,32 @@
         "Seeds_text": "Crea nuevos contenidos y gestiona tu cuenta, para difundir la semilla de tus conocimientos.",
         "email_error": "Por favor, introduzca su correo electrónico.",
         "pass_error": "Por favor, introduzca su contraseña."
+    },
+    "about": {
+        "about_text": "La pandemia de la corona ha sacado a la luz una serie de desigualdades sistémicas en relación con la educación y el acceso a las oportunidades de aprendizaje. En todos los países y entornos de la UE, la necesidad de recurrir a la esfera digital con el aprendizaje ha puesto de manifiesto que no todos los miembros de una sociedad pueden seguirlo por igual. Especialmente los grupos vulnerables, como las personas de origen migratorio, las personas refugiadas o los hablantes no nativos, que ya tenían una experiencia difícil anteriormente. Estos grupos se han quedado ahora aún más rezagados en términos de educación. 
+        El proyecto SEEDS propone una combinación de alcance social y digital para mitigar este efecto, trabajando con trabajadores sociales y con la nueva profesión de mediadores culturales, que actúa como puente hacia los municipios y las instituciones educativas locales, como las escuelas, y ampliando su alcance personal hacia la esfera digital por medio de chatbots. Los contenidos de aprendizaje necesarios se comunicarán de una nueva manera por medio de chatbots, donde los municipios y las instituciones educativas pueden crear materiales de aprendizaje en un proceso predefinido, y los mediadores culturales, los trabajadores sociales o los propios alumnos individuales pueden acceder al material de aprendizaje que los profesores crearon, para mejorar la experiencia educativa de los alumnos."
+    },
+    "faq": {
+        "q_what_is_seeds": "¿Qué es SEEDS?",
+        "q_who_is_funding_seeds": "¿Quién financia el proyecto SEEDS?",
+        "q_what_is_project_website": "¿Cuál es el sitio web del proyecto?",
+        "q_how_to_contact": "¿Cómo puedo contactar con el equipo?",
+        "q_who_are_project_partners": "¿Quiénes son los socios del proyecto?",
+        "q_is_project_running": "¿El proyecto sigue en marcha o ha finalizado?",
+        "q_are_project_results_open": "¿Están abiertos los resultados del proyecto?",
+        "q_where_are_project_results": "¿Dónde puedo encontrar los resultados del proyecto?",
+        "a_what_is_seeds": "SEEDS es un proyecto de apoyo al aprendizaje y la educación al margen de la esfera digital. Debido a la falta de acceso a los centros educativos y a la escasez o ausencia de equipos (tabletas, u ordenadores portátiles y PC) con las tecnologías digitales necesarias, los jóvenes tienen dificultades para seguir las clases. Las TIC y, sobre todo, el smartphone pueden utilizarse aquí para paliar este déficit. Hay que tener en cuenta las necesidades y los retos del grupo objetivo (es decir, no hay smartphones actualizados con software anticuado). Nuestra idea es comunicar los contenidos de aprendizaje a las personas vulnerables de una manera nueva mediante el uso de bots de chat.",
+        "a_who_is_funding_seeds": "SEEDS está financiado por: Erasmus+ Strategic Partnership",
+        "a_what_is_project_website": "Puedes visitarnos en: https://seeds.wineme.wiwi.uni-siegen.de",
+        "a_how_to_contact": "Puedes ponerte en contacto con nosotros a través de nuestro correo electrónico: seeds.members@listserv.dfn.de",
+        "a_who_are_project_partners": "SEEDS es una colaboración entre 4 socios:
+        1) Universidad de Siegen, Instituto de Sistemas Basados en el Conocimiento y Gestión del Conocimiento.
+        2) Universidad de Siegen, Cátedra de Sistemas de Información y Nuevos Medios.
+        3) Universidad de Alicante.
+        4) Open Lab Atenas.",
+        "a_is_project_running": "La duración del proyecto es de dos años, entre 2021-2023.",
+        "a_are_project_results_open": "Todos los resultados del proyecto SEEDS son de acceso abierto y están disponibles en la página web y los repositorios del proyecto.",
+        "a_where_are_project_results": "Puede encontrar los resultados del proyecto y los enlaces a los repositorios en la página web del proyecto."   
     }
+    
 }
