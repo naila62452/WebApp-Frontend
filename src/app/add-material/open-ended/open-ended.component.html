@@ -18,8 +18,8 @@
                     <br>
                     <div class="card-body">
                         <form [formGroup]="openEndedForm">
-                            <mat-label for="sequence"><b>Activity Sequence Number *</b></mat-label>
                             <mat-form-field class="input_text">
+                                <mat-label>Activity Sequence Number</mat-label>
                                 <input class="input_form" matInput type="number" name="sequence" id="sequence"
                                     formControlName="sequence" required>
                             </mat-form-field>
@@ -35,7 +35,7 @@
                             <br>
 
                             <div class="textarea">
-                                <mat-label>Please enter the Question Statement. *</mat-label>
+                                <mat-label>Please enter the Question Statement *</mat-label>
                                 <ul>
                                     <textarea type="text" name="question" id="question" formControlName="question"
                                         required rows="4" cols="40"> </textarea>

@@ -9,7 +9,6 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">{{'add_topics.add' | translate}}</h4>
-                        <!-- <h4>Edit Topic</h4> -->
                     </div>
                     <br>
                     <br>
@@ -154,7 +153,7 @@
                             </mat-error>
                             <br>
 
-                            <!-- <mat-label for="access"><b>Please select material privacy.</b></mat-label>
+                            <!-- <mat-label for="access"><b>Please select material privacy</b></mat-label>
                             <mat-form-field appearance="fill">
                                 <mat-label> Choose privacy</mat-label>
                                 <mat-select formControlName="access">
@@ -169,7 +168,27 @@
                                 </div>
                             </mat-error>
                             <br> -->
-
+                            <div style="display: flex;">
+                                <span>
+                                    <input type="checkbox" (change)="isAccessChange($event.target)"
+                                        formControlName="access" /></span>
+                                <span>
+                                    Do you want to keep material private?
+                                </span>
+                            </div>
+                            <br>
+                            <mat-form-field class="input_text" *ngIf="access.value">
+                                <mat-label>Please enter the access code</mat-label>
+                                <input class="input_form" matInput type="text" name="accessCode" id="accessCode"
+                                    formControlName="accessCode">
+                            </mat-form-field>
+                            <mat-error class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('accessCode')?.errors) && 
+                            (topicForm.get('accessCode')?.dirty || topicForm.get('accessCode')?.touched)">
+                                <div>
+                                    Please enter access code.
+                                </div>
+                            </mat-error>
+                            <br>
                             <button mat-stroked-button type="submit" class="button" class="pointer"
                                 [disabled]="topicForm.invalid">{{'add_topics.create'
                                 | translate}}<span class="material-icons">

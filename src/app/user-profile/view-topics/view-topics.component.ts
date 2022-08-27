@@ -62,12 +62,12 @@ export class ViewTopicsComponent implements AfterViewInit {
     this.topicService.getTopicByUserId().subscribe(res => {
       this.dataSource = new MatTableDataSource<TopicElement>(<any>res)
       this.dataSource.paginator = this.paginator;
-      // console.log(this.dataSource.filteredData)
-      let arr = this.dataSource.filteredData
-      for (var i = 0; i < this.dataSource.filteredData.length; i++) {
-        this.topicId = arr[i]._id
-        console.log(this.topicId);
-      }
+      console.log(this.dataSource)
+      // let arr = this.dataSource.filteredData
+      // for (var i = 0; i < this.dataSource.filteredData.length; i++) {
+      //   this.topicId = arr[i]._id
+      //   console.log(this.topicId);
+      // }
     })
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;

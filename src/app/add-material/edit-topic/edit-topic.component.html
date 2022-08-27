@@ -153,6 +153,49 @@
                             </mat-error>
                             <br>
 
+                            <!-- <mat-label for="access"><b>Please select material privacy *</b></mat-label>
+                            <mat-form-field appearance="fill">
+                                <mat-label> Choose privacy</mat-label>
+                                <mat-select formControlName="access">
+                                    <mat-option value="private">Private</mat-option>
+                                    <mat-option value="public">Public</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            
+                            <mat-error class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('access')?.errors) && 
+                            (topicForm.get('access')?.dirty || topicForm.get('access')?.touched)">
+                                <div>
+                                    Please select Privacy.
+                                </div>
+                            </mat-error>
+                            <br>
+                            <mat-form-field class="input_text" *ngIf="topicForm.get('access').value === 'private'">
+                                <mat-label>Please enter the access code</mat-label>
+                                <input class="input_form" matInput type="text" name="accessCode" id="accessCode"
+                                    formControlName="accessCode">
+                            </mat-form-field> -->
+                            
+                            <div style="display: flex;">
+                                <span>
+                                    <input type="checkbox" (change)="isAccessChange($event.target)"
+                                        formControlName="access" /></span>
+                                <span>
+                                    Do you want to keep material private?
+                                </span>
+                            </div>
+                            <br>
+                            <mat-form-field class="input_text" *ngIf="access.value">
+                                <mat-label>Please enter the access code</mat-label>
+                                <input class="input_form" matInput type="text" name="accessCode" id="accessCode"
+                                    formControlName="accessCode">
+                            </mat-form-field>
+                            <mat-error class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('accessCode')?.errors) && 
+                            (topicForm.get('accessCode')?.dirty || topicForm.get('accessCode')?.touched)">
+                                <div>
+                                    Please enter access code.
+                                </div>
+                            </mat-error>
+                            <br>
                             <button mat-stroked-button type="submit" class="button" class="pointer"
                                 [disabled]="topicForm.invalid">Update<span class="material-icons">
                                     chevron_right

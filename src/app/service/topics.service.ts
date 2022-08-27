@@ -70,10 +70,12 @@ export class TopicsService {
       grade: body.grade,
       noOfQuestions: body.noOfQuestions,
       time: body.time,
+      access: body.access,
+      accessCode: body.accessCode
     }
     const path = `${api_path}/update/${id}`;
     // console.log(bodyz)
-    return this.http.patch(path, bodyz)
+    return this.http.put(path, bodyz)
   }
 
   // searchTopic(data: any): Observable<any> {

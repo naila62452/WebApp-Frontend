@@ -3,9 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { fade, slidingEntrance } from 'src/app/angular-animations/animations-fade';
+import { fade } from 'src/app/angular-animations/animations-fade';
 import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
-import { SafeData } from 'src/app/_models/save-data-interface';
 
 @Component({
   selector: 'app-science',

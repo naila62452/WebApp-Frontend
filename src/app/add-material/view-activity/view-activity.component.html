@@ -2,13 +2,25 @@
     <h2>Topic Name: {{topics.topic}}</h2>
     <hr>
     <br>
+    <p>Topic Subject: {{topics.subject}}</p>
     <p>Topic Language: {{topics.language}}</p>
     <p>Topic Grade: {{topics.grade}}</p>
     <p>Topic Country: {{topics.country}}</p>
     <p>Total number of Questions: {{topics.noOfQuestions}}</p>
     <p>Time to complete: {{topics.time}} minutes</p>
-    <button mat-stroked-button *ngIf="userId === topics.userId" [routerLink]="['/material/edit-topic', topics._id]"
-        class="button" style="width: fit-content; text-align: center; font-size: px;">Edit Topic</button>
+    <p *ngIf="topics.access === true">Private material: {{topics.access}}</p>
+    <p *ngIf="topics.access === true">Material access Code: {{topics.accessCode}}</p>
+
+    <div class="topicDiv">
+        <button mat-stroked-button *ngIf="userId === topics.userId" [routerLink]="['/material/edit-topic', topics._id]"
+            class="button" style="width: fit-content; text-align: center; font-size: px;">Edit Topic</button>
+
+        <button mat-stroked-button *ngIf="userId === topics.userId && totalNumberOfQuestions !== 0"
+            [routerLink]="['/material/type', topics._id]" class="button"
+            style="width: fit-content; text-align: center; font-size: px;">You have {{totalNumberOfQuestions}} question
+            to add
+        </button>
+    </div>
     <br>
     <div *ngFor="let combine of topics.combineQuestion">
         <div *ngIf="combine.questionType === 'introduction'" class="mcqs">
@@ -20,10 +32,10 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
-                        style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
+                <button mat-stroked-button class="button" class="pointer" (click)="onDeleteIntro(combine._id)">Delete
+                    <mat-icon style="color: rgb(199, 24, 24)">delete</mat-icon></button>
                 <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
-                    [routerLink]="['/material/introduction', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+                    [routerLink]="['/material/introduction', combine._id]">Edit</button>
             </div>
         </div>
 
@@ -59,7 +71,7 @@
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
                 <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
-                    [routerLink]="['/material/mcqs', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+                    [routerLink]="['/material/mcqs', combine._id]">Edit</button>
             </div>
         </div>
 
@@ -80,7 +92,7 @@
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
                 <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
-                    [routerLink]="['/material/true', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+                    [routerLink]="['/material/true', combine._id]">Edit</button>
             </div>
         </div>
 
@@ -92,10 +104,10 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
-                        style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
+                <button mat-stroked-button class="button" class="pointer" (click)="onDeleteOpenEnded(combine._id)">Delete
+                    <mat-icon style="color: rgb(199, 24, 24)">delete</mat-icon></button>
                 <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
-                    [routerLink]="['/material/openEnded', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+                    [routerLink]="['/material/openEnded', combine._id]">Edit</button>
             </div>
         </div>
 
@@ -167,7 +179,7 @@
                 <!-- <button mat-stroked-button class="button" class="pointer">Delete <mat-icon
                         style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
                 <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
-                    [routerLink]="['/material/match', combine._id]">Edit <mat-icon>edit</mat-icon></button>
+                    [routerLink]="['/material/match', combine._id]">Edit</button>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { TopicsService } from 'src/app/service/topics.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -28,6 +28,7 @@ export class AddTopicComponent implements OnInit, SafeData {
     private activityService: ActivityFormService,
     private router: Router) { }
 
+  @Input() required: boolean;
   @HostListener('window:beforeunload', ['$event'])
   onBeforeReload(e: BeforeUnloadEvent) {
     e.stopPropagation();
@@ -44,14 +45,13 @@ export class AddTopicComponent implements OnInit, SafeData {
   public topicForm: FormGroup = new FormGroup({
     topic: new FormControl('', {
       validators: [Validators.required, Validators.maxLength(50)],
-      asyncValidators: this.uniqueEmailValidator(),
+      asyncValidators: this.uniqueTopicValidator(),
       updateOn: 'blur',
     }),
     ageGroup: new FormControl("", [
       Validators.required
     ]),
     subject: new FormControl("", [
-
     ]),
     language: new FormControl("", [
       Validators.required
@@ -67,7 +67,13 @@ export class AddTopicComponent implements OnInit, SafeData {
     ]),
     time: new FormControl("", [
       Validators.required
-    ])
+    ]),
+    access: new FormControl(null, [
+      // Validators.required
+    ]),
+    accessCode: new FormControl(null, [
+      // Validators.required
+    ]),
   });
   topic: Array<any> = []
   subject: any
@@ -83,6 +89,9 @@ export class AddTopicComponent implements OnInit, SafeData {
   country: any = []
   grade: any = []
   type: any = []
+
+  get access() { return this.topicForm.get('access'); }
+  get accessCode() { return this.topicForm.get('accessCode'); }
 
   ngOnInit(): void {
     this.subjectId = this.route.snapshot.paramMap.get('id');
@@ -170,7 +179,7 @@ export class AddTopicComponent implements OnInit, SafeData {
   //   };
   // }
 
-  uniqueEmailValidator(): AsyncValidatorFn {
+  uniqueTopicValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.topicService.topicNameCheck(control.value).pipe(
         map((res) => {
@@ -192,9 +201,16 @@ export class AddTopicComponent implements OnInit, SafeData {
 
       })
   }
-  // public canExit(): boolean | Observable<boolean> {
-  //   return this.ngFormRef.dirty
-  //     ? this.openUnsavedChangesDialog()
-  //     : true;
-  // };
+
+  isAccessChange(event: any) {
+    console.log(event.checked)
+    if(event.checked) {
+      this.topicForm.controls['accessCode'].setValidators([Validators.required])
+      this.topicForm.controls['accessCode'].updateValueAndValidity()
+    }
+    else {
+      this.topicForm.controls['accessCode'].clearValidators()
+      this.topicForm.controls['accessCode'].updateValueAndValidity()
+    }
+  }
 }
