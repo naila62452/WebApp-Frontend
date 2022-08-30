@@ -63,9 +63,13 @@ export class ViewActivityComponent implements OnInit {
             .sort((low: { sequence: number; }, high: { sequence: number; }) => {
               return low.sequence - high.sequence;
             })
+            // let i;
+            // for( i = 1; i <= this.topicGetById[0].combineQuestion.length; i++) {
+            //   this.topicGetById[0].combineQuestion[i-1].sequence = i
+            // }
           console.log('response', this.topicGetById[0].noOfQuestions)
           this.totalNumberOfQuestions = this.topicGetById[0]?.noOfQuestions - parseInt(localStorage.getItem('remainingQuestions'))
-          console.log(this.totalNumberOfQuestions, "total number")
+          console.log(this.topicGetById[0], "total number")
         }, err => {
           console.log(err)
         })
@@ -79,6 +83,7 @@ export class ViewActivityComponent implements OnInit {
     this.mcqsService.delete(id).subscribe(
       res => {
         this.ngOnInit();
+        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
         this._snackBar.open(" Your Question has been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
@@ -97,6 +102,7 @@ export class ViewActivityComponent implements OnInit {
     this.trueFalseService.delete(id).subscribe(
       res => {
         this.ngOnInit();
+        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
         this._snackBar.open(" Your Question has been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
@@ -115,9 +121,7 @@ export class ViewActivityComponent implements OnInit {
     this.openEndedService.delete(id).subscribe(
       res => {
         this.ngOnInit();
-        // localStorage.setItem('remainingQuestions', '0')
-        // this.totalNumberOfQuestions = this.topicGetById[0]?.noOfQuestions - parseInt(localStorage.getItem('remainingQuestions'))
-        console.log(this.totalNumberOfQuestions, "deleted")
+        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
         this._snackBar.open(" Your Question has been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
@@ -136,6 +140,7 @@ export class ViewActivityComponent implements OnInit {
     this.introService.delete(id).subscribe(
       res => {
         this.ngOnInit();
+        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
         this._snackBar.open(" Your Question has been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
@@ -154,6 +159,7 @@ export class ViewActivityComponent implements OnInit {
     this.matchPairsService.delete(id).subscribe(
       res => {
         this.ngOnInit();
+        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
         this._snackBar.open(" Your Question has been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']

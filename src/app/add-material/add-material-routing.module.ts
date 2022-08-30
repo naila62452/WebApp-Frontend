@@ -14,13 +14,13 @@ import { ViewActivityComponent } from './view-activity/view-activity.component';
 
 const routes: Routes = [
   { path: 'type/:id', component: ScienceComponent, canActivate: [AuthGuard] },
-  { path: 'mcqs/:mcqsId', component: MCQSComponent, canActivate: [AuthGuard] },
-  { path: 'true/:trueFalseId', component: TrueFalseComponent, canActivate: [AuthGuard] },
+  { path: 'mcqs/:mcqsId/:length', component: MCQSComponent, canActivate: [AuthGuard] },
+  { path: 'true/:trueFalseId/:length', component: TrueFalseComponent, canActivate: [AuthGuard] },
   { path: 'topic/:id', component: AddTopicComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard] },
-  { path: 'openEnded/:questionId', component: OpenEndedComponent, canActivate: [AuthGuard] },
+  { path: 'openEnded/:questionId/:length', component: OpenEndedComponent, canActivate: [AuthGuard] },
   { path: 'view/:id', component: ViewActivityComponent, canActivate: [AuthGuard] },
-  { path: 'match/:matchId', component: MatchPairsComponent, canActivate: [AuthGuard] },
-  { path: 'introduction/:introId', component: IntroductionComponent, canActivate: [AuthGuard] },
+  { path: 'match/:matchId/:length', component: MatchPairsComponent, canActivate: [AuthGuard] },
+  { path: 'introduction/:introId/:length', component: IntroductionComponent, canActivate: [AuthGuard] },
   { path: 'edit-topic/:topicId', component: EditTopicComponent, canActivate: [AuthGuard] }
 ];
 

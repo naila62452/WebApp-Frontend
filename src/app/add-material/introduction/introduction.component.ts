@@ -15,7 +15,7 @@ export class IntroductionComponent implements OnInit {
   SetAsSubmitted(value: boolean) {
     this.submitEvent.emit(value);
   }
-  
+
   introduction: Array<any> = []
   topic: string
   id: any;
@@ -28,6 +28,7 @@ export class IntroductionComponent implements OnInit {
   loading: boolean
   Pickedimage: string;
   imageUrl: any
+  length: any
   constructor(
     private introService: IntroductionService,
     private _snackBar: MatSnackBar,
@@ -37,6 +38,8 @@ export class IntroductionComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('introId');
+    this.length = this.route.snapshot.paramMap.get('length');
+
     this.isAddMode = !this.id;
     console.log(this.id)
     this.introForm = new FormGroup({
@@ -133,6 +136,14 @@ export class IntroductionComponent implements OnInit {
     }
     if (this.introForm.get('link').value) {
       formData.append("link", this.introForm.get('link').value)
+    }
+    if (this.introForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      this.loading = false
+      return
     }
     formData.append("introduction", this.introForm.get('introduction').value)
     formData.append("sequence", this.introForm.get('sequence').value)

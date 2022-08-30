@@ -21,6 +21,7 @@ export class EditTopicComponent implements OnInit {
     this.topicService.getTopicByTopicId(this.topicId).subscribe(
       res => {
         this.updateTopic = res;
+        this.length = this.updateTopic.noOfQuestions
         this.topicForm.patchValue({
           topic: this.updateTopic.topic,
           ageGroup: this.updateTopic.ageGroup,
@@ -33,7 +34,7 @@ export class EditTopicComponent implements OnInit {
           access: this.updateTopic.access,
           accessCode: this.updateTopic.accessCode
         })
-        console.log(this.updateTopic)
+        console.log(this.updateTopic, "patch")
       });
   }
   get access() { return this.topicForm.get('access'); }
@@ -42,8 +43,8 @@ export class EditTopicComponent implements OnInit {
   public topicForm: FormGroup = new FormGroup({
     topic: new FormControl('', {
       validators: [Validators.required, Validators.maxLength(50)],
-      // asyncValidators: this.uniqueEmailValidator(),
-      // updateOn: 'blur',
+      asyncValidators: this.uniqueEmailValidator(),
+      updateOn: 'blur',
     }),
     ageGroup: new FormControl("", [
       Validators.required
@@ -89,6 +90,9 @@ export class EditTopicComponent implements OnInit {
   topicId: any
   updateTopic: any
   updatedTopic: any
+  length: any
+  remainingQuestion = localStorage.getItem('remainingQuestions')
+  
   ngOnInit(): void {
     this.activityService.getGeGroup()
       .subscribe(data => {
@@ -127,8 +131,9 @@ export class EditTopicComponent implements OnInit {
         map((res) => {
           let resTopic: string = res.topic;
           let inputTopic: string = control.value;
-
-          return (resTopic?.toLowerCase() === inputTopic?.toLowerCase() ? { topicExists: true } : null)
+          let originalTopic: string = this.updateTopic.topic
+          console.log(originalTopic, inputTopic)
+          return (originalTopic !== inputTopic && resTopic?.toLowerCase() === inputTopic?.toLowerCase() ? { topicExists: true } : null)
         }),
         catchError((err) => { console.log(err + 'i am error'); return null })
       )
@@ -137,7 +142,17 @@ export class EditTopicComponent implements OnInit {
 
   onUpdate() {
     let body = this.topicForm.value;
+    console.log(this.remainingQuestion, "bache sawal")
     this.topicId = this.route.snapshot.paramMap.get('topicId');
+    console.log(this.length + ' backend')
+    console.log(this.topicForm.get('noOfQuestions').value + " frontend")
+    if(this.topicForm.get('noOfQuestions').value < parseInt(this.length)) {
+      this.snackbar.open(` You have total questions ${this.length}. Please select greater number`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      return
+    }
     this.topicService.updateTopic(body, this.topicId).subscribe(
       res => {
         this.updatedTopic = res;

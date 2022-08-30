@@ -42,11 +42,13 @@ export class MCQSComponent implements OnInit {
   questionData: any
   updatedQuestion: any
   imageUrl: any
-
+  length: any
   get sequence() { return this.mcqsForm.get('sequence'); }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('mcqsId');
+    this.length = this.route.snapshot.paramMap.get('length');
+
     this.isAddMode = !this.id;
     console.log(this.id)
     this.mcqsForm = new FormGroup({
@@ -124,7 +126,7 @@ export class MCQSComponent implements OnInit {
     //     return;
     //   }
 
-      this.loading = true;
+    this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -137,8 +139,7 @@ export class MCQSComponent implements OnInit {
     if (this.mcqsForm.get('file').value) {
       formData.append('file', this.mcqsForm.get('file').value);
     }
-    // formData.append('file', this.mcqsForm.get('file').value);
-    // console.log(this.mcqsForm.get('file').value);
+    
     formData.append("mcqs", this.mcqsForm.get('mcqs').value)
     formData.append("option1", this.mcqsForm.get('option1').value)
     formData.append("option2", this.mcqsForm.get('option2').value)
@@ -175,6 +176,14 @@ export class MCQSComponent implements OnInit {
     const formData = new FormData();
     if (this.mcqsForm.get('file').value) {
       formData.append('file', this.mcqsForm.get('file').value);
+    }
+    if (this.mcqsForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      this.loading = false
+      return
     }
     formData.append("mcqs", this.mcqsForm.get('mcqs').value)
     formData.append("option1", this.mcqsForm.get('option1').value)
