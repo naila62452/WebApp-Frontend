@@ -1,9 +1,10 @@
 <div class="main-content">
 
-    <!-- <button mat-stroked-button [routerLink]="['/material/edit-topic', topicGetById._id]" class="button"
-    style="width: fit-content; text-align: center; font-size: px;">Back</button> -->
-
+    <button mat-stroked-button [routerLink]="['/material/edit-topic', topicGetById._id]" class="button">Back</button>
+    <h2>Please submit all Questions one by one on this page.</h2>
+    <p>Remaining Questions to be Submitted: {{totalNumberOfQuestions}}</p>
     <div class="container" *ngFor="let items of this.arr; let i=index">
+        
         <div *ngIf="ifSubmitted[i]"> Question has been Submitted
             <meta http-equiv="refresh" content="0.01">
         </div>

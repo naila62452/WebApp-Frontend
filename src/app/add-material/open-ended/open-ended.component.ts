@@ -32,6 +32,7 @@ export class OpenEndedComponent implements OnInit {
   imageUrl: any
   url: any
   deleteImage: any
+  length: any
   get sequence() { return this.openEndedForm.get('sequence'); }
 
   constructor(
@@ -41,6 +42,7 @@ export class OpenEndedComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('questionId');
+    this.length = this.route.snapshot.paramMap.get('length');
     this.isAddMode = !this.id;
     console.log(this.id)
     this.openEndedForm = new FormGroup({
@@ -130,6 +132,14 @@ export class OpenEndedComponent implements OnInit {
     if (this.openEndedForm.get('file').value) {
       formData.append('file', this.openEndedForm.get('file').value);
     }
+    if(this.openEndedForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+         panelClass: ['red-snackbar']
+       });
+       this.loading = false
+       return
+      }
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(formData.get('file'))

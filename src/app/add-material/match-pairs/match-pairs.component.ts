@@ -24,7 +24,7 @@ export class MatchPairsComponent implements OnInit {
   loading: boolean
   imageUrl: any
   Pickedimage: string
-
+  length: any
   constructor(private matchPairsService: MatchPairsService,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar, private router: Router) { }
@@ -33,6 +33,8 @@ export class MatchPairsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('matchId');
+    this.length = this.route.snapshot.paramMap.get('length');
+
     this.isAddMode = !this.id;
     console.log(this.id)
     this.match_pairsForm = new FormGroup({
@@ -40,35 +42,53 @@ export class MatchPairsComponent implements OnInit {
         Validators.required
       ]),
       statement1: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer1: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement2: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer2: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement3: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer3: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement4: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer4: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       statement5: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
       answer5: new FormControl("", [
-        Validators.required
+        // Validators.required
       ]),
+      statement6: new FormControl("", [
+        // Validators.required
+      ]),
+      answer6: new FormControl("", [
+        // Validators.required
+      ]),
+      // statement7: new FormControl("", [
+      //   // Validators.required
+      // ]),
+      // answer7: new FormControl("", [
+      //   // Validators.required
+      // ]),
+      // statement8: new FormControl("", [
+      //   // Validators.required
+      // ]),
+      // answer8: new FormControl("", [
+      //   // Validators.required
+      // ]),
       posFeedback: new FormControl("", [
         Validators.required
       ]),
@@ -98,11 +118,13 @@ export class MatchPairsComponent implements OnInit {
             statement3: this.questionData.statement3,
             statement4: this.questionData.statement4,
             statement5: this.questionData.statement5,
+            statement6: this.questionData.statement6,
             answer1: this.questionData.answer1,
             answer2: this.questionData.answer2,
             answer3: this.questionData.answer3,
             answer4: this.questionData.answer4,
             answer5: this.questionData.answer5,
+            answer6: this.questionData.answer6,
             posFeedback: this.questionData.posFeedback,
             negFeedback: this.questionData.negFeedback,
             file: this.questionData.file
@@ -147,11 +169,13 @@ export class MatchPairsComponent implements OnInit {
     formData.append("statement3", this.match_pairsForm.get('statement3').value)
     formData.append("statement4", this.match_pairsForm.get('statement4').value)
     formData.append("statement5", this.match_pairsForm.get('statement5').value)
+    formData.append("statement6", this.match_pairsForm.get('statement6').value)
     formData.append("answer1", this.match_pairsForm.get('answer1').value)
     formData.append("answer2", this.match_pairsForm.get('answer2').value)
     formData.append("answer3", this.match_pairsForm.get('answer3').value)
     formData.append("answer4", this.match_pairsForm.get('answer4').value)
     formData.append("answer5", this.match_pairsForm.get('answer5').value)
+    formData.append("answer6", this.match_pairsForm.get('answer6').value)
     formData.append("posFeedback", this.match_pairsForm.get('posFeedback').value)
     formData.append("negFeedback", this.match_pairsForm.get('negFeedback').value)
 
@@ -182,7 +206,15 @@ export class MatchPairsComponent implements OnInit {
     if (this.match_pairsForm.get('file').value) {
       formData.append('file', this.match_pairsForm.get('file').value);
     }
-
+    if(this.match_pairsForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+         panelClass: ['red-snackbar']
+       });
+       this.loading = false
+       // this.router.navigate([`/material/view/${this.topicId}`]);
+       return
+     }
     formData.append("question", this.match_pairsForm.get('question').value)
     formData.append("sequence", this.match_pairsForm.get('sequence').value)
     formData.append("statement1", this.match_pairsForm.get('statement1').value)
@@ -190,11 +222,13 @@ export class MatchPairsComponent implements OnInit {
     formData.append("statement3", this.match_pairsForm.get('statement3').value)
     formData.append("statement4", this.match_pairsForm.get('statement4').value)
     formData.append("statement5", this.match_pairsForm.get('statement5').value)
+    formData.append("statement6", this.match_pairsForm.get('statement6').value)
     formData.append("answer1", this.match_pairsForm.get('answer1').value)
     formData.append("answer2", this.match_pairsForm.get('answer2').value)
     formData.append("answer3", this.match_pairsForm.get('answer3').value)
     formData.append("answer4", this.match_pairsForm.get('answer4').value)
     formData.append("answer5", this.match_pairsForm.get('answer5').value)
+    formData.append("answer6", this.match_pairsForm.get('answer6').value)
     formData.append("posFeedback", this.match_pairsForm.get('posFeedback').value)
     formData.append("negFeedback", this.match_pairsForm.get('negFeedback').value)
     this.matchPairsService.updateQuestion(formData ,this.questionData._id).subscribe(
@@ -202,24 +236,24 @@ export class MatchPairsComponent implements OnInit {
         console.log("response:", res)
         this.updatedQuestion = res;
 
-        this.match_pairsForm.patchValue({
-          statement1: this.updatedQuestion.statement1,
-          statement2: this.updatedQuestion.statement2,
-          statement3: this.updatedQuestion.statement3,
-          statement4: this.updatedQuestion.statement4,
-          statement5: this.updatedQuestion.statement5,
-          answer1: this.updatedQuestion.answer1,
-          answer2: this.updatedQuestion.answer2,
-          answer3: this.updatedQuestion.answer3,
-          answer4: this.updatedQuestion.answer4,
-          answer5: this.updatedQuestion.answer5,
-          question: this.updatedQuestion.question,
-          sequence: this.updatedQuestion.sequence,
-          posFeedback: this.updatedQuestion.posFeedback,
-          negFeedback: this.updatedQuestion.negFeedback
-        })
-        this.questionData = this.match_pairsForm.value;
-        console.log(this.questionData);
+        // this.match_pairsForm.patchValue({
+        //   statement1: this.updatedQuestion.statement1,
+        //   statement2: this.updatedQuestion.statement2,
+        //   statement3: this.updatedQuestion.statement3,
+        //   statement4: this.updatedQuestion.statement4,
+        //   statement5: this.updatedQuestion.statement5,
+        //   answer1: this.updatedQuestion.answer1,
+        //   answer2: this.updatedQuestion.answer2,
+        //   answer3: this.updatedQuestion.answer3,
+        //   answer4: this.updatedQuestion.answer4,
+        //   answer5: this.updatedQuestion.answer5,
+        //   question: this.updatedQuestion.question,
+        //   sequence: this.updatedQuestion.sequence,
+        //   posFeedback: this.updatedQuestion.posFeedback,
+        //   negFeedback: this.updatedQuestion.negFeedback
+        // })
+        // this.questionData = this.match_pairsForm.value;
+        // console.log(this.questionData);
         this._snackBar.open(" Your Question has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']

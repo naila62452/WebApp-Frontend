@@ -7,6 +7,7 @@ import { FaqComponent } from './faq/faq.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { MaterialModule } from '../angular_material/material.module';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     CommonModule,
     PrivacyPolicyRoutingModule,
     MaterialModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TranslateModule
   ],
   exports: [MatExpansionModule]
 })

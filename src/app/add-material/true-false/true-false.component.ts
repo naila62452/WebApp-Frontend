@@ -28,7 +28,7 @@ export class TrueFalseComponent implements OnInit {
   loading: boolean
   Pickedimage: string;
   imageUrl: any
-
+length: any
   get sequence() { return this.trueFalseForm.get('sequence'); }
 
   constructor(
@@ -39,6 +39,8 @@ export class TrueFalseComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('trueFalseId');
+    this.length = this.route.snapshot.paramMap.get('length');
+
     this.isAddMode = !this.id;
     console.log(this.id)
     this.trueFalseForm = new FormGroup({
@@ -56,7 +58,7 @@ export class TrueFalseComponent implements OnInit {
       ]),
       sequence: new FormControl("", [
         Validators.required,
-        Validators.min(0)
+        Validators.min(1)
       ]),
       file: new FormControl("", [
       ]),
@@ -144,28 +146,36 @@ export class TrueFalseComponent implements OnInit {
       formData.append('file', this.trueFalseForm.get('file').value);
     }
 
+    if(this.trueFalseForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      this.loading = false
+      // this.router.navigate([`/material/view/${this.topicId}`]);
+      return
+    }
     formData.append("question", this.trueFalseForm.get('question').value)
     formData.append("sequence", this.trueFalseForm.get('sequence').value)
     formData.append("posFeedback", this.trueFalseForm.get('posFeedback').value)
     formData.append("negFeedback", this.trueFalseForm.get('negFeedback').value)
     formData.append("answer", this.trueFalseForm.get('answer').value)
-
+  
     this.trueFalseService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;
 
-        this.trueFalseForm.patchValue({
-          question: this.updatedQuestion.question,
-          sequence: this.updatedQuestion.sequence,
-          answer: this.updatedQuestion.answer,
-          posFeedback: this.updatedQuestion.posFeedback,
-          negFeedback: this.updatedQuestion.negFeedback,
-          file: this.updatedQuestion.file
-
-        })
-        this.questionData = this.trueFalseForm.value;
-        console.log(this.questionData);
+        // this.trueFalseForm.patchValue({
+        //   question: this.updatedQuestion.question,
+        //   sequence: this.updatedQuestion.sequence,
+        //   answer: this.updatedQuestion.answer,
+        //   posFeedback: this.updatedQuestion.posFeedback,
+        //   negFeedback: this.updatedQuestion.negFeedback,
+        //   file: this.updatedQuestion.file
+        // })
+        // this.questionData = this.trueFalseForm.value;
+        // console.log(this.questionData);
         this._snackBar.open(" Your Question has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']

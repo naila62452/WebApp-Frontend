@@ -21,6 +21,7 @@ export class EditTopicComponent implements OnInit {
     this.topicService.getTopicByTopicId(this.topicId).subscribe(
       res => {
         this.updateTopic = res;
+        this.length = this.updateTopic.noOfQuestions
         this.topicForm.patchValue({
           topic: this.updateTopic.topic,
           ageGroup: this.updateTopic.ageGroup,
@@ -29,17 +30,21 @@ export class EditTopicComponent implements OnInit {
           grade: this.updateTopic.grade,
           noOfQuestions: this.updateTopic.noOfQuestions,
           time: this.updateTopic.time,
-          subject: this.updateTopic.subject
+          subject: this.updateTopic.subject,
+          access: this.updateTopic.access,
+          accessCode: this.updateTopic.accessCode
         })
-        console.log(this.updateTopic)
+        console.log(this.updateTopic, "patch")
       });
   }
+  get access() { return this.topicForm.get('access'); }
+  get accessCode() { return this.topicForm.get('accessCode'); }
 
   public topicForm: FormGroup = new FormGroup({
     topic: new FormControl('', {
       validators: [Validators.required, Validators.maxLength(50)],
-      // asyncValidators: this.uniqueEmailValidator(),
-      // updateOn: 'blur',
+      asyncValidators: this.uniqueEmailValidator(),
+      updateOn: 'blur',
     }),
     ageGroup: new FormControl("", [
       Validators.required
@@ -61,6 +66,10 @@ export class EditTopicComponent implements OnInit {
     ]),
     time: new FormControl("", [
       Validators.required
+    ]),
+    access: new FormControl("", [
+    ]),
+    accessCode: new FormControl("", [
     ])
   });
 
@@ -81,6 +90,9 @@ export class EditTopicComponent implements OnInit {
   topicId: any
   updateTopic: any
   updatedTopic: any
+  length: any
+  remainingQuestion = localStorage.getItem('remainingQuestions')
+  
   ngOnInit(): void {
     this.activityService.getGeGroup()
       .subscribe(data => {
@@ -119,8 +131,9 @@ export class EditTopicComponent implements OnInit {
         map((res) => {
           let resTopic: string = res.topic;
           let inputTopic: string = control.value;
-
-          return (resTopic?.toLowerCase() === inputTopic?.toLowerCase() ? { topicExists: true } : null)
+          let originalTopic: string = this.updateTopic.topic
+          console.log(originalTopic, inputTopic)
+          return (originalTopic !== inputTopic && resTopic?.toLowerCase() === inputTopic?.toLowerCase() ? { topicExists: true } : null)
         }),
         catchError((err) => { console.log(err + 'i am error'); return null })
       )
@@ -129,7 +142,17 @@ export class EditTopicComponent implements OnInit {
 
   onUpdate() {
     let body = this.topicForm.value;
+    console.log(this.remainingQuestion, "bache sawal")
     this.topicId = this.route.snapshot.paramMap.get('topicId');
+    console.log(this.length + ' backend')
+    console.log(this.topicForm.get('noOfQuestions').value + " frontend")
+    if(this.topicForm.get('noOfQuestions').value < parseInt(this.length)) {
+      this.snackbar.open(` You have total questions ${this.length}. Please select greater number`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      return
+    }
     this.topicService.updateTopic(body, this.topicId).subscribe(
       res => {
         this.updatedTopic = res;
@@ -141,23 +164,35 @@ export class EditTopicComponent implements OnInit {
           grade: this.updatedTopic.grade,
           noOfQuestions: this.updatedTopic.noOfQuestions,
           time: this.updatedTopic.time,
+          access: this.updatedTopic.access,
+          accessCode: this.updatedTopic.accessCode
         })
         this.updateTopic = this.topicForm.value;
-        console.log(this.updateTopic);
+        console.log("updated", this.updateTopic);
         this.snackbar.open(" You topic has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
-        // window.location.reload();
-        this.router.navigate(['/user/view']);
+        this.router.navigate([`/material/view/${this.topicId}`]);
       },
       (err: any) => {
-        this.snackbar.open("Failed to update topic", "Ok", {
+        this.snackbar.open("That topic name already exists.", "Ok", {
           duration: 5000,
           panelClass: ['red-snackbar']
         });
-        this.router.navigate(['/user/view']);
+        this.router.navigate([`/material/edit-topic/${this.topicId}`]);
       });
+  }
+  isAccessChange(event: any) {
+    console.log(event.checked)
+    if(event.checked) {
+      this.topicForm.controls['accessCode'].setValidators([Validators.required])
+      this.topicForm.controls['accessCode'].updateValueAndValidity()
+    }
+    else {
+      this.topicForm.controls['accessCode'].clearValidators()
+      this.topicForm.controls['accessCode'].updateValueAndValidity()
+    }
   }
 }
 
