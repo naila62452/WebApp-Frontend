@@ -91,9 +91,10 @@ export class EditTopicComponent implements OnInit {
   updateTopic: any
   updatedTopic: any
   length: any
-  remainingQuestion = localStorage.getItem('remainingQuestions')
-  
+  remainingQuestion = parseInt(localStorage.getItem('remainingQuestions'))
+
   ngOnInit(): void {
+    console.log(this.remainingQuestion, "edit me")
     this.activityService.getGeGroup()
       .subscribe(data => {
         this.age = data
@@ -142,13 +143,14 @@ export class EditTopicComponent implements OnInit {
 
   onUpdate() {
     let body = this.topicForm.value;
-    console.log(this.remainingQuestion, "bache sawal")
+    console.log(this.remainingQuestion, "enter hogey hue sawal")
     this.topicId = this.route.snapshot.paramMap.get('topicId');
     console.log(this.length + ' backend')
     console.log(this.topicForm.get('noOfQuestions').value + " frontend")
-    if(this.topicForm.get('noOfQuestions').value < parseInt(this.length)) {
-      this.snackbar.open(` You have total questions ${this.length}. Please select greater number`, "Ok", {
-        duration: 5000,
+    // if (this.topicForm.get('noOfQuestions').value < parseInt(this.length) && this.remainingQuestion !== 0 && this.remainingQuestion === this.topicForm.get('noOfQuestions').value) {
+    if (this.topicForm.get('noOfQuestions').value < this.remainingQuestion) {
+      this.snackbar.open(` You have created ${this.remainingQuestion} questions. Total number of questions can not be less than created questions`, "Ok", {
+        duration: 7000,
         panelClass: ['red-snackbar']
       });
       return
@@ -185,7 +187,7 @@ export class EditTopicComponent implements OnInit {
   }
   isAccessChange(event: any) {
     console.log(event.checked)
-    if(event.checked) {
+    if (event.checked) {
       this.topicForm.controls['accessCode'].setValidators([Validators.required])
       this.topicForm.controls['accessCode'].updateValueAndValidity()
     }

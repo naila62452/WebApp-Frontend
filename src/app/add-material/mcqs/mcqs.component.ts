@@ -84,7 +84,7 @@ export class MCQSComponent implements OnInit {
       ]),
       sequence: new FormControl("", [
         Validators.required,
-        Validators.min(0)
+        Validators.min(1)
       ])
     })
 

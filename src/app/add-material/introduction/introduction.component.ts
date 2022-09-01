@@ -48,7 +48,7 @@ export class IntroductionComponent implements OnInit {
       ]),
       sequence: new FormControl("", [
         Validators.required,
-        Validators.min(0)
+        Validators.min(1)
       ]),
       file: new FormControl("", [
       ]),

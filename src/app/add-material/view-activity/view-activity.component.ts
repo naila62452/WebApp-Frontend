@@ -1,15 +1,14 @@
-import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { McqsService } from 'src/app/service/mcqs.service';
 import { OpenEndedService } from 'src/app/service/open-ended-service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { TrueFalseService } from 'src/app/service/true-false-service';
-import { MatDialog } from '@angular/material/dialog';
-import { OpenEndedComponent } from '../open-ended/open-ended.component';
 import { IntroductionService } from 'src/app/service/introduction';
 import { MatchPairsService } from 'src/app/service/match-pairs-service';
+import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
 
 enum ServiceEnum {
   mcqsService = 'mcqsService',
@@ -43,15 +42,15 @@ export class ViewActivityComponent implements OnInit {
   topicGetById: Array<any> = []
   processSort: any
   userId = localStorage.getItem('id');
-  questionNumber = localStorage.getItem('remainingQuestions')
   totalNumberOfQuestions: any
+  typeNameArray: any
+
   constructor(private mcqsService: McqsService,
     private openEndedService: OpenEndedService, private matchPairsService: MatchPairsService,
     private trueFalseService: TrueFalseService, private introService: IntroductionService,
-    private route: ActivatedRoute, private topicService: TopicsService,
-    private dialogue: MatDialog,
+    private route: ActivatedRoute, private topicService: TopicsService, private router: Router,
+    private dialogueService: ConfirmDialogService,
     private _snackBar: MatSnackBar) { }
-
 
   ngOnInit(): void {
     this.topic = this.route.snapshot.paramMap.get('id')
@@ -63,20 +62,137 @@ export class ViewActivityComponent implements OnInit {
             .sort((low: { sequence: number; }, high: { sequence: number; }) => {
               return low.sequence - high.sequence;
             })
-            // let i;
-            // for( i = 1; i <= this.topicGetById[0].combineQuestion.length; i++) {
-            //   this.topicGetById[0].combineQuestion[i-1].sequence = i
-            // }
-          console.log('response', this.topicGetById[0].noOfQuestions)
+          // let i;
+          // for( i = 1; i <= this.topicGetById[0].combineQuestion.length; i++) {
+          //   this.topicGetById[0].combineQuestion[i-1].sequence = i
+          // }
+          console.log('response', this.topicGetById[0])
           this.totalNumberOfQuestions = this.topicGetById[0]?.noOfQuestions - parseInt(localStorage.getItem('remainingQuestions'))
-          console.log(this.topicGetById[0], "total number")
+          console.log(this.totalNumberOfQuestions, "total number")
         }, err => {
           console.log(err)
         })
   }
 
-  openDialogue() {
-    this.dialogue.open(OpenEndedComponent)
+  // openDeleteDialogue(id: any): void {
+  //   const options = {
+  //     title: 'Delete Question?',
+  //     message: 'Are you sure you want to delete this Question?',
+  //     cancelCaption: 'No',
+  //     confirmCaption: 'Yes'
+  //   };
+  //   this.dialogueService.open(options)
+  //   this.dialogueService.confirmed().subscribe(confirm => {
+  //     if (confirm) {
+  //       let arr = this.topicGetById[0].combineQuestion
+  //       const newArray = arr.map((element: { questionType: any; }) => element.questionType);
+  //       console.log(newArray);
+  //       newArray.forEach((element: any) => {
+  //         this.typeNameArray = element
+  //         console.log(this.typeNameArray, " i am type")
+  //       });
+  //       if (this.typeNameArray === 'openEnded') {
+  //         this.onDeleteOpenEnded(id);
+  //         console.log('i am deleted ' + this.typeNameArray)
+  //       }
+  //       if (this.typeNameArray === 'introduction') {
+  //         console.log('i am deleted ' + this.typeNameArray)
+  //         this.onDeleteIntro(id);
+  //       }
+  //       if (this.typeNameArray === 'mcqs') {
+  //         console.log('i am deleted ' + this.typeNameArray)
+  //         this.onDeleteMcqs(id);
+  //       }
+  //       if (this.typeNameArray === 'matchPairs') {
+  //         console.log('i am deleted ' + this.typeNameArray)
+  //         this.onDeleteMatchPairs(id);
+  //       }
+  //       if (this.typeNameArray === 'trueFalse') {
+  //         console.log('i am deleted ' + this.typeNameArray)
+  //         this.onDeleteTrueFalse(id);
+  //       }
+  //     }
+  //     else return
+  //   })
+  // }
+
+  openDeleteDialogueMcqs(id: any): void {
+    const options = {
+      title: 'Delete Question?',
+      message: 'Are you sure you want to delete this Question?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+       this.onDeleteMcqs(id)
+      }
+      else return
+    })
+  }
+
+  openDeleteDialogueIntro(id: any): void {
+    const options = {
+      title: 'Delete Question?',
+      message: 'Are you sure you want to delete this Question?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+       this.onDeleteIntro(id)
+      }
+      else return
+    })
+  }
+  openDeleteDialogueOpen(id: any): void {
+    const options = {
+      title: 'Delete Question?',
+      message: 'Are you sure you want to delete this Question?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+       this.onDeleteOpenEnded(id)
+      }
+      else return
+    })
+  }
+
+  openDeleteDialogueTrueFalse(id: any): void {
+    const options = {
+      title: 'Delete Question?',
+      message: 'Are you sure you want to delete this Question?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+       this.onDeleteTrueFalse(id)
+      }
+      else return
+    })
+  }
+
+  openDeleteDialogueMatch(id: any): void {
+    const options = {
+      title: 'Delete Question?',
+      message: 'Are you sure you want to delete this Question?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+       this.onDeleteMatchPairs(id)
+      }
+      else return
+    })
   }
 
   onDeleteMcqs(id: any) {
@@ -88,11 +204,12 @@ export class ViewActivityComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        window.location.reload()
       }, err => {
         console.log(err)
         this._snackBar.open(" Your Question has not been Deleted", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
     )
@@ -107,11 +224,12 @@ export class ViewActivityComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        window.location.reload()
       }, err => {
         console.log(err)
         this._snackBar.open(" Your Question has not been Deleted", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
     )
@@ -126,6 +244,7 @@ export class ViewActivityComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        window.location.reload()
       }, err => {
         console.log(err)
         this._snackBar.open(" Your Question has not been Deleted", "Ok", {
@@ -145,11 +264,12 @@ export class ViewActivityComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        window.location.reload()
       }, err => {
         console.log(err)
         this._snackBar.open(" Your Question has not been Deleted", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
     )
@@ -164,16 +284,34 @@ export class ViewActivityComponent implements OnInit {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        window.location.reload()
       }, err => {
         console.log(err)
         this._snackBar.open(" Your Question has not been Deleted", "Ok", {
           duration: 5000,
-          panelClass: ['blue-snackbar']
+          panelClass: ['red-snackbar']
         });
       }
     )
   }
 
+  deleteTopic(id: any) {
+    this.topicService.deleteTopic(id).subscribe(
+      res => {
+        this._snackBar.open(" Your Topic has been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+        this.router.navigate(['/user/view']);
+      }, err => {
+        console.log(err)
+        this._snackBar.open(" Your Topic has not been Deleted", "Ok", {
+          duration: 5000,
+          panelClass: ['red-snackbar']
+        });
+      }
+    )
+  }
   getServiceName(service: ServiceEnum) {
     switch (service) {
       case ServiceEnum.mcqsService:

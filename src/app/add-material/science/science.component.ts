@@ -59,7 +59,6 @@ export class ScienceComponent implements OnInit {
         this.ifSubmitted = Array(Number(this.totalNumberOfQuestions)).fill(false)
         console.log(this.arr)
         if (this.totalNumberOfQuestions === 0) {
-          // window.location.reload()
           this.router.navigate([`/material/view/${res._id}`]);
           this._snackBar.open("All Questions has been submitted", "Ok", {
             duration: 5000,

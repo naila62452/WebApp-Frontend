@@ -159,6 +159,7 @@ export class AddTopicComponent implements OnInit, SafeData {
           this.getTopicByAgeId(this.topicForm.value.ageGroup);
           this.topicForm.reset();
           localStorage.setItem('remainingQuestions', '0')
+          console.log(localStorage.setItem('remainingQuestions', '0'), "topic creation remaining question")
           this.router.navigate([`/material/type/${res._id}`])
         },
         err => {
