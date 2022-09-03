@@ -21,9 +21,9 @@
             (click)="deleteTopic(topics._id)" style="width: fit-content; text-align: center; font-size: px;">Delete
             Topic</button>
 
-        <button mat-stroked-button *ngIf="userId === topics.userId && totalNumberOfQuestions !== 0"
+        <button mat-stroked-button *ngIf="userId === topics.userId && remainingQuestions !== 0"
             [routerLink]="['/material/type', topics._id]" class="button"
-            style="width: fit-content; text-align: center; font-size: px;">You have {{totalNumberOfQuestions}} questions
+            style="width: fit-content; text-align: center; font-size: px;">You have {{remainingQuestions}} questions
             to add
         </button>
     </div>
@@ -38,7 +38,7 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogueIntro(combine._id)"
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id, combine.questionType)"
                     matTooltip="Delete Question">delete</mat-icon>
                 <!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteIntro(combine._id)">
                     <mat-icon style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
@@ -78,7 +78,7 @@
                 <p> {{combine.negFeedback}}</p>
             </ul>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogueMcqs(combine._id)"
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id, combine.questionType)"
                     matTooltip="Delete Question">delete</mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">edit</mat-icon>
@@ -100,7 +100,7 @@
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
                 <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogueTrueFalse(combine._id)" matTooltip="Delete Question">delete</mat-icon>
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete</mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">edit</mat-icon>
             </div>
@@ -114,7 +114,7 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogueOpen(combine._id)"
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id , combine.questionType)"
                     matTooltip="Delete Question">delete</mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">edit</mat-icon>
@@ -186,7 +186,7 @@
             <h3>Feedback if the answer is wrong:</h3>
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogueMatch(combine._id)"
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id , combine.questionType)"
                     matTooltip="Delete Question">delete</mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">edit</mat-icon>

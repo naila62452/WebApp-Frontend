@@ -85,6 +85,6 @@ const type = 'mcqsService'
 export class McqsService extends DataService {
 
   constructor(http: HttpClient) {
-    super(http, api_path_mcqs, type)
+    super(http)
   }
 }

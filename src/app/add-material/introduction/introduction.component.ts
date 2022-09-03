@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IntroductionService } from 'src/app/service/introduction';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { DataService } from 'src/app/service/curd-data-service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-introduction',
   templateUrl: './introduction.component.html',
@@ -29,14 +29,15 @@ export class IntroductionComponent implements OnInit {
   Pickedimage: string;
   imageUrl: any
   length: any
+
   constructor(
-    private introService: IntroductionService,
-    private _snackBar: MatSnackBar,
+    private _snackBar: MatSnackBar, private dataService: DataService,
     private router: Router, private route: ActivatedRoute) { }
 
   get sequence() { return this.introForm.get('sequence'); }
 
   ngOnInit(): void {
+    this.dataService.setUrl(`${environment.web_URL}/api/intro`)
     this.id = this.route.snapshot.paramMap.get('introId');
     this.length = this.route.snapshot.paramMap.get('length');
 
@@ -58,7 +59,7 @@ export class IntroductionComponent implements OnInit {
 
     if (!this.isAddMode) {
       console.log(this.id)
-      this.introService.getQuestionById(this.id).subscribe(
+      this.dataService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
           this.imageUrl = this.questionData.file
@@ -107,7 +108,7 @@ export class IntroductionComponent implements OnInit {
     formData.append("introduction", this.introForm.get('introduction').value)
     formData.append("sequence", this.introForm.get('sequence').value)
 
-    this.introService.addAll(formData, this.topic)
+    this.dataService.addAll(formData, this.topic)
       .subscribe(
         res => {
           this.introduction = res;
@@ -148,19 +149,10 @@ export class IntroductionComponent implements OnInit {
     formData.append("introduction", this.introForm.get('introduction').value)
     formData.append("sequence", this.introForm.get('sequence').value)
 
-    this.introService.updateQuestion(formData, this.questionData._id).subscribe(
+    this.dataService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;
-
-        this.introForm.patchValue({
-          introduction: this.updatedQuestion.introduction,
-          sequence: this.updatedQuestion.sequence,
-          file: this.updatedQuestion.file,
-          link: this.updatedQuestion.link
-        })
-        this.questionData = this.introForm.value;
-        console.log(this.questionData);
         this._snackBar.open(" Your Question has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
@@ -176,6 +168,7 @@ export class IntroductionComponent implements OnInit {
         });
       });
   }
+
   PickedImage(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.introForm.patchValue({ file: file })

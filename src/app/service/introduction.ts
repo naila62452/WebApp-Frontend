@@ -12,6 +12,6 @@ const type = 'introService'
 export class IntroductionService extends DataService {
 
   constructor(http: HttpClient) {
-    super(http, api_path_intro, type)
+    super(http)
   }
 }

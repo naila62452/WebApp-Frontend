@@ -69,12 +69,11 @@ export class AddTopicComponent implements OnInit, SafeData {
       Validators.required
     ]),
     access: new FormControl(null, [
-      // Validators.required
     ]),
     accessCode: new FormControl(null, [
-      // Validators.required
     ]),
   });
+
   topic: Array<any> = []
   subject: any
   searchText = ''
@@ -145,7 +144,6 @@ export class AddTopicComponent implements OnInit, SafeData {
 
   onSubmit() {
     this.loading = true
-    // console.log(this.topicForm.value)
     this.subId = this.route.snapshot.paramMap.get('id');
     this.topicService.addTopic(this.topicForm.value, this.subId, this.topicForm.value.ageGroup)
       .subscribe(
@@ -158,8 +156,6 @@ export class AddTopicComponent implements OnInit, SafeData {
           this.loading = false
           this.getTopicByAgeId(this.topicForm.value.ageGroup);
           this.topicForm.reset();
-          localStorage.setItem('remainingQuestions', '0')
-          console.log(localStorage.setItem('remainingQuestions', '0'), "topic creation remaining question")
           this.router.navigate([`/material/type/${res._id}`])
         },
         err => {

@@ -11,6 +11,6 @@ const type = 'openEndedService'
 
 export class OpenEndedService extends DataService {
   constructor(http: HttpClient) {
-    super (http, api_path_openEnded, type)
+    super (http)
    }
 }

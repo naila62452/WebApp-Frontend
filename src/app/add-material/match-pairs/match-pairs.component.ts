@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatchPairsService } from 'src/app/service/match-pairs-service';
+import { DataService } from 'src/app/service/curd-data-service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-match-pairs',
   templateUrl: './match-pairs.component.html',
@@ -25,13 +26,14 @@ export class MatchPairsComponent implements OnInit {
   imageUrl: any
   Pickedimage: string
   length: any
-  constructor(private matchPairsService: MatchPairsService,
-    private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private dataService: DataService,
     private _snackBar: MatSnackBar, private router: Router) { }
 
-    get sequence() { return this.match_pairsForm.get('sequence'); }
+  get sequence() { return this.match_pairsForm.get('sequence'); }
 
   ngOnInit(): void {
+    this.dataService.setUrl(`${environment.web_URL}/api/match`)
+
     this.id = this.route.snapshot.paramMap.get('matchId');
     this.length = this.route.snapshot.paramMap.get('length');
 
@@ -42,40 +44,28 @@ export class MatchPairsComponent implements OnInit {
         Validators.required
       ]),
       statement1: new FormControl("", [
-        // Validators.required
       ]),
       answer1: new FormControl("", [
-        // Validators.required
       ]),
       statement2: new FormControl("", [
-        // Validators.required
       ]),
       answer2: new FormControl("", [
-        // Validators.required
       ]),
       statement3: new FormControl("", [
-        // Validators.required
       ]),
       answer3: new FormControl("", [
-        // Validators.required
       ]),
       statement4: new FormControl("", [
-        // Validators.required
       ]),
       answer4: new FormControl("", [
-        // Validators.required
       ]),
       statement5: new FormControl("", [
-        // Validators.required
       ]),
       answer5: new FormControl("", [
-        // Validators.required
       ]),
       statement6: new FormControl("", [
-        // Validators.required
       ]),
       answer6: new FormControl("", [
-        // Validators.required
       ]),
       // statement7: new FormControl("", [
       //   // Validators.required
@@ -105,7 +95,7 @@ export class MatchPairsComponent implements OnInit {
 
     if (!this.isAddMode) {
       console.log(this.id)
-      this.matchPairsService.getQuestionById(this.id).subscribe(
+      this.dataService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
           this.imageUrl = this.questionData.file
@@ -147,7 +137,7 @@ export class MatchPairsComponent implements OnInit {
     //     return;
     //   }
 
-      this.loading = true;
+    this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -179,7 +169,7 @@ export class MatchPairsComponent implements OnInit {
     formData.append("posFeedback", this.match_pairsForm.get('posFeedback').value)
     formData.append("negFeedback", this.match_pairsForm.get('negFeedback').value)
 
-    this.matchPairsService.addAll(formData, this.topicId)
+    this.dataService.addAll(formData, this.topicId)
       .subscribe(res => {
         console.log(res)
         this._snackBar.open(" Your Question has been created", "Ok", {
@@ -206,15 +196,15 @@ export class MatchPairsComponent implements OnInit {
     if (this.match_pairsForm.get('file').value) {
       formData.append('file', this.match_pairsForm.get('file').value);
     }
-    if(this.match_pairsForm.get('sequence').value > this.length) {
+    if (this.match_pairsForm.get('sequence').value > this.length) {
       this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
         duration: 5000,
-         panelClass: ['red-snackbar']
-       });
-       this.loading = false
-       // this.router.navigate([`/material/view/${this.topicId}`]);
-       return
-     }
+        panelClass: ['red-snackbar']
+      });
+      this.loading = false
+      return
+    }
+
     formData.append("question", this.match_pairsForm.get('question').value)
     formData.append("sequence", this.match_pairsForm.get('sequence').value)
     formData.append("statement1", this.match_pairsForm.get('statement1').value)
@@ -231,29 +221,10 @@ export class MatchPairsComponent implements OnInit {
     formData.append("answer6", this.match_pairsForm.get('answer6').value)
     formData.append("posFeedback", this.match_pairsForm.get('posFeedback').value)
     formData.append("negFeedback", this.match_pairsForm.get('negFeedback').value)
-    this.matchPairsService.updateQuestion(formData ,this.questionData._id).subscribe(
+    this.dataService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;
-
-        // this.match_pairsForm.patchValue({
-        //   statement1: this.updatedQuestion.statement1,
-        //   statement2: this.updatedQuestion.statement2,
-        //   statement3: this.updatedQuestion.statement3,
-        //   statement4: this.updatedQuestion.statement4,
-        //   statement5: this.updatedQuestion.statement5,
-        //   answer1: this.updatedQuestion.answer1,
-        //   answer2: this.updatedQuestion.answer2,
-        //   answer3: this.updatedQuestion.answer3,
-        //   answer4: this.updatedQuestion.answer4,
-        //   answer5: this.updatedQuestion.answer5,
-        //   question: this.updatedQuestion.question,
-        //   sequence: this.updatedQuestion.sequence,
-        //   posFeedback: this.updatedQuestion.posFeedback,
-        //   negFeedback: this.updatedQuestion.negFeedback
-        // })
-        // this.questionData = this.match_pairsForm.value;
-        // console.log(this.questionData);
         this._snackBar.open(" Your Question has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
@@ -269,6 +240,7 @@ export class MatchPairsComponent implements OnInit {
         });
       });
   }
+
   PickedImage(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.match_pairsForm.patchValue({ file: file })

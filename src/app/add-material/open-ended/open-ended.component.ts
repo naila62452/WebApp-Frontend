@@ -3,8 +3,9 @@ import { Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OpenEndedService } from 'src/app/service/open-ended-service';
 import { TopicsService } from 'src/app/service/topics.service';
+import { DataService } from 'src/app/service/curd-data-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-open-ended',
@@ -33,14 +34,16 @@ export class OpenEndedComponent implements OnInit {
   url: any
   deleteImage: any
   length: any
+
   get sequence() { return this.openEndedForm.get('sequence'); }
 
-  constructor(
-    private openEnded: OpenEndedService,
+  constructor(private dataService: DataService,
     private router: Router, private _snackBar: MatSnackBar,
     private route: ActivatedRoute, private topicService: TopicsService) { }
 
   ngOnInit(): void {
+    this.dataService.setUrl(`${environment.web_URL}/api/openEnded`)
+
     this.id = this.route.snapshot.paramMap.get('questionId');
     this.length = this.route.snapshot.paramMap.get('length');
     this.isAddMode = !this.id;
@@ -59,7 +62,7 @@ export class OpenEndedComponent implements OnInit {
 
     if (!this.isAddMode) {
       console.log(this.id)
-      this.openEnded.getQuestionById(this.id).subscribe(
+      this.dataService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
           this.imageUrl = this.questionData.file
@@ -94,7 +97,6 @@ export class OpenEndedComponent implements OnInit {
     }
   }
   createQuestion() {
-    // this.topic = localStorage.getItem('topicId')
     this.topicId = this.route.snapshot.paramMap.get('id')
 
     const formData = new FormData();
@@ -105,7 +107,7 @@ export class OpenEndedComponent implements OnInit {
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(this.openEndedForm.value)
-    this.openEnded.addAll(formData, this.topicId)
+    this.dataService.addAll(formData, this.topicId)
       .subscribe(
         res => {
           this.openEndedQuestion = res
@@ -143,16 +145,9 @@ export class OpenEndedComponent implements OnInit {
     formData.append("question", this.openEndedForm.get('question').value)
     formData.append("sequence", this.openEndedForm.get('sequence').value)
     console.log(formData.get('file'))
-    this.openEnded.updateQuestion(formData, this.questionData._id).subscribe(
+    this.dataService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         this.updatedQuestion = res;
-        this.openEndedForm.patchValue({
-          question: this.updatedQuestion.question,
-          sequence: this.updatedQuestion.sequence,
-          file: this.updatedQuestion.file
-        })
-        this.questionData = this.openEndedForm.value;
-        console.log(this.questionData);
         this._snackBar.open(" Your Question has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']

@@ -3,8 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Output, EventEmitter } from '@angular/core';
-import { TrueFalseService } from 'src/app/service/true-false-service';
-
+import { TopicsService } from 'src/app/service/topics.service';
+import { DataService } from 'src/app/service/curd-data-service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-true-false',
   templateUrl: './true-false.component.html',
@@ -28,16 +29,19 @@ export class TrueFalseComponent implements OnInit {
   loading: boolean
   Pickedimage: string;
   imageUrl: any
-length: any
+  length: any
+  idFromParams: any
+  topicData: any
+
   get sequence() { return this.trueFalseForm.get('sequence'); }
 
-  constructor(
-    private trueFalseService: TrueFalseService,
-    private route: ActivatedRoute,
-    private _snackBar: MatSnackBar,
-    private router: Router) { }
+  constructor(private route: ActivatedRoute,
+    private _snackBar: MatSnackBar, private dataService: DataService,
+    private router: Router, private topicService: TopicsService) { }
 
   ngOnInit(): void {
+    this.dataService.setUrl(`${environment.web_URL}/api/true_false`)
+
     this.id = this.route.snapshot.paramMap.get('trueFalseId');
     this.length = this.route.snapshot.paramMap.get('length');
 
@@ -66,7 +70,7 @@ length: any
 
     if (!this.isAddMode) {
       console.log(this.id)
-      this.trueFalseService.getQuestionById(this.id).subscribe(
+      this.dataService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
           this.imageUrl = this.questionData.file
@@ -97,7 +101,7 @@ length: any
     //     return;
     //   }
 
-      this.loading = true;
+    this.loading = true;
     if (this.isAddMode) {
       this.createQuestion();
     } else {
@@ -119,7 +123,7 @@ length: any
     formData.append("negFeedback", this.trueFalseForm.get('negFeedback').value)
     formData.append("answer", this.trueFalseForm.get('answer').value)
 
-    this.trueFalseService.addAll(formData, this.topicId)
+    this.dataService.addAll(formData, this.topicId)
       .subscribe(res => {
         console.log(res)
         this._snackBar.open(" Your Question has been created", "Ok", {
@@ -128,7 +132,6 @@ length: any
         });
         this.loading = false
         this.SetAsSubmitted(true);
-        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
         this.trueFalseForm.reset();
       },
         err => {
@@ -146,13 +149,12 @@ length: any
       formData.append('file', this.trueFalseForm.get('file').value);
     }
 
-    if(this.trueFalseForm.get('sequence').value > this.length) {
+    if (this.trueFalseForm.get('sequence').value > this.length) {
       this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
         duration: 5000,
         panelClass: ['red-snackbar']
       });
       this.loading = false
-      // this.router.navigate([`/material/view/${this.topicId}`]);
       return
     }
     formData.append("question", this.trueFalseForm.get('question').value)
@@ -160,22 +162,11 @@ length: any
     formData.append("posFeedback", this.trueFalseForm.get('posFeedback').value)
     formData.append("negFeedback", this.trueFalseForm.get('negFeedback').value)
     formData.append("answer", this.trueFalseForm.get('answer').value)
-  
-    this.trueFalseService.updateQuestion(formData, this.questionData._id).subscribe(
+
+    this.dataService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         console.log("response:", res)
         this.updatedQuestion = res;
-
-        // this.trueFalseForm.patchValue({
-        //   question: this.updatedQuestion.question,
-        //   sequence: this.updatedQuestion.sequence,
-        //   answer: this.updatedQuestion.answer,
-        //   posFeedback: this.updatedQuestion.posFeedback,
-        //   negFeedback: this.updatedQuestion.negFeedback,
-        //   file: this.updatedQuestion.file
-        // })
-        // this.questionData = this.trueFalseForm.value;
-        // console.log(this.questionData);
         this._snackBar.open(" Your Question has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']

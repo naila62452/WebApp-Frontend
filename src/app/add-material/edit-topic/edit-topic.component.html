@@ -25,6 +25,9 @@
                                     formControlName="subject" required readonly>
                             </mat-form-field>
 
+                                <input class="input_form" type="hidden" name="remainingQuestions" id="remainingQuestions"
+                                    formControlName="remainingQuestions" [value]="remainingQuestion">
+
                             <mat-form-field class="input_text">
                                 <mat-label>{{'add_topics.name' | translate}}</mat-label>
                                 <input class="input_form" matInput type="text" name="topic" id="topic"

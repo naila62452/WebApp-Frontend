@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
-import { McqsService } from 'src/app/service/mcqs.service';
 import { TopicsService } from 'src/app/service/topics.service';
 import { Output, EventEmitter } from '@angular/core';
 import { mimetype } from "../../../_validator/mime-type-validator";
+import { DataService } from 'src/app/service/curd-data-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mcqs',
@@ -21,10 +22,9 @@ export class MCQSComponent implements OnInit {
     this.submitEvent.emit(value);
   }
 
-  constructor(private mcqsService: McqsService,
-    private router: Router,
+  constructor(private router: Router,
     private route: ActivatedRoute,
-    private _snackBar: MatSnackBar,
+    private _snackBar: MatSnackBar, private dataService: DataService,
     private topicService: TopicsService) { }
   mcqs: Array<any> = []
   topicId: any
@@ -46,6 +46,7 @@ export class MCQSComponent implements OnInit {
   get sequence() { return this.mcqsForm.get('sequence'); }
 
   ngOnInit(): void {
+    this.dataService.setUrl(`${environment.web_URL}/api/mcqs`)
     this.id = this.route.snapshot.paramMap.get('mcqsId');
     this.length = this.route.snapshot.paramMap.get('length');
 
@@ -90,7 +91,7 @@ export class MCQSComponent implements OnInit {
 
     if (!this.isAddMode) {
       console.log(this.id)
-      this.mcqsService.getQuestionById(this.id).subscribe(
+      this.dataService.getQuestionById(this.id).subscribe(
         res => {
           this.questionData = res;
           this.imageUrl = this.questionData.file
@@ -150,7 +151,7 @@ export class MCQSComponent implements OnInit {
     formData.append("posFeedback", this.mcqsForm.get('posFeedback').value)
     formData.append("negFeedback", this.mcqsForm.get('negFeedback').value)
 
-    this.mcqsService.addAll(formData, this.topic)
+    this.dataService.addAll(formData, this.topic)
       .subscribe(
         res => {
           console.log(res + 'I am mcqs')
@@ -194,23 +195,9 @@ export class MCQSComponent implements OnInit {
     formData.append("sequence", this.mcqsForm.get('sequence').value)
     formData.append("posFeedback", this.mcqsForm.get('posFeedback').value)
     formData.append("negFeedback", this.mcqsForm.get('negFeedback').value)
-    this.mcqsService.updateQuestion(formData, this.questionData._id).subscribe(
+    this.dataService.updateQuestion(formData, this.questionData._id).subscribe(
       res => {
         this.updatedQuestion = res;
-        this.mcqsForm.patchValue({
-          mcqs: this.updatedQuestion.mcqs,
-          sequence: this.updatedQuestion.sequence,
-          option1: this.updatedQuestion.option1,
-          option2: this.updatedQuestion.option2,
-          option3: this.updatedQuestion.option3,
-          option4: this.updatedQuestion.option4,
-          answer: this.updatedQuestion.answer,
-          posFeedback: this.updatedQuestion.posFeedback,
-          negFeedback: this.updatedQuestion.negFeedback,
-          file: this.updatedQuestion.file
-        })
-        this.questionData = this.mcqsForm.value;
-        console.log(this.questionData);
         this._snackBar.open(" Your Question has been updated", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
@@ -247,24 +234,3 @@ export class MCQSComponent implements OnInit {
     this.imageUrl = ''
   }
 }
-
- // onSubmit() {
-  //   this.typeId = this.route.snapshot.paramMap.get('id')
-  //   this.topic = localStorage.getItem('topicId')
-  //   console.log(this.mcqsForm.value)
-  //   this.mcqsService.addAll(this.mcqsForm.value, this.topic)
-  //     .subscribe(
-  //       res => {
-  //         this.mcqs.push(res);
-  //         this._snackBar.open(" Your Question has been Posted", "Ok", {
-  //           duration: 5000,
-  //           panelClass: ['blue-snackbar']
-  //         });
-  //         this.SetAsSubmitted(true);
-  //         localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
-  //         this.mcqsForm.reset();
-  //       },
-  //       err => {
-  //         console.log(err)
-  //       });
-  // }

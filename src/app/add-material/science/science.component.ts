@@ -18,10 +18,10 @@ import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
 export class ScienceComponent implements OnInit {
   selectedValue: string[] = [];
   ifSubmitted: boolean[] = [];
-  totalNumberOfQuestions = 0
+  remainingQuestions = 0
   topicGetById: any = {};
   arr: any[] = []
-  count = 1;
+  count = 0;
   constructor(private category: ActivityFormService,
     private route: ActivatedRoute, private topicService: TopicsService,
     private _snackBar: MatSnackBar, private router: Router,
@@ -53,12 +53,14 @@ export class ScienceComponent implements OnInit {
         this.topicGetById = res
         console.log(res.noOfQuestions)
         console.log('response', res)
-        this.totalNumberOfQuestions = res.noOfQuestions - parseInt(localStorage.getItem('remainingQuestions'))
-        this.arr = Array(Number(this.totalNumberOfQuestions)).fill(0)
-        this.selectedValue = Array(Number(this.totalNumberOfQuestions)).fill('')
-        this.ifSubmitted = Array(Number(this.totalNumberOfQuestions)).fill(false)
+        // this.totalNumberOfQuestions = res.noOfQuestions - this.count
+        this.remainingQuestions = res.remainingQuestions
+        this.arr = Array(Number(this.remainingQuestions)).fill(0)
+        this.selectedValue = Array(Number(this.remainingQuestions)).fill('')
+        this.ifSubmitted = Array(Number(this.remainingQuestions)).fill(false)
+        // this.count++
         console.log(this.arr)
-        if (this.totalNumberOfQuestions === 0) {
+        if (this.remainingQuestions === 0) {
           this.router.navigate([`/material/view/${res._id}`]);
           this._snackBar.open("All Questions has been submitted", "Ok", {
             duration: 5000,

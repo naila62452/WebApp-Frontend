@@ -21,6 +21,7 @@ export class EditTopicComponent implements OnInit {
     this.topicService.getTopicByTopicId(this.topicId).subscribe(
       res => {
         this.updateTopic = res;
+        this.remainingQuestion = this.updateTopic.remainingQuestions
         this.length = this.updateTopic.noOfQuestions
         this.topicForm.patchValue({
           topic: this.updateTopic.topic,
@@ -29,6 +30,7 @@ export class EditTopicComponent implements OnInit {
           country: this.updateTopic.country,
           grade: this.updateTopic.grade,
           noOfQuestions: this.updateTopic.noOfQuestions,
+          remainingQuestions: this.remainingQuestion,
           time: this.updateTopic.time,
           subject: this.updateTopic.subject,
           access: this.updateTopic.access,
@@ -70,7 +72,9 @@ export class EditTopicComponent implements OnInit {
     access: new FormControl("", [
     ]),
     accessCode: new FormControl("", [
-    ])
+    ]),
+    remainingQuestions: new FormControl("", [
+    ]),
   });
 
   topic: Array<any> = []
@@ -91,7 +95,7 @@ export class EditTopicComponent implements OnInit {
   updateTopic: any
   updatedTopic: any
   length: any
-  remainingQuestion = parseInt(localStorage.getItem('remainingQuestions'))
+  remainingQuestion: any
 
   ngOnInit(): void {
     console.log(this.remainingQuestion, "edit me")
@@ -143,33 +147,19 @@ export class EditTopicComponent implements OnInit {
 
   onUpdate() {
     let body = this.topicForm.value;
-    console.log(this.remainingQuestion, "enter hogey hue sawal")
+    body.remainingQuestions = parseInt(body.noOfQuestions) - parseInt(this.length) + this.remainingQuestion
     this.topicId = this.route.snapshot.paramMap.get('topicId');
-    console.log(this.length + ' backend')
-    console.log(this.topicForm.get('noOfQuestions').value + " frontend")
-    // if (this.topicForm.get('noOfQuestions').value < parseInt(this.length) && this.remainingQuestion !== 0 && this.remainingQuestion === this.topicForm.get('noOfQuestions').value) {
-    if (this.topicForm.get('noOfQuestions').value < this.remainingQuestion) {
-      this.snackbar.open(` You have created ${this.remainingQuestion} questions. Total number of questions can not be less than created questions`, "Ok", {
+    if (this.topicForm.get('noOfQuestions').value < this.length - this.remainingQuestion) {
+      this.snackbar.open(` You have created ${this.length - this.remainingQuestion} questions. Total number of questions can not be less than created questions`, "Ok", {
         duration: 7000,
         panelClass: ['red-snackbar']
       });
       return
     }
-    this.topicService.updateTopic(body, this.topicId).subscribe(
+    this.topicService.updateTopic(body, this.topicId ).subscribe(
       res => {
         this.updatedTopic = res;
-        this.topicForm.patchValue({
-          topic: this.updatedTopic.topic,
-          ageGroup: this.updatedTopic.ageGroup,
-          language: this.updatedTopic.language,
-          country: this.updatedTopic.country,
-          grade: this.updatedTopic.grade,
-          noOfQuestions: this.updatedTopic.noOfQuestions,
-          time: this.updatedTopic.time,
-          access: this.updatedTopic.access,
-          accessCode: this.updatedTopic.accessCode
-        })
-        this.updateTopic = this.topicForm.value;
+        console.log(this.remainingQuestion, 'remain')
         console.log("updated", this.updateTopic);
         this.snackbar.open(" You topic has been updated", "Ok", {
           duration: 5000,
@@ -185,6 +175,7 @@ export class EditTopicComponent implements OnInit {
         this.router.navigate([`/material/edit-topic/${this.topicId}`]);
       });
   }
+  
   isAccessChange(event: any) {
     console.log(event.checked)
     if (event.checked) {

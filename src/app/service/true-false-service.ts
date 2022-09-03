@@ -10,6 +10,6 @@ const type = 'trueFalseService'
 })
 export class TrueFalseService extends DataService {
   constructor(http: HttpClient) {
-    super (http, api_path_trueFalse, type)
+    super (http)
    }
 }

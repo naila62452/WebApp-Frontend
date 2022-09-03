@@ -69,6 +69,7 @@ export class TopicsService {
       country: body.country,
       grade: body.grade,
       noOfQuestions: body.noOfQuestions,
+      remainingQuestions: body.remainingQuestions,
       time: body.time,
       access: body.access,
       accessCode: body.accessCode

@@ -12,6 +12,6 @@ const type = 'matchPairsService'
 export class MatchPairsService extends DataService {
 
   constructor(http: HttpClient) {
-    super(http, api_path_match_psirs, type)
+    super(http)
   }
 }
