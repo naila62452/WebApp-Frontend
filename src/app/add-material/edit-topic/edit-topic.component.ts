@@ -98,7 +98,6 @@ export class EditTopicComponent implements OnInit {
   remainingQuestion: any
 
   ngOnInit(): void {
-    console.log(this.remainingQuestion, "edit me")
     this.activityService.getGeGroup()
       .subscribe(data => {
         this.age = data

@@ -2,16 +2,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { McqsService } from 'src/app/service/mcqs.service';
-import { OpenEndedService } from 'src/app/service/open-ended-service';
-import { TopicsService } from 'src/app/service/topics.service';
-import { TrueFalseService } from 'src/app/service/true-false-service';
-import { IntroductionService } from 'src/app/service/introduction';
-import { MatchPairsService } from 'src/app/service/match-pairs-service';
 import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
 import { DataService } from 'src/app/service/curd-data-service';
 import { environment } from 'src/environments/environment';
-
+import { TopicsService } from 'src/app/service/topics.service';
 @Component({
   selector: 'app-view-activity',
   templateUrl: './view-activity.component.html',
@@ -39,10 +33,7 @@ export class ViewActivityComponent implements OnInit {
   remainingQuestions: any
   typeNameArray: any
 
-  constructor(private mcqsService: McqsService,
-    private openEndedService: OpenEndedService, private matchPairsService: MatchPairsService,
-    private trueFalseService: TrueFalseService, private introService: IntroductionService,
-    private route: ActivatedRoute, private topicService: TopicsService, private router: Router,
+  constructor(private route: ActivatedRoute, private topicService: TopicsService, private router: Router,
     private dialogueService: ConfirmDialogService,
     private _snackBar: MatSnackBar, private dataService: DataService) { }
 

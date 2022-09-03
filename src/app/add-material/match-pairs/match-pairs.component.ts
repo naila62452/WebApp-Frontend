@@ -177,7 +177,6 @@ export class MatchPairsComponent implements OnInit {
           panelClass: ['blue-snackbar']
         });
         this.loading = false
-        // window.location.reload();
         this.SetAsSubmitted(true);
         localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
         this.match_pairsForm.reset();

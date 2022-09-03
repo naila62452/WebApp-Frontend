@@ -8,6 +8,7 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { bounceOutLeftAnimation, slideEffect } from 'src/app/angular-animations/animations-fade';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { SafeData } from 'src/app/_models/save-data-interface';
+
 @Component({
   selector: 'app-add-topic',
   templateUrl: './add-topic.component.html',
