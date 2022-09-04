@@ -118,7 +118,6 @@ export class IntroductionComponent implements OnInit {
           });
           this.loading = false
           this.SetAsSubmitted(true);
-          localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
           this.introForm.reset();
         },
         err => {

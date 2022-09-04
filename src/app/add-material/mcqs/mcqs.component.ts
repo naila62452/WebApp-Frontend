@@ -161,7 +161,6 @@ export class MCQSComponent implements OnInit {
           });
           this.SetAsSubmitted(true);
           this.loading = false
-          localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) + 1 + '')
           this.mcqsForm.reset();
         },
         err => {

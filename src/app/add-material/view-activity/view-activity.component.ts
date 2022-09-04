@@ -72,28 +72,18 @@ export class ViewActivityComponent implements OnInit {
         let path = ''
         if (typeName === 'openEnded') {
           path = 'openEnded'
-          // this.onDeleteOpenEnded(id);
-          // console.log('i am deleted ')
         }
         else if (typeName === 'introduction') {
           path = 'intro'
-          // console.log('i am deleted ')
-          // this.onDeleteIntro(id);
         }
         else if (typeName === 'mcqs') {
           path = 'mcqs'
-          // console.log('i am deleted ')
-          // this.onDeleteMcqs(id);
         }
         else if (typeName === 'matchPairs') {
           path = 'match'
-          // console.log('i am deleted ')
-          // this.onDeleteMatchPairs(id);
         }
         else if (typeName === 'trueFalse') {
           path = 'true_false'
-          // console.log('i am deleted ' + typeName)
-          // this.onDeleteTrueFalse(id);
         }
         this.dataService.setUrl(`${environment.web_URL}/api/${path}`)
         this.dataService.delete(id).subscribe(
@@ -116,186 +106,6 @@ export class ViewActivityComponent implements OnInit {
       else return
     })
   }
-
-  // openDeleteDialogueMcqs(id: any): void {
-  //   const options = {
-  //     title: 'Delete Question?',
-  //     message: 'Are you sure you want to delete this Question?',
-  //     cancelCaption: 'No',
-  //     confirmCaption: 'Yes'
-  //   };
-  //   this.dialogueService.open(options)
-  //   this.dialogueService.confirmed().subscribe(confirm => {
-  //     if (confirm) {
-  //       this.onDeleteMcqs(id)
-  //     }
-  //     else return
-  //   })
-  // }
-
-  // openDeleteDialogueIntro(id: any): void {
-  //   const options = {
-  //     title: 'Delete Question?',
-  //     message: 'Are you sure you want to delete this Question?',
-  //     cancelCaption: 'No',
-  //     confirmCaption: 'Yes'
-  //   };
-  //   this.dialogueService.open(options)
-  //   this.dialogueService.confirmed().subscribe(confirm => {
-  //     if (confirm) {
-  //       this.onDeleteIntro(id)
-  //     }
-  //     else return
-  //   })
-  // }
-  // openDeleteDialogueOpen(id: any): void {
-  //   const options = {
-  //     title: 'Delete Question?',
-  //     message: 'Are you sure you want to delete this Question?',
-  //     cancelCaption: 'No',
-  //     confirmCaption: 'Yes'
-  //   };
-  //   this.dialogueService.open(options)
-  //   this.dialogueService.confirmed().subscribe(confirm => {
-  //     if (confirm) {
-  //       this.onDeleteOpenEnded(id)
-  //     }
-  //     else return
-  //   })
-  // }
-
-  // openDeleteDialogueTrueFalse(id: any): void {
-  //   const options = {
-  //     title: 'Delete Question?',
-  //     message: 'Are you sure you want to delete this Question?',
-  //     cancelCaption: 'No',
-  //     confirmCaption: 'Yes'
-  //   };
-  //   this.dialogueService.open(options)
-  //   this.dialogueService.confirmed().subscribe(confirm => {
-  //     if (confirm) {
-  //       this.onDeleteTrueFalse(id)
-  //     }
-  //     else return
-  //   })
-  // }
-
-  // openDeleteDialogueMatch(id: any): void {
-  //   const options = {
-  //     title: 'Delete Question?',
-  //     message: 'Are you sure you want to delete this Question?',
-  //     cancelCaption: 'No',
-  //     confirmCaption: 'Yes'
-  //   };
-  //   this.dialogueService.open(options)
-  //   this.dialogueService.confirmed().subscribe(confirm => {
-  //     if (confirm) {
-  //       this.onDeleteMatchPairs(id)
-  //     }
-  //     else return
-  //   })
-  // }
-
-  // onDeleteMcqs(id: any) {
-  //   this.mcqsService.delete(id).subscribe(
-  //     res => {
-  //       this.ngOnInit();
-  //       localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-  //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['blue-snackbar']
-  //       });
-  //       window.location.reload()
-  //     }, err => {
-  //       console.log(err)
-  //       this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['red-snackbar']
-  //       });
-  //     }
-  //   )
-  // }
-
-  // onDeleteTrueFalse(id: any) {
-  //   this.dataService.setUrl(`${environment.web_URL}/api/true_false`)
-  //   this.dataService.delete(id).subscribe(
-  //     res => {
-  //       this.ngOnInit();
-  //       // localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-  //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['blue-snackbar']
-  //       });
-  //       window.location.reload()
-  //     }, err => {
-  //       console.log(err)
-  //       this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['red-snackbar']
-  //       });
-  //     }
-  //   )
-  // }
-
-  // onDeleteOpenEnded(id: any) {
-  //   this.openEndedService.delete(id).subscribe(
-  //     res => {
-  //       this.ngOnInit();
-  //       localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-  //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['blue-snackbar']
-  //       });
-  //       window.location.reload()
-  //     }, err => {
-  //       console.log(err)
-  //       this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['red-snackbar']
-  //       });
-  //     }
-  //   )
-  // }
-
-  // onDeleteIntro(id: any) {
-  //   this.introService.delete(id).subscribe(
-  //     res => {
-  //       this.ngOnInit();
-  //       localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-  //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['blue-snackbar']
-  //       });
-  //       window.location.reload()
-  //     }, err => {
-  //       console.log(err)
-  //       this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['red-snackbar']
-  //       });
-  //     }
-  //   )
-  // }
-
-  // onDeleteMatchPairs(id: any) {
-  //   this.matchPairsService.delete(id).subscribe(
-  //     res => {
-  //       this.ngOnInit();
-  //       localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-  //       this._snackBar.open(" Your Question has been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['blue-snackbar']
-  //       });
-  //       window.location.reload()
-  //     }, err => {
-  //       console.log(err)
-  //       this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-  //         duration: 5000,
-  //         panelClass: ['red-snackbar']
-  //       });
-  //     }
-  //   )
-  // }
 
   deleteTopic(id: any) {
     this.topicService.deleteTopic(id).subscribe(
