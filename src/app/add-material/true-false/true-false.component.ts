@@ -32,7 +32,7 @@ export class TrueFalseComponent implements OnInit {
   length: any
   idFromParams: any
   topicData: any
-
+  topicIdParams: any
   get sequence() { return this.trueFalseForm.get('sequence'); }
 
   constructor(private route: ActivatedRoute,
@@ -40,6 +40,13 @@ export class TrueFalseComponent implements OnInit {
     private router: Router, private topicService: TopicsService) { }
 
   ngOnInit(): void {
+    this.topicIdParams = this.route.snapshot.paramMap.get('id');
+    this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
+      res => {
+        this.topicData = res
+      }
+    )
+
     this.dataService.setUrl(`${environment.web_URL}/api/true_false`)
 
     this.id = this.route.snapshot.paramMap.get('trueFalseId');
@@ -116,7 +123,14 @@ export class TrueFalseComponent implements OnInit {
     if (this.trueFalseForm.get('file').value) {
       formData.append('file', this.trueFalseForm.get('file').value);
     }
-
+    if (this.trueFalseForm.get('sequence').value > this.topicData.noOfQuestions) {
+      this._snackBar.open(`Your total questions are ${this.topicData.noOfQuestions}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      this.loading = false
+      return
+    }
     formData.append("question", this.trueFalseForm.get('question').value)
     formData.append("sequence", this.trueFalseForm.get('sequence').value)
     formData.append("posFeedback", this.trueFalseForm.get('posFeedback').value)

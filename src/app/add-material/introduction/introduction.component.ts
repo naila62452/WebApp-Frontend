@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/curd-data-service';
 import { environment } from 'src/environments/environment';
+import { TopicsService } from 'src/app/service/topics.service';
+
 @Component({
   selector: 'app-introduction',
   templateUrl: './introduction.component.html',
@@ -29,14 +31,24 @@ export class IntroductionComponent implements OnInit {
   Pickedimage: string;
   imageUrl: any
   length: any
+  topicData: any
+  topicIdParams: any
 
   constructor(
     private _snackBar: MatSnackBar, private dataService: DataService,
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute, private topicService: TopicsService) { }
 
   get sequence() { return this.introForm.get('sequence'); }
 
   ngOnInit(): void {
+
+    this.topicIdParams = this.route.snapshot.paramMap.get('id');
+    this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
+      res => {
+        this.topicData = res
+      }
+    )
+
     this.dataService.setUrl(`${environment.web_URL}/api/intro`)
     this.id = this.route.snapshot.paramMap.get('introId');
     this.length = this.route.snapshot.paramMap.get('length');
@@ -104,6 +116,15 @@ export class IntroductionComponent implements OnInit {
     }
     if (this.introForm.get('link').value) {
       formData.append("link", this.introForm.get('link').value)
+    }
+
+    if (this.introForm.get('sequence').value > this.topicData.noOfQuestions) {
+      this._snackBar.open(`Your total questions are ${this.topicData.noOfQuestions}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      this.loading = false
+      return
     }
     formData.append("introduction", this.introForm.get('introduction').value)
     formData.append("sequence", this.introForm.get('sequence').value)

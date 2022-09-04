@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/service/curd-data-service';
 import { environment } from 'src/environments/environment';
+import { TopicsService } from 'src/app/service/topics.service';
 @Component({
   selector: 'app-match-pairs',
   templateUrl: './match-pairs.component.html',
@@ -26,14 +27,23 @@ export class MatchPairsComponent implements OnInit {
   imageUrl: any
   Pickedimage: string
   length: any
+  topicData: any
+  topicIdParams: any
+
   constructor(private route: ActivatedRoute, private dataService: DataService,
-    private _snackBar: MatSnackBar, private router: Router) { }
+    private _snackBar: MatSnackBar, private router: Router, private topicService: TopicsService) { }
 
   get sequence() { return this.match_pairsForm.get('sequence'); }
 
   ngOnInit(): void {
-    this.dataService.setUrl(`${environment.web_URL}/api/match`)
+    this.topicIdParams = this.route.snapshot.paramMap.get('id');
+    this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
+      res => {
+        this.topicData = res
+      }
+    )
 
+    this.dataService.setUrl(`${environment.web_URL}/api/match`)
     this.id = this.route.snapshot.paramMap.get('matchId');
     this.length = this.route.snapshot.paramMap.get('length');
 
@@ -152,6 +162,15 @@ export class MatchPairsComponent implements OnInit {
       formData.append('file', this.match_pairsForm.get('file').value);
     }
 
+    if (this.match_pairsForm.get('sequence').value > this.topicData.noOfQuestions) {
+      this._snackBar.open(`Your total questions are ${this.topicData.noOfQuestions}. Please enter a valid sequence number.`, "Ok", {
+        duration: 5000,
+        panelClass: ['red-snackbar']
+      });
+      this.loading = false
+      return
+    }
+    
     formData.append("question", this.match_pairsForm.get('question').value)
     formData.append("sequence", this.match_pairsForm.get('sequence').value)
     formData.append("statement1", this.match_pairsForm.get('statement1').value)
