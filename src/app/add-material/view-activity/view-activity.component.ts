@@ -107,6 +107,22 @@ export class ViewActivityComponent implements OnInit {
     })
   }
 
+  deleteTopicDialogue(id: any): void {
+    const options = {
+      title: 'Delete Topic?',
+      message: 'Are you sure you want to delete this Topic?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+        this.deleteTopic(id)
+      }
+      else return
+    })
+  }
+
   deleteTopic(id: any) {
     this.topicService.deleteTopic(id).subscribe(
       res => {

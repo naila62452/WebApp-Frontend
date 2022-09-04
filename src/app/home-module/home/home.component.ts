@@ -30,11 +30,10 @@ export class HomeComponent implements OnInit {
     },
     {
       title: 'Wirtschaftsinformatik und Neue Medien',
-      description: '',
-      // description: 'Wirtschaftsinformatik und Neue Medien',
+      description: 'assets/de.jpg',
       buttonText: 'Button',
       img: 'assets/winfo_newmedia.png',
-      countryName: '',
+      countryName: 'Germany',
       link: 'https://www.wineme.uni-siegen.de/'
     },
     {

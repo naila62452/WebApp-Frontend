@@ -2,8 +2,8 @@
     <h2>Topic Name: {{topics.topic}}</h2>
     <hr>
     <br>
-    <h2 *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">This topic has no material. Please add some
-        material or delete this topic.</h2>
+    <h2 style="color: red;" *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">This topic has no material.
+        Please add some material or delete this topic.</h2>
     <p>Topic Subject: {{topics.subject}}</p>
     <p>Topic Language: {{topics.language}}</p>
     <p>Topic Grade: {{topics.grade}}</p>
@@ -18,7 +18,7 @@
             class="button" style="width: fit-content; text-align: center; font-size: px;">Edit Topic</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && topics.noOfQuestions === '0'" class="button"
-            (click)="deleteTopic(topics._id)" style="width: fit-content; text-align: center; font-size: px;">Delete
+            (click)="deleteTopicDialogue(topics._id)" style="width: fit-content; text-align: center; font-size: px;">Delete
             Topic</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && remainingQuestions !== 0"
@@ -38,8 +38,9 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id, combine.questionType)"
-                    matTooltip="Delete Question">delete</mat-icon>
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                </mat-icon>
                 <!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteIntro(combine._id)">
                     <mat-icon style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
@@ -78,8 +79,9 @@
                 <p> {{combine.negFeedback}}</p>
             </ul>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id, combine.questionType)"
-                    matTooltip="Delete Question">delete</mat-icon>
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">edit</mat-icon>
             </div>
@@ -100,7 +102,8 @@
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
                 <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete</mat-icon>
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">edit</mat-icon>
             </div>
@@ -114,8 +117,9 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id , combine.questionType)"
-                    matTooltip="Delete Question">delete</mat-icon>
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
+                </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">edit</mat-icon>
             </div>
@@ -186,8 +190,9 @@
             <h3>Feedback if the answer is wrong:</h3>
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer" (click)="openDeleteDialogue(combine._id , combine.questionType)"
-                    matTooltip="Delete Question">delete</mat-icon>
+                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
+                </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">edit</mat-icon>
             </div>
