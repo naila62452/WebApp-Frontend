@@ -147,6 +147,7 @@ export class IntroductionComponent implements OnInit {
             duration: 5000,
             panelClass: ['red-snackbar']
           });
+          this.loading = false
         });
   }
 
@@ -186,6 +187,7 @@ export class IntroductionComponent implements OnInit {
           duration: 5000,
           panelClass: ['red-snackbar']
         });
+        this.loading = false
       });
   }
 

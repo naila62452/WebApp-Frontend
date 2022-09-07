@@ -5,14 +5,11 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">{{'user_profile.edit' | translate}}</h4>
-                        <button mat-stroked-button class="button" type="button" (click)="openDialogue()">Edit
-                            Profile</button>
+                        <button mat-stroked-button class="button" type="button" (click)="openDialogue()">
+                            {{'user_profile.Edit_profile' | translate}}</button>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <!-- <div class="row-cols-1">
-                                <span>Company Seeds</span>
-                            </div> -->
                             <hr>
                             <div class="row-cols-1">
                                 <span class="user-profile">Your Name:</span>
@@ -71,10 +68,6 @@
                             <h4>{{'header.hello' | translate}} {{username}}</h4>
                             <p class="card-description">
                                 {{'user_profile.profile_text' | translate}}
-                                <!-- Here, you can edit your profile, update your information, and create new learning content
-                                for students here. Please click the button below to start the content creation process. Use
-                                the fields on the left, to edit your information. If you have any questions please check the
-                                FAQ section, and do not hesitate to contact us for more help. -->
                             </p>
                         </div>
                         <div class="main-button">
@@ -90,52 +83,6 @@
         </div>
     </div>
 </div>
-<br>
-<br>
-
-
-
-
-<!-- <div *ngIf="currentFile" class="progress">
-    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-        attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progress + '%' }">
-        {{ progress }}%
-    </div>
-</div>
-<label class="btn btn-default">
-    <input type="file" (change)="selectFile($event)" />
-</label>
-<button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
-    Upload
-</button>
-<div class="alert alert-light" role="alert">{{ message }}</div>
-<div class="card">
-    <div class="card-header">List of Files</div>
-    <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
-        <li class="list-group-item">
-            <a href="{{ file.url }}">{{ file.name }}</a>
-            <img src="{{file.url}}">
-        </li>
-    </ul>
-
-</div> -->
-
-<!-- <div class="container">
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>File Name</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let file of fileInfos">
-            <td>{{ file.name }}</td>
-            <td><button class="btn btn-primary button" (click)="getImage()">Download</button></td>
-          </tr>   
-        </tbody>
-      </table>
-  </div> -->
 <br>
 <br>
 <br>

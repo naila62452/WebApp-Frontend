@@ -25,8 +25,8 @@
                                     formControlName="subject" required readonly>
                             </mat-form-field>
 
-                                <input class="input_form" type="hidden" name="remainingQuestions" id="remainingQuestions"
-                                    formControlName="remainingQuestions" [value]="remainingQuestion">
+                            <input class="input_form" type="hidden" name="remainingQuestions" id="remainingQuestions"
+                                formControlName="remainingQuestions" [value]="remainingQuestion">
 
                             <mat-form-field class="input_text">
                                 <mat-label>{{'add_topics.name' | translate}}</mat-label>
@@ -114,26 +114,26 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>{{'add_topics.act_label' | translate}}</mat-label>
                                 <mat-select formControlName="noOfQuestions">
-                                    <mat-option value= 1>1</mat-option>
-                                    <mat-option value= 2>2</mat-option>
-                                    <mat-option value= 3>3</mat-option>
-                                    <mat-option value= 4>4</mat-option>
-                                    <mat-option value= 5>5</mat-option>
-                                    <mat-option value= 6>6</mat-option>
-                                    <mat-option value= 7>7</mat-option>
-                                    <mat-option value= 8>8</mat-option>
-                                    <mat-option value= 9>9</mat-option>
-                                    <mat-option value= 10>10</mat-option>
-                                    <mat-option value= 11>11</mat-option>
-                                    <mat-option value= 12>12</mat-option>
-                                    <mat-option value= 13>13</mat-option>
-                                    <mat-option value= 14>14</mat-option>
-                                    <mat-option value= 15>15</mat-option>
-                                    <mat-option value= 16>16</mat-option>
-                                    <mat-option value= 17>17</mat-option>
-                                    <mat-option value= 18>18</mat-option>
-                                    <mat-option value= 19>19</mat-option>
-                                    <mat-option value= 20>20</mat-option>
+                                    <mat-option value=1>1</mat-option>
+                                    <mat-option value=2>2</mat-option>
+                                    <mat-option value=3>3</mat-option>
+                                    <mat-option value=4>4</mat-option>
+                                    <mat-option value=5>5</mat-option>
+                                    <mat-option value=6>6</mat-option>
+                                    <mat-option value=7>7</mat-option>
+                                    <mat-option value=8>8</mat-option>
+                                    <mat-option value=9>9</mat-option>
+                                    <mat-option value=10>10</mat-option>
+                                    <mat-option value=11>11</mat-option>
+                                    <mat-option value=12>12</mat-option>
+                                    <mat-option value=13>13</mat-option>
+                                    <mat-option value=14>14</mat-option>
+                                    <mat-option value=15>15</mat-option>
+                                    <mat-option value=16>16</mat-option>
+                                    <mat-option value=17>17</mat-option>
+                                    <mat-option value=18>18</mat-option>
+                                    <mat-option value=19>19</mat-option>
+                                    <mat-option value=20>20</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-error *ngIf="(!topicForm.valid && topicForm.get('noOfQuestions')?.errors) && 
@@ -155,29 +155,6 @@
                                 </div>
                             </mat-error>
                             <br>
-
-                            <!-- <mat-label for="access"><b>Please select material privacy *</b></mat-label>
-                            <mat-form-field appearance="fill">
-                                <mat-label> Choose privacy</mat-label>
-                                <mat-select formControlName="access">
-                                    <mat-option value="private">Private</mat-option>
-                                    <mat-option value="public">Public</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            
-                            <mat-error class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('access')?.errors) && 
-                            (topicForm.get('access')?.dirty || topicForm.get('access')?.touched)">
-                                <div>
-                                    Please select Privacy.
-                                </div>
-                            </mat-error>
-                            <br>
-                            <mat-form-field class="input_text" *ngIf="topicForm.get('access').value === 'private'">
-                                <mat-label>Please enter the access code</mat-label>
-                                <input class="input_form" matInput type="text" name="accessCode" id="accessCode"
-                                    formControlName="accessCode">
-                            </mat-form-field> -->
-                            
                             <div style="display: flex;">
                                 <span>
                                     <input type="checkbox" (change)="isAccessChange($event.target)"
@@ -206,11 +183,9 @@
                             <hr>
                         </form>
                         <br>
-
                     </div>
                 </div>
             </div>
-          
         </div>
     </div>
 </div>

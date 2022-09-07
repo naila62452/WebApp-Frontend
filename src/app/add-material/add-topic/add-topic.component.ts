@@ -168,15 +168,6 @@ export class AddTopicComponent implements OnInit, SafeData {
         })
   }
 
-  // uniqueEmailValidator(): AsyncValidatorFn {
-  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-  //     return this.topicService.topicNameCheck(control.value).pipe(
-  //       map((res) => (((res.topic)) === ((control.value)) ? { topicExists: true } : null)),
-  //       catchError((err) =>{ console.log(err + 'i am error'); return null })
-  //     );
-  //   };
-  // }
-
   uniqueTopicValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.topicService.topicNameCheck(control.value).pipe(

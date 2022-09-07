@@ -72,7 +72,8 @@
         "add": "Add new Topic",
         "view": "View Topics",
         "profile_text": "Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and do not hesitate to contact us for more help.",
-        "welcome": "Welcome to SEEDS!"
+        "welcome": "Welcome to SEEDS!",
+        "Edit_profile": "Edit Profile"
     },
     "add_topics": {
         "add": "Add Topic",
@@ -82,7 +83,7 @@
         "name_already_exist": "This topic already exists.",
         "age": "Please select age group.",
         "age_label": "Choose age group",
-        "lang": "Please select language.",
+        "lang": "Please select language for the material.",
         "lang_label": "Choose Language",
         "country": "Please select country.",
         "country_label": "Choose Country",
@@ -115,6 +116,4 @@
         "a_are_project_results_open": "All SEEDS project results are open-access and available on the project's website and repositories",
         "a_where_are_project_results": "You can find the project's results and repository links on the project's website."   
     }
-
-
 }

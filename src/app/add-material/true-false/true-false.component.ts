@@ -154,6 +154,7 @@ export class TrueFalseComponent implements OnInit {
             duration: 5000,
             panelClass: ['red-snackbar']
           });
+          this.loading = false
         });
   }
 
@@ -194,6 +195,7 @@ export class TrueFalseComponent implements OnInit {
           duration: 5000,
           panelClass: ['red-snackbar']
         });
+        this.loading = false
       });
   }
 

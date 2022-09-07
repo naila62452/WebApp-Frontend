@@ -18,7 +18,8 @@
             class="button" style="width: fit-content; text-align: center; font-size: px;">Edit Topic</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && topics.noOfQuestions === '0'" class="button"
-            (click)="deleteTopicDialogue(topics._id)" style="width: fit-content; text-align: center; font-size: px;">Delete
+            (click)="deleteTopicDialogue(topics._id)"
+            style="width: fit-content; text-align: center; font-size: px;">Delete
             Topic</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && remainingQuestions !== 0"
@@ -38,15 +39,11 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
                     (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
                 </mat-icon>
-                <!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteIntro(combine._id)">
-                    <mat-icon style="color: rgb(199, 24, 24)">delete</mat-icon></button> -->
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
                     [routerLink]="['/material/introduction', combine._id, topics.noOfQuestions]">edit</mat-icon>
-                <!-- <button *ngIf="userId === topics.userId" mat-stroked-button class="button" class="pointer"
-                    [routerLink]="['/material/introduction', combine._id, topics.noOfQuestions]">Edit</button> -->
             </div>
         </div>
 
@@ -79,7 +76,7 @@
                 <p> {{combine.negFeedback}}</p>
             </ul>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
                     (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
@@ -101,7 +98,7 @@
             <h3>Feedback if the answer is wrong:</h3>
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
                     (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
@@ -117,7 +114,7 @@
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
                     (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
@@ -136,52 +133,35 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <!-- <th>Serial number</th> -->
                             <th>Statements</th>
                             <th>Answers</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <!-- <td>1.</td> -->
                             <td>{{combine.statement1}}</td>
                             <td>{{ combine.answer1 }}</td>
                         </tr>
                         <tr>
-                            <!-- <td>2.</td> -->
                             <td>{{combine.statement2}}</td>
                             <td>{{ combine.answer2 }}</td>
                         </tr>
                         <tr>
-                            <!-- <td>3.</td> -->
                             <td>{{combine.statement3}}</td>
                             <td>{{ combine.answer3 }}</td>
                         </tr>
                         <tr>
-                            <!-- <td>4.</td> -->
                             <td>{{combine.statement4}}</td>
                             <td>{{ combine.answer4 }}</td>
                         </tr>
                         <tr>
-                            <!-- <td>5.</td> -->
                             <td>{{combine.statement5}}</td>
                             <td>{{ combine.answer5 }}</td>
                         </tr>
                         <tr>
-                            <!-- <td>6.</td> -->
                             <td>{{combine.statement6}}</td>
                             <td>{{ combine.answer6 }}</td>
                         </tr>
-                        <!-- <tr>
-                            <td>7.</td>
-                            <td>{{combine.statement7}}</td>
-                            <td>{{ combine.answer7 }}</td>
-                        </tr>
-                        <tr>
-                            <td>8.</td>
-                            <td>{{combine.statement8}}</td>
-                            <td>{{ combine.answer8 }}</td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -190,7 +170,7 @@
             <h3>Feedback if the answer is wrong:</h3>
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
-                <mat-icon style="color: rgb(199, 24, 24)" class="pointer"
+                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
                     (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
@@ -198,113 +178,6 @@
             </div>
         </div>
     </div>
-    <!-- <div *ngFor="let combine of topics.allQuestions">
-        <div *ngIf="combine.questionType === 'introduction'" class="mcqs">
-            <span>Question number: {{combine.sequence}}</span>
-            <hr>
-            <h3>Question Statement: {{ combine.introduction }}</h3>
-            <br>
-        </div>
-
-        <div class="mcqs" *ngIf="combine.questionType === 'mcqs'">
-            <span>Question number: {{combine.sequence}}</span>
-            <hr>
-            <h3>Question Statement: {{combine.mcqs}}</h3>
-            <div *ngIf="combine.file !== ''">
-                <img [src]="combine.file" style="height: 200px; width: 300px">
-            </div>
-            <br>
-            <ul>
-                <h4>
-                    <mat-radio-button value="1">{{ combine.option1 }}</mat-radio-button>
-                </h4>
-                <h4>
-                    <mat-radio-button value="2">{{ combine.option2 }}</mat-radio-button>
-                </h4>
-                <h4>
-                    <mat-radio-button value="3">{{ combine.option3 }}</mat-radio-button>
-                </h4>
-                <h4>
-                    <mat-radio-button value="4">{{ combine.option4 }}</mat-radio-button>
-                </h4>
-                <h3>Correct answer:</h3>
-                <p> {{combine.answer}}</p>
-                <h3>Feedback if the answer is correct:</h3>
-                <p> {{combine.posFeedback}}</p>
-                <h3>Feedback if the answer is wrong:</h3>
-                <p> {{combine.negFeedback}}</p>
-            </ul>
-        </div>
-
-        <div *ngIf="combine.questionType === 'trueFalse'" class="mcqs">
-            <span>Question number: {{combine.sequence}}</span>
-            <hr>
-            <h3>Question Statement: {{ combine.question }}</h3>
-            <h3>Correct answer:</h3>
-            <p> {{combine.answer}}</p>
-            <h3>Feedback if the answer is correct:</h3>
-            <p> {{combine.posFeedback}}</p>
-            <h3>Feedback if the answer is wrong:</h3>
-            <p> {{combine.negFeedback}}</p>
-        </div>
-
-        <div class="mcqs" *ngIf="combine.questionType === 'openEnded'">
-            <span>Question number: {{combine.sequence}}</span>
-            <hr>
-            <h3>Question Statement: {{ combine.question }}</h3>
-            <div *ngIf="combine.file !== ''">
-                <img [src]="combine.file" style="height: 200px; width: 300px">
-            </div>
-        </div>
-
-        <div class="mcqs" *ngIf="combine.questionType === 'matchPairs'">
-            <span>Question number: {{combine.sequence}}</span>
-            <hr>
-            <h3>Question Statement: {{ combine.question }}</h3>
-            <div class="container">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Serial number</th>
-                            <th>Statements</th>
-                            <th>Answers</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>{{combine.statement1}}</td>
-                            <td>{{ combine.answer1 }}</td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>{{combine.statement2}}</td>
-                            <td>{{ combine.answer2 }}</td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>{{combine.statement3}}</td>
-                            <td>{{ combine.answer3 }}</td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td>{{combine.statement4}}</td>
-                            <td>{{ combine.answer4 }}</td>
-                        </tr>
-                        <tr>
-                            <td>5.</td>
-                            <td>{{combine.statement5}}</td>
-                            <td>{{ combine.answer5 }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <h3>Feedback if the answer is correct:</h3>
-            <p> {{combine.posFeedback}}</p>
-            <h3>Feedback if the answer is wrong:</h3>
-            <p> {{combine.negFeedback}}</p>
-        </div>
-    </div> -->
 </div>
 
 <div class="container">
@@ -315,8 +188,3 @@
 <br>
 <br>
 <br>
-
-<!-- <button mat-stroked-button class="button" class="pointer"
-            (click)="onDeleteTrueFalse(trueFalse._id)">Delete</button> -->
-<!-- <button mat-stroked-button class="button" class="pointer" (click)="onDeleteOpenEnded(openEnded._id)"
-            @fade>Delete</button> -->

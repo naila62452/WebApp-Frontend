@@ -144,6 +144,7 @@ export class OpenEndedComponent implements OnInit {
             duration: 5000,
             panelClass: ['red-snackbar']
           });
+          this.loading = false
         });
   }
   updateQuestion() {
@@ -178,6 +179,7 @@ export class OpenEndedComponent implements OnInit {
           duration: 5000,
           panelClass: ['red-snackbar']
         });
+        this.loading = false
       });
   }
 

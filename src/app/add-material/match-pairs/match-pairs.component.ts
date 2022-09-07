@@ -77,18 +77,6 @@ export class MatchPairsComponent implements OnInit {
       ]),
       answer6: new FormControl("", [
       ]),
-      // statement7: new FormControl("", [
-      //   // Validators.required
-      // ]),
-      // answer7: new FormControl("", [
-      //   // Validators.required
-      // ]),
-      // statement8: new FormControl("", [
-      //   // Validators.required
-      // ]),
-      // answer8: new FormControl("", [
-      //   // Validators.required
-      // ]),
       posFeedback: new FormControl("", [
         Validators.required
       ]),
@@ -205,6 +193,7 @@ export class MatchPairsComponent implements OnInit {
             duration: 5000,
             panelClass: ['red-snackbar']
           });
+          this.loading = false
         })
   }
 
