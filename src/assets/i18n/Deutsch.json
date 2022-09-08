@@ -114,6 +114,15 @@
         "a_is_project_running": "Das Projekt hat eine Laufzeit von zwei Jahren, zwischen 2021 und 2023.",
         "a_are_project_results_open": "Alle Ergebnisse des SEEDS-Projekts sind frei zugänglich und können auf der Projektwebsite und in den Repositories eingesehen werden.",
         "a_where_are_project_results": "Die Projektergebnisse und Repository-Links finden Sie auf der Projektwebsite."   
+    },
+    "view_all_topics": {
+        "subject": "Thema",
+        "name": "Name",
+        "country": "Land",
+        "language": "Sprache",
+        "grade": "Klasse",
+        "view": "Anzeigen",
+        "no_data_matching": "Keine Daten mit dem Namen des Themas"
     }
 
 

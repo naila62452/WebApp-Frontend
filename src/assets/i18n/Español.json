@@ -114,6 +114,15 @@
         "a_is_project_running": "La duración del proyecto es de dos años, entre 2021-2023.",
         "a_are_project_results_open": "Todos los resultados del proyecto SEEDS son de acceso abierto y están disponibles en la página web y los repositorios del proyecto.",
         "a_where_are_project_results": "Puede encontrar los resultados del proyecto y los enlaces a los repositorios en la página web del proyecto."   
+    },
+    "view_all_topics": {
+        "subject": "Tema",
+        "name": "Nombre",
+        "country": "País",
+        "language": "Idioma",
+        "grade": "Grado",
+        "view": "Ver",
+        "no_data_matching": "No hay datos que coincidan con el nombre del tema"
     }
     
 }
