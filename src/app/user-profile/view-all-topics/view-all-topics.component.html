@@ -47,35 +47,35 @@
     <table mat-table [dataSource]="dataSource" @fadeIn>
 
         <ng-container matColumnDef="subject">
-            <th mat-header-cell *matHeaderCellDef> Subject </th>
+            <th mat-header-cell *matHeaderCellDef> {{'view_all_topics.subject' | translate}} </th>
             <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
         </ng-container>
 
         <ng-container matColumnDef="topic">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th mat-header-cell *matHeaderCellDef> {{'view_all_topics.name' | translate}} </th>
             <td mat-cell *matCellDef="let element"> {{element.topic}} </td>
         </ng-container>
 
         <ng-container matColumnDef="country">
-            <th mat-header-cell *matHeaderCellDef> Country </th>
+            <th mat-header-cell *matHeaderCellDef> {{'view_all_topics.country' | translate}} </th>
             <td mat-cell *matCellDef="let element"> {{element.country}} </td>
         </ng-container>
 
         <ng-container matColumnDef="language">
-            <th mat-header-cell *matHeaderCellDef> Language </th>
+            <th mat-header-cell *matHeaderCellDef> {{'view_all_topics.language' | translate}} </th>
             <td mat-cell *matCellDef="let element"> {{element.language}} </td>
         </ng-container>
 
         <ng-container matColumnDef="grade">
-            <th mat-header-cell *matHeaderCellDef> Grade </th>
+            <th mat-header-cell *matHeaderCellDef> {{'view_all_topics.grade' | translate}} </th>
             <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
         </ng-container>
 
         <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> View </th>
+            <th mat-header-cell *matHeaderCellDef> {{'view_all_topics.view' | translate}} </th>
             <td mat-cell *matCellDef="let element">
                 <button mat-stroked-button style="background-color:#ccdceb ;" class="pointer"
-                    [routerLink]="['/material/view/', element._id]">View</button>
+                    [routerLink]="['/material/view/', element._id]">{{'view_all_topics.view' | translate}}</button>
             </td>
         </ng-container>
 
@@ -84,7 +84,7 @@
 
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No data matching with the Topic name "{{input.value}}"</td>
+            <td class="mat-cell" colspan="4">{{'view_all_topics.no_data_matching' | translate}} "{{input.value}}"</td>
         </tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of topic elements">

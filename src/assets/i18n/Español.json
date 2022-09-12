@@ -73,8 +73,11 @@
         "view": "Ver temas",
         "profile_text": "Aquí puede editar su perfil, actualizar su información y crear nuevos contenidos de aprendizaje para los estudiantes. Haga clic en el botón de abajo para iniciar el proceso de creación de contenidos. Utilice los campos de la izquierda para editar su información. Si tiene alguna pregunta, consulte la sección de preguntas frecuentes, y no dude en ponerse en contacto con nosotros para obtener más ayuda.",
         "welcome": "¡Bienvenido a SEEDS!",
+        "edit_profile": "Editar perfil",
+        "your_name": "Su nombre:",
+        "your_email_address": "Su e-mail:",
+        "close": "Cerrar"
         "Edit_profile": "Editar perfil"
-
     },
     "add_topics": {
         "add": "Añadir tema",
@@ -116,6 +119,30 @@
         "a_is_project_running": "La duración del proyecto es de dos años, entre 2021-2023.",
         "a_are_project_results_open": "Todos los resultados del proyecto SEEDS son de acceso abierto y están disponibles en la página web y los repositorios del proyecto.",
         "a_where_are_project_results": "Puede encontrar los resultados del proyecto y los enlaces a los repositorios en la página web del proyecto."   
+    },
+    "view_all_topics": {
+        "subject": "Tema",
+        "name": "Nombre",
+        "country": "País",
+        "language": "Idioma",
+        "grade": "Grado",
+        "view": "Ver",
+        "no_data_matching": "No hay datos que coincidan con el nombre del tema"
+    },
+    "contact_info": {
+        "contact_info": "Información de contacto",
+        "address​": "Dirección",
+        "email_us": "Envíenos un e-mail",
+        "call_us": "Llámenos"
+    },
+    "edit_topic": {
+        "please_wait": "Por favor, espere.",
+        "edit_topic": "Editar Tema",
+        "checking_topic": "Revisando el tema...",
+        "want_material_private": "¿Desea mantener el material privado?",
+        "enter_access_code": "Por favor, introduzca el código de acceso",
+        "enter_access_code2": "Por favor, introduzca el código de acceso",
+        "update": "Actualizar"
     }
     
 }
