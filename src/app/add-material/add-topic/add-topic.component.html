@@ -1,6 +1,6 @@
 <div class="spinnerDiv" *ngIf="loading">
     <mat-spinner aria-label="Please wait" [diameter]="100" strokeWidth="2"></mat-spinner>
-    <div style="position:relative; top: -60px; left: 30px;">Please wait.</div>
+    <div style="position:relative; top: -60px; left: 30px;">{{'edit_topic.please_wait' | translate}}</div>
 </div>
 <div class="main-content" *ngIf="!loading">
     <div class="container">
@@ -20,7 +20,7 @@
                         <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
 
                             <mat-form-field class="input_text">
-                                <mat-label>Subject</mat-label>
+                                <mat-label>{{'view_all_topics.subject' | translate}}</mat-label>
                                 <input class="input_form" matInput type="text" name="subject" id="subject"
                                     formControlName="subject" required readonly>
                             </mat-form-field>
@@ -31,7 +31,7 @@
                                     formControlName="topic" required>
                             </mat-form-field>
 
-                            <div *ngIf="topicForm.get('topic').pending">Checking Topic...</div>
+                            <div *ngIf="topicForm.get('topic').pending">{{'edit_topic.checking_topic' | translate}}</div>
                             <mat-error *ngIf="(!topicForm.valid && topicForm.get('topic')?.errors) && 
                             (topicForm.get('topic')?.dirty || topicForm.get('topic')?.touched)">
                                 <div>
@@ -173,19 +173,19 @@
                                     <input type="checkbox" (change)="isAccessChange($event.target)"
                                         formControlName="access" /></span>
                                 <span>
-                                    Do you want to keep material private?
+                                    {{'edit_topic.want_material_private' | translate}}
                                 </span>
                             </div>
                             <br>
                             <mat-form-field class="input_text" *ngIf="access.value">
-                                <mat-label>Please enter the access code</mat-label>
+                                <mat-label>{{'edit_topic.enter_access_code' | translate}}</mat-label>
                                 <input class="input_form" matInput type="text" name="accessCode" id="accessCode"
                                     formControlName="accessCode">
                             </mat-form-field>
                             <mat-error class="text-danger" role="alert" *ngIf="(!topicForm.valid && topicForm.get('accessCode')?.errors) && 
                             (topicForm.get('accessCode')?.dirty || topicForm.get('accessCode')?.touched)">
                                 <div>
-                                    Please enter access code.
+                                    {{'edit_topic.enter_access_code2' | translate}}
                                 </div>
                             </mat-error>
                             <br>
