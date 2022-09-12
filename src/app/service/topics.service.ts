@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -64,7 +64,6 @@ export class TopicsService {
   }
   
   updateTopic(body: any, id: any): Observable<any> {
-    // console.log(body)
     const bodyz = {
       name: body.name,
       topic: body.topic,
@@ -79,11 +78,6 @@ export class TopicsService {
       accessCode: body.accessCode
     }
     const path = `${api_path}/update/${id}`;
-    // console.log(bodyz)
     return this.http.put(path, bodyz)
   }
-
-  // searchTopic(data: any): Observable<any> {
-  //   return this.http.get(`${api_path}/search?topic=${data}`)
-  // }
 }

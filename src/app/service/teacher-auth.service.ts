@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable, catchError, throwError, map } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { APPErrors } from 'src/_Error-handler/appError';
 import { NotFoundError } from 'src/_Error-handler/notFoundError';
@@ -21,8 +20,7 @@ export class TeacherAuthService {
   roleAs: string;
   token: string;
 
-  constructor(private http: HttpClient, private _sanitize: DomSanitizer,
-    private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   registerUser(registerForm: any): Observable<any> {
     return this.http.post(`${api_path}/create`, registerForm)
@@ -40,11 +38,6 @@ export class TeacherAuthService {
 
   isLoggedIn() {
     var loginStatus = localStorage.getItem("isLoggedIn")
-    // if (loginStatus === 'true')
-    //   this.isLogin = true;
-    // else
-    //   this.isLogin = false;
-    // return this.isLogin;
     return loginStatus == "true";
   }
 
@@ -75,8 +68,6 @@ export class TeacherAuthService {
       return null;
 
     let jwtHelper = new JwtHelperService()
-    // console.log(jwtHelper)
-    // console.log(jwtHelper.decodeToken(token))
     return jwtHelper.decodeToken(token)
   }
 
@@ -95,23 +86,17 @@ export class TeacherAuthService {
   }
 
   updateUser(body: any): Observable<any> {
-    // console.log(body)
     const bodyz = {
       name: body.name,
-      // email: body.email,
-      // username: body.username,
-      // phone: body.phone,
-      // country: body.country
     }
     let id = localStorage.getItem('id');
     const path = `${api_path}/update/${id}`;
-    // console.log(bodyz)
     return this.http.patch(path, bodyz)
   }
 
   deleteUser(): Observable<any> {
     let id = localStorage.getItem('id');
-    return this.http.delete(`${api_path}/delete/${id}`);//), { headers: headers })
+    return this.http.delete(`${api_path}/delete/${id}`);
   }
 
   verifyEmail(token: any) {

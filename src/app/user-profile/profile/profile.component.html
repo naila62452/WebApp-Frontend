@@ -5,8 +5,6 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">{{'user_profile.edit' | translate}}</h4>
-                        <!-- <button mat-stroked-button class="button" type="button"
-                            (click)="openDialogue()">{{'user_profile.edit_profile' | translate}}</button> -->
                         <button mat-stroked-button class="button" type="button" (click)="openDialogue()">
                             {{'user_profile.Edit_profile' | translate}}</button>
                     </div>
@@ -36,33 +34,7 @@
             <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
-                        <!-- <div>
-                            <input type="file" #filepicker (change)="PickedImage($event)">
-                            <div class="image-preview" *ngIf="Pickedimage">
-                                <img [src]="Pickedimage" alt="No Profile picture">
-                        
-                            </div>
-                        </div> -->
                         <img src="assets/avatar.png">
-                        <!-- <label class="hoverable" for="blah">
-                            <img id="blah" [src]="image ? image : '{{image}}'">
-                            <img id="blah"
-                                [src]="{{image}} ? {{image}} : 'https://www.w3schools.com/howto/img_avatar.png'">
-                            <div class="hover-text">Choose file</div>
-                            <div class="background"></div>
-                        </label>
-                        <br>
-                        <input id="blah" type='file' (change)="processFile($event)">
-                        <button *ngIf="">delete</button> -->
-                        <!-- <a href="javascript:void(0)">
-                            <label class="btn btn-default">
-                                <input type="file" (change)="selectFile($event)" />
-                            </label>
-                            <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
-                                Upload
-                            </button>
-                            <img src="{{image}}">
-                        </a> -->
                     </div>
                     <div class="card-body">
                         <div class="profile_text">
