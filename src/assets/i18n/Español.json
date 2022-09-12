@@ -71,8 +71,8 @@
         "view": "Ver temas",
         "profile_text": "Aquí puede editar su perfil, actualizar su información y crear nuevos contenidos de aprendizaje para los estudiantes. Haga clic en el botón de abajo para iniciar el proceso de creación de contenidos. Utilice los campos de la izquierda para editar su información. Si tiene alguna pregunta, consulte la sección de preguntas frecuentes, y no dude en ponerse en contacto con nosotros para obtener más ayuda.",
         "welcome": "¡Bienvenido a SEEDS!",
-        "name": "Su nombre:",
-        "email": "Su e-mail:",
+        "user_name": "Su nombre:",
+        "user_email": "Su e-mail:",
         "close": "Cerrar",
         "Edit_profile": "Editar perfil"
     },

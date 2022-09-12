@@ -71,8 +71,8 @@
         "view": "View Topics",
         "profile_text": "Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and do not hesitate to contact us for more help.",
         "welcome": "Welcome to SEEDS!",
-        "name": "Your Name:",
-        "email": "Your Email Address:",
+        "user_name": "Your Name:",
+        "user_email": "Your Email Address:",
         "close": "Close",
         "Edit_profile": "Edit Profile"
     },
