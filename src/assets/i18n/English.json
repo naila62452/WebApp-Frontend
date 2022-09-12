@@ -133,6 +133,15 @@
         "address​": "Address​",
         "email_us": "Email Us",
         "call_us": "Call Us"
+    },
+    "edit_topic": {
+        "please_wait": "Please wait.",
+        "edit_topic": "Edit Topic",
+        "checking_topic": "Checking Topic...",
+        "want_material_private": "Do you want to keep material private?",
+        "enter_access_code": "Please enter the access code",
+        "enter_access_code2": "Please enter access code",
+        "update": "Update"
     }
 
 
