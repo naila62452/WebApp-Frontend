@@ -74,12 +74,14 @@ export class LoginComponent implements OnInit {
               duration: 5000,
               panelClass: ['red-snackbar']
             });
+            this.loading = false
           }
           else if (err instanceof UnauthorizedErrors) {
             this._snackBar.open("Incorrect Email or Password", "Ok", {
               duration: 5000,
               panelClass: ['red-snackbar']
             });
+            this.loading = false
           }
           else throw err;
         })

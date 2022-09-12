@@ -1,11 +1,9 @@
-import { animate, query, stagger, style, transition, trigger, group, animateChild } from '@angular/animations';
+import { animate, query, stagger, style, transition, trigger, group } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 import { TopicsService } from 'src/app/service/topics.service';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatConfirmDialogueComponent } from '../mat-confirm-dialogue/mat-confirm-dialogue.component';
-import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -54,6 +52,7 @@ export class ViewTopicsComponent implements AfterViewInit {
   topicId: any
   tpoicById: Array<any> = []
   dataSource: MatTableDataSource<TopicElement>;
+  
   constructor(private topicService: TopicsService,
   private dialogueService: ConfirmDialogService, private snackbar: MatSnackBar,
   private route: ActivatedRoute) { }

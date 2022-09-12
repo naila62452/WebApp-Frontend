@@ -1,24 +1,11 @@
-import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
-import { McqsService } from 'src/app/service/mcqs.service';
-import { OpenEndedService } from 'src/app/service/open-ended-service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
+import { DataService } from 'src/app/service/curd-data-service';
+import { environment } from 'src/environments/environment';
 import { TopicsService } from 'src/app/service/topics.service';
-import { TrueFalseService } from 'src/app/service/true-false-service';
-import { MatDialog } from '@angular/material/dialog';
-import { OpenEndedComponent } from '../open-ended/open-ended.component';
-import { IntroductionService } from 'src/app/service/introduction';
-import { MatchPairsService } from 'src/app/service/match-pairs-service';
-
-enum ServiceEnum {
-  mcqsService = 'mcqsService',
-  trueFalseService = 'trueFalseService',
-  openEndedService = 'openEndedService',
-  introductionService = 'intro',
-  matchPairsService = 'matchPairsService'
-}
-
 @Component({
   selector: 'app-view-activity',
   templateUrl: './view-activity.component.html',
@@ -43,15 +30,12 @@ export class ViewActivityComponent implements OnInit {
   topicGetById: Array<any> = []
   processSort: any
   userId = localStorage.getItem('id');
-  questionNumber = localStorage.getItem('remainingQuestions')
-  totalNumberOfQuestions: any
-  constructor(private mcqsService: McqsService,
-    private openEndedService: OpenEndedService, private matchPairsService: MatchPairsService,
-    private trueFalseService: TrueFalseService, private introService: IntroductionService,
-    private route: ActivatedRoute, private topicService: TopicsService,
-    private dialogue: MatDialog,
-    private _snackBar: MatSnackBar) { }
+  remainingQuestions: any
+  typeNameArray: any
 
+  constructor(private route: ActivatedRoute, private topicService: TopicsService, private router: Router,
+    private dialogueService: ConfirmDialogService,
+    private _snackBar: MatSnackBar, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.topic = this.route.snapshot.paramMap.get('id')
@@ -63,138 +47,97 @@ export class ViewActivityComponent implements OnInit {
             .sort((low: { sequence: number; }, high: { sequence: number; }) => {
               return low.sequence - high.sequence;
             })
-            // let i;
-            // for( i = 1; i <= this.topicGetById[0].combineQuestion.length; i++) {
-            //   this.topicGetById[0].combineQuestion[i-1].sequence = i
-            // }
-          console.log('response', this.topicGetById[0].noOfQuestions)
-          this.totalNumberOfQuestions = this.topicGetById[0]?.noOfQuestions - parseInt(localStorage.getItem('remainingQuestions'))
-          console.log(this.topicGetById[0], "total number")
+          // let i;
+          // for( i = 1; i <= this.topicGetById[0].combineQuestion.length; i++) {
+          //   this.topicGetById[0].combineQuestion[i-1].sequence = i
+          // }
+          console.log('response', this.topicGetById[0])
+          this.remainingQuestions = this.topicGetById[0]?.remainingQuestions
+          console.log(this.remainingQuestions, "total number")
         }, err => {
           console.log(err)
         })
   }
 
-  openDialogue() {
-    this.dialogue.open(OpenEndedComponent)
-  }
-
-  onDeleteMcqs(id: any) {
-    this.mcqsService.delete(id).subscribe(
-      res => {
-        this.ngOnInit();
-        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-        this._snackBar.open(" Your Question has been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-      }, err => {
-        console.log(err)
-        this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
+  openDeleteDialogue(id: any, typeName: any): void {
+    const options = {
+      title: 'Delete Question?',
+      message: 'Are you sure you want to delete this Question?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+        let path = ''
+        if (typeName === 'openEnded') {
+          path = 'openEnded'
+        }
+        else if (typeName === 'introduction') {
+          path = 'intro'
+        }
+        else if (typeName === 'mcqs') {
+          path = 'mcqs'
+        }
+        else if (typeName === 'matchPairs') {
+          path = 'match'
+        }
+        else if (typeName === 'trueFalse') {
+          path = 'true_false'
+        }
+        this.dataService.setUrl(`${environment.web_URL}/api/${path}`)
+        this.dataService.delete(id).subscribe(
+          res => {
+            this.ngOnInit();
+            this._snackBar.open(" Your Question has been Deleted", "Ok", {
+              duration: 5000,
+              panelClass: ['blue-snackbar']
+            });
+            window.location.reload()
+          }, err => {
+            console.log(err)
+            this._snackBar.open(" Your Question has not been Deleted", "Ok", {
+              duration: 5000,
+              panelClass: ['red-snackbar']
+            });
+          }
+        )
       }
-    )
+      else return
+    })
   }
 
-  onDeleteTrueFalse(id: any) {
-    this.trueFalseService.delete(id).subscribe(
-      res => {
-        this.ngOnInit();
-        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-        this._snackBar.open(" Your Question has been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-      }, err => {
-        console.log(err)
-        this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
+  deleteTopicDialogue(id: any): void {
+    const options = {
+      title: 'Delete Topic?',
+      message: 'Are you sure you want to delete this Topic?',
+      cancelCaption: 'No',
+      confirmCaption: 'Yes'
+    };
+    this.dialogueService.open(options)
+    this.dialogueService.confirmed().subscribe(confirm => {
+      if (confirm) {
+        this.deleteTopic(id)
       }
-    )
+      else return
+    })
   }
 
-  onDeleteOpenEnded(id: any) {
-    this.openEndedService.delete(id).subscribe(
+  deleteTopic(id: any) {
+    this.topicService.deleteTopic(id).subscribe(
       res => {
-        this.ngOnInit();
-        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-        this._snackBar.open(" Your Question has been Deleted", "Ok", {
+        this._snackBar.open(" Your Topic has been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['blue-snackbar']
         });
+        this.router.navigate(['/user/view']);
       }, err => {
         console.log(err)
-        this._snackBar.open(" Your Question has not been Deleted", "Ok", {
+        this._snackBar.open(" Your Topic has not been Deleted", "Ok", {
           duration: 5000,
           panelClass: ['red-snackbar']
         });
       }
     )
-  }
-
-  onDeleteIntro(id: any) {
-    this.introService.delete(id).subscribe(
-      res => {
-        this.ngOnInit();
-        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-        this._snackBar.open(" Your Question has been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-      }, err => {
-        console.log(err)
-        this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-      }
-    )
-  }
-
-  onDeleteMatchPairs(id: any) {
-    this.matchPairsService.delete(id).subscribe(
-      res => {
-        this.ngOnInit();
-        localStorage.setItem('remainingQuestions', parseInt(localStorage.getItem('remainingQuestions')) - 1 + '')
-        this._snackBar.open(" Your Question has been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-      }, err => {
-        console.log(err)
-        this._snackBar.open(" Your Question has not been Deleted", "Ok", {
-          duration: 5000,
-          panelClass: ['blue-snackbar']
-        });
-      }
-    )
-  }
-
-  getServiceName(service: ServiceEnum) {
-    switch (service) {
-      case ServiceEnum.mcqsService:
-        break;
-      // console.log(service + ' enum service')
-      // return 'mcqsService';
-      case ServiceEnum.trueFalseService:
-        break;
-      // return 'trueFalseService';
-      case ServiceEnum.introductionService:
-        console.log(ServiceEnum.introductionService)
-        break;
-      // return 'introService';
-      case ServiceEnum.matchPairsService:
-        break;
-      // return 'matchPairsService';
-      case ServiceEnum.openEndedService:
-        break;
-      // return 'openEndedService';
-      default:
-        throw new Error(`Non-existent service in switch: ${service}`);
-    }
   }
 }

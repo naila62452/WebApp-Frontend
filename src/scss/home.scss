@@ -269,3 +269,14 @@ html{
    width: 50%;
  }
 }
+
+.example-card {
+  max-width: 500px;
+  margin-bottom: 20px;
+  .mat-card {
+    padding: 30px;
+  }
+  .card-image {
+    width: 30rem;
+  }
+}

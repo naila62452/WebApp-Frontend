@@ -103,6 +103,7 @@ export class RegisterComponent implements OnInit, SafeData {
               duration: 5000,
               panelClass: ['red-snackbar']
             });
+            this.loading = false
             console.log(err)
 
             this.registerForm.reset();

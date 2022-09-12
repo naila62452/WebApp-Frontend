@@ -1,8 +1,23 @@
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Inject } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+  })
 
 export class DataService {
-    constructor(private http: HttpClient, private url: string, private type: string) { }
+    private url = ''
+    
+    public getUrl() {
+        return this.url
+    }
+    public setUrl(url:string) {
+        this.url = url
+    }
+
+    constructor(private http: HttpClient) { }
     userId = localStorage.getItem('id')
 
     // Create API

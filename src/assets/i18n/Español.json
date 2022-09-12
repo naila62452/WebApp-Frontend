@@ -77,6 +77,7 @@
         "your_name": "Su nombre:",
         "your_email_address": "Su e-mail:",
         "close": "Cerrar"
+        "Edit_profile": "Editar perfil"
     },
     "add_topics": {
         "add": "Añadir tema",
@@ -86,7 +87,7 @@
         "name_already_exist": "Este tema ya existe.",
         "age": "Por favor, seleccione el grupo de edad.",
         "age_label": "Elija el grupo de edad",
-        "lang": "Seleccione el idioma.",
+        "lang": "Seleccione el idioma para el material.",
         "lang_label": "Elija el idioma",
         "country": "Seleccione el país.",
         "country_label": "Elija el país",

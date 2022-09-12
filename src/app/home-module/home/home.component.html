@@ -36,79 +36,21 @@
     <div>
         <h1>{{'Home_page.projectpartners' | translate}}</h1>
         <div class="content">
-            <div fxLayout="row wrap" fxLayoutGap="16px grid">
-                <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4]">
-                    <mat-card class="mat-elevation-z4">
-                        <mat-card-header>
-                            <mat-card-title>University of Siegen</mat-card-title>
-                        </mat-card-header>
-                        <img mat-card-image src="assets/uni-siegen.jpg">
-                        <mat-card-content>
-                            <p>
-                                <img src="assets/de.jpg"/> Germany
-                            </p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button>a href="https://www.uni-siegen.de/start/index.html.en?lang=en">VIEW</a></button>
-                        </mat-card-actions>
-                    </mat-card>
-					<mat-card class="mat-elevation-z4">
-                        <mat-card-header>
-                            <mat-card-title>Institute of Knowledge Based Systems and Knowledge Management</mat-card-title>
-                        </mat-card-header>
-                        <img mat-card-image src="assets/kbs.png">
-                        <mat-card-content>
-                            <p>
-                                <img src="assets/de.jpg"/> Germany
-                            </p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button>a href="https://www.eti.uni-siegen.de/ws/index.html.en?lang=en">VIEW</a></button>
-                        </mat-card-actions>
-                    </mat-card>
-					<mat-card class="mat-elevation-z4">
-                        <mat-card-header>
-                            <mat-card-title>Wirtschaftsinformatik und Neue Medien</mat-card-title>
-                        </mat-card-header>
-                        <img mat-card-image src="assets/winfo_newmedia.png">
-                        <mat-card-content>
-                            <p>
-                                Wirtschaftsinformatik und Neue Medien
-                            </p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button>a href="https://www.wineme.uni-siegen.de/">VIEW</a></button>
-                        </mat-card-actions>
-                    </mat-card>
-					<mat-card class="mat-elevation-z4">
-                        <mat-card-header>
-                            <mat-card-title>University of Alicante</mat-card-title>
-                        </mat-card-header>
-                        <img mat-card-image src="assets/universidad_alicante.png">
-                        <mat-card-content>
-                            <p>
-                                <img src="assets/es.jpg"/> Spain
-                            </p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button>a href="https://www.ua.es/en/">VIEW</a></button>
-                        </mat-card-actions>
-                    </mat-card>
-					<mat-card class="mat-elevation-z4">
-                        <mat-card-header>
-                            <mat-card-title>Open Lab Athens | Research and Technology Lab</mat-card-title>
-                        </mat-card-header>
-                        <img mat-card-image src="assets/openlab.png">
-                        <mat-card-content>
-                            <p>
-                                <img src="assets/el.jpg"/> Greece
-                            </p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button><a href="https://olathens.gr/">VIEW</a></button>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
+            <div class="example-card" *ngFor="let card of cards">
+                <mat-card class="mat-elevation-z4">
+                    <mat-card-header>
+                        <mat-card-title>{{card.title}}</mat-card-title>
+                    </mat-card-header>
+                    <img class="card-image" mat-card-image [src]="card.img">
+                    <mat-card-content>
+                        <p>
+                            <img [src]="card.description" /> {{card.countryName}}
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button class="button"><a href="{{card.link}}" target="_blank">VIEW</a></button>
+                    </mat-card-actions>
+                </mat-card>
             </div>
         </div>
     </div>

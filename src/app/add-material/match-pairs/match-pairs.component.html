@@ -26,7 +26,7 @@
                                     </div>
                                 </mat-error>
                                 <mat-error *ngIf="sequence.errors?.['min']">
-                                    Please enter a Positive Sequence of Number.</mat-error>
+                                    Please enter greater than or equal to 1 Sequence Number.</mat-error>
                             </div>
                             <br>
 
@@ -98,37 +98,9 @@
                                         formControlName="statement6">
                                     <span>Answer 6:</span><input type="text" name="answer6" id="answer6"
                                         formControlName="answer6">
-                                    <!-- <span>Statement 7:</span><input type="text" name="statement7" id="statement7"
-                                        formControlName="statement7">
-                                    <span>Answer 7:</span><input type="text" name="answer7" id="answer7"
-                                        formControlName="answer7">
-                                    <span>Statement 8:</span><input type="text" name="statement8" id="statement8"
-                                        formControlName="statement8">
-                                    <span>Answer 8:</span><input type="text" name="answer8" id="answer8"
-                                        formControlName="answer8"> -->
                                 </ul>
                             </div>
                             <div>
-
-                                <!-- <mat-label for="answer"><b>Please select correct Answer.</b></mat-label>
-                                <mat-form-field appearance="fill">
-                                    <mat-label> Choose answer</mat-label>
-                                    <mat-select formControlName="answer">
-                                        <mat-option value="option1">Option A</mat-option>
-                                        <mat-option value="option2">Option B</mat-option>
-                                        <mat-option value="option3">Option C</mat-option>
-                                        <mat-option value="option4">Option D</mat-option>
-
-                                    </mat-select>
-                                </mat-form-field>
-                                <small class="text-danger" role="alert" *ngIf="(!mcqsForm.valid && mcqsForm.get('answer')?.errors) && 
-                                (mcqsForm.get('answer')?.dirty || mcqsForm.get('answer')?.touched)">
-                                    <div>
-                                        Please select Answer.
-                                    </div>
-                                </small>
-                                <br> -->
-
                                 <div class="feedback">
                                     <div class="feedback__step">
                                         <mat-label>Feedback, if the answer is correct *</mat-label>

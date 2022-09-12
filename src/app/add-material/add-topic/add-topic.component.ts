@@ -8,6 +8,7 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { bounceOutLeftAnimation, slideEffect } from 'src/app/angular-animations/animations-fade';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { SafeData } from 'src/app/_models/save-data-interface';
+
 @Component({
   selector: 'app-add-topic',
   templateUrl: './add-topic.component.html',
@@ -69,12 +70,11 @@ export class AddTopicComponent implements OnInit, SafeData {
       Validators.required
     ]),
     access: new FormControl(null, [
-      // Validators.required
     ]),
     accessCode: new FormControl(null, [
-      // Validators.required
     ]),
   });
+
   topic: Array<any> = []
   subject: any
   searchText = ''
@@ -145,7 +145,6 @@ export class AddTopicComponent implements OnInit, SafeData {
 
   onSubmit() {
     this.loading = true
-    // console.log(this.topicForm.value)
     this.subId = this.route.snapshot.paramMap.get('id');
     this.topicService.addTopic(this.topicForm.value, this.subId, this.topicForm.value.ageGroup)
       .subscribe(
@@ -158,7 +157,6 @@ export class AddTopicComponent implements OnInit, SafeData {
           this.loading = false
           this.getTopicByAgeId(this.topicForm.value.ageGroup);
           this.topicForm.reset();
-          localStorage.setItem('remainingQuestions', '0')
           this.router.navigate([`/material/type/${res._id}`])
         },
         err => {
@@ -169,15 +167,6 @@ export class AddTopicComponent implements OnInit, SafeData {
           });
         })
   }
-
-  // uniqueEmailValidator(): AsyncValidatorFn {
-  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-  //     return this.topicService.topicNameCheck(control.value).pipe(
-  //       map((res) => (((res.topic)) === ((control.value)) ? { topicExists: true } : null)),
-  //       catchError((err) =>{ console.log(err + 'i am error'); return null })
-  //     );
-  //   };
-  // }
 
   uniqueTopicValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {

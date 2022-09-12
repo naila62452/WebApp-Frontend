@@ -77,6 +77,7 @@
         "your_name": "Your Name:",
         "your_email_address": "Your Email Address:",
         "close": "Close"
+        "Edit_profile": "Edit Profile"
     },
     "add_topics": {
         "add": "Add Topic",
@@ -86,7 +87,7 @@
         "name_already_exist": "This topic already exists.",
         "age": "Please select age group.",
         "age_label": "Choose age group",
-        "lang": "Please select language.",
+        "lang": "Please select language for the material.",
         "lang_label": "Choose Language",
         "country": "Please select country.",
         "country_label": "Choose Country",
@@ -143,6 +144,4 @@
         "enter_access_code2": "Please enter access code",
         "update": "Update"
     }
-
-
 }
