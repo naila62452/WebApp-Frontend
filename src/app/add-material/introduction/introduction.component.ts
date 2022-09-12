@@ -31,8 +31,6 @@ export class IntroductionComponent implements OnInit {
   Pickedimage: string;
   imageUrl: any
   length: any
-  topicData: any
-  topicIdParams: any
 
   constructor(
     private _snackBar: MatSnackBar, private dataService: DataService,
@@ -41,14 +39,13 @@ export class IntroductionComponent implements OnInit {
   get sequence() { return this.introForm.get('sequence'); }
 
   ngOnInit(): void {
-
-    this.topicIdParams = this.route.snapshot.paramMap.get('id');
-    this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
-      res => {
-        this.topicData = res
-      }
-    )
-
+      // this.topicIdParams = this.route.snapshot.paramMap.get('id');
+      // this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
+      //   res => {
+      //     this.topicData = res
+      //   }
+      // )
+    
     this.dataService.setUrl(`${environment.web_URL}/api/intro`)
     this.id = this.route.snapshot.paramMap.get('introId');
     this.length = this.route.snapshot.paramMap.get('length');
@@ -118,8 +115,8 @@ export class IntroductionComponent implements OnInit {
       formData.append("link", this.introForm.get('link').value)
     }
 
-    if (this.introForm.get('sequence').value > this.topicData.noOfQuestions) {
-      this._snackBar.open(`Your total questions are ${this.topicData.noOfQuestions}. Please enter a valid sequence number.`, "Ok", {
+    if (this.introForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
         duration: 5000,
         panelClass: ['red-snackbar']
       });

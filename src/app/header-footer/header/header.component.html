@@ -103,7 +103,8 @@
                 <span>{{'header.home' | translate}}</span>
             </button>
 
-            <button mat-button class="menu-button" routerLink="/user/viewAll">
+            <button mat-button class="menu-button" routerLink="/user/viewAll"
+                *ngIf="teacherAuth.currentUser?.role !== 'Admin'">
                 <mat-icon>pageview</mat-icon>
                 <span>{{'header.view' | translate}}</span>
             </button>
@@ -114,16 +115,16 @@
                 <span>{{'header.profile' | translate}}</span>
             </button>
 
-            <button mat-button class="menu-button" routerLink="/adminUser/profile"
-                *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
-                <mat-icon>person</mat-icon>
-                <span>Admin Profile</span>
-            </button>
-
             <button mat-button class="menu-button" routerLink="/adminUser/admin"
                 *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
                 <mat-icon> manage_accounts </mat-icon>
                 <span>Admin Dashboard</span>
+            </button>
+
+            <button mat-button class="menu-button" routerLink="/adminUser/profile"
+                *ngIf="teacherAuth.isLoggedIn() && teacherAuth.currentUser.role === 'Admin'">
+                <mat-icon>person</mat-icon>
+                <span>Admin Profile</span>
             </button>
 
             <button mat-button class="menu-button" routerLink="/adminUser/admin"

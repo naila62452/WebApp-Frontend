@@ -27,8 +27,6 @@ export class MatchPairsComponent implements OnInit {
   imageUrl: any
   Pickedimage: string
   length: any
-  topicData: any
-  topicIdParams: any
 
   constructor(private route: ActivatedRoute, private dataService: DataService,
     private _snackBar: MatSnackBar, private router: Router, private topicService: TopicsService) { }
@@ -36,12 +34,6 @@ export class MatchPairsComponent implements OnInit {
   get sequence() { return this.match_pairsForm.get('sequence'); }
 
   ngOnInit(): void {
-    this.topicIdParams = this.route.snapshot.paramMap.get('id');
-    this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
-      res => {
-        this.topicData = res
-      }
-    )
 
     this.dataService.setUrl(`${environment.web_URL}/api/match`)
     this.id = this.route.snapshot.paramMap.get('matchId');
@@ -150,8 +142,8 @@ export class MatchPairsComponent implements OnInit {
       formData.append('file', this.match_pairsForm.get('file').value);
     }
 
-    if (this.match_pairsForm.get('sequence').value > this.topicData.noOfQuestions) {
-      this._snackBar.open(`Your total questions are ${this.topicData.noOfQuestions}. Please enter a valid sequence number.`, "Ok", {
+    if (this.match_pairsForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
         duration: 5000,
         panelClass: ['red-snackbar']
       });

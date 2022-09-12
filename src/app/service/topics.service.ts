@@ -42,6 +42,10 @@ export class TopicsService {
     let id = localStorage.getItem('id');
     return this.http.get(`${api_path}/getTopic/${id}/${topic}`)
   }
+  
+  getByTopicId(topic: string): Observable<any> {
+    return this.http.get(`${api_path}/getTopicById/${topic}`)
+  }
 
   getAllTopicData(id: string) {
     return this.http.get(`${api_path}/getByTopic/${id}`)

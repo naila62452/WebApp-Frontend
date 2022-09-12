@@ -43,19 +43,10 @@ export class MCQSComponent implements OnInit {
   updatedQuestion: any
   imageUrl: any
   length: any
-  topicIdParams: any
-  topicData: any
 
   get sequence() { return this.mcqsForm.get('sequence'); }
 
   ngOnInit(): void {
-
-    this.topicIdParams = this.route.snapshot.paramMap.get('id');
-    this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
-      res => {
-        this.topicData = res
-      }
-    )
 
     this.dataService.setUrl(`${environment.web_URL}/api/mcqs`)
     this.id = this.route.snapshot.paramMap.get('mcqsId');
@@ -151,8 +142,8 @@ export class MCQSComponent implements OnInit {
     if (this.mcqsForm.get('file').value) {
       formData.append('file', this.mcqsForm.get('file').value);
     }
-      if (this.mcqsForm.get('sequence').value > this.topicData.noOfQuestions) {
-      this._snackBar.open(`Your total questions are ${this.topicData.noOfQuestions}. Please enter a valid sequence number.`, "Ok", {
+      if (this.mcqsForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
         duration: 5000,
         panelClass: ['red-snackbar']
       });

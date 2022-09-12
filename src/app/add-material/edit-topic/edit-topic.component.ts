@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, Observable } from 'rxjs';
 import { ActivityFormService } from 'src/app/service/activity-form.service';
 import { TopicsService } from 'src/app/service/topics.service';
-
+import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
 @Component({
   selector: 'app-edit-topic',
   templateUrl: './edit-topic.component.html',
@@ -16,28 +16,70 @@ export class EditTopicComponent implements OnInit {
   constructor(private topicService: TopicsService,
     private snackbar: MatSnackBar, private route: ActivatedRoute,
     private activityService: ActivityFormService,
-    private router: Router) {
+    private router: Router, public teacherAuth: TeacherAuthService) {
     this.topicId = this.route.snapshot.paramMap.get('topicId');
-    this.topicService.getTopicByTopicId(this.topicId).subscribe(
-      res => {
-        this.updateTopic = res;
-        this.remainingQuestion = this.updateTopic.remainingQuestions
-        this.length = this.updateTopic.noOfQuestions
-        this.topicForm.patchValue({
-          topic: this.updateTopic.topic,
-          ageGroup: this.updateTopic.ageGroup,
-          language: this.updateTopic.language,
-          country: this.updateTopic.country,
-          grade: this.updateTopic.grade,
-          noOfQuestions: this.updateTopic.noOfQuestions,
-          remainingQuestions: this.remainingQuestion,
-          time: this.updateTopic.time,
-          subject: this.updateTopic.subject,
-          access: this.updateTopic.access,
-          accessCode: this.updateTopic.accessCode
-        })
-        console.log(this.updateTopic, "patch")
-      });
+
+    if(this.teacherAuth.currentUser?.role === 'Admin') {
+      this.topicService.getByTopicId(this.topicId).subscribe(
+        res => {
+          this.updateTopic = res;
+          this.remainingQuestion = this.updateTopic.remainingQuestions
+          this.length = this.updateTopic.noOfQuestions
+          this.topicForm.patchValue({
+            topic: this.updateTopic.topic,
+            ageGroup: this.updateTopic.ageGroup,
+            language: this.updateTopic.language,
+            country: this.updateTopic.country,
+            grade: this.updateTopic.grade,
+            noOfQuestions: this.updateTopic.noOfQuestions,
+            remainingQuestions: this.remainingQuestion,
+            time: this.updateTopic.time,
+            subject: this.updateTopic.subject,
+            access: this.updateTopic.access,
+            accessCode: this.updateTopic.accessCode
+          })
+        });
+    } else {
+      this.topicService.getTopicByTopicId(this.topicId).subscribe(
+        res => {
+          this.updateTopic = res;
+          this.remainingQuestion = this.updateTopic.remainingQuestions
+          this.length = this.updateTopic.noOfQuestions
+          this.topicForm.patchValue({
+            topic: this.updateTopic.topic,
+            ageGroup: this.updateTopic.ageGroup,
+            language: this.updateTopic.language,
+            country: this.updateTopic.country,
+            grade: this.updateTopic.grade,
+            noOfQuestions: this.updateTopic.noOfQuestions,
+            remainingQuestions: this.remainingQuestion,
+            time: this.updateTopic.time,
+            subject: this.updateTopic.subject,
+            access: this.updateTopic.access,
+            accessCode: this.updateTopic.accessCode
+          })
+        });
+    }
+    // this.topicService.getTopicByTopicId(this.topicId).subscribe(
+    //   res => {
+    //     this.updateTopic = res;
+    //     this.remainingQuestion = this.updateTopic.remainingQuestions
+    //     this.length = this.updateTopic.noOfQuestions
+    //     this.topicForm.patchValue({
+    //       topic: this.updateTopic.topic,
+    //       ageGroup: this.updateTopic.ageGroup,
+    //       language: this.updateTopic.language,
+    //       country: this.updateTopic.country,
+    //       grade: this.updateTopic.grade,
+    //       noOfQuestions: this.updateTopic.noOfQuestions,
+    //       remainingQuestions: this.remainingQuestion,
+    //       time: this.updateTopic.time,
+    //       subject: this.updateTopic.subject,
+    //       access: this.updateTopic.access,
+    //       accessCode: this.updateTopic.accessCode
+    //     })
+    //     console.log(this.updateTopic, "patch")
+    //   });
   }
   get access() { return this.topicForm.get('access'); }
   get accessCode() { return this.topicForm.get('accessCode'); }

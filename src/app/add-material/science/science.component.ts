@@ -5,7 +5,7 @@ import { TopicsService } from 'src/app/service/topics.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { fade } from 'src/app/angular-animations/animations-fade';
 import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
-
+import { TeacherAuthService } from 'src/app/service/teacher-auth.service';
 @Component({
   selector: 'app-science',
   templateUrl: './science.component.html',
@@ -25,7 +25,7 @@ export class ScienceComponent implements OnInit {
   constructor(private category: ActivityFormService,
     private route: ActivatedRoute, private topicService: TopicsService,
     private _snackBar: MatSnackBar, private router: Router,
-    private dialogueService: ConfirmDialogService) { }
+    private teacherAuth: TeacherAuthService) { }
 
   // @HostListener('window:beforeunload', ['$event'])
   // onBeforeReload(e: BeforeUnloadEvent) {
@@ -48,17 +48,16 @@ export class ScienceComponent implements OnInit {
   ngOnInit(): void {
 
     this.topicId = this.route.snapshot.paramMap.get('id');
-    this.topicService.getTopicByTopicId(this.topicId)
+    if(this.teacherAuth.currentUser.role === 'Admin') {
+      this.topicService.getByTopicId(this.topicId)
       .subscribe(res => {
         this.topicGetById = res
         console.log(res.noOfQuestions)
         console.log('response', res)
-        // this.totalNumberOfQuestions = res.noOfQuestions - this.count
         this.remainingQuestions = res.remainingQuestions
         this.arr = Array(Number(this.remainingQuestions)).fill(0)
         this.selectedValue = Array(Number(this.remainingQuestions)).fill('')
         this.ifSubmitted = Array(Number(this.remainingQuestions)).fill(false)
-        // this.count++
         console.log(this.arr)
         if (this.remainingQuestions === 0) {
           this.router.navigate([`/material/view/${res._id}`]);
@@ -71,6 +70,54 @@ export class ScienceComponent implements OnInit {
       }, err => {
         console.log(err)
       })
+
+    } else {
+      this.topicService.getTopicByTopicId(this.topicId)
+      .subscribe(res => {
+        this.topicGetById = res
+        console.log(res.noOfQuestions)
+        console.log('response', res)
+        this.remainingQuestions = res.remainingQuestions
+        this.arr = Array(Number(this.remainingQuestions)).fill(0)
+        this.selectedValue = Array(Number(this.remainingQuestions)).fill('')
+        this.ifSubmitted = Array(Number(this.remainingQuestions)).fill(false)
+        console.log(this.arr)
+        if (this.remainingQuestions === 0) {
+          this.router.navigate([`/material/view/${res._id}`]);
+          this._snackBar.open("All Questions has been submitted", "Ok", {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          })
+        }
+
+      }, err => {
+        console.log(err)
+      })
+    }
+    // this.topicService.getTopicByTopicId(this.topicId)
+    //   .subscribe(res => {
+    //     this.topicGetById = res
+    //     console.log(res.noOfQuestions)
+    //     console.log('response', res)
+    //     // this.totalNumberOfQuestions = res.noOfQuestions - this.count
+    //     this.remainingQuestions = res.remainingQuestions
+    //     this.arr = Array(Number(this.remainingQuestions)).fill(0)
+    //     this.selectedValue = Array(Number(this.remainingQuestions)).fill('')
+    //     this.ifSubmitted = Array(Number(this.remainingQuestions)).fill(false)
+    //     // this.count++
+    //     console.log(this.arr)
+    //     if (this.remainingQuestions === 0) {
+    //       this.router.navigate([`/material/view/${res._id}`]);
+    //       this._snackBar.open("All Questions has been submitted", "Ok", {
+    //         duration: 5000,
+    //         panelClass: ['blue-snackbar']
+    //       })
+    //     }
+
+    //   }, err => {
+    //     console.log(err)
+    //   })
+
     localStorage.setItem('topicId', this.topicId);
     console.log(localStorage.getItem('topicId'))
     this.category.getQuestionType()

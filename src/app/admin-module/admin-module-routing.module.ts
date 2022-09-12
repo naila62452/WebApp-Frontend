@@ -4,6 +4,8 @@ import { AuthGuard } from 'src/_validator/_auth/auth-guard';
 import { RoleGuard } from 'src/_validator/_auth/role-guard';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { AdminComponent } from './admin/admin.component';
+import { ViewTopicListComponent } from './view-topic-list/view-topic-list.component';
+import { ViewUserListComponent } from './view-user-list/view-user-list.component';
 
 const routes: Routes = [
   {
@@ -11,6 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'profile', component: AdminProfileComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'Admin' }
+  },
+  {
+    path: 'viewTopics', component: ViewTopicListComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'Admin' }
+  },
+  {
+    path: 'view-users', component: ViewUserListComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'Admin' }
   }
 ];
 

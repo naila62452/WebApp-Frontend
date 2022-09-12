@@ -6,6 +6,8 @@ import { ConfirmDialogService } from 'src/app/service/confirm-dialog.service';
 import { DataService } from 'src/app/service/curd-data-service';
 import { environment } from 'src/environments/environment';
 import { TopicsService } from 'src/app/service/topics.service';
+import { TeacherAuthService } from '../../service/teacher-auth.service';
+
 @Component({
   selector: 'app-view-activity',
   templateUrl: './view-activity.component.html',
@@ -34,7 +36,7 @@ export class ViewActivityComponent implements OnInit {
   typeNameArray: any
 
   constructor(private route: ActivatedRoute, private topicService: TopicsService, private router: Router,
-    private dialogueService: ConfirmDialogService,
+    private dialogueService: ConfirmDialogService,  public teacherAuth: TeacherAuthService,
     private _snackBar: MatSnackBar, private dataService: DataService) { }
 
   ngOnInit(): void {

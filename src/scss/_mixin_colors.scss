@@ -17,6 +17,7 @@ $button_color: #ccdceb;
     text-align: center;
     justify-self: center;
     display: grid;
+    border-radius: 8px;
 }
 @mixin text_align_paragraph {
     text-align: justify;

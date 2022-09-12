@@ -157,7 +157,7 @@ export class AddTopicComponent implements OnInit, SafeData {
           this.loading = false
           this.getTopicByAgeId(this.topicForm.value.ageGroup);
           this.topicForm.reset();
-          this.router.navigate([`/material/type/${res._id}`])
+          this.router.navigate([`/material/type/${res._id}/${res.noOfQuestions}`])
         },
         err => {
           console.log(err);

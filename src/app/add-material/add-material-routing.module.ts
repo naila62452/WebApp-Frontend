@@ -13,7 +13,7 @@ import { TrueFalseComponent } from './true-false/true-false.component';
 import { ViewActivityComponent } from './view-activity/view-activity.component';
 
 const routes: Routes = [
-  { path: 'type/:id', component: ScienceComponent, canActivate: [AuthGuard] },
+  { path: 'type/:id/:length', component: ScienceComponent, canActivate: [AuthGuard] },
   { path: 'mcqs/:mcqsId/:length', component: MCQSComponent, canActivate: [AuthGuard] },
   { path: 'true/:trueFalseId/:length', component: TrueFalseComponent, canActivate: [AuthGuard] },
   { path: 'topic/:id', component: AddTopicComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard] },
