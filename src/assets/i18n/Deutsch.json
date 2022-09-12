@@ -73,8 +73,11 @@
         "view": "Themen anzeigen",
         "profile_text": "Hier können Sie Ihr Profil bearbeiten, Ihre Informationen aktualisieren und neue Lerninhalte für Schülerinnen und Schüler erstellen. Bitte klicken Sie auf die Schaltfläche unten, um den Prozess der Inhaltserstellung zu starten. Verwenden Sie die Felder auf der linken Seite, um Ihre Informationen zu bearbeiten. Wenn Sie Fragen haben, lesen Sie bitte den Abschnitt FAQ und zögern Sie nicht, uns zu kontaktieren, wenn Sie weitere Hilfe benötigen.",
         "welcome": "Willkommen bei SEEDS!",
+        "edit_profile": "Profil bearbeiten",
+        "your_name": "Ihr Name:",
+        "your_email_address": "Ihre E-Mail Adresse:",
+        "close": "Schließen"
         "Edit_profile": "Profil bearbeiten"
-
     },
     "add_topics": {
         "add": "Thema hinzufügen",
@@ -116,6 +119,30 @@
         "a_is_project_running": "Das Projekt hat eine Laufzeit von zwei Jahren, zwischen 2021 und 2023.",
         "a_are_project_results_open": "Alle Ergebnisse des SEEDS-Projekts sind frei zugänglich und können auf der Projektwebsite und in den Repositories eingesehen werden.",
         "a_where_are_project_results": "Die Projektergebnisse und Repository-Links finden Sie auf der Projektwebsite."   
+    },
+    "view_all_topics": {
+        "subject": "Thema",
+        "name": "Name",
+        "country": "Land",
+        "language": "Sprache",
+        "grade": "Klasse",
+        "view": "Anzeigen",
+        "no_data_matching": "Keine Daten mit dem Namen des Themas"
+    },
+    "contact_info": {
+        "contact_info": "Kontaktinformationen",
+        "address​": "Anschrift",
+        "email_us": "E-Mail",
+        "call_us": "Anrufen"
+    },
+    "edit_topic": {
+        "please_wait": "Bitte warten.",
+        "edit_topic": "Thema bearbeiten",
+        "checking_topic": "Thema prüfen...",
+        "want_material_private": "Möchten Sie das Material privat halten?",
+        "enter_access_code": "Bitte geben Sie den Zugangscode ein",
+        "enter_access_code2": "Bitte Zugangscode eingeben",
+        "update": "aktualisieren"
     }
 
 

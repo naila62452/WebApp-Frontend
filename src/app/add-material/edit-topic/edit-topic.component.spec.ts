@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { EditTopicComponent } from './edit-topic.component';
 
 describe('EditTopicComponent', () => {

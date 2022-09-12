@@ -73,6 +73,10 @@
         "view": "View Topics",
         "profile_text": "Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and do not hesitate to contact us for more help.",
         "welcome": "Welcome to SEEDS!",
+        "edit_profile": "Edit Profile",
+        "your_name": "Your Name:",
+        "your_email_address": "Your Email Address:",
+        "close": "Close"
         "Edit_profile": "Edit Profile"
     },
     "add_topics": {
@@ -115,5 +119,29 @@
         "a_is_project_running": "The project's duration is two years, between 2021-2023.",
         "a_are_project_results_open": "All SEEDS project results are open-access and available on the project's website and repositories",
         "a_where_are_project_results": "You can find the project's results and repository links on the project's website."   
+    },
+    "view_all_topics": {
+        "subject": "Subject",
+        "name": "Name",
+        "country": "Country",
+        "language": "Language",
+        "grade": "Grade",
+        "view": "View",
+        "no_data_matching": "No data matching with the Topic name"
+    },
+    "contact_info": {
+        "contact_info": "Contact Info",
+        "address​": "Address​",
+        "email_us": "Email Us",
+        "call_us": "Call Us"
+    },
+    "edit_topic": {
+        "please_wait": "Please wait.",
+        "edit_topic": "Edit Topic",
+        "checking_topic": "Checking Topic...",
+        "want_material_private": "Do you want to keep material private?",
+        "enter_access_code": "Please enter the access code",
+        "enter_access_code2": "Please enter access code",
+        "update": "Update"
     }
 }
