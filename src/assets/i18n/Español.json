@@ -127,6 +127,12 @@
         "grade": "Grado",
         "view": "Ver",
         "no_data_matching": "No hay datos que coincidan con el nombre del tema"
+    },
+    "contact_info": {
+        "contact_info": "Información de contacto",
+        "address​": "Dirección",
+        "email_us": "Envíenos un e-mail",
+        "call_us": "Llámenos"
     }
     
 }

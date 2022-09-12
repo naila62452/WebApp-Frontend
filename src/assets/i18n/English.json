@@ -127,6 +127,12 @@
         "grade": "Grade",
         "view": "View",
         "no_data_matching": "No data matching with the Topic name"
+    },
+    "contact_info": {
+        "contact_info": "Contact Info",
+        "address​": "Address​",
+        "email_us": "Email Us",
+        "call_us": "Call Us"
     }
 
 

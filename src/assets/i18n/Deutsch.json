@@ -127,6 +127,12 @@
         "grade": "Klasse",
         "view": "Anzeigen",
         "no_data_matching": "Keine Daten mit dem Namen des Themas"
+    },
+    "contact_info": {
+        "contact_info": "Kontaktinformationen",
+        "address​": "Anschrift",
+        "email_us": "E-Mail",
+        "call_us": "Anrufen"
     }
 
 
