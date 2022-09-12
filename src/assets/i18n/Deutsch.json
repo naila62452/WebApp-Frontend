@@ -72,7 +72,11 @@
         "add": "Neues Thema hinzufügen",
         "view": "Themen anzeigen",
         "profile_text": "Hier können Sie Ihr Profil bearbeiten, Ihre Informationen aktualisieren und neue Lerninhalte für Schülerinnen und Schüler erstellen. Bitte klicken Sie auf die Schaltfläche unten, um den Prozess der Inhaltserstellung zu starten. Verwenden Sie die Felder auf der linken Seite, um Ihre Informationen zu bearbeiten. Wenn Sie Fragen haben, lesen Sie bitte den Abschnitt FAQ und zögern Sie nicht, uns zu kontaktieren, wenn Sie weitere Hilfe benötigen.",
-        "welcome": "Willkommen bei SEEDS!"
+        "welcome": "Willkommen bei SEEDS!",
+        "edit_profile": "Profil bearbeiten",
+        "your_name": "Ihr Name:",
+        "your_email_address": "Ihre E-Mail Adresse:",
+        "close": "Schließen"
     },
     "add_topics": {
         "add": "Thema hinzufügen",

@@ -5,8 +5,7 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">{{'user_profile.edit' | translate}}</h4>
-                        <button mat-stroked-button class="button" type="button" (click)="openDialogue()">Edit
-                            Profile</button>
+                        <button mat-stroked-button class="button" type="button" (click)="openDialogue()">{{'user_profile.edit_profile' | translate}}</button>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -15,11 +14,11 @@
                             </div> -->
                             <hr>
                             <div class="row-cols-1">
-                                <span class="user-profile">Your Name:</span>
+                                <span class="user-profile">{{'user_profile.your_name' | translate}}</span>
                                 <span>{{user?.data?.name}}</span>
                             </div>
                             <div class="row-cols-1">
-                                <span class="user-profile">Your Email Address:</span>
+                                <span class="user-profile">{{'user_profile.your_email_address' | translate}}</span>
                                 <span>{{user?.data?.email}}</span>
                             </div>
                         </div>
