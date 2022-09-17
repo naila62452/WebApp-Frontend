@@ -11,7 +11,8 @@
             <div class="home__step">
                 <div class="home__circle" *ngFor="let sub of subject; let i = index">
                     <div class="pointer" [routerLink]="['/material/topic/', sub._id]">
-                        <span [routerLink]="['/material/topic/', sub._id]">{{sub.subject}}</span>
+                        <span [ngStyle]="{'color': isDarkTheme === true ? 'black' : 'black'}"
+                            [routerLink]="['/material/topic/', sub._id]">{{sub.subject}}</span>
                         <span *ngIf="i == 0" class="material-icons" style="color: red;">business_center</span>
                         <span *ngIf="i == 1" class="material-icons" style="color: yellowgreen;">science</span>
                         <span *ngIf="i == 2" class="material-icons" style="color: brown;">psychology</span>

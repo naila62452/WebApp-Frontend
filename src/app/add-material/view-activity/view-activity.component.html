@@ -21,8 +21,7 @@
 
     <div class="topicDiv">
         <button mat-stroked-button *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
-            [routerLink]="['/material/edit-topic', topics._id]" class="button"
-            style="width: fit-content; text-align: center; font-size: px;">Edit Topic</button>
+            [routerLink]="['/material/edit-topic', topics._id]" class="button">Edit Topic</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && topics.noOfQuestions === '0'" class=" button"
             (click)="deleteTopicDialogue(topics._id)"
@@ -147,6 +146,10 @@
                     matTooltip="Edit Question"
                     [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">edit</mat-icon>
             </div>
+            <br>
+            <button mat-stroked-button *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
+                [routerLink]="['/material/viewAnswers', combine._id]" class="button">View Submissions
+            </button>
         </div>
 
         <div class="mcqs" *ngIf="combine.questionType === 'matchPairs'">
