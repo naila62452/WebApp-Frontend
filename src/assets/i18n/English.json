@@ -31,7 +31,7 @@
         "accept": "Please accept terms and conditions for privacy policy.",
         "already_acc": "Already have an account? Please <a href =\"/authenticate/login\">Login</a>",
         "sign_up": "Sign up",
-        "email_error": "Please enter a e-mail address.",
+        "email_error": "Please enter an e-mail address.",
         "valid_email": "Please enter a valid e-mail address.",
         "already_exist_email":"This e-mail already exists.",
         "name_error": "Please enter your name.",
