@@ -161,7 +161,7 @@ export class AddTopicComponent implements OnInit, SafeData {
         },
         err => {
           console.log(err);
-          this.snackbar.open("Failed to post the Topic", "Ok", {
+          this.snackbar.open("That Topic name already exist. Please choose another name.", "Ok", {
             duration: 5000,
             panelClass: ['red-snackbar']
           });

@@ -55,6 +55,10 @@ export class TopicsService {
     return this.http.get(`${api_path}/`)
   }
 
+  getAllTopicByAccess() {
+    return this.http.get(`${api_path}/?access=0`)
+  }
+
   deleteTopic(id: string): Observable<any> {
     return this.http.delete(`${api_path}/delete/${id}`, { responseType: 'text' })
   }

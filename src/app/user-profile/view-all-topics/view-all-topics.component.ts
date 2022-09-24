@@ -12,6 +12,7 @@ export interface TopicElement {
   position: number;
   index: number
   subId: any
+  access: any
 }
 export interface Subject {
   subject: string
@@ -50,22 +51,22 @@ export class ViewAllTopicsComponent implements AfterViewInit {
   topic: TopicElement[] = [];
   dataSource: MatTableDataSource<TopicElement>;
   subjSource: MatTableDataSource<Subject>;
-
+  accessCode: any
   constructor(private topicService: TopicsService) { }
 
   ngOnInit(): void {
-    this.topicService.getAllTopic().subscribe(res => {
+    function filterByAccess(obj: { access: boolean; }) {
+      if (obj.access === false) 
+      {
+        return true
+      } 
+      return false;
+    }
+    this.topicService.getAllTopicByAccess().subscribe((res: any) => {
+      // res = res.filter(filterByAccess) // filter data on frontend
       this.dataSource = new MatTableDataSource<TopicElement>(<any>res)
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource.filteredData.map(x => {
-        return x.subId
-      }))
     })
-
-    // this.topicService.getSubject(this.dataSource?.filteredData.map(x => {x.subId}))
-    // .subscribe(res => {
-    //   console.log(res, 'subject')
-    // })
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngAfterViewInit() {
