@@ -127,6 +127,7 @@
         "language": "Language",
         "grade": "Grade",
         "view": "View",
+        "edit": "Edit",
         "no_data_matching": "No data matching with the Topic name"
     },
     "contact_info": {
