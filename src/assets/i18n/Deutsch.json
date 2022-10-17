@@ -182,6 +182,22 @@
         "feedback_correct": "Rückmeldung, wenn die Antwort richtig ist *",
         "feedback_incorrect": "Rückmeldung, wenn die Antwort falsch ist *",
         "submit": "Einreichen"        
+    },
+    "add_mcq": {
+        "create_mcqs": "MCQs erstellen",
+        "edit_mcqs": "MCQs bearbeiten",
+        "enter_options": "Bitte geben Sie die Optionen ein.",
+        "option_a":"Option A:",
+        "option_b":"Option B:",
+        "option_c":"Option C:",
+        "option_d":"Option D:",
+        "option_1":"Option A",
+        "option_2":"Option B",
+        "option_3":"Option C:",
+        "option_4":"Option D",
+        "select_correct_answer":"Bitte wählen Sie die richtige Antwort *",
+        "choose_answer":"Antwort auswählen",
+        "select_answer": "Bitte wählen Sie die Antwort aus."
     }
 
 

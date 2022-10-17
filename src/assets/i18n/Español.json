@@ -182,6 +182,22 @@
         "feedback_correct": "Comentarios, si la respuesta es correcta *",
         "feedback_incorrect": "Comentarios, si la respuesta es incorrecta *",
         "submit": "Enviar"        
+    },
+    "add_mcq": {
+        "create_mcqs": "Crear MCQs",
+        "edit_mcqs": "Editar  MCQs",
+        "enter_options": "Introduzca las opciones.",
+        "option_a":"Opción A:",
+        "option_b":"Opción B:",
+        "option_c":"Opción C:",
+        "option_d":"Opción D:",
+        "option_1":"Opción A",
+        "option_2":"Opción B",
+        "option_3":"Opción C:",
+        "option_4":"Opción D",
+        "select_correct_answer":"Por favor, seleccione la respuesta correcta *",
+        "choose_answer":"Elija la respuesta",
+        "select_answer": "Por favor, seleccione la respuesta."
     }
     
 }
