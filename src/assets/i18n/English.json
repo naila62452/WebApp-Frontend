@@ -202,5 +202,13 @@
     "add_open_ended": {
         "create_open_ended": "Create Open Ended Questions",
         "edit_open_ended": "Edit Open Ended Questions"
+    },
+    "science_component": {
+        "back": "Back",
+        "submit_all_questions": "Please submit all the Questions one by one on this page.",
+        "remaining_questions_to_be_submitted": "Remaining Questions to be Submitted: ",
+        "questions_submitted": "Question has been Submitted",
+        "select_type_of_activity": "Please select type of activity.",
+        "choose_type": "Choose type"        
     }
 }

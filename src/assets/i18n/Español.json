@@ -202,6 +202,14 @@
     "add_open_ended": {
         "create_open_ended": "Crear preguntas abiertas",
         "edit_open_ended": "Editar preguntas abiertas"
+    },
+    "science_component": {
+        "back": "Volver",
+        "submit_all_questions": "Por favor, envíe todas las preguntas una por una en esta página.",
+        "remaining_questions_to_be_submitted": "Las preguntas restantes deben ser enviadas: ",
+        "questions_submitted": "La pregunta ha sido enviada",
+        "select_type_of_activity": "Por favor, seleccione el tipo de actividad.",
+        "choose_type": "Elija el tipo"        
     }
     
 }

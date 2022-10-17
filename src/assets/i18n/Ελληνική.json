@@ -202,6 +202,14 @@
     "add_open_ended": {
         "create_open_ended": "Δημιουργήστε ερωτήσεις ανοικτού τύπου",
         "edit_open_ended": "Επεξεργασία Ερωτήσεων Ανοιχτού Κλήρου"
+    },
+    "science_component": {
+        "back": "Πίσω",
+        "submit_all_questions": "Υποβάλετε όλες τις ερωτήσεις μία προς μία σε αυτή τη σελίδα.",
+        "remaining_questions_to_be_submitted": "Υπολειπόμενες ερωτήσεις προς υποβολή: ",
+        "questions_submitted": "Η ερώτηση έχει υποβληθεί",
+        "select_type_of_activity": "Παρακαλούμε επιλέξτε τον τύπο δραστηριότητας.",
+        "choose_type": "Επιλέξτε τύπο"        
     }
 
 
