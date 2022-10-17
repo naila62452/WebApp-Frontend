@@ -143,6 +143,18 @@
         "enter_access_code": "Παρακαλώ εισάγετε τον κωδικό πρόσβασης",
         "enter_access_code2": "Παρακαλώ εισάγετε τον κωδικό πρόσβασης",
         "update": "Ενημέρωση"
+    },
+    "add_activity_introduction": {
+        "create_introduction": "Δημιουργία Εισαγωγή",
+        "edit_introduction": "Επεξεργασία Εισαγωγής",
+        "activity_sequence_number": "Αύξων αριθμός δραστηριότητας",
+        "please_enter_a_sequence_Number": "Παρακαλούμε εισάγετε έναν αύξοντα αριθμό.",
+        "enter_grater_or_eual_to_1": "Παρακαλούμε εισάγετε μεγαλύτερο ή ίσο του 1 Αύξοντα Αριθμό Ακολουθίας.",
+        "enter_introduction": "Παρακαλούμε εισάγετε την Εισαγωγή. *",
+        "paste_youtube_link": "Παρακαλώ επικολλήστε το σύνδεσμο του youtube, εάν είναι διαθέσιμος;",
+        "file_formats": "* Μόνο png, jpeg, jpg",
+        "delete": "Διαγραφή",
+        "submit": "Υποβολή"        
     }
 
 

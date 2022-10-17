@@ -143,6 +143,18 @@
         "enter_access_code": "Bitte geben Sie den Zugangscode ein",
         "enter_access_code2": "Bitte Zugangscode eingeben",
         "update": "aktualisieren"
+    },
+    "add_activity_introduction": {
+        "create_introduction": "Einführung erstellen",
+        "edit_introduction": "Einleitung bearbeiten",
+        "activity_sequence_number": "Aktivität Laufende Nummer",
+        "please_enter_a_sequence_Number": "Bitte geben Sie eine fortlaufende Nummer ein.",
+        "enter_grater_or_eual_to_1": "Bitte geben Sie mehr als oder gleich 1 laufende Nummer ein.",
+        "enter_introduction": "Bitte geben Sie die Einführung ein. *",
+        "paste_youtube_link": "Bitte fügen Sie den youtube-Link ein, falls vorhanden?",
+        "file_formats": "* Nur png, jpeg, jpg",
+        "delete": "Löschen",
+        "submit": "Einreichen"        
     }
 
 

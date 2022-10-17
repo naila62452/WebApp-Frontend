@@ -143,5 +143,17 @@
         "enter_access_code": "Please enter the access code",
         "enter_access_code2": "Please enter access code",
         "update": "Update"
+    },
+    "add_activity_introduction": {
+        "create_introduction": "Create Introduction",
+        "edit_introduction": "Edit Introduction",
+        "activity_sequence_number": "Activity Sequence Number",
+        "please_enter_a_sequence_Number": "Please enter a Sequence of Number.",
+        "enter_grater_or_eual_to_1": "Please enter greater than or equal to 1 Sequence Number.",
+        "enter_introduction": "Please enter the Introduction. *",
+        "paste_youtube_link": "Please paste the YouTube link if available?",
+        "file_formats": "* Only png, jpeg, jpg",
+        "delete": "Delete",
+        "submit": "Submit"        
     }
 }

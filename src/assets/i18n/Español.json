@@ -143,6 +143,18 @@
         "enter_access_code": "Por favor, introduzca el código de acceso",
         "enter_access_code2": "Por favor, introduzca el código de acceso",
         "update": "Actualizar"
+    },
+    "add_activity_introduction": {
+        "create_introduction": "Crear introducción",
+        "edit_introduction": "Editar Introducción",
+        "activity_sequence_number": "Número de secuencia de la actividad",
+        "please_enter_a_sequence_Number": "Por favor, introduzca un Número de Secuencia.",
+        "enter_grater_or_eual_to_1": "Por favor, introduzca un número de secuencia mayor o igual a 1.",
+        "enter_introduction": "Por favor, introduzca la Introducción. *",
+        "paste_youtube_link": "Por favor, pegue el enlace de youtube si está disponible.",
+        "file_formats": "* Sólo png, jpeg, jpg",
+        "delete": "Borrar",
+        "submit": "Enviar"        
     }
     
 }
