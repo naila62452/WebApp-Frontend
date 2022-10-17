@@ -4,7 +4,7 @@
 </div> -->
 <div class="spinnerDiv" *ngIf="loading">
     <mat-spinner aria-label="Please wait" [diameter]="100" strokeWidth="2"></mat-spinner>
-    <div style="position:relative; top: -60px; left: 30px;">Please wait.</div>
+    <div style="position:relative; top: -60px; left: 30px;">{{'edit_topic.please_wait' | translate}}</div>
 </div>
 <div class="main-content" *ngIf="!loading">
     <div class="container">
@@ -24,7 +24,7 @@
                                 <input class="input_form" matInput formControlName="email" type="email" name="email"
                                     id="email" placeholder="Ex. john@example.com" required>
                             </mat-form-field>
-                            <div *ngIf="email.pending">Checking Email...</div>
+                            <div *ngIf="email.pending">{{'password_management.checking_email' | translate}}</div>
                             <div *ngIf="email.touched && email.invalid">
                                 <mat-error *ngIf="email.errors?.['required']">
                                     <div>

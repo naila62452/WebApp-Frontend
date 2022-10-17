@@ -1,6 +1,6 @@
 <div class="spinnerDiv" *ngIf="loading">
     <mat-spinner aria-label="Please wait" [diameter]="100" strokeWidth="2"></mat-spinner>
-    <div style="position:relative; top: -60px; left: 30px;">Please wait.</div>
+    <div style="position:relative; top: -60px; left: 30px;">{{'edit_topic.please_wait' | translate}}</div>
 </div>
 <div class="main-content" *ngIf="!loading">
     <div class="container">

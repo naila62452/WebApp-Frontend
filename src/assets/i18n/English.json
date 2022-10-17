@@ -243,5 +243,26 @@
         "question_statement": "Question Statement: ",
         "correct_answer": "Correct answer: ",
         "add_new_topic": "Add New Topic?"        
+    },
+    "password_management": {
+        "change_password": "Change Password"
+        "enter_password": "Please enter your password.",
+        "old_password": "Old Password",
+        "enter_old_password": "Please enter your Old Password.",
+        "new_password": "New Password",
+        "enter_new_password": "Please enter New Password.",
+        "password_8_charachter": "Your new password must be 8 character long.",
+        "confirm_password": "Confirm Password",
+        "please_confirm_password": "Please Confirm Password.",
+        "passwords_must_match": "Your Password and Confirm Password must be matched.",
+        "grow_together": "Best opportunity to grow together.",
+        "forgot_password_q": "Forgot Password?",
+        "password_strength:": "Password Strength:",
+        "checking_email": "Checking Email...",
+        "reset_password": "Reset Password",
+        "verified_email": "Your email has been verified.",
+        "email_already_verified": "This email has already been verified.",
+        "please_login": "Please login",
+        "verification_failed": "Verification failed, The email verification link might have been expired. Please request verification link again."    
     }
 }
