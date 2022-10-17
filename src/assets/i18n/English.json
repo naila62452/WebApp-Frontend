@@ -198,5 +198,9 @@
         "select_correct_answer":"Please select correct Answer *",
         "choose_answer":"Choose answer",
         "select_answer": "Please select Answer."
+    },
+    "add_open_ended": {
+        "create_open_ended": "Create Open Ended Questions",
+        "edit_open_ended": "Edit Open Ended Questions"
     }
 }

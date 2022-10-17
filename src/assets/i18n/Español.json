@@ -198,6 +198,10 @@
         "select_correct_answer":"Por favor, seleccione la respuesta correcta *",
         "choose_answer":"Elija la respuesta",
         "select_answer": "Por favor, seleccione la respuesta."
+    },
+    "add_open_ended": {
+        "create_open_ended": "Crear preguntas abiertas",
+        "edit_open_ended": "Editar preguntas abiertas"
     }
     
 }
