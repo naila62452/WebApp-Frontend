@@ -76,7 +76,7 @@
         "edit_profile": "Επεξεργασία προφίλ",
         "your_name": "Το όνομά σας:",
         "your_email_address": "Η ηλεκτρονική σας διεύθυνση:",
-        "close": "Κλείσιμο"
+        "close": "Κλείσιμο",
         "Edit_profile": "Επεξεργασία προφίλ"
     },
     "add_topics": {
@@ -217,6 +217,11 @@
         "select_answer": "Παρακαλώ επιλέξτε Απάντηση *",
         "true": "Σωστό",
         "false": "Λάθος"     
+    },
+    "add_material": {
+        "create_different_kind_of_material": "Δημιουργήστε διαφορετικά είδη υλικών με τη βοήθεια του SEEDS.",
+        "let_us_start": "Ας ξεκινήσουμε!",
+        "supporting_learning": "Υποστήριξη της μάθησης στο περιθώριο της ψηφιακής σφαίρας"
     }
 
 

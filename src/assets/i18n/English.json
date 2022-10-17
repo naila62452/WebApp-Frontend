@@ -76,7 +76,7 @@
         "edit_profile": "Edit Profile",
         "your_name": "Your Name:",
         "your_email_address": "Your Email Address:",
-        "close": "Close"
+        "close": "Close",
         "Edit_profile": "Edit Profile"
     },
     "add_topics": {
@@ -217,5 +217,10 @@
         "select_answer": "Please select Answer *",
         "true": "True",
         "false": "False"     
+    },
+    "add_material": {
+        "create_different_kind_of_material": "Create different kind of material with the help of seeds.",
+        "let_us_start": "Let's get started!",
+        "supporting_learning": "Supporting Learning on the Fringe of the Digital Sphere"
     }
 }

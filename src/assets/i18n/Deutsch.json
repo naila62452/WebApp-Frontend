@@ -76,7 +76,7 @@
         "edit_profile": "Profil bearbeiten",
         "your_name": "Ihr Name:",
         "your_email_address": "Ihre E-Mail Adresse:",
-        "close": "Schließen"
+        "close": "Schließen",
         "Edit_profile": "Profil bearbeiten"
     },
     "add_topics": {
@@ -217,6 +217,11 @@
         "select_answer": "Bitte wählen Sie Antwort *",
         "true": "Richtig",
         "false": "Falsch"     
+    },
+    "add_material": {
+        "create_different_kind_of_material": "Erstellen Sie verschiedene Arten von Materialien mit Hilfe von SEEDS.",
+        "let_us_start": "Fangen wir an!",
+        "supporting_learning": "Unterstützung des Lernens am Rande der digitalen Sphäre"
     }
 
 
