@@ -242,6 +242,27 @@
         "question_statement": "Enunciado de la pregunta: ",
         "correct_answer": "Respuesta correcta: ",
         "add_new_topic": "¿Añadir un nuevo tema?"        
+    },
+    "password_management": {
+        "change_password": "Cambiar la contraseña"
+        "enter_password": "Por favor, introduzca su contraseña.",
+        "old_password": "Contraseña antigua",
+        "enter_old_password": "Por favor, introduzca su antigua contraseña.",
+        "new_password": "Contraseña nueva",
+        "enter_new_password": "Por favor, introduzca su nueva contraseña.",
+        "password_8_charachter": "Su nueva contraseña debe tener 8 caracteres.",
+        "confirm_password": "Confirme la contraseña",
+        "please_confirm_password": "Por favor, confirme su contraseña.",
+        "passwords_must_match": "Su contraseña y su contraseña confirmada deben coincidir.",
+        "grow_together": "La mejor oportunidad para crecer juntos.",
+        "forgot_password_q": "¿Olvidó su contraseña?",
+        "password_strength:": "Fuerza de la contraseña:",
+        "checking_email": "Comprobando el correo electrónico...",
+        "reset_password": "Restablecer contraseña",
+        "verified_email": "Su correo electrónico ha sido verificado.",
+        "email_already_verified": "Este correo electrónico ya ha sido verificado.",
+        "please_login": "Por favor, inicie sesión",
+        "verification_failed": "La verificación ha fallado, el enlace de verificación del correo electrónico puede haber caducado. Por favor, solicite el enlace de verificación de nuevo."    
     }
     
 }
