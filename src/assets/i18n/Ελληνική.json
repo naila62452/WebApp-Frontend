@@ -155,6 +155,33 @@
         "file_formats": "* Μόνο png, jpeg, jpg",
         "delete": "Διαγραφή",
         "submit": "Υποβολή"        
+    },
+    "add_activity_matching": {
+        "create_matching_pairs": "Δημιουργία ζευγαριών αντιστοίχισης",
+        "edit_matching_pairs": "Επεξεργασία ζευγαριών αντιστοίχισης",
+        "activity_sequence_number": "Αύξων αριθμός δραστηριότητας",
+        "please_enter_a_sequence_Number": "Παρακαλούμε εισάγετε έναν αύξοντα αριθμό.",
+        "enter_grater_or_eual_to_1": "Παρακαλούμε εισάγετε μεγαλύτερο ή ίσο του 1 Αύξοντα Αριθμό Ακολουθίας.",
+        "enter_question_statement": "Παρακαλώ εισάγετε τη δήλωση ερώτησης *",
+        "paste_youtube_link": "Παρακαλώ επικολλήστε το σύνδεσμο του youtube, εάν είναι διαθέσιμος;",
+        "file_formats": "* Μόνο png, jpeg, jpg",
+        "delete": "Διαγραφή",
+        "enter_options_with_answers": "Παρακαλώ εισάγετε τις επιλογές και τις σωστές απαντήσεις τους",
+        "statement1":"Δήλωση 1:",
+        "statement2":"Δήλωση 2:",
+        "statement3":"Δήλωση 3:",
+        "statement4":"Δήλωση 4:",
+        "statement5":"Δήλωση 5:",
+        "statement6":"Δήλωση 6:",
+        "answer1":"Απάντηση 1:",
+        "answer2":"Απάντηση 2:",
+        "answer3":"Απάντηση 3:",
+        "answer4":"Απάντηση 4:",
+        "answer5":"Απάντηση 5:",
+        "answer6":"Απάντηση 6:",
+        "feedback_correct": "Ανατροφοδότηση, αν η απάντηση είναι σωστή *",
+        "feedback_incorrect": "Ανατροφοδότηση, αν η απάντηση είναι λανθασμένη *",
+        "submit": "Υποβολή"        
     }
 
 

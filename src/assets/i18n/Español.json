@@ -155,6 +155,33 @@
         "file_formats": "* Sólo png, jpeg, jpg",
         "delete": "Borrar",
         "submit": "Enviar"        
+    },
+    "add_activity_matching": {
+        "create_matching_pairs": "Creación de parejas",
+        "edit_matching_pairs": "Editar Pares de Emparejamiento",
+        "activity_sequence_number": "Número de secuencia de la actividad",
+        "please_enter_a_sequence_Number": "Por favor, introduzca un Número de Secuencia.",
+        "enter_grater_or_eual_to_1": "Por favor, introduzca un número de secuencia mayor o igual a 1.",
+        "enter_question_statement": "Introduzca el enunciado de la pregunta *",
+        "paste_youtube_link": "Por favor, pegue el enlace de youtube si está disponible.",
+        "file_formats": "* Sólo png, jpeg, jpg",
+        "delete": "Borrar",
+        "enter_options_with_answers": "Por favor, introduzca las opciones y sus respuestas correctas.",
+        "statement1":"Enunciado 1:",
+        "statement2":"Enunciado 2:",
+        "statement3":"Enunciado 3:",
+        "statement4":"Enunciado 4:",
+        "statement5":"Enunciado 5:",
+        "statement6":"Enunciado 6:",
+        "answer1":"Respuesta 1:",
+        "answer2":"Respuesta 2:",
+        "answer3":"Respuesta 3:",
+        "answer4":"Respuesta 4:",
+        "answer5":"Respuesta 5:",
+        "answer6":"Respuesta 6:",
+        "feedback_correct": "Comentarios, si la respuesta es correcta *",
+        "feedback_incorrect": "Comentarios, si la respuesta es incorrecta *",
+        "submit": "Enviar"        
     }
     
 }

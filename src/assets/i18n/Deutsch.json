@@ -155,6 +155,33 @@
         "file_formats": "* Nur png, jpeg, jpg",
         "delete": "Löschen",
         "submit": "Einreichen"        
+    },
+    "add_activity_matching": {
+        "create_matching_pairs": "Passende Paare erstellen",
+        "edit_matching_pairs": "Passende Paare bearbeiten",
+        "activity_sequence_number": "Aktivität Laufende Nummer",
+        "please_enter_a_sequence_Number": "Bitte geben Sie eine fortlaufende Nummer ein.",
+        "enter_grater_or_eual_to_1": "Bitte geben Sie mehr als oder gleich 1 laufende Nummer ein.",
+        "enter_question_statement": "Bitte geben Sie die Frage Aussage ein *",
+        "paste_youtube_link": "Bitte fügen Sie den youtube-Link ein, falls vorhanden?",
+        "file_formats": "* Nur png, jpeg, jpg",
+        "delete": "Löschen",
+        "enter_options_with_answers": "Bitte geben Sie die Optionen und ihre richtigen Antworten ein.",
+        "statement1":"Aussage 1:",
+        "statement2":"Aussage 2:",
+        "statement3":"Aussage 3:",
+        "statement4":"Aussage 4:",
+        "statement5":"Aussage 5:",
+        "statement6":"Aussage 6:",
+        "answer1":"Antwort 1:",
+        "answer2":"Antwort 2:",
+        "answer3":"Antwort 3:",
+        "answer4":"Antwort 4:",
+        "answer5":"Antwort 5:",
+        "answer6":"Antwort 6:",
+        "feedback_correct": "Rückmeldung, wenn die Antwort richtig ist *",
+        "feedback_incorrect": "Rückmeldung, wenn die Antwort falsch ist *",
+        "submit": "Einreichen"        
     }
 
 

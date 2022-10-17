@@ -155,5 +155,32 @@
         "file_formats": "* Only png, jpeg, jpg",
         "delete": "Delete",
         "submit": "Submit"        
+    },
+    "add_activity_matching": {
+        "create_matching_pairs": "Create Matching Pairs",
+        "edit_matching_pairs": "Edit Matching Pairs",
+        "activity_sequence_number": "Activity Sequence Number",
+        "please_enter_a_sequence_Number": "Please enter a Sequence of Number.",
+        "enter_grater_or_eual_to_1": "Please enter greater than or equal to 1 Sequence Number.",
+        "enter_question_statement": "Please enter the Question Statement *",
+        "paste_youtube_link": "Please paste the YouTube link if available?",
+        "file_formats": "* Only png, jpeg, jpg",
+        "delete": "Delete",
+        "enter_options_with_answers": "Please enter the options and their correct answers.",
+        "statement1":"Statement 1:",
+        "statement2":"Statement 2:",
+        "statement3":"Statement 3:",
+        "statement4":"Statement 4:",
+        "statement5":"Statement 5:",
+        "statement6":"Statement 6:",
+        "answer1":"Answer 1:",
+        "answer2":"Answer 2:",
+        "answer3":"Answer 3:",
+        "answer4":"Answer 4:",
+        "answer5":"Answer 5:",
+        "answer6":"Answer 6:",
+        "feedback_correct": "Feedback, if the answer is correct *",
+        "feedback_incorrect": "Feedback, if the answer is incorrect *",
+        "submit": "Submit"        
     }
 }
