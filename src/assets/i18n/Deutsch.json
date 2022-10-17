@@ -210,6 +210,13 @@
         "questions_submitted": "Frage wurde eingereicht",
         "select_type_of_activity": "Bitte wählen Sie die Art der Aktivität.",
         "choose_type": "Art wählen"        
+    },
+    "add_true_false": {
+        "create_tf": "True/False-Frage erstellen",
+        "edit_tf": "True/False-Frage bearbeiten",
+        "select_answer": "Bitte wählen Sie Antwort *",
+        "true": "Richtig",
+        "false": "Falsch"     
     }
 
 

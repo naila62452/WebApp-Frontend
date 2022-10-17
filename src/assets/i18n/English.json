@@ -210,5 +210,12 @@
         "questions_submitted": "Question has been Submitted",
         "select_type_of_activity": "Please select type of activity.",
         "choose_type": "Choose type"        
+    },
+    "add_true_false": {
+        "create_tf": "Create True/False Question",
+        "edit_tf": "Edit True/False Question",
+        "select_answer": "Please select Answer *",
+        "true": "True",
+        "false": "False"     
     }
 }
