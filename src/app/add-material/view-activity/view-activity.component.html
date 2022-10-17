@@ -1,56 +1,53 @@
 <div class="container" *ngFor="let topics of topicGetById">
-    <h2>Topic Name: {{topics.topic}}</h2>
+    <h2>{{'view_activity_component.topic_name' | translate}} {{topics.topic}}</h2>
     <hr>
     <br>
-    <h2 style="color: red;" *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">This topic has no material.
-        Please add some material or delete this topic.</h2>
-    <p>Topic Subject: {{topics.subject}}</p>
-    <p>Topic Language: {{topics.language}}</p>
-    <p>Topic Grade: {{topics.grade}}</p>
-    <p>Topic Country: {{topics.country}}</p>
-    <p>Total number of Questions: {{topics.noOfQuestions}}</p>
-    <p>Time to complete: {{topics.time}} minutes</p>
-    <p *ngIf="topics.access === true">Private material: {{topics.access}}</p>
-    <p *ngIf="topics.access === true">Material access Code: {{topics.accessCode}}</p>
+    <h2 style="color: red;" *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">{{'view_activity_component.topic_has_no_materials' | translate}}</h2>
+    <p>{{'view_activity_component.topic_subject' | translate}} {{topics.subject}}</p>
+    <p>{{'view_activity_component.topic_language' | translate}} {{topics.language}}</p>
+    <p>{{'view_activity_component.topic_grade' | translate}} {{topics.grade}}</p>
+    <p>{{'view_activity_component.topic_country' | translate}} {{topics.country}}</p>
+    <p>{{'view_activity_component.total_number_of_questions' | translate}} {{topics.noOfQuestions}}</p>
+    <p>{{'view_activity_component.time_to_complete' | translate}} {{topics.time}} minutes</p>
+    <p *ngIf="topics.access === true">{{'view_activity_component.private_material' | translate}} {{topics.access}}</p>
+    <p *ngIf="topics.access === true">{{'view_activity_component.material_access_code' | translate}} {{topics.accessCode}}</p>
 
     <div class="topicDiv">
         <button mat-stroked-button *ngIf="userId === topics.userId" [routerLink]="['/material/edit-topic', topics._id]"
-            class="button" style="width: fit-content; text-align: center; font-size: px;">Edit Topic</button>
+            class="button" style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.edit_topic' | translate}}</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && topics.noOfQuestions === '0'" class="button"
             (click)="deleteTopicDialogue(topics._id)"
-            style="width: fit-content; text-align: center; font-size: px;">Delete
-            Topic</button>
+            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.delete_topic' | translate}}</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && remainingQuestions !== 0"
             [routerLink]="['/material/type', topics._id]" class="button"
-            style="width: fit-content; text-align: center; font-size: px;">You have {{remainingQuestions}} questions
-            to add
+            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.you_have' | translate}} {{remainingQuestions}} {{'view_activity_component.questions_to_add' | translate}}
         </button>
     </div>
     <br>
     <div *ngFor="let combine of topics.combineQuestion">
         <div *ngIf="combine.questionType === 'introduction'" class="mcqs">
-            <span>Question number: {{combine.sequence}}</span>
+            <span>{{'view_activity_component.question_number' | translate}} {{combine.sequence}}</span>
             <hr>
-            <h3>Question Statement: {{ combine.introduction }}</h3>
+            <h3>{{'view_activity_component.question_statement' | translate}} {{ combine.introduction }}</h3>
             <a href="{{combine.link}}" target="_blank">{{combine.link}}</a>
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
                 <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/introduction', combine._id, topics.noOfQuestions]">edit</mat-icon>
+                    [routerLink]="['/material/introduction', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
             </div>
         </div>
 
         <div class="mcqs" *ngIf="combine.questionType === 'mcqs'">
-            <span>Question number: {{combine.sequence}}</span>
+            <span>{{'view_activity_component.question_number' | translate}} {{combine.sequence}}</span>
             <hr>
-            <h3>Question Statement: {{combine.mcqs}}</h3>
+            <h3>{{'view_activity_component.question_statement' | translate}} {{combine.mcqs}}</h3>
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
@@ -68,7 +65,7 @@
                 <h4>
                     <mat-radio-button value="4">{{ combine.option4 }}</mat-radio-button>
                 </h4>
-                <h3>Correct answer:</h3>
+                <h3>{{'view_activity_component.correct_answer' | translate}}</h3>
                 <p> {{combine.answer}}</p>
                 <h3>Feedback if the answer is correct:</h3>
                 <p> {{combine.posFeedback}}</p>
@@ -77,55 +74,55 @@
             </ul>
             <div class="deleteEditButton">
                 <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">edit</mat-icon>
+                    [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
             </div>
         </div>
 
         <div *ngIf="combine.questionType === 'trueFalse'" class="mcqs">
-            <span>Question number: {{combine.sequence}}</span>
+            <span>{{'view_activity_component.question_number' | translate}} {{combine.sequence}}</span>
             <hr>
-            <h3>Question Statement: {{ combine.question }}</h3>
+            <h3>{{'view_activity_component.question_statement' | translate}} {{ combine.question }}</h3>
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
-            <h3>Correct answer:</h3>
+            <h3>{{'view_activity_component.correct_answer' | translate}}</h3>
             <p> {{combine.answer}}</p>
-            <h3>Feedback if the answer is correct:</h3>
+            <h3>{{'add_activity_matching.feedback_correct' | translate}}</h3>
             <p> {{combine.posFeedback}}</p>
-            <h3>Feedback if the answer is wrong:</h3>
+            <h3>{{'add_activity_matching.feedback_incorrect' | translate}}</h3>
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
                 <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">edit</mat-icon>
+                    [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
             </div>
         </div>
 
         <div class="mcqs" *ngIf="combine.questionType === 'openEnded'">
-            <span>Question number: {{combine.sequence}}</span>
+            <span>{{'view_activity_component.question_number' | translate}} {{combine.sequence}}</span>
             <hr>
-            <h3>Question Statement: {{ combine.question }}</h3>
+            <h3>{{'view_activity_component.question_statement' | translate}} {{ combine.question }}</h3>
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
             <div class="deleteEditButton">
                 <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">edit</mat-icon>
+                    [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
             </div>
         </div>
 
         <div class="mcqs" *ngIf="combine.questionType === 'matchPairs'">
-            <span>Question number: {{combine.sequence}}</span>
+            <span>{{'view_activity_component.question_number' | translate}} {{combine.sequence}}</span>
             <hr>
-            <h3>Question Statement: {{ combine.question }}</h3>
+            <h3>{{'view_activity_component.question_statement' | translate}} {{ combine.question }}</h3>
             <div *ngIf="combine.file !== ''">
                 <img [src]="combine.file" style="height: 200px; width: 300px">
             </div>
@@ -165,16 +162,16 @@
                     </tbody>
                 </table>
             </div>
-            <h3>Feedback if the answer is correct:</h3>
+            <h3>{{'add_activity_matching.feedback_correct' | translate}}</h3>
             <p> {{combine.posFeedback}}</p>
-            <h3>Feedback if the answer is wrong:</h3>
+            <h3>{{'add_activity_matching.feedback_incorrect' | translate}}</h3>
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
                 <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">edit</mat-icon>
+                    [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
             </div>
         </div>
     </div>
@@ -183,7 +180,7 @@
 <div class="container">
     <button mat-stroked-button routerLink="/user/add" class="button"
         style="width: fit-content; text-align: center; font-size: px;">
-        Add New Topic?</button>
+        {{'view_activity_component.add_new_topic' | translate}}</button>
 </div>
 <br>
 <br>

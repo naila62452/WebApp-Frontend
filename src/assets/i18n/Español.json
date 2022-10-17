@@ -222,6 +222,26 @@
         "create_different_kind_of_material": "Crea diferentes tipos de material con la ayuda de SEEDS.",
         "let_us_start": "¡Empecemos!",
         "supporting_learning": "Apoyar el aprendizaje al margen de la esfera digital"
+    },
+    "view_activity_component": {
+        "topic_has_no_materials": "Este tema no tiene material. Por favor, añada material o elimine este tema."
+        "topic_name": "Nombre del tema: ",
+        "topic_subject": "Asunto del tema: ",
+        "topic_language": "Idioma del tema: ",
+        "topic_grade": "Tema Grado: ",
+        "topic_country": "Tema País: ",
+        "total_number_of_questions": "Número total de preguntas: ",
+        "time_to_complete": "Tiempo para completar: ",
+        "private_material": "Material privado: ",
+        "material_access_code": "Código de acceso al material: ",
+        "edit_topic": "Editar tema",
+        "delete_topic": "Borrar Tema",
+        "you_have": "Tienes ",
+        "questions_to_add": " preguntas para añadir",
+        "question_number": "Número de pregunta: ",
+        "question_statement": "Enunciado de la pregunta: ",
+        "correct_answer": "Respuesta correcta: ",
+        "add_new_topic": "¿Añadir un nuevo tema?"        
     }
     
 }

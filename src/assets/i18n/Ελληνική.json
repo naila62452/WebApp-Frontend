@@ -222,6 +222,26 @@
         "create_different_kind_of_material": "Δημιουργήστε διαφορετικά είδη υλικών με τη βοήθεια του SEEDS.",
         "let_us_start": "Ας ξεκινήσουμε!",
         "supporting_learning": "Υποστήριξη της μάθησης στο περιθώριο της ψηφιακής σφαίρας"
+    },
+    "view_activity_component": {
+        "topic_has_no_materials": "Αυτό το θέμα δεν έχει υλικό. Παρακαλώ προσθέστε υλικό ή διαγράψτε αυτό το θέμα."
+        "topic_name": "Όνομα θέματος: ",
+        "topic_subject": "Θέμα: Όνομα: ",
+        "topic_language": "Θέμα: Γλώσσα: ",
+        "topic_grade": "Θέμα Βαθμίδα: ",
+        "topic_country": "Θέμα Χώρα: ",
+        "total_number_of_questions": "Συνολικός αριθμός ερωτήσεων: ",
+        "time_to_complete": "Χρόνος συμπλήρωσης: ",
+        "private_material": "Ιδιωτικό υλικό: ",
+        "material_access_code": "Κωδικός πρόσβασης στο υλικό: ",
+        "edit_topic": "Επεξεργασία θέματος",
+        "delete_topic": "Διαγραφή θέματος",
+        "you_have": "Έχετε ",
+        "questions_to_add": " ερωτήσεις να προσθέσετε",
+        "question_number": "Αριθμός ερώτησης: ",
+        "question_statement": "Ερώτηση: Δήλωση: ",
+        "correct_answer": "Απάντηση: Σωστή απάντηση: ",
+        "add_new_topic": "Προσθήκη νέου θέματος;"        
     }
 
 
