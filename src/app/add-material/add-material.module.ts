@@ -15,6 +15,7 @@ import { MatchPairsComponent } from './match-pairs/match-pairs.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditTopicComponent } from './edit-topic/edit-topic.component';
+import { ViewOpenendedAnswersComponent } from './view-openended-answers/view-openended-answers.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EditTopicComponent } from './edit-topic/edit-topic.component';
     IntroductionComponent,
     MatchPairsComponent,
     EditTopicComponent,
+    ViewOpenendedAnswersComponent,
 
   ],
   imports: [

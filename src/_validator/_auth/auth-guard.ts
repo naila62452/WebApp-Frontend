@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
         if (!isAuth) {
             this._snackbar.open("Access denied, Please Login to continue.", "Ok", {
                 duration: 5000,
-                panelClass: ['blue-snackbar']
+                panelClass: ['red-snackbar']
             });
             this.router.navigate(['/authenticate/login'], {queryParams: {returnUrl: state.url}});
         }

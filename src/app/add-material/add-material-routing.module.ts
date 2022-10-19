@@ -11,9 +11,10 @@ import { OpenEndedComponent } from './open-ended/open-ended.component';
 import { ScienceComponent } from './science/science.component';
 import { TrueFalseComponent } from './true-false/true-false.component';
 import { ViewActivityComponent } from './view-activity/view-activity.component';
+import { ViewOpenendedAnswersComponent } from './view-openended-answers/view-openended-answers.component';
 
 const routes: Routes = [
-  { path: 'type/:id', component: ScienceComponent, canActivate: [AuthGuard] },
+  { path: 'type/:id/:length', component: ScienceComponent, canActivate: [AuthGuard] },
   { path: 'mcqs/:mcqsId/:length', component: MCQSComponent, canActivate: [AuthGuard] },
   { path: 'true/:trueFalseId/:length', component: TrueFalseComponent, canActivate: [AuthGuard] },
   { path: 'topic/:id', component: AddTopicComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard] },
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'view/:id', component: ViewActivityComponent, canActivate: [AuthGuard] },
   { path: 'match/:matchId/:length', component: MatchPairsComponent, canActivate: [AuthGuard] },
   { path: 'introduction/:introId/:length', component: IntroductionComponent, canActivate: [AuthGuard] },
-  { path: 'edit-topic/:topicId', component: EditTopicComponent, canActivate: [AuthGuard] }
+  { path: 'edit-topic/:topicId', component: EditTopicComponent, canActivate: [AuthGuard] },
+  { path: 'viewAnswers/:questionId', component: ViewOpenendedAnswersComponent, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({

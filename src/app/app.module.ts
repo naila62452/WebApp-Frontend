@@ -3,28 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './angular_material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { FooterComponent } from './footer/footer.component';
 import { AuthinterceptorService } from './service/authinterceptor.service';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { GlobalErrorHandler } from 'src/_Error-handler/GlobalErrorHandler';
-// import { MatInputModule } from '@angular/material/input';
-// import { MatFormFieldModule } from "@angular/material/form-field";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderFooterModule } from './header-footer/header-footer.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatConfirmDialogueComponent } from './user-profile/mat-confirm-dialogue/mat-confirm-dialogue.component';
 @NgModule({
   declarations: [
-    AppComponent,
-    // HeaderComponent,
-    // FooterComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -32,12 +25,9 @@ import { MatConfirmDialogueComponent } from './user-profile/mat-confirm-dialogue
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    // MatFormFieldModule,
-    // MatInputModule,
     FontAwesomeModule,
     HeaderFooterModule,
     MatSnackBarModule,
-    // FlexLayoutModule,
     FormsModule,
     MatDialogModule,
     ReactiveFormsModule,

@@ -30,7 +30,7 @@ export class AddMaterialComponent implements OnInit {
   topicId: any
   isSubjectSelected = false
   isLangSelected = false
-
+  isDarkTheme: boolean = false
   ngOnInit(): void {
     this.typeService.getSubject()
       .subscribe(res => {

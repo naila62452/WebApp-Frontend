@@ -64,8 +64,8 @@
     },
     "user_profile": {
         "edit": "Profil",
-        "name": "Name",
-        "email": "E-Mail Addresse",
+        "user_name": "Ihr Name:",
+        "user_email": "Ihre E-Mail Adresse:",
         "update": "Profil aktualisieren",
         "delete": "Benutzerkonto löschen",
         "change_pass": "Passwort ändern",

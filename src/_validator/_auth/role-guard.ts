@@ -32,7 +32,7 @@ export class RoleGuard implements CanActivate {
             if (route.data['role'] && route.data['role'].indexOf(userRole) === -1) {
                 this._snackbar.open("Access denied, You do not have that role to access.", "Ok", {
                     duration: 5000,
-                    panelClass: ['blue-snackbar']
+                    panelClass: ['red-snackbar']
                 });
                 this.router.navigate(['/home']);
                 return false;

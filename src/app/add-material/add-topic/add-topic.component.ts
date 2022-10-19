@@ -157,11 +157,11 @@ export class AddTopicComponent implements OnInit, SafeData {
           this.loading = false
           this.getTopicByAgeId(this.topicForm.value.ageGroup);
           this.topicForm.reset();
-          this.router.navigate([`/material/type/${res._id}`])
+          this.router.navigate([`/material/type/${res._id}/${res.noOfQuestions}`])
         },
         err => {
           console.log(err);
-          this.snackbar.open("Failed to post the Topic", "Ok", {
+          this.snackbar.open("That Topic name already exist. Please choose another name.", "Ok", {
             duration: 5000,
             panelClass: ['red-snackbar']
           });

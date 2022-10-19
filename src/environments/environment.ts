@@ -5,8 +5,6 @@
 export const environment = {
   production: false,
   web_URL: 'http://localhost:5000'
-  // web_URL: 'http://ec2-3-71-216-21.eu-central-1.compute.amazonaws.com:5000'
-
 };
 
 /*

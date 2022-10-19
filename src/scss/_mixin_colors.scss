@@ -12,11 +12,12 @@ $button_color: #ccdceb;
     background-color: $button_color;
     color: black;
     cursor: pointer;
-    width: auto;
+    width: fit-content;
     font-weight: bold;
     text-align: center;
     justify-self: center;
     display: grid;
+    border-radius: 8px;
 }
 @mixin text_align_paragraph {
     text-align: justify;

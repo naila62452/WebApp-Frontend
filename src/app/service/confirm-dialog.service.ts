@@ -1,10 +1,9 @@
-import { Component, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatConfirmDialogueComponent } from '../user-profile/mat-confirm-dialogue/mat-confirm-dialogue.component';
 import { ConfirmDialogData } from '../_models/dialogue';
 import { map, take, tap } from 'rxjs/operators';
-import { HostListener } from '@angular/core';
 import { CanDeactivateGuard } from 'src/_validator/_auth/deactive-guard';
 
 

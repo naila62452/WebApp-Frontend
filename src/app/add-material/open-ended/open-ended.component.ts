@@ -34,8 +34,6 @@ export class OpenEndedComponent implements OnInit {
   url: any
   deleteImage: any
   length: any
-  topicData: any
-  topicIdParams: any
   
   get sequence() { return this.openEndedForm.get('sequence'); }
 
@@ -44,13 +42,6 @@ export class OpenEndedComponent implements OnInit {
     private route: ActivatedRoute, private topicService: TopicsService) { }
 
   ngOnInit(): void {
-
-    this.topicIdParams = this.route.snapshot.paramMap.get('id');
-    this.topicService.getTopicByTopicId(this.topicIdParams).subscribe(
-      res => {
-        this.topicData = res
-      }
-    )
 
     this.dataService.setUrl(`${environment.web_URL}/api/openEnded`)
     this.id = this.route.snapshot.paramMap.get('questionId');
@@ -113,8 +104,8 @@ export class OpenEndedComponent implements OnInit {
       formData.append('file', this.openEndedForm.get('file').value);
     }
 
-    if (this.openEndedForm.get('sequence').value > this.topicData.noOfQuestions) {
-      this._snackBar.open(`Your total questions are ${this.topicData.noOfQuestions}. Please enter a valid sequence number.`, "Ok", {
+    if (this.openEndedForm.get('sequence').value > this.length) {
+      this._snackBar.open(`Your total questions are ${this.length}. Please enter a valid sequence number.`, "Ok", {
         duration: 5000,
         panelClass: ['red-snackbar']
       });

@@ -27,7 +27,4 @@ describe('ViewTopicsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

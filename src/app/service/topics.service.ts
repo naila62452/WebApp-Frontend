@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -42,6 +42,10 @@ export class TopicsService {
     let id = localStorage.getItem('id');
     return this.http.get(`${api_path}/getTopic/${id}/${topic}`)
   }
+  
+  getByTopicId(topic: string): Observable<any> {
+    return this.http.get(`${api_path}/getTopicById/${topic}`)
+  }
 
   getAllTopicData(id: string) {
     return this.http.get(`${api_path}/getByTopic/${id}`)
@@ -49,6 +53,10 @@ export class TopicsService {
 
   getAllTopic() {
     return this.http.get(`${api_path}/`)
+  }
+
+  getAllTopicByAccess() {
+    return this.http.get(`${api_path}/?access=0`)
   }
 
   deleteTopic(id: string): Observable<any> {
@@ -60,7 +68,6 @@ export class TopicsService {
   }
   
   updateTopic(body: any, id: any): Observable<any> {
-    // console.log(body)
     const bodyz = {
       name: body.name,
       topic: body.topic,
@@ -75,11 +82,6 @@ export class TopicsService {
       accessCode: body.accessCode
     }
     const path = `${api_path}/update/${id}`;
-    // console.log(bodyz)
     return this.http.put(path, bodyz)
   }
-
-  // searchTopic(data: any): Observable<any> {
-  //   return this.http.get(`${api_path}/search?topic=${data}`)
-  // }
 }
