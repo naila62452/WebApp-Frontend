@@ -64,7 +64,7 @@ import { MatDialogModule } from '@angular/material/dialog';
       useClass: AuthinterceptorService,
       multi: true
     },
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    // { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
 
   bootstrap: [AppComponent],

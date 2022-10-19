@@ -2,7 +2,10 @@
     <h2>{{'view_activity_component.topic_name' | translate}} {{topics.topic}}</h2>
     <hr>
     <br>
-    <h2 style="color: red;" *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">{{'view_activity_component.topic_has_no_materials' | translate}}</h2>
+    <h2 style="color: red;" *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">
+        {{'view_activity_component.topic_has_no_materials' | translate}}</h2>
+    <h2 style="color: red;" *ngIf="topics.noOfQuestions === '0' && teacherAuth.currentUser.role === 'Admin'">
+        {{'view_activity_component.topic_has_no_materials' | translate}}</h2>
     <p>{{'view_activity_component.topic_subject' | translate}} {{topics.subject}}</p>
     <p>{{'view_activity_component.topic_language' | translate}} {{topics.language}}</p>
     <p>{{'view_activity_component.topic_grade' | translate}} {{topics.grade}}</p>
@@ -10,49 +13,61 @@
     <p>{{'view_activity_component.total_number_of_questions' | translate}} {{topics.noOfQuestions}}</p>
     <p>{{'view_activity_component.time_to_complete' | translate}} {{topics.time}} minutes</p>
     <p *ngIf="topics.access === true">{{'view_activity_component.private_material' | translate}} {{topics.access}}</p>
-    <p *ngIf="topics.access === true">{{'view_activity_component.material_access_code' | translate}} {{topics.accessCode}}</p>
+    <p *ngIf="topics.access === true">{{'view_activity_component.material_access_code' | translate}}
+        {{topics.accessCode}}</p>
+
+    <!-- <div class="topicDiv"> -->
+    <!-- <button mat-stroked-button *ngIf="userId === topics.userId" [routerLink]="['/material/edit-topic', topics._id]"
+            class="button"
+            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.edit_topic' |
+            translate}}</button>
+             -->
+    <!-- <h2 style="color: red;" *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">This topic has no
+            material.
+            Please add some material or delete this topic.</h2>
+        <h2 style="color: red;" *ngIf="topics.noOfQuestions === '0' && teacherAuth.currentUser.role === 'Admin'">This
+            topic
+            has no material.
+            Please add some material or delete this topic.</h2>
+        <p>Topic Subject: {{topics.subject}}</p>
+        <p>Topic Language: {{topics.language}}</p>
+        <p>Topic Grade: {{topics.grade}}</p>
+        <p>Topic Country: {{topics.country}}</p>
+        <p>Total number of Questions: {{topics.noOfQuestions}}</p>
+        <p>Time to complete: {{topics.time}} minutes</p>
+        <p *ngIf="topics.access === true">Private material: {{topics.access}}</p>
+        <p *ngIf="topics.access === true && userId === topics.userId ">Material access Code: {{topics.accessCode}}</p>
+        <p *ngIf="teacherAuth.currentUser.role === 'Admin' && topics.access === true">Material access Code:
+            {{topics.accessCode}}</p> -->
+
 
     <div class="topicDiv">
         <button mat-stroked-button *ngIf="userId === topics.userId" [routerLink]="['/material/edit-topic', topics._id]"
-            class="button" style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.edit_topic' | translate}}</button>
-    <h2 style="color: red;" *ngIf="userId === topics.userId && topics.noOfQuestions === '0'">This topic has no material.
-        Please add some material or delete this topic.</h2>
-    <h2 style="color: red;" *ngIf="topics.noOfQuestions === '0' && teacherAuth.currentUser.role === 'Admin'">This topic
-        has no material.
-        Please add some material or delete this topic.</h2>
-    <p>Topic Subject: {{topics.subject}}</p>
-    <p>Topic Language: {{topics.language}}</p>
-    <p>Topic Grade: {{topics.grade}}</p>
-    <p>Topic Country: {{topics.country}}</p>
-    <p>Total number of Questions: {{topics.noOfQuestions}}</p>
-    <p>Time to complete: {{topics.time}} minutes</p>
-    <p *ngIf="topics.access === true">Private material: {{topics.access}}</p>
-    <p *ngIf="topics.access === true && userId === topics.userId ">Material access Code: {{topics.accessCode}}</p>
-    <p *ngIf="teacherAuth.currentUser.role === 'Admin' && topics.access === true">Material access Code:
-        {{topics.accessCode}}</p>
+            class="button"
+            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.edit_topic' |
+            translate}}</button>
 
-
-    <div class="topicDiv">
-        <button mat-stroked-button *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
-            [routerLink]="['/material/edit-topic', topics._id]" class="button">Edit Topic</button>
+        <button mat-stroked-button *ngIf="teacherAuth.currentUser.role === 'Admin'"
+            [routerLink]="['/material/edit-topic', topics._id]" class="button">{{'view_activity_component.edit_topic' |
+            translate}}</button>
 
         <button mat-stroked-button *ngIf="userId === topics.userId && topics.noOfQuestions === '0'" class=" button"
             (click)="deleteTopicDialogue(topics._id)"
-            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.delete_topic' | translate}}</button>
+            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.delete_topic'
+            | translate}}</button>
 
-        <button mat-stroked-button *ngIf="teacherAuth.currentUser.role === 'Admin' && topics.noOfQuestions === '0'"
+        <!-- <button mat-stroked-button *ngIf="teacherAuth.currentUser.role === 'Admin' && topics.noOfQuestions === '0'"
             class=" button" (click)="deleteTopicDialogue(topics._id)"
             style="width: fit-content; text-align: center; font-size: px;">Delete
-            Topic</button>
+            Topic</button> -->
 
         <button mat-stroked-button *ngIf="userId === topics.userId && remainingQuestions !== 0"
-
-            [routerLink]="['/material/type', topics._id]" class="button"
-            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.you_have' | translate}} {{remainingQuestions}} {{'view_activity_component.questions_to_add' | translate}}
-
             [routerLink]="['/material/type', topics._id, topics.noOfQuestions]" class="button"
-            style="width: fit-content; text-align: center; font-size: px;">You have {{remainingQuestions}} questions
-            to add
+            style="width: fit-content; text-align: center; font-size: px;">{{'view_activity_component.you_have' |
+            translate}} {{remainingQuestions}} {{'view_activity_component.questions_to_add' | translate}}
+
+            <!-- [routerLink]="['/material/type', topics._id, topics.noOfQuestions]">You have {{remainingQuestions}} questions
+            to add -->
 
         </button>
 
@@ -75,18 +90,22 @@
             </div>
             <div class="deleteEditButton">
 
-                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
+                <!-- <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">
+                    {{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/introduction', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
+                    [routerLink]="['/material/introduction', combine._id, topics.noOfQuestions]">
+                    {{'view_all_topics.edit' | translate}}</mat-icon> -->
 
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
                     style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)"
+                    matTooltip=" {{'add_activity_matching.delete' | translate}}">
+                    delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
-                    matTooltip="Edit Question"
+                    matTooltip=" {{'view_all_topics.edit' | translate}}"
                     [routerLink]="['/material/introduction', combine._id, topics.noOfQuestions]">edit</mat-icon>
 
             </div>
@@ -122,19 +141,31 @@
             </ul>
             <div class="deleteEditButton">
 
-                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
+                <!-- <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">
+                    {{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
+                    [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' |
+                    translate}}</mat-icon>
 
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
                     style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">
+                    delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
                     matTooltip="Edit Question" [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">edit
+                </mat-icon> -->
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
+                    style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)"
+                    matTooltip=" {{'add_activity_matching.delete' | translate}}">
+                    delete
                 </mat-icon>
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
+                    matTooltip=" {{'view_all_topics.edit' | translate}}"
+                    [routerLink]="['/material/mcqs', combine._id, topics.noOfQuestions]">edit</mat-icon>
 
             </div>
         </div>
@@ -154,19 +185,32 @@
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
 
-                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
+                <!-- <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">
+                    {{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
+                    [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' |
+                    translate}}</mat-icon>
 
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
                     style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)" matTooltip="Delete Question">
+                    delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
                     matTooltip="Edit Question" [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">edit
+                </mat-icon> -->
+
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
+                    style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)"
+                    matTooltip=" {{'add_activity_matching.delete' | translate}}">
+                    delete
                 </mat-icon>
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
+                    matTooltip=" {{'view_all_topics.edit' | translate}}"
+                    [routerLink]="['/material/true', combine._id, topics.noOfQuestions]">edit</mat-icon>
 
             </div>
         </div>
@@ -180,18 +224,30 @@
             </div>
             <div class="deleteEditButton">
 
-                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
+                <!-- <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">
+                    {{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
+                    [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">
+                    {{'view_all_topics.edit' | translate}}</mat-icon>
 
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
                     style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">
+                    delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
                     matTooltip="Edit Question"
+                    [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">edit</mat-icon> -->
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
+                    style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)"
+                    matTooltip=" {{'add_activity_matching.delete' | translate}}">
+                    delete
+                </mat-icon>
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
+                    matTooltip=" {{'view_all_topics.edit' | translate}}"
                     [routerLink]="['/material/openEnded', combine._id, topics.noOfQuestions]">edit</mat-icon>
 
             </div>
@@ -250,30 +306,42 @@
             <p> {{combine.negFeedback}}</p>
             <div class="deleteEditButton">
 
-                <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">{{'add_activity_matching.delete' | translate}}
+                <!-- <mat-icon *ngIf="userId === topics.userId" style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">
+                    {{'add_activity_matching.delete' | translate}}
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId" class="pointer" matTooltip="Edit Question"
-                    [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' | translate}}</mat-icon>
+                    [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">{{'view_all_topics.edit' |
+                    translate}}</mat-icon>
 
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
                     style="color: rgb(199, 24, 24)" class="pointer"
-                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">delete
+                    (click)="openDeleteDialogue(combine._id , combine.questionType)" matTooltip="Delete Question">
+                    delete
                 </mat-icon>
                 <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
                     matTooltip="Edit Question" [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">
-                    edit</mat-icon>
+                    edit</mat-icon> -->
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'"
+                    style="color: rgb(199, 24, 24)" class="pointer"
+                    (click)="openDeleteDialogue(combine._id, combine.questionType)"
+                    matTooltip=" {{'add_activity_matching.delete' | translate}}">
+                    delete
+                </mat-icon>
+                <mat-icon *ngIf="userId === topics.userId || teacherAuth.currentUser.role === 'Admin'" class="pointer"
+                    matTooltip=" {{'view_all_topics.edit' | translate}}"
+                    [routerLink]="['/material/match', combine._id, topics.noOfQuestions]">edit</mat-icon>
 
             </div>
         </div>
     </div>
-</div>
+    <!-- </div> -->
 
-<div class="container">
-    <button mat-stroked-button routerLink="/user/add" class="button"
-        style="width: fit-content; text-align: center; font-size: px;">
-        {{'view_activity_component.add_new_topic' | translate}}</button>
-</div>
-<br>
-<br>
-<br>
+    <div class="container">
+        <button mat-stroked-button routerLink="/user/add" class="button"
+            style="width: fit-content; text-align: center; font-size: px;">
+            {{'view_activity_component.add_new_topic' | translate}}</button>
+    </div>
+    <br>
+    <br>
+    <br>

@@ -128,6 +128,7 @@
         "language": "Idioma",
         "grade": "Curso",
         "view": "Ver",
+        "edit": "Editar",
         "no_data_matching": "No hay datos que coincidan con el nombre del tema"
     },
     "contact_info": {
@@ -225,7 +226,7 @@
         "supporting_learning": "Apoyar el aprendizaje de aquellos que están en los márgenes de la esfera digital"
     },
     "view_activity_component": {
-        "topic_has_no_materials": "Este tema no tiene material. Por favor, añada material o elimine este tema."
+        "topic_has_no_materials": "Este tema no tiene material. Por favor, añada material o elimine este tema.",
         "topic_name": "Nombre del tema: ",
         "topic_subject": "Asignatura del tema: ",
         "topic_language": "Idioma del tema: ",
@@ -245,7 +246,7 @@
         "add_new_topic": "¿Añadir un nuevo tema?"        
     },
     "password_management": {
-        "change_password": "Cambiar la contraseña"
+        "change_password": "Cambiar la contraseña",
         "enter_password": "Por favor, introduzca su contraseña.",
         "old_password": "Contraseña antigua",
         "enter_old_password": "Por favor, introduzca su antigua contraseña.",

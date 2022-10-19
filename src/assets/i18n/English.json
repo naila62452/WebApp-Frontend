@@ -226,7 +226,7 @@
         "supporting_learning": "Supporting Learning on the Fringe of the Digital Sphere"
     },
     "view_activity_component": {
-        "topic_has_no_materials": "This topic has no material. Please add some material or delete this topic."
+        "topic_has_no_materials": "This topic has no material. Please add some material or delete this topic.",
         "topic_name": "Topic Name: ",
         "topic_subject": "Topic Subject: ",
         "topic_language": "Topic Language: ",
@@ -246,7 +246,7 @@
         "add_new_topic": "Add New Topic?"        
     },
     "password_management": {
-        "change_password": "Change Password"
+        "change_password": "Change Password",
         "enter_password": "Please enter your password.",
         "old_password": "Old Password",
         "enter_old_password": "Please enter your Old Password.",
