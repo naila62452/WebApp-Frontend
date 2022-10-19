@@ -71,6 +71,10 @@
         "view": "View Topics",
         "profile_text": "Here, you can edit your profile, update your information, and create new learning content for students here. Please click the button below to start the content creation process. Use the fields on the left, to edit your information. If you have any questions please check the FAQ section, and do not hesitate to contact us for more help.",
         "welcome": "Welcome to SEEDS!",
+
+        "edit_profile": "Edit Profile",
+        "your_name": "Your Name:",
+        "your_email_address": "Your Email Address:",
         "user_name": "Your Name:",
         "user_email": "Your Email Address:",
         "close": "Close",
@@ -124,6 +128,7 @@
         "language": "Language",
         "grade": "Grade",
         "view": "View",
+        "edit": "Edit",
         "no_data_matching": "No data matching with the Topic name"
     },
     "contact_info": {
@@ -140,5 +145,125 @@
         "enter_access_code": "Please enter the access code",
         "enter_access_code2": "Please enter access code",
         "update": "Update"
+    },
+    "add_activity_introduction": {
+        "create_introduction": "Create Introduction",
+        "edit_introduction": "Edit Introduction",
+        "activity_sequence_number": "Activity Sequence Number",
+        "please_enter_a_sequence_Number": "Please enter a Sequence of Number.",
+        "enter_grater_or_eual_to_1": "Please enter greater than or equal to 1 Sequence Number.",
+        "enter_introduction": "Please enter the Introduction. *",
+        "paste_youtube_link": "Please paste the YouTube link if available?",
+        "file_formats": "* Only png, jpeg, jpg",
+        "delete": "Delete",
+        "submit": "Submit"        
+    },
+    "add_activity_matching": {
+        "create_matching_pairs": "Create Matching Pairs",
+        "edit_matching_pairs": "Edit Matching Pairs",
+        "activity_sequence_number": "Activity Sequence Number",
+        "please_enter_a_sequence_Number": "Please enter a Sequence of Number.",
+        "enter_grater_or_eual_to_1": "Please enter greater than or equal to 1 Sequence Number.",
+        "enter_question_statement": "Please enter the Question Statement *",
+        "paste_youtube_link": "Please paste the YouTube link if available?",
+        "file_formats": "* Only png, jpeg, jpg",
+        "delete": "Delete",
+        "enter_options_with_answers": "Please enter the options and their correct answers.",
+        "statement1":"Statement 1:",
+        "statement2":"Statement 2:",
+        "statement3":"Statement 3:",
+        "statement4":"Statement 4:",
+        "statement5":"Statement 5:",
+        "statement6":"Statement 6:",
+        "answer1":"Answer 1:",
+        "answer2":"Answer 2:",
+        "answer3":"Answer 3:",
+        "answer4":"Answer 4:",
+        "answer5":"Answer 5:",
+        "answer6":"Answer 6:",
+        "feedback_correct": "Feedback, if the answer is correct *",
+        "feedback_incorrect": "Feedback, if the answer is incorrect *",
+        "submit": "Submit"        
+    },
+    "add_mcq": {
+        "create_mcqs": "Create MCQs",
+        "edit_mcqs": "Edit MCQs",
+        "enter_options": "Please enter the options.",
+        "option_a":"Option A:",
+        "option_b":"Option B:",
+        "option_c":"Option C:",
+        "option_d":"Option D:",
+        "option_1":"Option A",
+        "option_2":"Option B",
+        "option_3":"Option C:",
+        "option_4":"Option D",
+        "select_correct_answer":"Please select correct Answer *",
+        "choose_answer":"Choose answer",
+        "select_answer": "Please select Answer."
+    },
+    "add_open_ended": {
+        "create_open_ended": "Create Open Ended Questions",
+        "edit_open_ended": "Edit Open Ended Questions"
+    },
+    "science_component": {
+        "back": "Back",
+        "submit_all_questions": "Please submit all the Questions one by one on this page.",
+        "remaining_questions_to_be_submitted": "Remaining Questions to be Submitted: ",
+        "questions_submitted": "Question has been Submitted",
+        "select_type_of_activity": "Please select type of activity.",
+        "choose_type": "Choose type"        
+    },
+    "add_true_false": {
+        "create_tf": "Create True/False Question",
+        "edit_tf": "Edit True/False Question",
+        "select_answer": "Please select Answer *",
+        "true": "True",
+        "false": "False"     
+    },
+    "add_material": {
+        "create_different_kind_of_material": "Create different kind of material with the help of seeds.",
+        "let_us_start": "Let's get started!",
+        "supporting_learning": "Supporting Learning on the Fringe of the Digital Sphere"
+    },
+    "view_activity_component": {
+        "topic_has_no_materials": "This topic has no material. Please add some material or delete this topic."
+        "topic_name": "Topic Name: ",
+        "topic_subject": "Topic Subject: ",
+        "topic_language": "Topic Language: ",
+        "topic_grade": "Topic Grade: ",
+        "topic_country": "Topic Country: ",
+        "total_number_of_questions": "Total number of Questions: ",
+        "time_to_complete": " Time to complete: ",
+        "private_material": "Private material: ",
+        "material_access_code": "Material access Code: ",
+        "edit_topic": "Edit Topic",
+        "delete_topic": "Delete Topic",
+        "you_have": "You have ",
+        "questions_to_add": " questions to add",
+        "question_number": "Question number: ",
+        "question_statement": "Question Statement: ",
+        "correct_answer": "Correct answer: ",
+        "add_new_topic": "Add New Topic?"        
+    },
+    "password_management": {
+        "change_password": "Change Password"
+        "enter_password": "Please enter your password.",
+        "old_password": "Old Password",
+        "enter_old_password": "Please enter your Old Password.",
+        "new_password": "New Password",
+        "enter_new_password": "Please enter New Password.",
+        "password_8_charachter": "Your new password must be 8 character long.",
+        "confirm_password": "Confirm Password",
+        "please_confirm_password": "Please Confirm Password.",
+        "passwords_must_match": "Your Password and Confirm Password must be matched.",
+        "grow_together": "Best opportunity to grow together.",
+        "forgot_password_q": "Forgot Password?",
+        "password_strength:": "Password Strength:",
+        "checking_email": "Checking Email...",
+        "reset_password": "Reset Password",
+        "verified_email": "Your email has been verified.",
+        "email_already_verified": "This email has already been verified.",
+        "please_login": "Please login",
+        "verification_failed": "Verification failed, The email verification link might have been expired. Please request verification link again."    
     }
 }

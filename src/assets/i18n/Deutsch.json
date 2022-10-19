@@ -73,6 +73,9 @@
         "view": "Themen anzeigen",
         "profile_text": "Hier können Sie Ihr Profil bearbeiten, Ihre Informationen aktualisieren und neue Lerninhalte für Schülerinnen und Schüler erstellen. Bitte klicken Sie auf die Schaltfläche unten, um den Prozess der Inhaltserstellung zu starten. Verwenden Sie die Felder auf der linken Seite, um Ihre Informationen zu bearbeiten. Wenn Sie Fragen haben, lesen Sie bitte den Abschnitt FAQ und zögern Sie nicht, uns zu kontaktieren, wenn Sie weitere Hilfe benötigen.",
         "welcome": "Willkommen bei SEEDS!",
+        "edit_profile": "Profil bearbeiten",
+        "your_name": "Ihr Name:",
+        "your_email_address": "Ihre E-Mail Adresse:",
         "close": "Schließen",
         "Edit_profile": "Profil bearbeiten"
     },
@@ -140,6 +143,126 @@
         "enter_access_code": "Bitte geben Sie den Zugangscode ein",
         "enter_access_code2": "Bitte Zugangscode eingeben",
         "update": "aktualisieren"
+    },
+    "add_activity_introduction": {
+        "create_introduction": "Einführung erstellen",
+        "edit_introduction": "Einleitung bearbeiten",
+        "activity_sequence_number": "Aktivität Laufende Nummer",
+        "please_enter_a_sequence_Number": "Bitte geben Sie eine fortlaufende Nummer ein.",
+        "enter_grater_or_eual_to_1": "Bitte geben Sie mehr als oder gleich 1 laufende Nummer ein.",
+        "enter_introduction": "Bitte geben Sie die Einführung ein. *",
+        "paste_youtube_link": "Bitte fügen Sie den youtube-Link ein, falls vorhanden?",
+        "file_formats": "* Nur png, jpeg, jpg",
+        "delete": "Löschen",
+        "submit": "Einreichen"        
+    },
+    "add_activity_matching": {
+        "create_matching_pairs": "Passende Paare erstellen",
+        "edit_matching_pairs": "Passende Paare bearbeiten",
+        "activity_sequence_number": "Aktivität Laufende Nummer",
+        "please_enter_a_sequence_Number": "Bitte geben Sie eine fortlaufende Nummer ein.",
+        "enter_grater_or_eual_to_1": "Bitte geben Sie mehr als oder gleich 1 laufende Nummer ein.",
+        "enter_question_statement": "Bitte geben Sie die Frage Aussage ein *",
+        "paste_youtube_link": "Bitte fügen Sie den youtube-Link ein, falls vorhanden?",
+        "file_formats": "* Nur png, jpeg, jpg",
+        "delete": "Löschen",
+        "enter_options_with_answers": "Bitte geben Sie die Optionen und ihre richtigen Antworten ein.",
+        "statement1":"Aussage 1:",
+        "statement2":"Aussage 2:",
+        "statement3":"Aussage 3:",
+        "statement4":"Aussage 4:",
+        "statement5":"Aussage 5:",
+        "statement6":"Aussage 6:",
+        "answer1":"Antwort 1:",
+        "answer2":"Antwort 2:",
+        "answer3":"Antwort 3:",
+        "answer4":"Antwort 4:",
+        "answer5":"Antwort 5:",
+        "answer6":"Antwort 6:",
+        "feedback_correct": "Rückmeldung, wenn die Antwort richtig ist *",
+        "feedback_incorrect": "Rückmeldung, wenn die Antwort falsch ist *",
+        "submit": "Einreichen"        
+    },
+    "add_mcq": {
+        "create_mcqs": "MCQs erstellen",
+        "edit_mcqs": "MCQs bearbeiten",
+        "enter_options": "Bitte geben Sie die Optionen ein.",
+        "option_a":"Option A:",
+        "option_b":"Option B:",
+        "option_c":"Option C:",
+        "option_d":"Option D:",
+        "option_1":"Option A",
+        "option_2":"Option B",
+        "option_3":"Option C:",
+        "option_4":"Option D",
+        "select_correct_answer":"Bitte wählen Sie die richtige Antwort *",
+        "choose_answer":"Antwort auswählen",
+        "select_answer": "Bitte wählen Sie die Antwort aus."
+    },
+    "add_open_ended": {
+        "create_open_ended": "Offene Fragen erstellen",
+        "edit_open_ended": "Offene Fragen bearbeiten"
+    },
+    "science_component": {
+        "back": "Zurück",
+        "submit_all_questions": "Bitte stellen Sie alle Fragen nacheinander auf dieser Seite.",
+        "remaining_questions_to_be_submitted": "Verbleibende Fragen müssen eingereicht werden: ",
+        "questions_submitted": "Frage wurde eingereicht",
+        "select_type_of_activity": "Bitte wählen Sie die Art der Aktivität.",
+        "choose_type": "Art wählen"        
+    },
+    "add_true_false": {
+        "create_tf": "True/False-Frage erstellen",
+        "edit_tf": "True/False-Frage bearbeiten",
+        "select_answer": "Bitte wählen Sie Antwort *",
+        "true": "Richtig",
+        "false": "Falsch"     
+    },
+    "add_material": {
+        "create_different_kind_of_material": "Erstellen Sie verschiedene Arten von Materialien mit Hilfe von SEEDS.",
+        "let_us_start": "Fangen wir an!",
+        "supporting_learning": "Unterstützung des Lernens am Rande der digitalen Sphäre"
+    },
+    "view_activity_component": {
+        "topic_has_no_materials": "Dieses Thema hat kein Material. Bitte fügen Sie weiteres Material hinzu oder löschen Sie dieses Thema."
+        "topic_name": "Name des Themas: ",
+        "topic_subject": "Thema Subjekt: ",
+        "topic_language": "Thema Sprache: ",
+        "topic_grade": "Thema Klasse: ",
+        "topic_country": "Thema Land: ",
+        "total_number_of_questions": "Gesamtzahl der Fragen: ",
+        "time_to_complete": "Zeit bis zum Abschluss: ",
+        "private_material": "Privates Material: ",
+        "material_access_code": "Materialzugang Code: ",
+        "edit_topic": "Thema bearbeiten",
+        "delete_topic": "Thema löschen",
+        "you_have": "Sie haben ",
+        "questions_to_add": " Fragen zu ergänzen",
+        "question_number": "Frage Nummer: ",
+        "question_statement": "Frage Aussage: ",
+        "correct_answer": "Richtige Antwort: ",
+        "add_new_topic": "Neues Thema hinzufügen?"        
+    },
+    "password_management": {
+        "change_password": "Passwort ändern"
+        "enter_password": "Bitte geben Sie Ihr Passwort ein.",
+        "old_password": "Altes Passwort",
+        "enter_old_password": "Bitte geben Sie Ihr altes Passwort ein.",
+        "new_password": "Neues Passwort",
+        "enter_new_password": "Bitte geben Sie Ihr neues Passwort ein.",
+        "password_8_charachter": "Ihr neues Passwort muss 8 Zeichen lang sein.",
+        "confirm_password": "Bestätigen Sie Ihr Passwort",
+        "please_confirm_password": "Bitte bestätigen Sie Ihr Passwort.",
+        "passwords_must_match": "Ihr Passwort und Ihr Bestätigungspasswort müssen übereinstimmen.",
+        "grow_together": "Die beste Gelegenheit, gemeinsam zu wachsen.",
+        "forgot_password_q": "Passwort vergessen?",
+        "password_strength:": "Passwort-Stärke:",
+        "checking_email": "E-Mail überprüfen...",
+        "reset_password": "Passwort zurücksetzen",
+        "verified_email": "Ihre E-Mail wurde überprüft.",
+        "email_already_verified": "Diese E-Mail wurde bereits verifiziert.",
+        "please_login": "Bitte anmelden",
+        "verification_failed": "Verifizierung fehlgeschlagen, der E-Mail-Verifizierungslink ist möglicherweise abgelaufen. Bitte fordern Sie den Verifizierungslink erneut an."    
     }
 
 

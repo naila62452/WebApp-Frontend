@@ -1,6 +1,6 @@
 <div class="spinnerDiv" *ngIf="loading">
     <mat-spinner aria-label="Please wait" [diameter]="100" strokeWidth="2"></mat-spinner>
-    <div style="position:relative; top: -60px; left: 30px;">Please wait.</div>
+    <div style="position:relative; top: -60px; left: 30px;">{{'edit_topic.please_wait' | translate}}</div>
 </div>
 <div class="main-content" *ngIf="!loading">
     <div class="container">
@@ -8,119 +8,119 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title" *ngIf="isAddMode">Create MCQs</h4>
-                        <h4 class="card-title" *ngIf="!isAddMode">Edit MCQs</h4>
+                        <h4 class="card-title" *ngIf="isAddMode">{{'add_mcq.create_mcqs' | translate}}</h4>
+                        <h4 class="card-title" *ngIf="!isAddMode">{{'add_mcq.edit_mcqs' | translate}}</h4>
                     </div>
                     <br>
                     <div class="card-body">
                         <form [formGroup]="mcqsForm">
                             <mat-form-field class="input_text">
-                                <mat-label>Activity Sequence Number</mat-label>
+                                <mat-label>{{'add_activity_matching.activity_sequence_number' | translate}}</mat-label>
                                 <input class="input_form" matInput type="number" name="sequence" id="sequence"
                                     formControlName="sequence" required>
                             </mat-form-field>
                             <div *ngIf="sequence.touched && sequence.invalid">
                                 <mat-error *ngIf="sequence.errors?.['required']">
                                     <div>
-                                        Please enter a Sequence of Number.
+                                        {{'add_activity_matching.please_enter_a_sequence_Number' | translate}}
                                     </div>
                                 </mat-error>
                                 <mat-error *ngIf="sequence.errors?.['min']">
-                                    Please enter greater than or equal to 1 Sequence Number.</mat-error>
+                                    {{'add_activity_matching.enter_grater_or_eual_to_1' | translate}}</mat-error>
                             </div>
                             
                             <br>
 
                             <div class="textarea">
-                                <mat-label>Please enter the Question Statement *</mat-label>
+                                <mat-label>{{'add_activity_matching.enter_question_statement' | translate}}</mat-label>
                                 <ul>
                                     <textarea type="text" name="mcqs" id="mcqs" formControlName="mcqs" required rows="4"
                                         cols="40"> </textarea>
                                 </ul>
                                 <div *ngIf="isAddMode">
                                     <input type="file" (change)="PickedImage($event)">
-                                    <span>*Only png, jpeg, jpg</span>
+                                    <span>{{'add_activity_matching.file_formats' | translate}}</span>
                                     <div class="image-preview" *ngIf="Pickedimage">
                                         <img [src]="Pickedimage" alt="No Profile picture">
                                         <button mat-stroked-button class="button" class="pointer"
-                                            (click)="DeleteImage()">Delete <mat-icon style="color: rgb(199, 24, 24)">
-                                                delete</mat-icon></button>
+                                            (click)="DeleteImage()">{{'add_activity_matching.delete' | translate}} <mat-icon style="color: rgb(199, 24, 24)">
+                                                {{'add_activity_matching.delete' | translate}} </mat-icon></button>
                                         <br>
                                     </div>
                                 </div>
                                 <div *ngIf="!isAddMode">
                                     <div *ngIf="imageUrl === ''">
                                         <input type="file" (change)="PickedImage($event)">
-                                        <span>* Only png, jpeg, jpg</span>
+                                        <span>{{'add_activity_matching.file_formats' | translate}}</span>
                                         <div class="image-preview" *ngIf="Pickedimage">
                                             <img [src]="Pickedimage" alt="No Profile picture">
                                             <button mat-stroked-button class="button" class="pointer"
-                                                (click)="DeleteImage()">Delete <mat-icon
+                                                (click)="DeleteImage()">{{'add_activity_matching.delete' | translate}}  <mat-icon
                                                     style="color: rgb(199, 24, 24)">
-                                                    delete</mat-icon></button>
+                                                    {{'add_activity_matching.delete' | translate}} </mat-icon></button>
                                             <br>
                                         </div>
                                     </div>
                                     <div class="image-preview" *ngIf="imageUrl !== ''">
                                         <img [src]="imageUrl" alt="No Profile picture">
                                         <button mat-stroked-button class="button" class="pointer"
-                                            (click)="DeleteImageBackend()">Delete <mat-icon
+                                            (click)="DeleteImageBackend()">{{'add_activity_matching.delete' | translate}}  <mat-icon
                                                 style="color: rgb(199, 24, 24)">
-                                                delete</mat-icon></button>
+                                                {{'add_activity_matching.delete' | translate}} </mat-icon></button>
                                         <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="options">
                                 <mat-label>
-                                    Please enter the options.
+                                    {{'add_mcq.enter_options' | translate}}
                                 </mat-label>
                                 <ul>
-                                    <span>Option A:</span><input type="text" name="option1" id="option1"
+                                    <span>{{'add_mcq.option_a' | translate}}</span><input type="text" name="option1" id="option1"
                                         formControlName="option1" required>
-                                    <span>Option B:</span><input type="text" name="option2" id="option2"
+                                    <span>{{'add_mcq.option_b' | translate}}</span><input type="text" name="option2" id="option2"
                                         formControlName="option2" required>
-                                    <span>Option C:</span><input type="text" name="option3" id="option3"
+                                    <span>{{'add_mcq.option_c' | translate}}</span><input type="text" name="option3" id="option3"
                                         formControlName="option3" required>
-                                    <span>Option D:</span><input type="text" name="option4" id="option4"
+                                    <span>{{'add_mcq.option_d' | translate}}</span><input type="text" name="option4" id="option4"
                                         formControlName="option4" required>
                                 </ul>
                             </div>
                             <div>
-                                <mat-label for="answer"><b>Please select correct Answer *</b></mat-label>
+                                <mat-label for="answer"><b>{{'add_mcq.select_correct_answer' | translate}}</b></mat-label>
                                 <mat-form-field appearance="fill">
-                                    <mat-label> Choose answer</mat-label>
+                                    <mat-label>{{'add_mcq.choose_answer' | translate}}</mat-label>
                                     <mat-select formControlName="answer">
-                                        <mat-option value="option1">Option A</mat-option>
-                                        <mat-option value="option2">Option B</mat-option>
-                                        <mat-option value="option3">Option C</mat-option>
-                                        <mat-option value="option4">Option D</mat-option>
+                                        <mat-option value="option1">{{'add_mcq.option_1' | translate}}</mat-option>
+                                        <mat-option value="option2">{{'add_mcq.option_2' | translate}}</mat-option>
+                                        <mat-option value="option3">{{'add_mcq.option_3' | translate}}</mat-option>
+                                        <mat-option value="option4">{{'add_mcq.option_4' | translate}}</mat-option>
 
                                     </mat-select>
                                 </mat-form-field>
                                 <mat-error *ngIf="(!mcqsForm.valid && mcqsForm.get('answer')?.errors) && 
                                 (mcqsForm.get('answer')?.dirty || mcqsForm.get('answer')?.touched)">
                                     <div>
-                                        Please select Answer.
+                                        {{'add_mcq.select_answer' | translate}}
                                     </div>
                                 </mat-error>
                                 <br>
 
                                 <div class="feedback">
                                     <div class="feedback__step">
-                                        <mat-label>Feedback, if the answer is correct *</mat-label>
+                                        <mat-label>{{'add_activity_matching.feedback_correct' | translate}}</mat-label>
                                         <textarea type="text" name="posFeedback" id="posFeedback"
                                             formControlName="posFeedback" required> </textarea>
                                     </div>
                                     <div class="feedback__step">
-                                        <mat-label>Feedback, if the answer is incorrect *</mat-label>
+                                        <mat-label>{{'add_activity_matching.feedback_incorrect' | translate}}</mat-label>
                                         <textarea type="text" name="negFeedback" id="negFeedback"
                                             formControlName="negFeedback" required> </textarea>
                                     </div>
                                 </div>
                                 <button mat-stroked-button [disabled]="mcqsForm.invalid" type="submit"
                                     (click)="onSubmit()"
-                                    style="width: 40%; text-align: center; font-size: px;">Submit</button>
+                                    style="width: 40%; text-align: center; font-size: px;">{{'add_activity_matching.submit' | translate}}</button>
                             </div>
                         </form>
                         <br>
